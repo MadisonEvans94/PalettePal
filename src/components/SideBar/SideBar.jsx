@@ -14,6 +14,8 @@ const SideBar = () => {
 						the canvas to upload a reference photo, or drag and drop an image to
 						begin
 					</p>
+				</div>
+				<div className="links">
 					<a href="https://github.com/">github</a>
 				</div>
 			</div>
