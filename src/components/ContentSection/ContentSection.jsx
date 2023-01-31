@@ -6,6 +6,7 @@ const ContentSection = () => {
 	return (
 		<>
 			<div className="content-section-container">
+				<input type="file" />
 				<div className="canvas">
 					<canvas></canvas>
 				</div>
