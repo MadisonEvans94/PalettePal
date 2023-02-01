@@ -1,11 +1,13 @@
 import "./App.css";
-import ContentSection from "./components/ContentSection/ContentSection";
-import SideBar from "./components/SideBar/SideBar";
+import CustomPlot from "./prototyping/CustomPlot";
+// import ContentSection from "./components/ContentSection/ContentSection";
+// import SideBar from "./components/SideBar/SideBar";
 function App() {
 	return (
 		<div className="App">
-			<SideBar></SideBar>
-			<ContentSection></ContentSection>
+			{/* <SideBar></SideBar>
+			<ContentSection></ContentSection> */}
+			<CustomPlot />
 		</div>
 	);
 }
