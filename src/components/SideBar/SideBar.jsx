@@ -2,7 +2,7 @@ import React from "react";
 
 import "./SideBar.css";
 
-const SideBar = () => {
+const SideBar = (props) => {
 	return (
 		<>
 			<div className="sidebar-container">
@@ -14,6 +14,8 @@ const SideBar = () => {
 						the canvas to upload a reference photo, or drag and drop an image to
 						begin
 					</p>
+					{/* image input button */}
+					{props.children}
 				</div>
 				<div className="links">
 					<a href="https://github.com/">github</a>

@@ -1,6 +1,7 @@
 import React from "react";
 import Plot from "react-plotly.js";
 
+//[ ] pass x, y, and z values down as props
 const CustomPlot = () => {
 	return (
 		<Plot
@@ -12,7 +13,7 @@ const CustomPlot = () => {
 					type: "scatter3d",
 				},
 			]}
-			layout={{ width: 1000, height: 1000, title: "A Fancy Plot" }}
+			layout={{ width: 300, height: 300, title: "A Fancy Plot" }}
 		/>
 	);
 };
