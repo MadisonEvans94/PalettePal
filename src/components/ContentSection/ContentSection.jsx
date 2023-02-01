@@ -6,7 +6,12 @@ const ContentSection = () => {
 	return (
 		<>
 			<div className="content-section-container">
-				<input type="file" />
+				<input type="file" id="image-input" accept="image/png, image/jpg" />
+
+				{/* container where plotly plot will be */}
+				<div class="plot-container">
+					<div id="tester" class="plot"></div>
+				</div>
 				<div className="canvas">
 					<canvas></canvas>
 				</div>
