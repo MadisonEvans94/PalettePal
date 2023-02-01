@@ -13,8 +13,6 @@ const ContentSection = () => {
 					<CustomPlot />
 					test
 				</div>
-
-				<h2>Palette</h2>
 			</div>
 		</>
 	);

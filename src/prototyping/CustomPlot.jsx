@@ -63,8 +63,8 @@ const CustomPlot = () => {
 			]}
 			layout={{
 				autosize: false,
-				width: 300,
-				height: 300,
+				width: 400,
+				height: 400,
 				margin: {
 					l: 0,
 					r: 0,
