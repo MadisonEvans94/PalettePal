@@ -1,9 +1,9 @@
 import React from "react";
-
+import "./Palette.css";
 const Palette = () => {
 	return (
 		<>
-			<div>Palette</div>
+			<div className="palette">Palette</div>
 		</>
 	);
 };
