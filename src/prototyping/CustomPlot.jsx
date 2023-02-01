@@ -56,7 +56,7 @@ const CustomPlot = () => {
 					y: yVal,
 					z: zVal,
 					marker: {
-						size: 2,
+						size: 3,
 						color: rgbFinal,
 					},
 				},

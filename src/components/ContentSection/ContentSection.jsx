@@ -1,6 +1,7 @@
 import React from "react";
 import "./ContentSection.css";
 import CustomPlot from "../../prototyping/CustomPlot";
+import Palette from "../Palette/Palette.jsx";
 
 const ContentSection = () => {
 	return (
@@ -11,7 +12,7 @@ const ContentSection = () => {
 				</div>
 				<div className="plot-container">
 					<CustomPlot />
-					test
+					<Palette paletteArray={["#FFFFFF", "#A1A1A1", "#0F0F0F"]} />
 				</div>
 			</div>
 		</>
