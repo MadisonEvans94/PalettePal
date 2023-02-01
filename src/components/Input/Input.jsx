@@ -1,11 +1,31 @@
 import React from "react";
 import "./Input.css";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
 //[ ] find a react equivalent to change event listener on input
+function transformArray(inputArray, dividend) {
+	// error handling
+	if (inputArray.length % dividend !== 0) {
+		throw new Error("choose a different dividend");
+	}
+
+	const result = [];
+	for (let i = 0; i < inputArray.length; i += dividend) {
+		result.push(inputArray.slice(i, i + dividend));
+	}
+	return result;
+}
+
+function reshapeImageData(imageData) {
+	const result = [];
+	for (let i = 0; i < imageData.length; i += 4) {
+		result.push(...imageData.slice(i, i + 3));
+	}
+	const rgbArray = transformArray(result, 3);
+	return rgbArray;
+}
 
 const Input = () => {
-	const [imageUrl, setImageUrl] = useState(null);
 	const [pixelData, setPixelData] = useState(null);
 	const canvasRef = useRef(null);
 
@@ -32,8 +52,10 @@ const Input = () => {
 					canvasRef.current.width,
 					canvasRef.current.height
 				);
-				console.log(imageData);
-				setPixelData(imageData);
+
+				const pixelArray = reshapeImageData(imageData.data);
+				console.log(pixelArray[0]);
+				setPixelData(pixelArray);
 			};
 		};
 		reader.readAsDataURL(e.target.files[0]);
