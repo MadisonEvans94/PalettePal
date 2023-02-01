@@ -6,12 +6,14 @@ const ContentSection = () => {
 	return (
 		<>
 			<div className="content-section-container">
-				<div class="plot-container">
-					<CustomPlot />
-				</div>
 				<div className="canvas">
 					<canvas></canvas>
 				</div>
+				<div className="plot-container">
+					<CustomPlot />
+					test
+				</div>
+
 				<h2>Palette</h2>
 			</div>
 		</>

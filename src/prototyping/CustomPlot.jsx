@@ -61,7 +61,20 @@ const CustomPlot = () => {
 					},
 				},
 			]}
-			layout={{ width: 300, height: 300, title: "A Fancy Plot" }}
+			layout={{
+				autosize: false,
+				width: 300,
+				height: 300,
+				margin: {
+					l: 0,
+					r: 0,
+					b: 0,
+					t: 0,
+					pad: 0,
+				},
+				paper_bgcolor: "#000",
+			}}
+			// config={{ responsive: true }}
 		/>
 	);
 };
