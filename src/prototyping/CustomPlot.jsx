@@ -1,10 +1,7 @@
 import React from "react";
 import Plot from "react-plotly.js";
-import { useState } from "react";
 
-//[ ] pass x, y, and z values down as props
-
-function transpose(matrix) {
+const transpose = (matrix) => {
 	const transposedMatrix = [];
 	const rows = matrix.length;
 	const cols = matrix[0].length;
@@ -17,44 +14,41 @@ function transpose(matrix) {
 	}
 
 	return transposedMatrix;
-}
+};
 
-//makePoints is only here as a helper for testing
-// function makePoints() {
-// 	let array = [];
-// 	for (let i = 0; i < 1000; i++) {
-// 		array.push(Math.floor(Math.random() * 255));
-// 	}
-// 	return array;
-// }
-const xVal = [];
-const yVal = [];
-const zVal = [];
+const fillXYZ = (pixelArray) => {
+	const xVal = [];
+	const yVal = [];
+	const zVal = [];
 
-//TODO: make this the main implementation once we're done testing
-function fillXYZ(pixelArray) {
 	pixelArray.forEach((pixel) => {
 		xVal.push(pixel[0]);
 		yVal.push(pixel[1]);
 		zVal.push(pixel[2]);
 	});
+
+	return [xVal, yVal, zVal];
+};
+
+const formatRGB = (rgb) => {
+	const transposed = transpose(rgb);
+	return transposed.map(
+		(point) => `rgb(${point[0]}, ${point[1]}, ${point[2]})`
+	);
+};
+function downSample(arr, factor) {
+	const newArray = [];
+	for (let i = 0; i < arr.length; i++) {
+		if (i % factor === 0) {
+			newArray.push(arr[i]);
+		}
+	}
+	return newArray;
 }
 
 const CustomPlot = ({ pixelData }) => {
-	// const [xValue, setXValue] = useState(null);
-	// const [yValue, setYValue] = useState(null);
-	// const [zValue, setZValue] = useState(null);
-	// setXValue(xVal);
-	// setYValue(yVal);
-	// setZValue(zVal);
-
-	fillXYZ(pixelData);
-	const rgb = [xVal, yVal, zVal];
-	const rgbTranspose = transpose(rgb);
-	const rgbFinal = [];
-	rgbTranspose.forEach((point) => {
-		rgbFinal.push(`rgb(${point[0]}, ${point[1]}, ${point[2]})`);
-	});
+	const [xVal, yVal, zVal] = fillXYZ(downSample(pixelData, 15));
+	const rgb = formatRGB([xVal, yVal, zVal]);
 
 	return (
 		<>
@@ -68,7 +62,7 @@ const CustomPlot = ({ pixelData }) => {
 						z: zVal,
 						marker: {
 							size: 3,
-							color: rgbFinal,
+							color: rgb,
 						},
 					},
 				]}
@@ -85,7 +79,6 @@ const CustomPlot = ({ pixelData }) => {
 					},
 					paper_bgcolor: "#FFF",
 				}}
-				// config={{ responsive: true }}
 			/>
 		</>
 	);

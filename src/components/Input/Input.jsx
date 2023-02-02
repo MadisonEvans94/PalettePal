@@ -1,10 +1,20 @@
+/**
+ * This code is a React component that implements an input field that allows a user to select an image file. The selected image file is processed and its data is used to render the image on a canvas element.
+
+transformArray is a helper function that takes an array inputArray and divides it into smaller arrays of length dividend. If inputArray.length is not divisible by dividend, an error is thrown.
+
+reshapeImageData is a helper function that takes an imageData array and returns an array of RGB color values. This function calls transformArray to divide the imageData array into arrays of length 3, which represent RGB values for each pixel in the image.
+
+The Input component uses the useRef hook to create a reference to the canvas element. The handleFileChange function is called when the input field is changed and a new image file is selected. This function uses the FileReader API to read the image file and render it on the canvas element. The FileReader API reads the image file as a data URL and sets it as the source of an Image object. When the image is loaded, it is drawn on the canvas element and its pixel data is retrieved using the getImageData method of the canvas' 2D rendering context. The pixel data is then processed using the reshapeImageData function to extract the RGB values and stored in an array called pixelArray. Finally, the setPixelDataForParent function is called and passed pixelArray as an argument, which sets the pixel data for the parent component.
+ */
+
 import React from "react";
 import "./Input.css";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 
-//[ ] find a react equivalent to change event listener on input
+// This function takes an inputArray and a dividend and returns a 2D array with each element of length `dividend`
 function transformArray(inputArray, dividend) {
-	// error handling
+	// Check if the inputArray length is divisible by the dividend, throw an error if not
 	if (inputArray.length % dividend !== 0) {
 		throw new Error("choose a different dividend");
 	}
@@ -16,11 +26,15 @@ function transformArray(inputArray, dividend) {
 	return result;
 }
 
+// This function takes imageData, reshapes it into a 1D array, and returns the transformed array
 function reshapeImageData(imageData) {
 	const result = [];
+	// Iterating over every 4 elements to get the RGB values
 	for (let i = 0; i < imageData.length; i += 4) {
+		// Pushing the first 3 elements (representing RGB values)
 		result.push(...imageData.slice(i, i + 3));
 	}
+	// Transforming the 1D array into a 2D array of RGB values
 	const rgbArray = transformArray(result, 3);
 	return rgbArray;
 }
@@ -35,22 +49,26 @@ const Input = ({ setPixelDataForParent }) => {
 			img.src = e.target.result;
 			img.onload = () => {
 				const canvas = canvasRef.current;
-				canvas.width = 500;
-				canvas.height = 500;
+				// Setting the canvas dimensions to 500x500
+				canvas.width = 800;
+				canvas.height = 800;
 
 				const ctx = canvas.getContext("2d");
+				// Clearing the canvas
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 				let scale = 1;
 				let x = 0;
 				let y = 0;
+				// Scaling the image to fit the canvas
 				if (img.width > img.height) {
-					scale = 500 / img.width;
-					y = (500 - img.height * scale) / 2;
+					scale = 800 / img.width;
+					y = (800 - img.height * scale) / 2;
 				} else {
-					scale = 500 / img.height;
-					x = (500 - img.width * scale) / 2;
+					scale = 800 / img.height;
+					x = (800 - img.width * scale) / 2;
 				}
+				// Drawing the image on the canvas
 				ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
 				const imageData = ctx.getImageData(
 					0,

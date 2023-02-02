@@ -11,9 +11,7 @@ const ContentSection = () => {
 		<>
 			<div className="content-section-container">
 				<Input setPixelDataForParent={setPixelData} />
-				{/* <div className="canvas">
-					<canvas></canvas>
-				</div> */}
+
 				<div className="plot-container">
 					<CustomPlot pixelData={pixelData} />
 					<Palette paletteArray={["#FFFFFF", "#A1A1A1", "#FF9FFE"]} />
