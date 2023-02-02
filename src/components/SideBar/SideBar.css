@@ -1,11 +1,10 @@
 .sidebar-container {
-	max-width: 30%;
+	position: relative;
+	width: 25%;
+	background-color: pink;
+
 	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	padding: 0.5rem 1rem;
-}
-.header > h1 {
-	margin: 0 0 2rem 0;
 }
