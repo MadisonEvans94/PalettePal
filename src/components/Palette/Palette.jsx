@@ -13,7 +13,7 @@ const Palette = ({ paletteArray }) => {
 				style={{
 					backgroundColor: `${color}`,
 					borderColor: "#000",
-					borderWidth: "1px",
+					borderStyle: "solid",
 					height: "100%",
 					width: "100%",
 					textAlign: "center",

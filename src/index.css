@@ -13,3 +13,7 @@ body {
 	font-family: "Signika Negative", sans-serif;
 	font-family: "Sofia Sans", sans-serif;
 }
+
+.js-plotly-plot {
+	border-style: solid;
+}

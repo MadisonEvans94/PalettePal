@@ -1,6 +1,10 @@
+li {
+	list-style: none;
+}
+
 .palette {
 	background-color: rgb(66, 66, 66);
-	min-width: 60%;
+	width: 100%;
 }
 .palette > ul {
 	display: flex;
