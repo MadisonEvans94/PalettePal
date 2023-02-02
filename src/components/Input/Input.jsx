@@ -12,7 +12,13 @@ import React from "react";
 import "./Input.css";
 import { useRef } from "react";
 
-// This function takes an inputArray and a dividend and returns a 2D array with each element of length `dividend`
+/**
+ * This function takes an inputArray and a dividend and returns a 2D array with each element of length `dividend`
+ * @param {Array} inputArray - Array to be transformed
+ * @param {number} dividend - Length of each element in the resulting 2D array
+ * @throws {Error} Throws an error if the length of the inputArray is not divisible by the dividend
+ * @returns {Array} 2D Array of inputArray elements, each of length `dividend`
+ */
 function transformArray(inputArray, dividend) {
 	// Check if the inputArray length is divisible by the dividend, throw an error if not
 	if (inputArray.length % dividend !== 0) {
@@ -26,7 +32,11 @@ function transformArray(inputArray, dividend) {
 	return result;
 }
 
-// This function takes imageData, reshapes it into a 1D array, and returns the transformed array
+/**
+ * This function takes imageData, reshapes it into a 1D array, and returns the transformed array
+ * @param {Array} imageData - 1D array of image data
+ * @returns {Array} 2D Array of RGB values
+ */
 function reshapeImageData(imageData) {
 	const result = [];
 	// Iterating over every 4 elements to get the RGB values
@@ -39,9 +49,18 @@ function reshapeImageData(imageData) {
 	return rgbArray;
 }
 
+/**
+ * Input component
+ * @param {function} setPixelDataForParent - Function to set the pixel data for the parent component
+ * @returns {JSX} Returns JSX for the Input component
+ */
 const Input = ({ setPixelDataForParent }) => {
 	const canvasRef = useRef(null);
 
+	/**
+	 * Handles the file change event of the input element
+	 * @param {Event} e - File change event
+	 */
 	const handleFileChange = (e) => {
 		const reader = new FileReader();
 		reader.onload = (e) => {
