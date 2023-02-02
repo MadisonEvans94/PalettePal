@@ -8,9 +8,9 @@ const ContentSection = (props) => {
 		<>
 			<div className="content-section-container">
 				{props.children}
-				<div className="canvas">
+				{/* <div className="canvas">
 					<canvas></canvas>
-				</div>
+				</div> */}
 				<div className="plot-container">
 					<CustomPlot />
 					<Palette paletteArray={["#FFFFFF", "#A1A1A1", "#FF9FFE"]} />

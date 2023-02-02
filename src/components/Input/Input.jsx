@@ -26,26 +26,33 @@ function reshapeImageData(imageData) {
 }
 
 const Input = () => {
-	const [pixelData, setPixelData] = useState(null);
 	const canvasRef = useRef(null);
+	const [pixelData, setPixelData] = useState(null);
 
 	const handleFileChange = (e) => {
 		const reader = new FileReader();
 		reader.onload = (e) => {
 			const img = new Image();
-
 			img.src = e.target.result;
 			img.onload = () => {
-				const ctx = canvasRef.current.getContext("2d");
-				const scale = Math.min(
-					canvasRef.current.width / img.width,
-					canvasRef.current.height / img.height
-				);
-				const x = (canvasRef.current.width - img.width * scale) / 2;
-				const y = (canvasRef.current.height - img.height * scale) / 2;
-				ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-				ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+				const canvas = canvasRef.current;
+				canvas.width = 500;
+				canvas.height = 500;
 
+				const ctx = canvas.getContext("2d");
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+				let scale = 1;
+				let x = 0;
+				let y = 0;
+				if (img.width > img.height) {
+					scale = 500 / img.width;
+					y = (500 - img.height * scale) / 2;
+				} else {
+					scale = 500 / img.height;
+					x = (500 - img.width * scale) / 2;
+				}
+				ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
 				const imageData = ctx.getImageData(
 					0,
 					0,
@@ -64,8 +71,7 @@ const Input = () => {
 	return (
 		<div>
 			<input type="file" accept="image/jpeg" onChange={handleFileChange} />
-
-			{/* <canvas ref={canvasRef} /> */}
+			<canvas ref={canvasRef} />
 		</div>
 	);
 };
