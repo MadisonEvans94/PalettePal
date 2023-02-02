@@ -3,16 +3,16 @@ import "./Palette.css";
 const Palette = ({ paletteArray }) => {
 	const colorList = paletteArray.map((color) => (
 		<li key={color.toString()} className="colorBlock">
-			<div>
-				<div
-					style={{
-						backgroundColor: `${color}`,
-						height: "100%",
-						width: "100%",
-						textAlign: "center",
-					}}>
-					{color}
-				</div>
+			<div
+				style={{
+					backgroundColor: `${color}`,
+					borderColor: "#000",
+					borderWidth: "1px",
+					height: "100%",
+					width: "100%",
+					textAlign: "center",
+				}}>
+				{color}
 			</div>
 		</li>
 	));

@@ -72,7 +72,7 @@ const CustomPlot = () => {
 					t: 0,
 					pad: 0,
 				},
-				paper_bgcolor: "#000",
+				paper_bgcolor: "#FFF",
 			}}
 			// config={{ responsive: true }}
 		/>

@@ -12,7 +12,7 @@ const ContentSection = () => {
 				</div>
 				<div className="plot-container">
 					<CustomPlot />
-					<Palette paletteArray={["#FFFFFF", "#A1A1A1", "#0F0F0F"]} />
+					<Palette paletteArray={["#FFFFFF", "#A1A1A1", "#FF9FFE"]} />
 				</div>
 			</div>
 		</>
