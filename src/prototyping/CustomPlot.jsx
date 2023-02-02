@@ -203,6 +203,7 @@ const CustomPlot = ({ pixelData }) => {
 	const [xVal, yVal, zVal] = fillXYZ(pixelDataShrink);
 	const [centroidX, centroidY, centroidZ] = fillXYZ(clusters);
 	const rgb = formatRGB([xVal, yVal, zVal]);
+	const centroidRGB = formatRGB([centroidX, centroidY, centroidZ]);
 	const trace1 = {
 		type: "scatter3d",
 		mode: "markers",
@@ -210,11 +211,10 @@ const CustomPlot = ({ pixelData }) => {
 		y: centroidY,
 		z: centroidZ,
 		marker: {
-			size: 6,
-			color: "black",
+			size: 12,
+			color: centroidRGB,
 			line: {
-				width: 2,
-				color: "red",
+				color: "white",
 			},
 		},
 	};
@@ -227,7 +227,7 @@ const CustomPlot = ({ pixelData }) => {
 		marker: {
 			size: 3,
 			color: rgb,
-			opacity: 0.1,
+			opacity: 1,
 		},
 	};
 
