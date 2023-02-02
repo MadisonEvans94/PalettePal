@@ -17,8 +17,6 @@ li {
 	width: 100%;
 }
 .colorBlock > * {
-	width: 90%;
-	height: 90%;
 	margin-inline: auto;
 	margin-block: auto;
 	display: flex;

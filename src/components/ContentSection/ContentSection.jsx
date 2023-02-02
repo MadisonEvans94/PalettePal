@@ -18,9 +18,9 @@ const ContentSection = () => {
 					<CustomPlot pixelData={pixelData} />
 					<Palette
 						paletteArray={[
-							"rgba(12,8,7,1)",
-							"rgba(202,142,127)",
-							"rgba(117,69,69,1)",
+							"rgba(247, 121, 106)",
+							"rgba(187, 26, 24)",
+							"rgba(7, 75, 102)",
 						]}
 					/>
 				</div>
