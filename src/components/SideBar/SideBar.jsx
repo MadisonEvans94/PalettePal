@@ -2,6 +2,11 @@ import React from "react";
 
 import "./SideBar.css";
 
+/**
+ * @module SideBar
+ * @desc A component that renders the sidebar of the Palette Pal app
+ * @returns {JSX.Element} The JSX element that renders the SideBar component
+ */
 const SideBar = () => {
 	return (
 		<>

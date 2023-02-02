@@ -1,5 +1,11 @@
 import React from "react";
 import "./Palette.css";
+
+/**
+ * Palette component that displays a list of colors
+ * @param {Object} props - The component properties
+ * @param {Array} props.paletteArray - An array of color strings
+ */
 const Palette = ({ paletteArray }) => {
 	const colorList = paletteArray.map((color) => (
 		<li key={color.toString()} className="colorBlock">

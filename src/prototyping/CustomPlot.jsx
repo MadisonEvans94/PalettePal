@@ -79,6 +79,7 @@ function downSample(arr, factor) {
  * @param {Array<Array<number>>} props.pixelData - Array of pixel data
  * @returns {React.Component} - 3D scatter plot
  */
+
 const CustomPlot = ({ pixelData }) => {
 	const [xVal, yVal, zVal] = fillXYZ(downSample(pixelData, 15));
 	const rgb = formatRGB([xVal, yVal, zVal]);
