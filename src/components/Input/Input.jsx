@@ -65,7 +65,7 @@ const Input = () => {
 		<div>
 			<input type="file" accept="image/jpeg" onChange={handleFileChange} />
 
-			<canvas ref={canvasRef} />
+			{/* <canvas ref={canvasRef} /> */}
 		</div>
 	);
 };

@@ -2,7 +2,7 @@ import React from "react";
 
 import "./SideBar.css";
 
-const SideBar = (props) => {
+const SideBar = () => {
 	return (
 		<>
 			<div className="sidebar-container">
@@ -15,7 +15,6 @@ const SideBar = (props) => {
 						begin
 					</p>
 					{/* image input button */}
-					{props.children}
 				</div>
 				<div className="links">
 					<a href="https://github.com/">github</a>

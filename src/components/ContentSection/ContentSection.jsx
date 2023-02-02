@@ -3,10 +3,11 @@ import "./ContentSection.css";
 import CustomPlot from "../../prototyping/CustomPlot";
 import Palette from "../Palette/Palette.jsx";
 
-const ContentSection = () => {
+const ContentSection = (props) => {
 	return (
 		<>
 			<div className="content-section-container">
+				{props.children}
 				<div className="canvas">
 					<canvas></canvas>
 				</div>

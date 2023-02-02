@@ -7,10 +7,10 @@ function App() {
 	return (
 		<div className="App">
 			<CanvasContext.Provider values={{}}>
-				<SideBar>
+				<SideBar></SideBar>
+				<ContentSection>
 					<Input />
-				</SideBar>
-				<ContentSection></ContentSection>
+				</ContentSection>
 			</CanvasContext.Provider>
 		</div>
 	);
