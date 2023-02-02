@@ -2,17 +2,20 @@ import React from "react";
 import "./ContentSection.css";
 import CustomPlot from "../../prototyping/CustomPlot";
 import Palette from "../Palette/Palette.jsx";
+import Input from "../Input/Input.jsx";
+import { useState } from "react";
 
-const ContentSection = (props) => {
+const ContentSection = () => {
+	const [pixelData, setPixelData] = useState([]);
 	return (
 		<>
 			<div className="content-section-container">
-				{props.children}
+				<Input setPixelDataForParent={setPixelData} />
 				{/* <div className="canvas">
 					<canvas></canvas>
 				</div> */}
 				<div className="plot-container">
-					<CustomPlot />
+					<CustomPlot pixelData={pixelData} />
 					<Palette paletteArray={["#FFFFFF", "#A1A1A1", "#FF9FFE"]} />
 				</div>
 			</div>

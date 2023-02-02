@@ -25,9 +25,8 @@ function reshapeImageData(imageData) {
 	return rgbArray;
 }
 
-const Input = () => {
+const Input = ({ setPixelDataForParent }) => {
 	const canvasRef = useRef(null);
-	const [pixelData, setPixelData] = useState(null);
 
 	const handleFileChange = (e) => {
 		const reader = new FileReader();
@@ -61,8 +60,9 @@ const Input = () => {
 				);
 
 				const pixelArray = reshapeImageData(imageData.data);
-				console.log(pixelArray[0]);
-				setPixelData(pixelArray);
+				console.log(pixelArray);
+
+				setPixelDataForParent(pixelArray);
 			};
 		};
 		reader.readAsDataURL(e.target.files[0]);

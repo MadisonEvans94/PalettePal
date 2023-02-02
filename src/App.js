@@ -1,17 +1,13 @@
 import "./App.css";
-import Input from "./components/Input/Input";
+
 import ContentSection from "./components/ContentSection/ContentSection";
 import SideBar from "./components/SideBar/SideBar";
 import { CanvasContext } from "./Contexts/CanvasContext";
 function App() {
 	return (
 		<div className="App">
-			<CanvasContext.Provider values={{}}>
-				<SideBar></SideBar>
-				<ContentSection>
-					<Input />
-				</ContentSection>
-			</CanvasContext.Provider>
+			<SideBar></SideBar>
+			<ContentSection></ContentSection>
 		</div>
 	);
 }
