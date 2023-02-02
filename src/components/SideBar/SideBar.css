@@ -1,7 +1,7 @@
 .sidebar-container {
 	position: relative;
 	width: 25%;
-	background-color: pink;
+	color: rgb(245, 245, 245);
 
 	height: 100%;
 	display: flex;
