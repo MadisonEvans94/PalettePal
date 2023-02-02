@@ -7,36 +7,26 @@ import { useState } from "react";
 
 const ContentSection = () => {
 	const [pixelData, setPixelData] = useState([]);
-	const [palette, setPalette] = useState([]);
-	if (palette.length > 0) {
-		return (
-			<>
-				<div className="content-section-container">
-					<Input setPixelDataForParent={setPixelData} />
 
-					<div className="plot-container">
-						<CustomPlot pixelData={pixelData} setPalette={setPalette} />
-						<Palette
-							paletteArray={[`${palette[0]}`, `${palette[1]}`, `${palette[2]}`]}
-						/>
-					</div>
-				</div>
-			</>
-		);
-	} else {
-		return (
-			<>
-				<div className="content-section-container">
-					<Input setPixelDataForParent={setPixelData} />
+	return (
+		<>
+			<div className="content-section-container">
+				<Input setPixelDataForParent={setPixelData} />
 
-					<div className="plot-container">
-						<CustomPlot pixelData={pixelData} setPalette={setPalette} />
-						<Palette paletteArray={["#FFF", "#FFF", "#FFF"]} />
-					</div>
+				<div className="plot-container">
+					{/* setPalette={setPalette}  */}
+					<CustomPlot pixelData={pixelData} />
+					<Palette
+						paletteArray={[
+							"rgba(12,8,7,1)",
+							"rgba(202,142,127)",
+							"rgba(117,69,69,1)",
+						]}
+					/>
 				</div>
-			</>
-		);
-	}
+			</div>
+		</>
+	);
 };
 
 export default ContentSection;

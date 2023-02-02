@@ -191,20 +191,20 @@ function downSample(arr, factor) {
  * @returns {React.Component} - 3D scatter plot
  */
 
-const CustomPlot = ({ pixelData, setPalette }) => {
+const CustomPlot = ({ pixelData }) => {
 	if (pixelData.length === 0) {
 		console.log("no image detected");
 		return <></>;
 	}
 	const pixelDataShrink = downSample(pixelData, 15);
 
-	const clusters = kMeans(pixelDataShrink, 3);
+	const centroids = kMeans(pixelDataShrink, 3);
 
 	const [xVal, yVal, zVal] = fillXYZ(pixelDataShrink);
-	const [centroidX, centroidY, centroidZ] = fillXYZ(clusters);
+	const [centroidX, centroidY, centroidZ] = fillXYZ(centroids);
 	const rgb = formatRGB([xVal, yVal, zVal]);
 	const centroidRGB = formatRGB([centroidX, centroidY, centroidZ]);
-	setPalette(centroidRGB);
+	console.log(centroids);
 	const trace1 = {
 		type: "scatter3d",
 		mode: "markers",
