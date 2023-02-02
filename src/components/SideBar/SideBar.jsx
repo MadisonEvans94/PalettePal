@@ -39,9 +39,10 @@ const SideBar = () => {
 				<div
 					style={{
 						position: "relative",
-						margin: "0 1rem",
+
+						margin: "5rem 0 5rem 0",
 					}}>
-					<h1 style={{ margin: "5rem 0 5rem 0" }}>Palette Pal</h1>
+					<h1 className="main-title">Palette Pal</h1>
 					<p>
 						Welcome to Palette Pal, an interactive color picker! Simply upload
 						an image and receive a color palette suggestion based on that image!
