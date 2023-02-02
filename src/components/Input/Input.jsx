@@ -69,26 +69,23 @@ const Input = ({ setPixelDataForParent }) => {
 			img.onload = () => {
 				const canvas = canvasRef.current;
 				// Setting the canvas dimensions to 500x500
-				canvas.width = 800;
-				canvas.height = 800;
+				canvas.width = 600;
+				canvas.height = 600;
 
 				const ctx = canvas.getContext("2d", { willReadFrequently: true });
 				// Clearing the canvas
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-				let scale = 1;
-				let x = 0;
-				let y = 0;
+				let scale;
 				// Scaling the image to fit the canvas
 				if (img.width > img.height) {
-					scale = 800 / img.width;
-					y = (800 - img.height * scale) / 2;
+					scale = canvas.width / img.width;
 				} else {
-					scale = 800 / img.height;
-					x = (800 - img.width * scale) / 2;
+					scale = canvas.height / img.height;
 				}
+				canvas.width = img.width * scale;
+				canvas.height = img.height * scale;
 				// Drawing the image on the canvas
-				ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+				ctx.drawImage(img, 0, 0, img.width * scale, img.height * scale);
 				const imageData = ctx.getImageData(
 					0,
 					0,
@@ -109,10 +106,7 @@ const Input = ({ setPixelDataForParent }) => {
 	return (
 		<div className="input-container">
 			<input type="file" accept="image/jpeg" onChange={handleFileChange} />
-			<canvas
-				ref={canvasRef}
-				style={{ width: "fit-content", height: "fit-content" }}
-			/>
+			<canvas ref={canvasRef} />
 		</div>
 	);
 };

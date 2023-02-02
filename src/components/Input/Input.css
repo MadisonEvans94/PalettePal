@@ -1,4 +1,4 @@
 .input-container {
 	border: solid 1px black;
-	height: 50%;
+	height: fit-content;
 }

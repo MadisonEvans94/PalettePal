@@ -212,9 +212,10 @@ const CustomPlot = ({ pixelData }) => {
 		y: centroidY,
 		z: centroidZ,
 		marker: {
-			size: 12,
+			size: 20,
 			color: centroidRGB,
 			line: {
+				width: 10,
 				color: "white",
 			},
 		},
@@ -228,7 +229,7 @@ const CustomPlot = ({ pixelData }) => {
 		marker: {
 			size: 3,
 			color: rgb,
-			opacity: 1,
+			opacity: 0.9,
 		},
 	};
 
@@ -238,8 +239,8 @@ const CustomPlot = ({ pixelData }) => {
 				data={[trace1, trace2]}
 				layout={{
 					autosize: false,
-					width: 400,
-					height: 400,
+					width: "100%",
+					height: "100%",
 					margin: {
 						l: 0,
 						r: 0,
