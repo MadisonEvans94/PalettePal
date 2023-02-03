@@ -10,8 +10,8 @@ body {
 }
 
 .js-plotly-plot {
-	border-style: solid;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	height: 100%;
 }

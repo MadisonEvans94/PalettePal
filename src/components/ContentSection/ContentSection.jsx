@@ -16,7 +16,13 @@ const ContentSection = () => {
 				<div className="plot-container">
 					{/* setPalette={setPalette}  */}
 					<CustomPlot pixelData={pixelData} />
-					<Palette paletteArray={["#FFF", "#FFF", "#FFF"]} />
+					<Palette
+						paletteArray={[
+							"rgba(187,26,25)",
+							"rgba(247,121,106)",
+							"rgba(7,75,102)",
+						]}
+					/>
 				</div>
 			</div>
 		</>

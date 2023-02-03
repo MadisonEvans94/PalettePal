@@ -69,8 +69,8 @@ const Input = ({ setPixelDataForParent }) => {
 			img.onload = () => {
 				const canvas = canvasRef.current;
 				// Setting the canvas dimensions to 500x500
-				canvas.width = 500;
-				canvas.height = 500;
+				canvas.width = 600;
+				canvas.height = 600;
 
 				const ctx = canvas.getContext("2d", { willReadFrequently: true });
 				// Clearing the canvas

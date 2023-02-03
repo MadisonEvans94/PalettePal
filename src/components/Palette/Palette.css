@@ -1,10 +1,11 @@
 li {
 	list-style: none;
+	border-style: none;
 }
 
 .palette {
-	background-color: rgb(66, 66, 66);
 	width: 100%;
+	height: 100%;
 }
 .palette > ul {
 	display: flex;
@@ -13,7 +14,6 @@ li {
 	justify-content: space-between;
 }
 .colorBlock {
-	background-color: black;
 	width: 100%;
 }
 .colorBlock > * {

@@ -8,12 +8,15 @@ import "./Palette.css";
  */
 const Palette = ({ paletteArray }) => {
 	const colorList = paletteArray.map((color) => (
-		<li key={color.toString()} className="colorBlock">
+		<li
+			key={color.toString()}
+			className="colorBlock"
+			style={{ margin: "4rem 1rem" }}>
 			<div
 				style={{
-					backgroundColor: `${color}`,
-					borderColor: "#000",
-					borderStyle: "solid",
+					background: `${color}`,
+
+					borderRadius: "2rem",
 					height: "100%",
 					width: "100%",
 					textAlign: "center",
