@@ -191,8 +191,12 @@ function downSample(arr, factor) {
  * @returns {React.Component} - 3D scatter plot
  */
 
-const CustomPlot = ({ pixelData, setCentroidRGB }) => {
-	console.log("pixelData: ", pixelData);
+const CustomPlot = ({
+	pixelData,
+	setCentroidRGB,
+	setColorsNeedUpdate,
+	colorsNeedUpdate,
+}) => {
 	if (pixelData.length === 0) {
 		return <></>;
 	}
@@ -204,8 +208,10 @@ const CustomPlot = ({ pixelData, setCentroidRGB }) => {
 	const [centroidX, centroidY, centroidZ] = fillXYZ(centroids);
 	const rgb = formatRGB([xVal, yVal, zVal]);
 	const centroidRGB = formatRGB([centroidX, centroidY, centroidZ]);
-	setCentroidRGB(centroidRGB);
-
+	if (colorsNeedUpdate) {
+		setCentroidRGB(centroidRGB);
+		setColorsNeedUpdate(false);
+	}
 	const trace1 = {
 		type: "scatter3d",
 		mode: "markers",

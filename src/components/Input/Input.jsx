@@ -54,7 +54,7 @@ function reshapeImageData(imageData) {
  * @param {function} setPixelDataForParent - Function to set the pixel data for the parent component
  * @returns {JSX} Returns JSX for the Input component
  */
-const Input = ({ setPixelDataForParent }) => {
+const Input = ({ setPixelDataForParent, setColorsNeedUpdate }) => {
 	const canvasRef = useRef(null);
 
 	/**
@@ -63,6 +63,8 @@ const Input = ({ setPixelDataForParent }) => {
 	 */
 	const handleFileChange = (e) => {
 		const reader = new FileReader();
+		console.log("file updated");
+		setColorsNeedUpdate(true);
 		reader.onload = (e) => {
 			const img = new Image();
 			img.src = e.target.result;
