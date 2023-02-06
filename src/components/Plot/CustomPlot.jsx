@@ -1,19 +1,6 @@
 import React from "react";
 import Plot from "react-plotly.js";
-import {
-	kMeans,
-	fillXYZ,
-	formatRGB,
-	downSample,
-} from "../../helpers/clusterFunctions";
-
-/**
- * Component that displays a 3D scatter plot
- *
- * @param {Object} props - Component props
- * @param {Array<Array<number>>} props.pixelData - Array of pixel data
- * @returns {React.Component} - 3D scatter plot
- */
+import { processCentroids } from "../../helpers/clusterFunctions";
 
 const CustomPlot = ({
 	pixelData,
@@ -25,17 +12,10 @@ const CustomPlot = ({
 	if (pixelData.length === 0) {
 		return <></>;
 	}
-	const pixelDataShrink = downSample(pixelData, 15);
-
-	const centroids = kMeans(pixelDataShrink, clusterQty);
-
-	const [xVal, yVal, zVal] = fillXYZ(pixelDataShrink);
-	const [centroidX, centroidY, centroidZ] = fillXYZ(centroids);
-	const rgb = formatRGB([xVal, yVal, zVal]);
-	const centroidRGB = formatRGB([centroidX, centroidY, centroidZ]);
+	const [rgb, centroidRGB, centroidX, centroidY, centroidZ, xVal, yVal, zVal] =
+		processCentroids(pixelData, clusterQty);
 	if (colorsNeedUpdate) {
 		setCentroidRGB(centroidRGB);
-
 		setColorsNeedUpdate(false);
 	}
 	const trace1 = {

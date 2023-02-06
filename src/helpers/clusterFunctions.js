@@ -179,5 +179,14 @@ function downSample(arr, factor) {
 	}
 	return newArray;
 }
+function processCentroids(data, clusterQty) {
+	const pixelDataShrink = downSample(data, 15);
+	const centroids = kMeans(pixelDataShrink, clusterQty);
+	const [xVal, yVal, zVal] = fillXYZ(pixelDataShrink);
+	const [centroidX, centroidY, centroidZ] = fillXYZ(centroids);
+	const rgb = formatRGB([xVal, yVal, zVal]);
+	const centroidRGB = formatRGB([centroidX, centroidY, centroidZ]);
+	return [rgb, centroidRGB, centroidX, centroidY, centroidZ, xVal, yVal, zVal];
+}
 
-export { kMeans, fillXYZ, formatRGB, downSample };
+export { kMeans, fillXYZ, formatRGB, downSample, processCentroids };
