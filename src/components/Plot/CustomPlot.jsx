@@ -45,11 +45,6 @@ const CustomPlot = ({
 			opacity: 0.9,
 		},
 	};
-	console.log(
-		"custom plot component rendering",
-		"centroid RGB = ",
-		centroidRGB
-	);
 
 	return (
 		<>
