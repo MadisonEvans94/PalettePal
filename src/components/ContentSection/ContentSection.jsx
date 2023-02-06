@@ -7,6 +7,11 @@ import { useState } from "react";
 
 const ContentSection = () => {
 	const [pixelData, setPixelData] = useState([]);
+	const [centroidRGB, setCentroidRGB] = useState([
+		"rgba(255,255,255)",
+		"rgba(255,255,255)",
+		"rgba(255,255,255)",
+	]);
 
 	return (
 		<>
@@ -15,14 +20,8 @@ const ContentSection = () => {
 
 				<div className="plot-container">
 					{/* setPalette={setPalette}  */}
-					<CustomPlot pixelData={pixelData} />
-					<Palette
-						paletteArray={[
-							"rgba(187,26,25)",
-							"rgba(247,121,106)",
-							"rgba(7,75,102)",
-						]}
-					/>
+					<CustomPlot pixelData={pixelData} setCentroidRGB={setCentroidRGB} />
+					<Palette paletteArray={centroidRGB} />
 				</div>
 			</div>
 		</>

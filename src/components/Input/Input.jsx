@@ -69,8 +69,8 @@ const Input = ({ setPixelDataForParent }) => {
 			img.onload = () => {
 				const canvas = canvasRef.current;
 				// Setting the canvas dimensions to 500x500
-				canvas.width = 600;
-				canvas.height = 600;
+				canvas.width = 500;
+				canvas.height = 500;
 
 				const ctx = canvas.getContext("2d", { willReadFrequently: true });
 				// Clearing the canvas
@@ -95,7 +95,6 @@ const Input = ({ setPixelDataForParent }) => {
 				);
 
 				const pixelArray = reshapeImageData(imageData.data);
-				console.log(pixelArray);
 
 				setPixelDataForParent(pixelArray);
 			};
@@ -105,7 +104,11 @@ const Input = ({ setPixelDataForParent }) => {
 
 	return (
 		<div className="input-container">
-			<input type="file" accept="image/jpeg" onChange={handleFileChange} />
+			<input
+				type="file"
+				accept="image/jpeg, image/png"
+				onChange={handleFileChange}
+			/>
 			<canvas ref={canvasRef} />
 		</div>
 	);

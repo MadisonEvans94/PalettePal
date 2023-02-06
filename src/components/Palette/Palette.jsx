@@ -7,11 +7,8 @@ import "./Palette.css";
  * @param {Array} props.paletteArray - An array of color strings
  */
 const Palette = ({ paletteArray }) => {
-	const colorList = paletteArray.map((color) => (
-		<li
-			key={color.toString()}
-			className="colorBlock"
-			style={{ margin: "4rem 1rem" }}>
+	const colorList = paletteArray.map((color, index) => (
+		<li key={index} className="colorBlock" style={{ margin: "4rem 1rem" }}>
 			<div
 				style={{
 					background: `${color}`,
