@@ -196,20 +196,23 @@ const CustomPlot = ({
 	setCentroidRGB,
 	setColorsNeedUpdate,
 	colorsNeedUpdate,
+	clusterQty,
 }) => {
 	if (pixelData.length === 0) {
 		return <></>;
 	}
 	const pixelDataShrink = downSample(pixelData, 15);
 
-	const centroids = kMeans(pixelDataShrink, 3);
+	const centroids = kMeans(pixelDataShrink, clusterQty);
 
 	const [xVal, yVal, zVal] = fillXYZ(pixelDataShrink);
 	const [centroidX, centroidY, centroidZ] = fillXYZ(centroids);
 	const rgb = formatRGB([xVal, yVal, zVal]);
 	const centroidRGB = formatRGB([centroidX, centroidY, centroidZ]);
 	if (colorsNeedUpdate) {
+		console.log("clusters are updating as we speak!");
 		setCentroidRGB(centroidRGB);
+		console.log(centroidRGB);
 		setColorsNeedUpdate(false);
 	}
 	const trace1 = {

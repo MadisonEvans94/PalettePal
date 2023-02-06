@@ -13,7 +13,7 @@ const ContentSection = () => {
 		"rgba(255,255,255)",
 	]);
 	const [colorsNeedUpdate, setColorsNeedUpdate] = useState(false);
-
+	const clusterQty = 3;
 	useEffect(() => {
 		console.log("color centroids updated");
 		console.log(centroidRGB);
@@ -34,6 +34,7 @@ const ContentSection = () => {
 						setCentroidRGB={setCentroidRGB}
 						setColorsNeedUpdate={setColorsNeedUpdate}
 						colorsNeedUpdate={colorsNeedUpdate}
+						clusterQty={clusterQty}
 					/>
 					<Palette paletteArray={centroidRGB} />
 				</div>
