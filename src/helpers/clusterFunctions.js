@@ -180,12 +180,16 @@ function downSample(arr, factor) {
 	return newArray;
 }
 function processCentroids(data, clusterQty) {
+	if (data.length < 1) {
+		return [];
+	}
 	const pixelDataShrink = downSample(data, 15);
 	const centroids = kMeans(pixelDataShrink, clusterQty);
 	const [xVal, yVal, zVal] = fillXYZ(pixelDataShrink);
 	const [centroidX, centroidY, centroidZ] = fillXYZ(centroids);
 	const rgb = formatRGB([xVal, yVal, zVal]);
 	const centroidRGB = formatRGB([centroidX, centroidY, centroidZ]);
+	console.log("processing");
 	return [rgb, centroidRGB, centroidX, centroidY, centroidZ, xVal, yVal, zVal];
 }
 

@@ -1,8 +1,15 @@
 import React from "react";
 import "./Palette.css";
 
-const Palette = ({ paletteArray }) => {
-	const colorList = paletteArray.map((color, index) => (
+const Palette = ({ centroid_rgb }) => {
+	console.log(
+		"value of centroid_rgb after it's been passed as a prop " + centroid_rgb
+	);
+	if (centroid_rgb === undefined) {
+		return <></>;
+	}
+
+	const colorList = centroid_rgb.map((color, index) => (
 		<li key={index} className="colorBlock" style={{ margin: "4rem 1rem" }}>
 			<div
 				style={{

@@ -3,17 +3,24 @@ import "./ContentSection.css";
 import CustomPlot from "../Plot/CustomPlot";
 import Palette from "../Palette/Palette.jsx";
 import Input from "../Input/Input.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { processCentroids } from "../../helpers/clusterFunctions";
 
 const ContentSection = () => {
 	const [pixelData, setPixelData] = useState([]);
-	const [centroidRGB, setCentroidRGB] = useState([
-		"rgba(255,255,255)",
-		"rgba(255,255,255)",
-		"rgba(255,255,255)",
-	]);
+	const [centroidRGB, setCentroidRGB] = useState(null);
 	const [colorsNeedUpdate, setColorsNeedUpdate] = useState(false);
 	const clusterQty = 4;
+	if (colorsNeedUpdate) {
+		console.log("test");
+
+		setColorsNeedUpdate(false);
+	}
+	const [rgb, centroid_rgb, centroidX, centroidY, centroidZ, xVal, yVal, zVal] =
+		processCentroids(pixelData, clusterQty);
+
+	console.log("centroid_rgb: ", centroid_rgb);
+	console.log("centroidRGB: ", centroidRGB);
 
 	return (
 		<>
@@ -24,15 +31,18 @@ const ContentSection = () => {
 				/>
 
 				<div className="plot-container">
-					{/* setPalette={setPalette}  */}
 					<CustomPlot
 						pixelData={pixelData}
-						setCentroidRGB={setCentroidRGB}
-						setColorsNeedUpdate={setColorsNeedUpdate}
-						colorsNeedUpdate={colorsNeedUpdate}
-						clusterQty={clusterQty}
+						rgb={rgb}
+						centroid_rgb={centroid_rgb}
+						centroidX={centroidX}
+						centroidY={centroidY}
+						centroidZ={centroidZ}
+						xVal={xVal}
+						yVal={yVal}
+						zVal={zVal}
 					/>
-					<Palette paletteArray={centroidRGB} />
+					<Palette centroid_rgb={centroid_rgb} />
 				</div>
 			</div>
 		</>

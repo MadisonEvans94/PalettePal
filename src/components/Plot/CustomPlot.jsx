@@ -1,23 +1,21 @@
 import React from "react";
 import Plot from "react-plotly.js";
-import { processCentroids } from "../../helpers/clusterFunctions";
 
 const CustomPlot = ({
 	pixelData,
-	setCentroidRGB,
-	setColorsNeedUpdate,
-	colorsNeedUpdate,
-	clusterQty,
+	rgb,
+	centroid_rgb,
+	centroidX,
+	centroidY,
+	centroidZ,
+	xVal,
+	yVal,
+	zVal,
 }) => {
 	if (pixelData.length === 0) {
 		return <></>;
 	}
-	const [rgb, centroidRGB, centroidX, centroidY, centroidZ, xVal, yVal, zVal] =
-		processCentroids(pixelData, clusterQty);
-	if (colorsNeedUpdate) {
-		setCentroidRGB(centroidRGB);
-		setColorsNeedUpdate(false);
-	}
+
 	const trace1 = {
 		type: "scatter3d",
 		mode: "markers",
@@ -26,7 +24,7 @@ const CustomPlot = ({
 		z: centroidZ,
 		marker: {
 			size: 20,
-			color: centroidRGB,
+			color: centroid_rgb,
 			line: {
 				width: 10,
 				color: "white",
