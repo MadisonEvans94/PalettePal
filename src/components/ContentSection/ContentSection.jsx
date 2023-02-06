@@ -3,7 +3,7 @@ import "./ContentSection.css";
 import CustomPlot from "../Plot/CustomPlot";
 import Palette from "../Palette/Palette.jsx";
 import Input from "../Input/Input.jsx";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const ContentSection = () => {
 	const [pixelData, setPixelData] = useState([]);
@@ -13,11 +13,7 @@ const ContentSection = () => {
 		"rgba(255,255,255)",
 	]);
 	const [colorsNeedUpdate, setColorsNeedUpdate] = useState(false);
-	const clusterQty = 3;
-	useEffect(() => {
-		console.log("color centroids updated");
-		console.log(centroidRGB);
-	}, [centroidRGB]);
+	const clusterQty = 4;
 
 	return (
 		<>

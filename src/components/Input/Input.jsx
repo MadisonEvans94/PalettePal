@@ -63,7 +63,7 @@ const Input = ({ setPixelDataForParent, setColorsNeedUpdate }) => {
 	 */
 	const handleFileChange = (e) => {
 		const reader = new FileReader();
-		console.log("file updated");
+
 		setColorsNeedUpdate(true);
 		reader.onload = (e) => {
 			const img = new Image();
@@ -99,6 +99,7 @@ const Input = ({ setPixelDataForParent, setColorsNeedUpdate }) => {
 				const pixelArray = reshapeImageData(imageData.data);
 
 				setPixelDataForParent(pixelArray);
+				console.log("input component rendering");
 			};
 		};
 		reader.readAsDataURL(e.target.files[0]);

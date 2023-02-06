@@ -7,6 +7,11 @@ import "./Palette.css";
  * @param {Array} props.paletteArray - An array of color strings
  */
 const Palette = ({ paletteArray }) => {
+	console.log(
+		"palette component rendering",
+		"centroid RGBs in palette component are ",
+		paletteArray
+	);
 	const colorList = paletteArray.map((color, index) => (
 		<li key={index} className="colorBlock" style={{ margin: "4rem 1rem" }}>
 			<div

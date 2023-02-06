@@ -210,9 +210,8 @@ const CustomPlot = ({
 	const rgb = formatRGB([xVal, yVal, zVal]);
 	const centroidRGB = formatRGB([centroidX, centroidY, centroidZ]);
 	if (colorsNeedUpdate) {
-		console.log("clusters are updating as we speak!");
 		setCentroidRGB(centroidRGB);
-		console.log(centroidRGB);
+
 		setColorsNeedUpdate(false);
 	}
 	const trace1 = {
@@ -242,6 +241,11 @@ const CustomPlot = ({
 			opacity: 0.9,
 		},
 	};
+	console.log(
+		"custom plot component rendering",
+		"centroid RGB = ",
+		centroidRGB
+	);
 
 	return (
 		<>
