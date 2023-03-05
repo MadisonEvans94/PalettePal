@@ -33,14 +33,9 @@ const SideBar = ({ setColorsNeedUpdate, setPixelData }) => {
 					}}
 				/>
 
-				<div
-					style={{
-						position: "relative",
-
-						margin: "5rem 0 5rem 0",
-					}}>
+				<div className="app-text-container">
 					<h1 className="main-title">Palette Pal</h1>
-					<p style={{ width: "100%", textAlign: "center" }}>
+					<p className="main-description">
 						Welcome to Palette Pal, an interactive color picker! Simply upload
 						an image and receive a color palette suggestion based on that image!
 					</p>
