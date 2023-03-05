@@ -28,7 +28,6 @@ const ContentSection = () => {
 				/>
 
 				<CustomPlot
-					className="plot-area"
 					pixelData={pixelData}
 					rgb={rgb}
 					centroid_rgb={centroid_rgb}

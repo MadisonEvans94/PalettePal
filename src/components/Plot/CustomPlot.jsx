@@ -45,7 +45,7 @@ const CustomPlot = ({
 	};
 
 	return (
-		<>
+		<div className="plot-area">
 			<Plot
 				data={[trace1, trace2]}
 				layout={{
@@ -62,9 +62,8 @@ const CustomPlot = ({
 					},
 					paper_bgcolor: "#FFF",
 				}}
-				style={{ display: "none" }}
 			/>
-		</>
+		</div>
 	);
 };
 
