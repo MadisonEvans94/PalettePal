@@ -19,6 +19,7 @@ const CustomPlot = ({
 	const trace1 = {
 		type: "scatter3d",
 		mode: "markers",
+		name: "centroids",
 		x: centroidX,
 		y: centroidY,
 		z: centroidZ,
@@ -34,6 +35,7 @@ const CustomPlot = ({
 	const trace2 = {
 		type: "scatter3d",
 		mode: "markers",
+		name: "pixels",
 		x: xVal,
 		y: yVal,
 		z: zVal,
@@ -49,7 +51,7 @@ const CustomPlot = ({
 			<Plot
 				data={[trace1, trace2]}
 				layout={{
-					responsive: true, // make the plot responsive
+					responsive: true,
 					autosize: true,
 					width: 600,
 					height: 300,
@@ -61,6 +63,12 @@ const CustomPlot = ({
 						pad: 0,
 					},
 					paper_bgcolor: "#FFF",
+					legend: {
+						x: 1,
+						y: 0,
+						xanchor: "right",
+						yanchor: "bottom",
+					},
 				}}
 			/>
 		</div>

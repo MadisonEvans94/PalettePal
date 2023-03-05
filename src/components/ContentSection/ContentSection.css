@@ -1,6 +1,6 @@
 .content-area {
 	width: 100%;
-	background-color: pink;
+	background-color: black;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -22,10 +22,15 @@
 	align-items: center;
 }
 .input-button {
+	color: white;
+}
+
+input[type="file"]::before {
+	content: none;
 }
 input[type="file"]::file-selector-button {
 	background-color: transparent;
-	border: 1px solid black;
+	border: 1px solid white;
 	color: #fff;
 	padding: 8px 12px;
 	border-radius: 2px;
