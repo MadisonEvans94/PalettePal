@@ -1,8 +1,9 @@
 import React from "react";
 import videoUrl from "../../assets/paint.mp4";
 import "./SideBar.css";
+import Input from "../Input/Input";
 
-const SideBar = () => {
+const SideBar = ({ setColorsNeedUpdate, setPixelData }) => {
 	return (
 		<>
 			<div className="sidebar-container">
@@ -29,7 +30,8 @@ const SideBar = () => {
 						height: "100%",
 						background:
 							"linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0) 100%)",
-					}}></div>
+					}}
+				/>
 
 				<div
 					style={{
@@ -42,7 +44,11 @@ const SideBar = () => {
 						Welcome to Palette Pal, an interactive color picker! Simply upload
 						an image and receive a color palette suggestion based on that image!
 					</p>
-					{/* image input button */}
+					<Input
+						className="input-area"
+						setPixelDataForParent={setPixelData}
+						setColorsNeedUpdate={setColorsNeedUpdate}
+					/>
 				</div>
 			</div>
 		</>

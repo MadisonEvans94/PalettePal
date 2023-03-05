@@ -7,8 +7,12 @@ import Input from "../Input/Input.jsx";
 import { useState } from "react";
 import { processCentroids } from "../../helpers/clusterFunctions";
 
-const ContentSection = ({ pixelData, setPixelData }) => {
-	const [colorsNeedUpdate, setColorsNeedUpdate] = useState(false);
+const ContentSection = ({
+	pixelData,
+	setPixelData,
+	colorsNeedUpdate,
+	setColorsNeedUpdate,
+}) => {
 	const [clusterQty, setClusterQty] = useState(3);
 
 	const [rgb, centroid_rgb, centroidX, centroidY, centroidZ, xVal, yVal, zVal] =
