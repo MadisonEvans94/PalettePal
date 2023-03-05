@@ -20,26 +20,27 @@ const ContentSection = () => {
 
 	return (
 		<>
-			<div className="content-section-container">
+			<div className="content-area">
 				<Input
+					className="input-area"
 					setPixelDataForParent={setPixelData}
 					setColorsNeedUpdate={setColorsNeedUpdate}
 				/>
 
-				<div className="plot-container">
-					<CustomPlot
-						pixelData={pixelData}
-						rgb={rgb}
-						centroid_rgb={centroid_rgb}
-						centroidX={centroidX}
-						centroidY={centroidY}
-						centroidZ={centroidZ}
-						xVal={xVal}
-						yVal={yVal}
-						zVal={zVal}
-					/>
-					<Palette centroid_rgb={centroid_rgb} />
-				</div>
+				<CustomPlot
+					className="plot-area"
+					pixelData={pixelData}
+					rgb={rgb}
+					centroid_rgb={centroid_rgb}
+					centroidX={centroidX}
+					centroidY={centroidY}
+					centroidZ={centroidZ}
+					xVal={xVal}
+					yVal={yVal}
+					zVal={zVal}
+				/>
+
+				<Palette centroid_rgb={centroid_rgb} className="palette-area" />
 			</div>
 		</>
 	);

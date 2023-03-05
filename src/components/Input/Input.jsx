@@ -51,7 +51,7 @@ const Input = ({ setPixelDataForParent, setColorsNeedUpdate }) => {
 	};
 
 	return (
-		<div className="input-container">
+		<div>
 			<input
 				type="file"
 				accept="image/jpeg, image/png"

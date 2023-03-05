@@ -49,9 +49,10 @@ const CustomPlot = ({
 			<Plot
 				data={[trace1, trace2]}
 				layout={{
-					autosize: false,
-					width: "100%",
-					height: "100%",
+					responsive: true, // make the plot responsive
+					autosize: true,
+					width: 600,
+					height: 300,
 					margin: {
 						l: 0,
 						r: 0,
@@ -61,6 +62,7 @@ const CustomPlot = ({
 					},
 					paper_bgcolor: "#FFF",
 				}}
+				style={{ display: "none" }}
 			/>
 		</>
 	);
