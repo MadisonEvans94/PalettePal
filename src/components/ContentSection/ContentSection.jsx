@@ -11,11 +11,7 @@ const ContentSection = () => {
 	const [pixelData, setPixelData] = useState([]);
 	const [colorsNeedUpdate, setColorsNeedUpdate] = useState(false);
 	const [clusterQty, setClusterQty] = useState(3);
-	if (colorsNeedUpdate) {
-		console.log("test");
 
-		setColorsNeedUpdate(false);
-	}
 	const [rgb, centroid_rgb, centroidX, centroidY, centroidZ, xVal, yVal, zVal] =
 		processCentroids(pixelData, clusterQty);
 
@@ -42,6 +38,7 @@ const ContentSection = () => {
 				<ColorCountSelector
 					clusterQty={clusterQty}
 					setClusterQty={setClusterQty}
+					pixelData={pixelData}
 				/>
 				<Palette centroid_rgb={centroid_rgb} className="palette-area" />
 			</div>

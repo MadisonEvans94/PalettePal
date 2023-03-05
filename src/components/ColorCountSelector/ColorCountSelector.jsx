@@ -1,6 +1,6 @@
 import React from "react";
 
-const ColorCountSelector = ({ clusterQty, setClusterQty }) => {
+const ColorCountSelector = ({ clusterQty, setClusterQty, pixelData }) => {
 	function handleIncrement() {
 		if (clusterQty === 8) {
 			setClusterQty(8);
@@ -15,12 +15,19 @@ const ColorCountSelector = ({ clusterQty, setClusterQty }) => {
 			setClusterQty(clusterQty - 1);
 		}
 	}
+	if (pixelData.length === 0) {
+		return <></>;
+	}
 	return (
 		<>
 			<div className="color-count-selector">
-				<button onClick={handleDecrement}>-</button>
+				<button className="color-selector-button" onClick={handleDecrement}>
+					-
+				</button>
 				{clusterQty}
-				<button onClick={handleIncrement}>+</button>
+				<button className="color-selector-button" onClick={handleIncrement}>
+					+
+				</button>
 			</div>
 		</>
 	);
