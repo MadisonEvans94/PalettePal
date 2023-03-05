@@ -10,7 +10,7 @@ import { processCentroids } from "../../helpers/clusterFunctions";
 const ContentSection = () => {
 	const [pixelData, setPixelData] = useState([]);
 	const [colorsNeedUpdate, setColorsNeedUpdate] = useState(false);
-	const clusterQty = 4;
+	const [clusterQty, setClusterQty] = useState(3);
 	if (colorsNeedUpdate) {
 		console.log("test");
 
@@ -39,7 +39,10 @@ const ContentSection = () => {
 					yVal={yVal}
 					zVal={zVal}
 				/>
-				<ColorCountSelector />
+				<ColorCountSelector
+					clusterQty={clusterQty}
+					setClusterQty={setClusterQty}
+				/>
 				<Palette centroid_rgb={centroid_rgb} className="palette-area" />
 			</div>
 		</>

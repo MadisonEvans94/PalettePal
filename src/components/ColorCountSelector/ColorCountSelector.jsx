@@ -1,27 +1,25 @@
 import React from "react";
-import { useState } from "react";
 
-const ColorCountSelector = () => {
-	const [count, setCount] = useState(3);
+const ColorCountSelector = ({ clusterQty, setClusterQty }) => {
 	function handleIncrement() {
-		if (count === 8) {
-			setCount(8);
+		if (clusterQty === 8) {
+			setClusterQty(8);
 		} else {
-			setCount(count + 1);
+			setClusterQty(clusterQty + 1);
 		}
 	}
 	function handleDecrement() {
-		if (count < 2) {
-			setCount(1);
+		if (clusterQty < 2) {
+			setClusterQty(1);
 		} else {
-			setCount(count - 1);
+			setClusterQty(clusterQty - 1);
 		}
 	}
 	return (
 		<>
 			<div className="color-count-selector">
 				<button onClick={handleDecrement}>-</button>
-				{count}
+				{clusterQty}
 				<button onClick={handleIncrement}>+</button>
 			</div>
 		</>
