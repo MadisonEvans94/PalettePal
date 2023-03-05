@@ -51,7 +51,12 @@ const Input = ({ setPixelDataForParent, setColorsNeedUpdate }) => {
 	};
 
 	return (
-		<div>
+		<div
+			style={{
+				display: "flex",
+				flexDirection: "column",
+				alignItems: "center",
+			}}>
 			<input
 				type="file"
 				accept="image/jpeg, image/png"
