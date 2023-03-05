@@ -7,7 +7,7 @@ const Palette = ({ centroid_rgb }) => {
 	}
 
 	const colorList = centroid_rgb.map((color, index) => (
-		<li key={index} className="colorBlock" style={{ margin: "1em 0 0 0" }}>
+		<li key={index} className="colorBlock">
 			<div
 				style={{
 					background: `${color}`,

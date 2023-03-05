@@ -2,6 +2,7 @@ import React from "react";
 import "./ContentSection.css";
 import CustomPlot from "../Plot/CustomPlot";
 import Palette from "../Palette/Palette.jsx";
+import ColorCountSelector from "../ColorCountSelector/ColorCountSelector";
 import Input from "../Input/Input.jsx";
 import { useState } from "react";
 import { processCentroids } from "../../helpers/clusterFunctions";
@@ -38,7 +39,7 @@ const ContentSection = () => {
 					yVal={yVal}
 					zVal={zVal}
 				/>
-
+				<ColorCountSelector />
 				<Palette centroid_rgb={centroid_rgb} className="palette-area" />
 			</div>
 		</>
