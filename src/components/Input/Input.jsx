@@ -51,13 +51,9 @@ const Input = ({ setPixelDataForParent, setColorsNeedUpdate }) => {
 	};
 
 	return (
-		<div
-			style={{
-				display: "flex",
-				flexDirection: "column",
-				alignItems: "center",
-			}}>
+		<div className="input-and-canvas">
 			<input
+				className="input-button"
 				type="file"
 				accept="image/jpeg, image/png"
 				onChange={handleFileChange}
