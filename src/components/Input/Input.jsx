@@ -1,5 +1,5 @@
 import React from "react";
-import "./Input.css";
+
 import { useRef } from "react";
 import { reshapeImageData } from "../../helpers/imageTransformer";
 
