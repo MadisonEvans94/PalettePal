@@ -52,8 +52,9 @@ const CustomPlot = ({
 				data={[trace1, trace2]}
 				layout={{
 					responsive: true,
-					autosize: true,
-					width: "100%",
+					autosize: false,
+					width: 400,
+					height: 400,
 					margin: {
 						l: 0,
 						r: 0,
