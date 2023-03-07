@@ -51,14 +51,13 @@ const Input = ({ setPixelDataForParent, setColorsNeedUpdate }) => {
 	};
 
 	return (
-		<div className="input-and-canvas">
+		<div className="bg-pink-600">
 			<input
 				className="input-button"
 				type="file"
 				accept="image/jpeg, image/png"
 				onChange={handleFileChange}
 			/>
-			<canvas ref={canvasRef} />
 		</div>
 	);
 };
