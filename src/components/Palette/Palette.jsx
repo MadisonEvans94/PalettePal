@@ -9,11 +9,9 @@ const Palette = ({ centroid_rgb }) => {
 	const colorList = centroid_rgb.map((color, index) => (
 		<div key={index} className="colorBlock">
 			<div
+				className="h-full w-32"
 				style={{
 					background: `${color}`,
-					height: "100%",
-					width: "100%",
-					textAlign: "center",
 				}}>
 				{/* {color} */}
 			</div>
