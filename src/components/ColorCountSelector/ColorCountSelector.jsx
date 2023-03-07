@@ -20,12 +20,12 @@ const ColorCountSelector = ({ clusterQty, setClusterQty, pixelData }) => {
 	}
 	return (
 		<>
-			<div className="color-count-selector">
-				<button className="color-selector-button" onClick={handleDecrement}>
+			<div className="w-full flex flex-row justify-around items-center text-3xl">
+				<button className="" onClick={handleDecrement}>
 					-
 				</button>
 				{clusterQty}
-				<button className="color-selector-button" onClick={handleIncrement}>
+				<button className="" onClick={handleIncrement}>
 					+
 				</button>
 			</div>

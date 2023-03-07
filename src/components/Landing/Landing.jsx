@@ -14,28 +14,29 @@ const Landing = ({ setColorsNeedUpdate, setPixelData }) => {
 						top: 0,
 						left: 0,
 						objectFit: "cover",
-						zIndex: "-1",
+						zIndex: "-10",
 					}}
 					autoPlay
 					loop
 					muted>
 					<source src={videoUrl} type="video/mp4" />
 				</video>
-				{/* <div
+				<div
 					style={{
 						position: "absolute",
 						top: 0,
 						left: 0,
 						width: "100%",
 						height: "100%",
+						zIndex: "-1",
 						background:
 							"linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0) 100%)",
 					}}
-				/> */}
+				/>
 
-				<div className="z-10">
-					<h1 className="main-title">Palette Pal</h1>
-					<p className="main-description">
+				<div className="text-white  z-10 mt-60 px-10 w-full">
+					<h1 className="text-6xl text-center mb-16">Palette Pal</h1>
+					<p className="main-description mb-8">
 						Welcome to Palette Pal, an interactive color picker! Simply upload
 						an image and receive a color palette suggestion based on that image!
 					</p>

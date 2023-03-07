@@ -6,9 +6,9 @@ const Palette = ({ centroid_rgb }) => {
 	}
 
 	const colorList = centroid_rgb.map((color, index) => (
-		<div key={index} className="">
+		<div key={index} className="md:w-full">
 			<div
-				className="h-full w-48"
+				className="h-full w-36 md:w-full"
 				style={{
 					background: `${color}`,
 				}}>

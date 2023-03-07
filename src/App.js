@@ -2,7 +2,6 @@ import "./App.css";
 
 import ContentSection from "./components/ContentSection/ContentSection";
 import Landing from "./components/Landing/Landing";
-import ContentLayout from "./components/ContentSection/ContentLayout";
 import { useState } from "react";
 function App() {
 	const [colorsNeedUpdate, setColorsNeedUpdate] = useState(false);

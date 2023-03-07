@@ -66,7 +66,7 @@ const CustomPlot = ({
 	};
 
 	return (
-		<div className="w-screen bg-pink-500 flex flex-row items-center justify-center p-auto">
+		<div className="w-screen flex flex-row items-center justify-center p-auto">
 			<Plot
 				data={[trace1, trace2]}
 				layout={{
