@@ -58,6 +58,7 @@ const Input = ({ setPixelDataForParent, setColorsNeedUpdate }) => {
 				accept="image/jpeg, image/png"
 				onChange={handleFileChange}
 			/>
+			<canvas ref={canvasRef} />
 		</div>
 	);
 };

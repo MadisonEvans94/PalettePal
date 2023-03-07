@@ -5,7 +5,7 @@ import Input from "../Input/Input";
 const Landing = ({ setColorsNeedUpdate, setPixelData }) => {
 	return (
 		<>
-			<div className="text-white">
+			<div className="sidebar-container ">
 				<video
 					style={{
 						position: "absolute",
@@ -14,15 +14,14 @@ const Landing = ({ setColorsNeedUpdate, setPixelData }) => {
 						top: 0,
 						left: 0,
 						objectFit: "cover",
-						zIndex: "-10",
+						zIndex: "-1",
 					}}
 					autoPlay
 					loop
 					muted>
 					<source src={videoUrl} type="video/mp4" />
 				</video>
-				{/* overlay */}
-				<div
+				{/* <div
 					style={{
 						position: "absolute",
 						top: 0,
@@ -31,17 +30,17 @@ const Landing = ({ setColorsNeedUpdate, setPixelData }) => {
 						height: "100%",
 						background:
 							"linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0) 100%)",
-						zIndex: "-1",
 					}}
-				/>
+				/> */}
 
-				<div className="py-auto h-screen flex flex-col justify-center items-center text-center">
-					<h1 className="text-6xl font-bold mb-4">Palette Pal</h1>
-					<p className="text-white text-sm mb-10">
+				<div className="z-10">
+					<h1 className="main-title">Palette Pal</h1>
+					<p className="main-description">
 						Welcome to Palette Pal, an interactive color picker! Simply upload
 						an image and receive a color palette suggestion based on that image!
 					</p>
 					<Input
+						className="input-area"
 						setPixelDataForParent={setPixelData}
 						setColorsNeedUpdate={setColorsNeedUpdate}
 					/>
