@@ -81,7 +81,7 @@ const CustomPlot = ({
 						t: 0,
 						pad: 0,
 					},
-					paper_bgcolor: "#FFD",
+					paper_bgcolor: "#111111",
 					legend: {
 						x: 1,
 						y: 0,
