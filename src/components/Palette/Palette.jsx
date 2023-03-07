@@ -1,5 +1,4 @@
 import React from "react";
-import "./Palette.css";
 
 const Palette = ({ centroid_rgb }) => {
 	if (centroid_rgb === undefined) {
@@ -7,7 +6,7 @@ const Palette = ({ centroid_rgb }) => {
 	}
 
 	const colorList = centroid_rgb.map((color, index) => (
-		<div key={index} className="colorBlock">
+		<div key={index} className="">
 			<div
 				className="h-full w-48"
 				style={{
@@ -19,7 +18,7 @@ const Palette = ({ centroid_rgb }) => {
 	));
 	return (
 		<>
-			<div className="flex flex-row overscroll-x-auto overflow-x-auto h-96">
+			<div className="flex overscroll-x-auto overflow-x-auto h-96">
 				{colorList}
 			</div>
 		</>
