@@ -1,5 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Plot from "react-plotly.js";
+
+function useWindowDimensions() {
+	const [windowDimensions, setWindowDimensions] = useState({
+		width: window.innerWidth,
+		height: window.innerHeight,
+	});
+
+	useEffect(() => {
+		function handleResize() {
+			setWindowDimensions({
+				width: window.innerWidth,
+				height: window.innerHeight,
+			});
+		}
+
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
+
+	return windowDimensions;
+}
 
 const CustomPlot = ({
 	pixelData,
@@ -12,9 +33,7 @@ const CustomPlot = ({
 	yVal,
 	zVal,
 }) => {
-	if (pixelData.length === 0) {
-		return <></>;
-	}
+	const { width, height } = useWindowDimensions();
 
 	const trace1 = {
 		type: "scatter3d",
@@ -52,9 +71,9 @@ const CustomPlot = ({
 				data={[trace1, trace2]}
 				layout={{
 					responsive: true,
-					autosize: false,
-					width: "100vw",
-					height: 400,
+					autosize: true,
+					width: width * 0.9,
+					height: height * 0.5,
 					margin: {
 						l: 0,
 						r: 0,

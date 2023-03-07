@@ -51,7 +51,7 @@ const Input = ({ setPixelDataForParent, setColorsNeedUpdate }) => {
 	};
 
 	return (
-		<div className="bg-pink-600">
+		<div className="">
 			<input
 				className="input-button"
 				type="file"
