@@ -7,7 +7,7 @@ const Palette = ({ centroid_rgb }) => {
 	}
 
 	const colorList = centroid_rgb.map((color, index) => (
-		<li key={index} className="colorBlock">
+		<div key={index} className="colorBlock">
 			<div
 				style={{
 					background: `${color}`,
@@ -17,12 +17,12 @@ const Palette = ({ centroid_rgb }) => {
 				}}>
 				{/* {color} */}
 			</div>
-		</li>
+		</div>
 	));
 	return (
 		<>
-			<div className="palette">
-				<ul>{colorList}</ul>
+			<div className="flex flex-row overscroll-x-auto overflow-x-auto h-96">
+				{colorList}
 			</div>
 		</>
 	);

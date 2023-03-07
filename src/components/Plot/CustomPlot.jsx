@@ -47,14 +47,13 @@ const CustomPlot = ({
 	};
 
 	return (
-		<div className="plot-area">
+		<div className="w-screen bg-pink-500 flex flex-row items-center justify-center p-auto">
 			<Plot
 				data={[trace1, trace2]}
 				layout={{
 					responsive: true,
 					autosize: true,
-					width: 600,
-					height: 300,
+					width: "100%",
 					margin: {
 						l: 0,
 						r: 0,
@@ -62,7 +61,7 @@ const CustomPlot = ({
 						t: 0,
 						pad: 0,
 					},
-					paper_bgcolor: "#FFF",
+					paper_bgcolor: "#FFD",
 					legend: {
 						x: 1,
 						y: 0,
