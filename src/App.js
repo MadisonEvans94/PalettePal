@@ -1,7 +1,7 @@
 import "./App.css";
 
 import ContentSection from "./components/ContentSection/ContentSection";
-import SideBar from "./components/SideBar/SideBar";
+import Landing from "./components/Landing/Landing";
 import { useState } from "react";
 function App() {
 	const [colorsNeedUpdate, setColorsNeedUpdate] = useState(false);
@@ -20,7 +20,7 @@ function App() {
 	} else {
 		return (
 			<>
-				<SideBar
+				<Landing
 					setColorsNeedUpdate={setColorsNeedUpdate}
 					setPixelData={setPixelData}
 				/>

@@ -9,7 +9,7 @@ h1 {
 	text-align: center;
 }
 
-.sidebar-container {
+.landing-container {
 	position: relative;
 	width: 100%;
 	color: rgb(245, 245, 245);
@@ -35,7 +35,7 @@ h1 {
 	.app-text-container {
 		padding: 0;
 	}
-	.sidebar-container {
+	.landing-container {
 		width: 100%;
 		position: fixed;
 	}

@@ -1,12 +1,11 @@
 import React from "react";
 import videoUrl from "../../assets/paint.mp4";
-import "./SideBar.css";
 import Input from "../Input/Input";
 
-const SideBar = ({ setColorsNeedUpdate, setPixelData }) => {
+const Landing = ({ setColorsNeedUpdate, setPixelData }) => {
 	return (
 		<>
-			<div className="sidebar-container">
+			<div>
 				<video
 					style={{
 						position: "absolute",
@@ -21,6 +20,7 @@ const SideBar = ({ setColorsNeedUpdate, setPixelData }) => {
 					muted>
 					<source src={videoUrl} type="video/mp4" />
 				</video>
+				{/* overlay */}
 				<div
 					style={{
 						position: "absolute",
@@ -33,14 +33,13 @@ const SideBar = ({ setColorsNeedUpdate, setPixelData }) => {
 					}}
 				/>
 
-				<div className="app-text-container">
-					<h1 className="main-title">Palette Pal</h1>
-					<p className="main-description">
+				<div>
+					<h1>Palette Pal</h1>
+					<p>
 						Welcome to Palette Pal, an interactive color picker! Simply upload
 						an image and receive a color palette suggestion based on that image!
 					</p>
 					<Input
-						className="input-area"
 						setPixelDataForParent={setPixelData}
 						setColorsNeedUpdate={setColorsNeedUpdate}
 					/>
@@ -50,4 +49,4 @@ const SideBar = ({ setColorsNeedUpdate, setPixelData }) => {
 	);
 };
 
-export default SideBar;
+export default Landing;
