@@ -5,7 +5,7 @@ import Input from "../Input/Input";
 const Landing = ({ setColorsNeedUpdate, setPixelData }) => {
 	return (
 		<>
-			<div>
+			<div className="w-full">
 				<video
 					style={{
 						position: "absolute",
@@ -35,8 +35,8 @@ const Landing = ({ setColorsNeedUpdate, setPixelData }) => {
 				/>
 
 				<div className="text-white text-center z-10 mt-60 px-10 w-full">
-					<h1 className="text-6xl mb-16">Palette Pal</h1>
-					<p className="main-description mb-8">
+					<h1 className="mb-16 main-header">Palette Pal</h1>
+					<p className="main-description mb-8 text-xs">
 						Welcome to Palette Pal, an interactive color picker! Simply upload
 						an image and receive a color palette suggestion based on that image!
 					</p>
