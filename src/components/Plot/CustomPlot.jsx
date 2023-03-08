@@ -66,15 +66,13 @@ const CustomPlot = ({
 	};
 
 	return (
-		<div
-			className="flex flex-row items-center justify-center p-auto rgb-plot"
-			style={{ width: "100%" }}>
+		<div className="flex flex-row p-auto rgb-plot " style={{ width: "100%" }}>
 			<Plot
 				data={[trace1, trace2]}
 				layout={{
 					responsive: true,
 					autosize: true,
-					width: width * 0.9,
+					width: width * 0.5,
 					height: "100%",
 					margin: {
 						l: 0,

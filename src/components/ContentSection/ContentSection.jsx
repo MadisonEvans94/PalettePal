@@ -15,23 +15,25 @@ const ContentSection = ({ pixelData, setPixelData, setColorsNeedUpdate }) => {
 	return (
 		<>
 			<div className="w-screen h-screen flex flex-col items-center fixed overflow-y-auto overscroll-auto">
-				<div className="flex-1 grid grid-cols-1">
+				<div className="flex-1 grid grid-cols-1 ">
 					<Input
 						setPixelDataForParent={setPixelData}
 						setColorsNeedUpdate={setColorsNeedUpdate}
 					/>
-
-					<CustomPlot
-						pixelData={pixelData}
-						rgb={rgb}
-						centroid_rgb={centroid_rgb}
-						centroidX={centroidX}
-						centroidY={centroidY}
-						centroidZ={centroidZ}
-						xVal={xVal}
-						yVal={yVal}
-						zVal={zVal}
-					/>
+					<div className="flex flex-row justify-between w-screen bg-green-300">
+						<CustomPlot
+							pixelData={pixelData}
+							rgb={rgb}
+							centroid_rgb={centroid_rgb}
+							centroidX={centroidX}
+							centroidY={centroidY}
+							centroidZ={centroidZ}
+							xVal={xVal}
+							yVal={yVal}
+							zVal={zVal}
+						/>
+						<div className="bg-red-200 w-full hidden md:block">asdf</div>
+					</div>
 					<ColorCountSelector
 						clusterQty={clusterQty}
 						setClusterQty={setClusterQty}
