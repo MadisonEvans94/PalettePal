@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import Plot from "react-plotly.js";
 
 function useWindowDimensions() {
+	// Set initial dimensions of the window
 	const [windowDimensions, setWindowDimensions] = useState({
 		width: window.innerWidth,
 		height: window.innerHeight,
 	});
 
+	// Listen for changes to the window size
 	useEffect(() => {
 		function handleResize() {
 			setWindowDimensions({
@@ -15,7 +17,10 @@ function useWindowDimensions() {
 			});
 		}
 
+		// Add resize event listener on mount
 		window.addEventListener("resize", handleResize);
+
+		// Remove resize event listener on unmount
 		return () => window.removeEventListener("resize", handleResize);
 	}, []);
 
@@ -35,6 +40,7 @@ const CustomPlot = ({
 }) => {
 	const { width, height } = useWindowDimensions();
 
+	// Define scatter trace for centroids
 	const trace1 = {
 		type: "scatter3d",
 		mode: "markers",
@@ -51,6 +57,8 @@ const CustomPlot = ({
 			},
 		},
 	};
+
+	// Define scatter trace for pixels
 	const trace2 = {
 		type: "scatter3d",
 		mode: "markers",
@@ -72,7 +80,8 @@ const CustomPlot = ({
 				layout={{
 					responsive: true,
 					autosize: true,
-					width: width * 0.5,
+					// Set width to half of window width if larger than 768px
+					width: width > 768 ? width * 0.5 : width * 0.995,
 					height: "100%",
 					margin: {
 						l: 0,
