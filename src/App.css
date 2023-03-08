@@ -21,10 +21,7 @@
 	font-family: "MyFont", sans-serif;
 	font-weight: bolder;
 	font-size: 6em; /* default font size for smaller screens */
-	transition: 1s ease;
-}
-.main-header:hover {
-	text-shadow: 20px 20px 2px rgba(0, 0, 0, 1);
+	transition: 0.1s ease;
 }
 
 @media screen and (min-width: 768px) {
