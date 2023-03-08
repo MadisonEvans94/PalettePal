@@ -11,11 +11,11 @@ const Palette = ({ centroid_rgb }) => {
 				className="h-full w-36 md:w-full"
 				style={{
 					background: `${color}`,
-				}}>
-				{/* {color} */}
-			</div>
+				}}
+			/>
 		</div>
 	));
+
 	return (
 		<>
 			<div className="flex overscroll-x-auto overflow-x-auto h-60 mx-10 ">

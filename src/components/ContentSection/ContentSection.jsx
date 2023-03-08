@@ -1,4 +1,5 @@
 import React from "react";
+import ClipboardCopyButton from "../ClipboardCopyButton/ClipboardCopyButton";
 import CustomPlot from "../Plot/CustomPlot";
 import Palette from "../Palette/Palette.jsx";
 import ColorCountSelector from "../ColorCountSelector/ColorCountSelector";
@@ -48,9 +49,7 @@ const ContentSection = ({ pixelData, setPixelData, setColorsNeedUpdate }) => {
 					/>
 					<Palette centroid_rgb={centroid_rgb} />
 					<div className="w-full flex flex-row justify-center items-center">
-						<button className="p-3 my-3 border rounded border-white">
-							copy to clipboard
-						</button>
+						<ClipboardCopyButton contentToCopy={centroid_rgb} />
 					</div>
 				</div>
 			</div>
