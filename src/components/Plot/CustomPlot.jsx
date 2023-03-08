@@ -66,20 +66,26 @@ const CustomPlot = ({
 	};
 
 	return (
-		<div className="w-screen flex flex-row items-center justify-center p-auto">
+		<div
+			className="flex flex-row items-center justify-center p-auto rgb-plot"
+			style={{ width: "100%" }}>
 			<Plot
 				data={[trace1, trace2]}
 				layout={{
 					responsive: true,
 					autosize: true,
 					width: width * 0.9,
-					height: height * 0.33,
+					height: "100%",
 					margin: {
 						l: 0,
 						r: 0,
 						b: 0,
 						t: 0,
 						pad: 0,
+					},
+					style: {
+						border: "1px solid white",
+						borderRadius: "10px",
 					},
 					paper_bgcolor: "#111111",
 					legend: {

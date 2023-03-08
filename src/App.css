@@ -63,3 +63,6 @@ input[type="file"]::file-selector-button:hover {
 	background-color: white;
 	color: black;
 }
+.rgb-plot {
+	border: 1px solid #fff;
+}
