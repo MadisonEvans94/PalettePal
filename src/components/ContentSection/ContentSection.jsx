@@ -47,6 +47,11 @@ const ContentSection = ({ pixelData, setPixelData, setColorsNeedUpdate }) => {
 						pixelData={pixelData}
 					/>
 					<Palette centroid_rgb={centroid_rgb} />
+					<div className="w-full flex flex-row justify-center items-center">
+						<button className="p-3 my-3 border rounded border-white">
+							copy to clipboard
+						</button>
+					</div>
 				</div>
 			</div>
 		</>
