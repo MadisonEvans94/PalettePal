@@ -23,10 +23,16 @@
 	font-size: 6em; /* default font size for smaller screens */
 	transition: 0.1s ease;
 }
+.main-description {
+	font-size: smaller;
+}
 
 @media screen and (min-width: 768px) {
 	.main-header {
 		font-size: 8em;
+	}
+	.main-description {
+		font-size: small;
 	}
 }
 
@@ -34,11 +40,18 @@
 	.main-header {
 		font-size: 12em;
 	}
+	.main-description {
+		font-size: medium;
+	}
 }
 
 @media screen and (min-width: 1200px) {
 	.main-header {
 		font-size: 16em;
+	}
+	.main-description {
+		font-size: larger;
+		margin-bottom: 5em;
 	}
 }
 
