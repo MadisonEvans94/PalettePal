@@ -73,7 +73,7 @@ const CustomPlot = ({
 					responsive: true,
 					autosize: true,
 					width: width * 0.9,
-					height: height * 0.5,
+					height: height * 0.33,
 					margin: {
 						l: 0,
 						r: 0,

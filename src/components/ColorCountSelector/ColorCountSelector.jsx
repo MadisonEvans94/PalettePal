@@ -1,5 +1,6 @@
 import React from "react";
-
+import { FaPlus } from "react-icons/fa";
+import { FaMinus } from "react-icons/fa";
 const ColorCountSelector = ({ clusterQty, setClusterQty, pixelData }) => {
 	function handleIncrement() {
 		if (clusterQty === 8) {
@@ -20,13 +21,13 @@ const ColorCountSelector = ({ clusterQty, setClusterQty, pixelData }) => {
 	}
 	return (
 		<>
-			<div className="w-full flex flex-row justify-around items-center text-3xl">
-				<button className="" onClick={handleDecrement}>
-					-
+			<div className="flex flex-row justify-center items-center text-3xl">
+				<button className="mx-4 text-4xl" onClick={handleDecrement}>
+					<FaMinus />
 				</button>
 				{clusterQty}
-				<button className="" onClick={handleIncrement}>
-					+
+				<button className="mx-4 text-4xl" onClick={handleIncrement}>
+					<FaPlus />
 				</button>
 			</div>
 		</>
