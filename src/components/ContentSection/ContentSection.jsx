@@ -8,13 +8,18 @@ import { useState } from "react";
 import { processCentroids } from "../../helpers/clusterFunctions";
 import testImg from "../../prototyping/bird.jpg";
 
-const ContentSection = ({ pixelData, setPixelData, setColorsNeedUpdate }) => {
+const ContentSection = ({
+	pixelData,
+	setPixelData,
+	setColorsNeedUpdate,
+	imgFile,
+	setImgFile,
+}) => {
 	const [clusterQty, setClusterQty] = useState(3);
 	console.log(pixelData);
 	const [rgb, centroid_rgb, centroidX, centroidY, centroidZ, xVal, yVal, zVal] =
 		processCentroids(pixelData, clusterQty);
-	const [imgFile, setImgFile] = useState(null);
-	console.log(imgFile);
+
 	return (
 		<>
 			<div className="w-screen h-screen flex flex-col items-center fixed overflow-y-auto overscroll-auto">

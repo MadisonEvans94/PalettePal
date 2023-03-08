@@ -2,7 +2,7 @@ import React from "react";
 import videoUrl from "../../assets/paint-modified.mp4";
 import Input from "../Input/Input";
 
-const Landing = ({ setColorsNeedUpdate, setPixelData }) => {
+const Landing = ({ setColorsNeedUpdate, setPixelData, setImgFile }) => {
 	return (
 		<>
 			<div className="w-full h-full fixed">
@@ -44,6 +44,7 @@ const Landing = ({ setColorsNeedUpdate, setPixelData }) => {
 						className="input-area"
 						setPixelDataForParent={setPixelData}
 						setColorsNeedUpdate={setColorsNeedUpdate}
+						setImgFile={setImgFile}
 					/>
 				</div>
 			</div>
