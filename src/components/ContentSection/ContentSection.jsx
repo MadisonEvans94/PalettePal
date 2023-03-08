@@ -5,10 +5,11 @@ import ColorCountSelector from "../ColorCountSelector/ColorCountSelector";
 import Input from "../Input/Input.jsx";
 import { useState } from "react";
 import { processCentroids } from "../../helpers/clusterFunctions";
+import testImg from "../../prototyping/bird.jpg";
 
 const ContentSection = ({ pixelData, setPixelData, setColorsNeedUpdate }) => {
 	const [clusterQty, setClusterQty] = useState(3);
-
+	console.log(pixelData);
 	const [rgb, centroid_rgb, centroidX, centroidY, centroidZ, xVal, yVal, zVal] =
 		processCentroids(pixelData, clusterQty);
 
@@ -32,7 +33,13 @@ const ContentSection = ({ pixelData, setPixelData, setColorsNeedUpdate }) => {
 							yVal={yVal}
 							zVal={zVal}
 						/>
-						<div className="bg-red-200 w-full hidden md:block">asdf</div>
+						<div className="w-full hidden md:block border">
+							<img
+								src={testImg}
+								alt="testing"
+								class="inset-0 w-full h-full object-cover object-center "
+							/>
+						</div>
 					</div>
 					<ColorCountSelector
 						clusterQty={clusterQty}
