@@ -1,5 +1,5 @@
 import React from "react";
-import videoUrl from "../../assets/paint.mp4";
+import videoUrl from "../../assets/paint-modified.mp4";
 import Input from "../Input/Input";
 
 const Landing = ({ setColorsNeedUpdate, setPixelData }) => {
