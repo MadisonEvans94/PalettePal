@@ -1,6 +1,7 @@
 import React from "react";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
+import { motion } from "framer-motion";
 const ColorCountSelector = ({ clusterQty, setClusterQty, pixelData }) => {
 	function handleIncrement() {
 		if (clusterQty === 8) {
