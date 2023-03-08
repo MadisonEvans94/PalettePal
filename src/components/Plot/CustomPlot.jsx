@@ -44,7 +44,7 @@ const CustomPlot = ({
 	const trace1 = {
 		type: "scatter3d",
 		mode: "markers",
-		name: "centroids",
+		name: "centroid",
 		x: centroidX,
 		y: centroidY,
 		z: centroidZ,
@@ -56,13 +56,15 @@ const CustomPlot = ({
 				color: "white",
 			},
 		},
+		hovertemplate:
+			"R: %{x:.2f} G: %{y:.2f} B: %{z:.2f}<extra>Centroid Value</extra> ",
 	};
 
 	// Define scatter trace for pixels
 	const trace2 = {
 		type: "scatter3d",
 		mode: "markers",
-		name: "pixels",
+		name: "pixel",
 		x: xVal,
 		y: yVal,
 		z: zVal,
@@ -71,6 +73,8 @@ const CustomPlot = ({
 			color: rgb,
 			opacity: 0.9,
 		},
+		hovertemplate:
+			"R: %{x:.2f} G: %{y:.2f} B: %{z:.2f}<extra>Pixel Value</extra> ",
 	};
 
 	return (
