@@ -82,7 +82,7 @@ const CustomPlot = ({
 					autosize: true,
 					// Set width to half of window width if larger than 768px
 					width: width > 768 ? width * 0.5 : width * 0.995,
-					height: "100%",
+					height: width * 0.33,
 					margin: {
 						l: 0,
 						r: 0,
