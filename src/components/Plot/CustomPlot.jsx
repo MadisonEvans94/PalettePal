@@ -77,6 +77,8 @@ const CustomPlot = ({
 			"R: %{x:.2f} G: %{y:.2f} B: %{z:.2f}<extra>Pixel Value</extra> ",
 	};
 
+	const plotHeight = width * 0.33 > 380 ? 380 : width * 0.33;
+
 	return (
 		<div className="flex flex-row p-auto rgb-plot " style={{ width: "100%" }}>
 			<Plot
@@ -86,7 +88,7 @@ const CustomPlot = ({
 					autosize: true,
 					// Set width to half of window width if larger than 768px
 					width: width > 768 ? width * 0.5 : width * 0.995,
-					height: width * 0.33,
+					height: plotHeight,
 					margin: {
 						l: 0,
 						r: 0,

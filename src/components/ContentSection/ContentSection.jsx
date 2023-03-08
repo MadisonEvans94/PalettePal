@@ -21,7 +21,7 @@ const ContentSection = ({ pixelData, setPixelData, setColorsNeedUpdate }) => {
 						setPixelDataForParent={setPixelData}
 						setColorsNeedUpdate={setColorsNeedUpdate}
 					/>
-					<div className="flex flex-row justify-between w-screen ">
+					<div className="flex flex-row justify-between w-screen max-h-96">
 						<CustomPlot
 							pixelData={pixelData}
 							rgb={rgb}
