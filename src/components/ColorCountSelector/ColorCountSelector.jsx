@@ -22,14 +22,30 @@ const ColorCountSelector = ({ clusterQty, setClusterQty, pixelData }) => {
 	}
 	return (
 		<>
-			<div className="flex flex-row justify-center items-center text-3xl">
-				<button className="mx-4 text-4xl" onClick={handleDecrement}>
+			<div className="mx-auto flex flex-row justify-between items-center text-3xl md:w-80 w-60">
+				<motion.button
+					initial={{ scale: 1 }}
+					whileHover={{ scale: 1.1 }}
+					whileTap={{
+						scale: 1,
+						transition: { type: "spring", mass: 0.5, damping: 30 },
+					}}
+					className="mx-4 text-4xl"
+					onClick={handleDecrement}>
 					<FaMinus />
-				</button>
+				</motion.button>
 				{clusterQty}
-				<button className="mx-4 text-4xl" onClick={handleIncrement}>
+				<motion.button
+					initial={{ scale: 1 }}
+					whileHover={{ scale: 1.1 }}
+					whileTap={{
+						scale: 1,
+						transition: { type: "spring", mass: 0.5, damping: 30 },
+					}}
+					className="mx-4 text-4xl"
+					onClick={handleIncrement}>
 					<FaPlus />
-				</button>
+				</motion.button>
 			</div>
 		</>
 	);

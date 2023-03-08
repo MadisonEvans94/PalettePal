@@ -15,7 +15,7 @@ const ContentSection = ({ pixelData, setPixelData, setColorsNeedUpdate }) => {
 	return (
 		<>
 			<div className="w-screen h-screen flex flex-col items-center justify-start fixed overflow-y-auto overscroll-auto">
-				<div className="flex-1 grid grid-cols-1 gap-4">
+				<div className="flex-1 grid grid-cols-1">
 					<Input
 						setPixelDataForParent={setPixelData}
 						setColorsNeedUpdate={setColorsNeedUpdate}
