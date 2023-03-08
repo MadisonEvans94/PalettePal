@@ -9,7 +9,6 @@
 	padding: 0;
 	height: 100vh;
 }
-@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Merienda:wght@900&family=Roboto:wght@100;300&family=Signika+Negative:wght@300&display=swap");
 
 @font-face {
 	font-family: "MyFont";
@@ -20,7 +19,7 @@
 .main-header {
 	font-family: "MyFont", sans-serif;
 	font-weight: bolder;
-	font-size: 6em; /* default font size for smaller screens */
+	font-size: 7em; /* default font size for smaller screens */
 	transition: 0.1s ease;
 }
 .main-description {
