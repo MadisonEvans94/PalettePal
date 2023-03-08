@@ -3,7 +3,7 @@ import React from "react";
 import { useRef } from "react";
 import { reshapeImageData } from "../../helpers/imageTransformer";
 
-const Input = ({ setPixelDataForParent, setColorsNeedUpdate }) => {
+const Input = ({ setPixelDataForParent, setColorsNeedUpdate, setImgFile }) => {
 	const canvasRef = useRef(null);
 
 	const handleFileChange = (e) => {
@@ -46,7 +46,9 @@ const Input = ({ setPixelDataForParent, setColorsNeedUpdate }) => {
 				setPixelDataForParent(pixelArray);
 				console.log("input component rendering");
 			};
+			setImgFile(img);
 		};
+
 		reader.readAsDataURL(e.target.files[0]);
 	};
 

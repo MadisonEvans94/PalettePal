@@ -13,7 +13,8 @@ const ContentSection = ({ pixelData, setPixelData, setColorsNeedUpdate }) => {
 	console.log(pixelData);
 	const [rgb, centroid_rgb, centroidX, centroidY, centroidZ, xVal, yVal, zVal] =
 		processCentroids(pixelData, clusterQty);
-
+	const [imgFile, setImgFile] = useState(null);
+	console.log(imgFile);
 	return (
 		<>
 			<div className="w-screen h-screen flex flex-col items-center fixed overflow-y-auto overscroll-auto">
@@ -21,8 +22,9 @@ const ContentSection = ({ pixelData, setPixelData, setColorsNeedUpdate }) => {
 					<Input
 						setPixelDataForParent={setPixelData}
 						setColorsNeedUpdate={setColorsNeedUpdate}
+						setImgFile={setImgFile}
 					/>
-					<div className="flex flex-row justify-between w-screen max-h-96">
+					<div className="flex flex-row justify-between w-screen max-h-96 px-10">
 						<CustomPlot
 							pixelData={pixelData}
 							rgb={rgb}
@@ -34,11 +36,11 @@ const ContentSection = ({ pixelData, setPixelData, setColorsNeedUpdate }) => {
 							yVal={yVal}
 							zVal={zVal}
 						/>
-						<div className="w-full hidden md:block border">
+						<div className="w-full hidden md:flex md:justify-center border">
 							<img
-								src={testImg}
+								src={imgFile.src}
 								alt="testing"
-								class="inset-0 w-full h-full object-cover object-center "
+								class="inset-0 h-full object-cover object-center "
 							/>
 						</div>
 					</div>
