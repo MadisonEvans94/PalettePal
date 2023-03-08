@@ -18,7 +18,7 @@ const Palette = ({ centroid_rgb }) => {
 	));
 	return (
 		<>
-			<div className="flex overscroll-x-auto overflow-x-auto h-96">
+			<div className="flex overscroll-x-auto overflow-x-auto h-60">
 				{colorList}
 			</div>
 		</>
