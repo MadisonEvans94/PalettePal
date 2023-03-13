@@ -6,7 +6,6 @@ import ColorCountSelector from "../ColorCountSelector/ColorCountSelector";
 import Input from "../Input/Input.jsx";
 import { useState } from "react";
 import { processCentroids } from "../../helpers/clusterFunctions";
-import testImg from "../../prototyping/bird.jpg";
 
 const ContentSection = ({
 	pixelData,
@@ -41,7 +40,7 @@ const ContentSection = ({
 							yVal={yVal}
 							zVal={zVal}
 						/>
-						<div className="w-full hidden md:flex md:justify-center border">
+						<div className="w-full hidden md:flex md:justify-center ">
 							<img
 								src={imgFile.src}
 								alt="testing"

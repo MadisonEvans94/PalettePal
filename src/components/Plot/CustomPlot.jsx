@@ -28,7 +28,6 @@ function useWindowDimensions() {
 }
 
 const CustomPlot = ({
-	pixelData,
 	rgb,
 	centroid_rgb,
 	centroidX,
@@ -51,10 +50,6 @@ const CustomPlot = ({
 		marker: {
 			size: 20,
 			color: centroid_rgb,
-			line: {
-				width: 10,
-				color: "white",
-			},
 		},
 		hovertemplate:
 			"R: %{x:.2f} G: %{y:.2f} B: %{z:.2f}<extra>Centroid Value</extra> ",
@@ -77,28 +72,24 @@ const CustomPlot = ({
 			"R: %{x:.2f} G: %{y:.2f} B: %{z:.2f}<extra>Pixel Value</extra> ",
 	};
 
-	const plotHeight = width * 0.33 > 380 ? 380 : width * 0.33;
+	const plotHeight = width > 768 ? 380 : height * 0.35;
 
 	return (
-		<div className="flex flex-row p-auto rgb-plot " style={{ width: "100%" }}>
+		<div className="flex flex-row p-auto w-full" style={{ width: "100%" }}>
 			<Plot
 				data={[trace1, trace2]}
 				layout={{
 					responsive: true,
 					autosize: true,
 					// Set width to half of window width if larger than 768px
-					width: width > 768 ? width * 0.5 : width * 0.995,
+					width: width > 768 ? width * 0.5 : width * 0.8,
 					height: plotHeight,
 					margin: {
 						l: 0,
-						r: 0,
+						r: 20,
 						b: 0,
 						t: 0,
 						pad: 0,
-					},
-					style: {
-						border: "1px solid white",
-						borderRadius: "10px",
 					},
 					paper_bgcolor: "#111111",
 					legend: {

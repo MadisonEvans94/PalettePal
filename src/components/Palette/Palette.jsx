@@ -6,19 +6,20 @@ const Palette = ({ centroid_rgb }) => {
 	}
 
 	const colorList = centroid_rgb.map((color, index) => (
-		<div key={index} className="md:w-full mx-2">
-			<div
-				className="h-full w-36 md:w-full"
-				style={{
-					background: `${color}`,
-				}}
-			/>
-		</div>
+		<div
+			key={index}
+			className="
+			h-full w-48 
+			md:mx-2"
+			style={{
+				background: `${color}`,
+			}}
+		/>
 	));
 
 	return (
 		<>
-			<div className="flex overscroll-x-auto overflow-x-auto h-60 mx-10 ">
+			<div className="overscroll-x-auto overflow-x-auto h-48 mx-10 flex flex-row justify-center ">
 				{colorList}
 			</div>
 		</>
