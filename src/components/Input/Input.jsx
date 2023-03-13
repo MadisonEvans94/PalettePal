@@ -55,11 +55,17 @@ const Input = ({ setPixelDataForParent, setColorsNeedUpdate, setImgFile }) => {
 	return (
 		<div className="">
 			<input
-				className="input-button"
+				className="hidden"
 				type="file"
+				id="image-input"
 				accept="image/jpeg, image/png, image/webp"
 				onChange={handleFileChange}
 			/>
+			<label
+				for="image-input"
+				className="border p-4 rounded-md cursor-pointer hover:bg-white hover:text-black transition">
+				Select file
+			</label>
 			<canvas ref={canvasRef} style={{ display: "none" }} />
 		</div>
 	);
