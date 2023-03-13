@@ -12,10 +12,13 @@
 
 @font-face {
 	font-family: "MyFont";
-	src: url("../public/Molika/MOLIKA.woff2") format("truetype");
+	src: url("../public/Molika/MOLIKA.ttf") format("truetype"),
+		url("../public/Molika/MOLIKA.svg") format("svg"),
+		url("../public/Molika/MOLIKA.woff2") format("woff2");
 	font-weight: bolder;
 	font-style: italic;
 }
+
 .main-header {
 	font-family: "MyFont", sans-serif;
 	font-weight: bolder;
