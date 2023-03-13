@@ -12,7 +12,7 @@
 
 @font-face {
 	font-family: "MyFont";
-	src: url("../public/Molika/MOLIKA.ttf") format("truetype");
+	src: url("../public/Molika/MOLIKA.woff2") format("truetype");
 	font-weight: bolder;
 	font-style: italic;
 }

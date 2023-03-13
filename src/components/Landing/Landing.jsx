@@ -1,12 +1,19 @@
-import React from "react";
-import videoUrl from "../../assets/paint-modified.mp4";
+import React, { useEffect } from "react";
+import videoUrl from "../../assets/paint.mp4";
 import Input from "../Input/Input";
 
 const Landing = ({ setColorsNeedUpdate, setPixelData, setImgFile }) => {
+	useEffect(() => {
+		const video = document.getElementById("background-video");
+		video.muted = true;
+		video.play();
+	}, []);
+
 	return (
 		<>
 			<div className="w-full h-full fixed">
 				<video
+					poster="../../assets/paint-img.png"
 					style={{
 						position: "absolute",
 						width: "100%",
@@ -17,8 +24,10 @@ const Landing = ({ setColorsNeedUpdate, setPixelData, setImgFile }) => {
 						zIndex: "-10",
 					}}
 					autoPlay
+					playsInline
 					loop
-					muted>
+					muted
+					id="background-video">
 					<source src={videoUrl} type="video/mp4" />
 				</video>
 				<div
