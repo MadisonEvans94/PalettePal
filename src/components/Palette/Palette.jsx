@@ -9,7 +9,7 @@ const Palette = ({ centroid_rgb }) => {
 		<div
 			key={index}
 			className="
-			h-full w-48 
+			h-full w-48 border
 			md:mx-2"
 			style={{
 				background: `${color}`,

@@ -57,7 +57,7 @@ const Input = ({ setPixelDataForParent, setColorsNeedUpdate, setImgFile }) => {
 			<input
 				className="input-button"
 				type="file"
-				accept="image/jpeg, image/png"
+				accept="image/jpeg, image/png, image/webp"
 				onChange={handleFileChange}
 			/>
 			<canvas ref={canvasRef} style={{ display: "none" }} />
