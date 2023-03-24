@@ -21,7 +21,7 @@ const ContentSection = ({
 
 	return (
 		<>
-			<div className="w-screen h-screen flex flex-col items-center fixed overflow-y-auto overscroll-auto">
+			<div className="w-screen h-screen flex flex-col items-center fixed overflow-y-auto overscroll-none p-8">
 				<div className="flex-1 grid grid-cols-1 ">
 					<Input
 						setPixelDataForParent={setPixelData}

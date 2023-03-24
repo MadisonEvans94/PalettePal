@@ -2,6 +2,7 @@ import "./App.css";
 
 import ContentSection from "./components/ContentSection/ContentSection";
 import Landing from "./components/Landing/Landing";
+
 import { useState } from "react";
 function App() {
 	const [colorsNeedUpdate, setColorsNeedUpdate] = useState(false);
@@ -29,6 +30,7 @@ function App() {
 					setImgFile={setImgFile}
 					imgFile={imgFile}
 				/>
+				{/* <LandingResponsive /> */}
 			</>
 		);
 	}
