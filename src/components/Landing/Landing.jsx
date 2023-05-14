@@ -51,6 +51,7 @@ const Landing = ({ setColorsNeedUpdate, setPixelData, setImgFile }) => {
 
 				<div className="text-white relative text-center z-10 flex flex-col items-center justify-center h-full px-10 w-full">
 					<h1 className="mb-16 main-header">Palette Pal</h1>
+
 					<p className="main-description mb-8 text-xs">
 						Welcome to Palette Pal, an interactive color picker! Simply upload
 						an image and receive a color palette suggestion based on that image!

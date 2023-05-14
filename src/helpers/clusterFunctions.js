@@ -66,47 +66,47 @@ const kMeans = (points, K) => {
 	let centroids = Array(K)
 		.fill(0)
 		.map(() => Array(3).fill(0));
-	let closestCentroids = Array(points.length).fill(0);
+	// let closestCentroids = Array(points.length).fill(0);
 
-	for (let i = 0; i < K; i++) {
-		for (let j = 0; j < 3; j++) {
-			centroids[i][j] = points[i][j];
-		}
-	}
+	// for (let i = 0; i < K; i++) {
+	// 	for (let j = 0; j < 3; j++) {
+	// 		centroids[i][j] = points[i][j];
+	// 	}
+	// }
 
-	let change = true;
-	while (change) {
-		change = false;
+	// let change = true;
+	// while (change) {
+	// 	change = false;
 
-		for (let i = 0; i < points.length; i++) {
-			let closestCentroidIndex = findClosestCentroid(points[i], centroids);
-			if (closestCentroidIndex !== closestCentroids[i]) {
-				closestCentroids[i] = closestCentroidIndex;
-				change = true;
-			}
-		}
+	// 	for (let i = 0; i < points.length; i++) {
+	// 		let closestCentroidIndex = findClosestCentroid(points[i], centroids);
+	// 		if (closestCentroidIndex !== closestCentroids[i]) {
+	// 			closestCentroids[i] = closestCentroidIndex;
+	// 			change = true;
+	// 		}
+	// 	}
 
-		let newCentroids = computeCentroids(points, closestCentroids, K);
+	// 	let newCentroids = computeCentroids(points, closestCentroids, K);
 
-		for (let i = 0; i < newCentroids.length; i++) {
-			let count = 0;
-			for (let j = 0; j < 3; j++) {
-				if (isNaN(newCentroids[i][j])) {
-					newCentroids[i][j] = centroids[i][j];
-				} else {
-					count++;
-				}
-			}
-			if (count === 0) {
-				newCentroids[i] = centroids[i];
-			}
-		}
+	// 	for (let i = 0; i < newCentroids.length; i++) {
+	// 		let count = 0;
+	// 		for (let j = 0; j < 3; j++) {
+	// 			if (isNaN(newCentroids[i][j])) {
+	// 				newCentroids[i][j] = centroids[i][j];
+	// 			} else {
+	// 				count++;
+	// 			}
+	// 		}
+	// 		if (count === 0) {
+	// 			newCentroids[i] = centroids[i];
+	// 		}
+	// 	}
 
-		if (JSON.stringify(newCentroids) !== JSON.stringify(centroids)) {
-			centroids = newCentroids;
-			change = true;
-		}
-	}
+	// 	if (JSON.stringify(newCentroids) !== JSON.stringify(centroids)) {
+	// 		centroids = newCentroids;
+	// 		change = true;
+	// 	}
+	// }
 	return centroids;
 };
 /**
@@ -190,7 +190,7 @@ function processCentroids(data, clusterQty) {
 	const rgb = formatRGB([xVal, yVal, zVal]);
 	const centroidRGB = formatRGB([centroidX, centroidY, centroidZ]);
 	console.log("processing");
-	return [rgb, centroidRGB, centroidX, centroidY, centroidZ, xVal, yVal, zVal];
+	return [rgb, xVal, yVal, zVal];
 }
 
 export { kMeans, fillXYZ, formatRGB, downSample, processCentroids };

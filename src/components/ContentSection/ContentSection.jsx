@@ -16,8 +16,7 @@ const ContentSection = ({
 }) => {
 	const [clusterQty, setClusterQty] = useState(3);
 	console.log(pixelData);
-	const [rgb, centroid_rgb, centroidX, centroidY, centroidZ, xVal, yVal, zVal] =
-		processCentroids(pixelData, clusterQty);
+	const [rgb, xVal, yVal, zVal] = processCentroids(pixelData, clusterQty);
 
 	return (
 		<>
@@ -32,10 +31,6 @@ const ContentSection = ({
 						<CustomPlot
 							pixelData={pixelData}
 							rgb={rgb}
-							centroid_rgb={centroid_rgb}
-							centroidX={centroidX}
-							centroidY={centroidY}
-							centroidZ={centroidZ}
 							xVal={xVal}
 							yVal={yVal}
 							zVal={zVal}
@@ -53,9 +48,9 @@ const ContentSection = ({
 						setClusterQty={setClusterQty}
 						pixelData={pixelData}
 					/>
-					<Palette centroid_rgb={centroid_rgb} />
+					<Palette />
 					<div className="w-full flex flex-row justify-center items-center">
-						<ClipboardCopyButton contentToCopy={centroid_rgb} />
+						<ClipboardCopyButton />
 					</div>
 				</div>
 			</div>

@@ -30,7 +30,6 @@ function App() {
 					setImgFile={setImgFile}
 					imgFile={imgFile}
 				/>
-				{/* <LandingResponsive /> */}
 			</>
 		);
 	}

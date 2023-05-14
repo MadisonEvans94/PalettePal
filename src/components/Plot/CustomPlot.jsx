@@ -27,16 +27,7 @@ function useWindowDimensions() {
 	return windowDimensions;
 }
 
-const CustomPlot = ({
-	rgb,
-	centroid_rgb,
-	centroidX,
-	centroidY,
-	centroidZ,
-	xVal,
-	yVal,
-	zVal,
-}) => {
+const CustomPlot = ({ rgb, xVal, yVal, zVal }) => {
 	const { width, height } = useWindowDimensions();
 
 	// Define scatter trace for centroids
@@ -44,12 +35,12 @@ const CustomPlot = ({
 		type: "scatter3d",
 		mode: "markers",
 		name: "centroid",
-		x: centroidX,
-		y: centroidY,
-		z: centroidZ,
+		x: 0,
+		y: 0,
+		z: 0,
 		marker: {
 			size: 20,
-			color: centroid_rgb,
+			color: "#FFF",
 		},
 		hovertemplate:
 			"R: %{x:.2f} G: %{y:.2f} B: %{z:.2f}<extra>Centroid Value</extra> ",

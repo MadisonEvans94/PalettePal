@@ -7,6 +7,11 @@ const Input = ({ setPixelDataForParent, setColorsNeedUpdate, setImgFile }) => {
 	const canvasRef = useRef(null);
 
 	const handleFileChange = (e) => {
+		fetch(
+			"https://s1sac4ihw6.execute-api.us-east-2.amazonaws.com/palette_pal_tester/kmeans"
+		)
+			.then((r) => r.json())
+			.then((data) => console.log(data));
 		const reader = new FileReader();
 		setColorsNeedUpdate(true);
 		//	formats the canvas and puts the uploaded image onto it
