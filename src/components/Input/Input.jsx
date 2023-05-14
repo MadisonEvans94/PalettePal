@@ -3,7 +3,7 @@ import React from "react";
 import { useRef } from "react";
 import { reshapeImageData } from "../../helpers/imageTransformer";
 
-const Input = ({ setPixelDataForParent, setColorsNeedUpdate, setImgFile }) => {
+const Input = ({ setPixelDataForParent, setImgFile }) => {
 	const canvasRef = useRef(null);
 
 	const handleFileChange = async (e) => {
@@ -57,7 +57,8 @@ const Input = ({ setPixelDataForParent, setColorsNeedUpdate, setImgFile }) => {
 					}
 
 					const data = await res.json();
-					console.log(data, "FROM AWS");
+					const parsedData = JSON.parse(data.body);
+					console.log(parsedData, "FROM AWS");
 				} catch (error) {
 					console.error("Error fetching data:", error);
 				}
