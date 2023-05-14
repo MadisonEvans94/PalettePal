@@ -6,18 +6,39 @@ import { reshapeImageData } from "../../helpers/imageTransformer";
 const Input = ({ setPixelDataForParent, setColorsNeedUpdate, setImgFile }) => {
 	const canvasRef = useRef(null);
 
-	const handleFileChange = (e) => {
-		fetch(
-			"https://s1sac4ihw6.execute-api.us-east-2.amazonaws.com/palette_pal_tester/kmeans"
-		)
-			.then((r) => r.json())
-			.then((data) => console.log(data));
+	const handleFileChange = async (e) => {
+		const file = e.target.files[0];
+
 		const reader = new FileReader();
-		setColorsNeedUpdate(true);
-		//	formats the canvas and puts the uploaded image onto it
-		reader.onload = (e) => {
+
+		reader.onerror = (error) => {
+			console.error("Error reading the file:", error);
+		};
+
+		reader.onloadend = async () => {
+			const base64Image = reader.result.split(",")[1]; // Split on ',' and take the second element to get the base64 data
+
+			try {
+				const res = await fetch(
+					"https://s1sac4ihw6.execute-api.us-east-2.amazonaws.com/palette_pal_tester/kmeans",
+					{
+						method: "POST",
+						body: JSON.stringify({ image: base64Image }), // Wrap the base64 image data in an object before stringifying
+					}
+				);
+
+				if (!res.ok) {
+					throw new Error(`HTTP error! status: ${res.status}`);
+				}
+
+				const data = await res.json();
+				console.log(data, "FROM AWS");
+			} catch (error) {
+				console.error("Error fetching data:", error);
+			}
+
 			const img = new Image();
-			img.src = e.target.result;
+			img.src = reader.result;
 			img.onload = () => {
 				const canvas = canvasRef.current;
 				// Setting the canvas dimensions to 500x500
@@ -49,12 +70,11 @@ const Input = ({ setPixelDataForParent, setColorsNeedUpdate, setImgFile }) => {
 				const pixelArray = reshapeImageData(imageData.data);
 
 				setPixelDataForParent(pixelArray);
-				console.log("input component rendering");
 			};
 			setImgFile(img);
 		};
 
-		reader.readAsDataURL(e.target.files[0]);
+		reader.readAsDataURL(file);
 	};
 
 	return (
