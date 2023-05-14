@@ -16,26 +16,52 @@ const Input = ({ setPixelDataForParent, setColorsNeedUpdate, setImgFile }) => {
 		};
 
 		reader.onloadend = async () => {
-			const base64Image = reader.result.split(",")[1]; // Split on ',' and take the second element to get the base64 data
+			const originalBase64Image = reader.result;
+			let resizedBase64Image;
 
-			try {
-				const res = await fetch(
-					"https://s1sac4ihw6.execute-api.us-east-2.amazonaws.com/palette_pal_tester/kmeans",
-					{
-						method: "POST",
-						body: JSON.stringify({ image: base64Image }), // Wrap the base64 image data in an object before stringifying
-					}
-				);
+			// Create an intermediate canvas and draw the resized image on it
+			const resizeCanvas = document.createElement("canvas");
+			resizeCanvas.width = 200;
+			resizeCanvas.height = 200;
+			const resizeCtx = resizeCanvas.getContext("2d");
 
-				if (!res.ok) {
-					throw new Error(`HTTP error! status: ${res.status}`);
+			const originalImg = new Image();
+			originalImg.src = originalBase64Image;
+			originalImg.onload = async () => {
+				let scale;
+				if (originalImg.width > originalImg.height) {
+					scale = resizeCanvas.width / originalImg.width;
+				} else {
+					scale = resizeCanvas.height / originalImg.height;
 				}
+				resizeCtx.drawImage(
+					originalImg,
+					0,
+					0,
+					originalImg.width * scale,
+					originalImg.height * scale
+				);
+				resizedBase64Image = resizeCanvas.toDataURL().split(",")[1]; // Convert resized image to base64
 
-				const data = await res.json();
-				console.log(data, "FROM AWS");
-			} catch (error) {
-				console.error("Error fetching data:", error);
-			}
+				try {
+					const res = await fetch(
+						"https://s1sac4ihw6.execute-api.us-east-2.amazonaws.com/palette_pal_tester/kmeans",
+						{
+							method: "POST",
+							body: JSON.stringify({ image: resizedBase64Image }), // Send the resized base64 image
+						}
+					);
+
+					if (!res.ok) {
+						throw new Error(`HTTP error! status: ${res.status}`);
+					}
+
+					const data = await res.json();
+					console.log(data, "FROM AWS");
+				} catch (error) {
+					console.error("Error fetching data:", error);
+				}
+			};
 
 			const img = new Image();
 			img.src = reader.result;
