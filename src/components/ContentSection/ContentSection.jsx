@@ -57,7 +57,7 @@ const ContentSection = ({
 						pixelData={pixelData}
 					/>
 				}
-				palette={<Palette />}
+				palette={<Palette clusterQty={clusterQty} />}
 			/>
 			{/* <div className="w-screen h-screen flex flex-col items-center fixed overflow-y-auto overscroll-none p-8"> */}
 			{/* <div className="flex-1 grid grid-cols-1 ">
@@ -106,10 +106,12 @@ function DashboardLayout({ plot, image, counter, palette }) {
 	return (
 		<div className="w-full h-screen overflow-auto flex flex-col items-center justify-center">
 			<div className="bg-gray-200">
-				<div className="border mx-auto max-w-7xl p-4">
+				<div className="mx-auto max-w-7xl p-4">
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
-						<div className="h-full border border-black rounded-lg">{image}</div>
-						<div className="border h-full overflow-hidden rounded-lg">
+						<div className="h-full flex flex-row items-center bg-black rounded-lg overflow-hidden">
+							{image}
+						</div>
+						<div className="bg-black flex flex-row items-center justify-center border h-full overflow-hidden rounded-lg">
 							{plot}
 						</div>
 					</div>

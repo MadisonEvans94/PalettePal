@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { CentroidContext } from "../../Contexts/CentroidContext";
 import { motion, AnimatePresence } from "framer-motion";
-const Palette = ({ centroid_rgb }) => {
+const Palette = ({ clusterQty }) => {
 	const { centroidArray } = useContext(CentroidContext);
 	const [copiedColor, setCopiedColor] = useState(null);
-
+	console.log(centroidArray, "CENTROID ARRAY");
 	const testColors = ["#F0F", "#F00", "#0F0", "#000"];
 
 	const copyToClipboard = (color) => {
@@ -18,7 +18,7 @@ const Palette = ({ centroid_rgb }) => {
 		}, 1000);
 	};
 
-	const colorList = testColors.map((color, index) => (
+	const colorList = centroidArray.colors[clusterQty - 1].map((color, index) => (
 		<div
 			key={index}
 			onClick={() => copyToClipboard(color)}
@@ -50,7 +50,7 @@ const Palette = ({ centroid_rgb }) => {
 
 	return (
 		<>
-			<div className="border w-screen overflow-x-auto h-fit flex flex-row justify-center">
+			<div className="border w-screen overflow-x-auto h-fit flex flex-row justify-start">
 				{colorList}
 			</div>
 		</>
