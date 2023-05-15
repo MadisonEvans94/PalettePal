@@ -35,8 +35,31 @@ const ContentSection = ({
 
 	return (
 		<>
-			<div className="w-screen h-screen flex flex-col items-center fixed overflow-y-auto overscroll-none p-8">
-				<div className="flex-1 grid grid-cols-1 ">
+			{" "}
+			<DashboardLayout
+				plot={
+					<CustomPlot
+						pixelData={pixelData}
+						centroidX={centroidXVals}
+						centroidY={centroidYVals}
+						centroidZ={centroidZVals}
+						rgb={rgb}
+						xVal={xVal}
+						yVal={yVal}
+						zVal={zVal}
+					/>
+				}
+				image={<InputImage src={imgFile.src} />}
+				counter={
+					<ColorCountSelector
+						clusterQty={clusterQty}
+						setClusterQty={setClusterQty}
+						pixelData={pixelData}
+					/>
+				}
+			/>
+			{/* <div className="w-screen h-screen flex flex-col items-center fixed overflow-y-auto overscroll-none p-8"> */}
+			{/* <div className="flex-1 grid grid-cols-1 ">
 					<Input
 						isLoading={isLoading}
 						setIsLoading={setIsLoading}
@@ -71,10 +94,38 @@ const ContentSection = ({
 					<div className="w-full flex flex-row justify-center items-center">
 						<ClipboardCopyButton clusterQty={clusterQty} />
 					</div>
-				</div>
-			</div>
+				</div> */}
+			{/* </div> */}
 		</>
 	);
 };
 
 export default ContentSection;
+function DashboardLayout({ plot, image, counter }) {
+	return (
+		<div className="w-full h-screen overflow-auto flex flex-col items-center justify-center">
+			<div className="bg-gray-200">
+				<div className="border mx-auto max-w-7xl p-4">
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+						<div className="h-full border border-black rounded-lg">{image}</div>
+						<div className="border h-full overflow-hidden rounded-lg">
+							{plot}
+						</div>
+					</div>
+				</div>
+			</div>
+			{counter}
+		</div>
+	);
+}
+function InputImage({ src }) {
+	return (
+		<div className="w-full md:flex md:justify-center ">
+			<img
+				src={src}
+				alt="input_image"
+				class="inset-0 h-full object-cover object-center "
+			/>
+		</div>
+	);
+}
