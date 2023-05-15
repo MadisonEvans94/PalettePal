@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 const Palette = ({ clusterQty }) => {
 	const { centroidArray } = useContext(CentroidContext);
 	const [copiedColor, setCopiedColor] = useState(null);
-	console.log(centroidArray, "CENTROID ARRAY");
 	const testColors = ["#F0F", "#F00", "#0F0", "#000"];
 
 	const copyToClipboard = (color) => {
@@ -19,7 +18,13 @@ const Palette = ({ clusterQty }) => {
 	};
 
 	const colorList = centroidArray.colors[clusterQty - 1].map((color, index) => (
-		<div
+		<motion.div
+			layout
+			initial={{ scale: 1, opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			whileHover={{ scale: 1.05 }}
+			whileTap={{ scale: 0.9, transition: { type: "spring" } }}
 			key={index}
 			onClick={() => copyToClipboard(color)}
 			className="cursor-pointer my-10 relative group h-48 w-48 border md:mx-2 rounded-full flex-none"
@@ -36,23 +41,24 @@ const Palette = ({ clusterQty }) => {
 						initial={{ opacity: 0 }}
 						animate={{
 							opacity: 1,
-
 							transition: { type: "spring" },
 						}}
 						exit={{ opacity: 0 }}
-						className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white bg-black p-2 rounded text-xs">
+						className="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white bg-black p-2 rounded text-xs">
 						Color copied to clipboard!
 					</motion.p>
 				)}
 			</AnimatePresence>
-		</div>
+		</motion.div>
 	));
 
 	return (
 		<>
-			<div className="border w-screen overflow-x-auto h-fit flex flex-row justify-start">
-				{colorList}
-			</div>
+			<AnimatePresence mode="wait">
+				<div className="border w-screen overflow-x-auto h-fit flex flex-row justify-start lg:justify-center">
+					{colorList}
+				</div>
+			</AnimatePresence>
 		</>
 	);
 };

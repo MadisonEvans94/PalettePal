@@ -49,6 +49,14 @@ const ContentSection = ({
 						zVal={zVal}
 					/>
 				}
+				input={
+					<Input
+						isLoading={isLoading}
+						setIsLoading={setIsLoading}
+						setPixelDataForParent={setPixelData}
+						setImgFile={setImgFile}
+					/>
+				}
 				image={<InputImage src={imgFile.src} />}
 				counter={
 					<ColorCountSelector
@@ -102,9 +110,10 @@ const ContentSection = ({
 };
 
 export default ContentSection;
-function DashboardLayout({ plot, image, counter, palette }) {
+function DashboardLayout({ plot, image, counter, palette, input }) {
 	return (
 		<div className="w-full h-screen overflow-auto flex flex-col items-center justify-center">
+			<div className="m-6 absolute top-0 left-0">{input}</div>
 			<div className="bg-gray-200">
 				<div className="mx-auto max-w-7xl p-4">
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
