@@ -24,6 +24,7 @@ const ContentSection = ({ pixelData, setPixelData, imgFile, setImgFile }) => {
 		setCentroidYVals(centroidRGBVals[1]);
 		setCentroidZVals(centroidRGBVals[2]);
 	}, [centroidArray, clusterQty]);
+	console.log(centroidArray, "CENTROID ARRAY");
 
 	return (
 		<>
@@ -56,7 +57,7 @@ const ContentSection = ({ pixelData, setPixelData, imgFile, setImgFile }) => {
 					/>
 					<Palette />
 					<div className="w-full flex flex-row justify-center items-center">
-						<ClipboardCopyButton />
+						<ClipboardCopyButton clusterQty={clusterQty} />
 					</div>
 				</div>
 			</div>
