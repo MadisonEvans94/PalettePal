@@ -1,9 +1,10 @@
 import React from "react";
 
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 import { reshapeImageData } from "../../helpers/imageTransformer";
-
+import { CentroidContext } from "../../Contexts/CentroidContext";
 const Input = ({ setPixelDataForParent, setImgFile }) => {
+	const { setCentroidArray } = useContext(CentroidContext);
 	const canvasRef = useRef(null);
 
 	const handleFileChange = async (e) => {
@@ -58,6 +59,7 @@ const Input = ({ setPixelDataForParent, setImgFile }) => {
 
 					const data = await res.json();
 					const parsedData = JSON.parse(data.body);
+					setCentroidArray(parsedData);
 					console.log(parsedData, "FROM AWS");
 				} catch (error) {
 					console.error("Error fetching data:", error);

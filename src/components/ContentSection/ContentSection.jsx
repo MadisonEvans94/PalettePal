@@ -4,13 +4,26 @@ import CustomPlot from "../Plot/CustomPlot";
 import Palette from "../Palette/Palette.jsx";
 import ColorCountSelector from "../ColorCountSelector/ColorCountSelector";
 import Input from "../Input/Input.jsx";
-import { useState } from "react";
-import { processCentroids } from "../../helpers/clusterFunctions";
-
+import { useState, useContext, useEffect } from "react";
+import { CentroidContext } from "../../Contexts/CentroidContext";
+import { processPixels } from "../../helpers/pixelFunctions";
+import hexArrayToRGBArray from "../../helpers/hexArrayToRGBArray";
 const ContentSection = ({ pixelData, setPixelData, imgFile, setImgFile }) => {
+	const { centroidArray } = useContext(CentroidContext);
 	const [clusterQty, setClusterQty] = useState(3);
-	console.log(pixelData);
-	const [rgb, xVal, yVal, zVal] = processCentroids(pixelData, clusterQty);
+	const [rgb, xVal, yVal, zVal] = processPixels(pixelData);
+	const [centroidXVals, setCentroidXVals] = useState(null);
+	const [centroidYVals, setCentroidYVals] = useState(null);
+	const [centroidZVals, setCentroidZVals] = useState(null);
+
+	useEffect(() => {
+		const centroidRGBVals = hexArrayToRGBArray(
+			centroidArray.colors[clusterQty - 1]
+		);
+		setCentroidXVals(centroidRGBVals[0]);
+		setCentroidYVals(centroidRGBVals[1]);
+		setCentroidZVals(centroidRGBVals[2]);
+	}, [centroidArray, clusterQty]);
 
 	return (
 		<>
@@ -20,6 +33,9 @@ const ContentSection = ({ pixelData, setPixelData, imgFile, setImgFile }) => {
 					<div className="flex flex-row justify-between w-screen max-h-96 px-10">
 						<CustomPlot
 							pixelData={pixelData}
+							centroidX={centroidXVals}
+							centroidY={centroidYVals}
+							centroidZ={centroidZVals}
 							rgb={rgb}
 							xVal={xVal}
 							yVal={yVal}

@@ -59,7 +59,6 @@ const Landing = ({ setColorsNeedUpdate, setPixelData, setImgFile }) => {
 					<Input
 						className="input-area"
 						setPixelDataForParent={setPixelData}
-						setColorsNeedUpdate={setColorsNeedUpdate}
 						setImgFile={setImgFile}
 					/>
 					<div
