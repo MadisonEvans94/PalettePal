@@ -8,7 +8,14 @@ import { useState, useContext, useEffect } from "react";
 import { CentroidContext } from "../../Contexts/CentroidContext";
 import { processPixels } from "../../helpers/pixelFunctions";
 import hexArrayToRGBArray from "../../helpers/hexArrayToRGBArray";
-const ContentSection = ({ pixelData, setPixelData, imgFile, setImgFile }) => {
+const ContentSection = ({
+	isLoading,
+	setIsLoading,
+	pixelData,
+	setPixelData,
+	imgFile,
+	setImgFile,
+}) => {
 	const { centroidArray } = useContext(CentroidContext);
 	const [clusterQty, setClusterQty] = useState(3);
 	const [rgb, xVal, yVal, zVal] = processPixels(pixelData);
@@ -30,7 +37,12 @@ const ContentSection = ({ pixelData, setPixelData, imgFile, setImgFile }) => {
 		<>
 			<div className="w-screen h-screen flex flex-col items-center fixed overflow-y-auto overscroll-none p-8">
 				<div className="flex-1 grid grid-cols-1 ">
-					<Input setPixelDataForParent={setPixelData} setImgFile={setImgFile} />
+					<Input
+						isLoading={isLoading}
+						setIsLoading={setIsLoading}
+						setPixelDataForParent={setPixelData}
+						setImgFile={setImgFile}
+					/>
 					<div className="flex flex-row justify-between w-screen max-h-96 px-10">
 						<CustomPlot
 							pixelData={pixelData}

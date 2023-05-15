@@ -1,31 +1,29 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useRef, useContext } from "react";
 import { reshapeImageData } from "../../helpers/imageTransformer";
 import { CentroidContext } from "../../Contexts/CentroidContext";
-const Input = ({ setPixelDataForParent, setImgFile }) => {
+const Input = ({ setIsLoading, setPixelDataForParent, setImgFile }) => {
 	const { setCentroidArray } = useContext(CentroidContext);
 	const canvasRef = useRef(null);
+	const navigate = useNavigate();
 
 	const handleFileChange = async (e) => {
+		setIsLoading(true);
 		const file = e.target.files[0];
-
 		const reader = new FileReader();
-
 		reader.onerror = (error) => {
 			console.error("Error reading the file:", error);
 		};
-
 		reader.onloadend = async () => {
 			const originalBase64Image = reader.result;
 			let resizedBase64Image;
-
 			// Create an intermediate canvas and draw the resized image on it
 			const resizeCanvas = document.createElement("canvas");
 			resizeCanvas.width = 200;
 			resizeCanvas.height = 200;
 			const resizeCtx = resizeCanvas.getContext("2d");
-
 			const originalImg = new Image();
 			originalImg.src = originalBase64Image;
 			originalImg.onload = async () => {
@@ -43,7 +41,6 @@ const Input = ({ setPixelDataForParent, setImgFile }) => {
 					originalImg.height * scale
 				);
 				resizedBase64Image = resizeCanvas.toDataURL().split(",")[1]; // Convert resized image to base64
-
 				try {
 					const res = await fetch(
 						"https://s1sac4ihw6.execute-api.us-east-2.amazonaws.com/palette_pal_tester/kmeans",
@@ -52,20 +49,22 @@ const Input = ({ setPixelDataForParent, setImgFile }) => {
 							body: JSON.stringify({ image: resizedBase64Image }), // Send the resized base64 image
 						}
 					);
-
 					if (!res.ok) {
 						throw new Error(`HTTP error! status: ${res.status}`);
 					}
-
 					const data = await res.json();
 					const parsedData = JSON.parse(data.body);
 					setCentroidArray(parsedData);
 					console.log(parsedData, "FROM AWS");
+					if (window.location.pathname !== "/dashboard") {
+						navigate("/dashboard");
+					}
+					setIsLoading(false);
 				} catch (error) {
 					console.error("Error fetching data:", error);
+					setIsLoading(false);
 				}
 			};
-
 			const img = new Image();
 			img.src = reader.result;
 			img.onload = () => {
@@ -73,7 +72,6 @@ const Input = ({ setPixelDataForParent, setImgFile }) => {
 				// Setting the canvas dimensions to 500x500
 				canvas.width = 400;
 				canvas.height = 400;
-
 				const ctx = canvas.getContext("2d", { willReadFrequently: true });
 				// Clearing the canvas
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -95,19 +93,15 @@ const Input = ({ setPixelDataForParent, setImgFile }) => {
 					canvasRef.current.height,
 					{ willReadFrequently: true }
 				);
-
 				const pixelArray = reshapeImageData(imageData.data);
-
 				setPixelDataForParent(pixelArray);
 			};
 			setImgFile(img);
 		};
-
 		reader.readAsDataURL(file);
 	};
-
 	return (
-		<div className="">
+		<div>
 			<input
 				className="hidden"
 				type="file"
