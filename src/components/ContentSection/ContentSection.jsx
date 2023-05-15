@@ -57,6 +57,7 @@ const ContentSection = ({
 						pixelData={pixelData}
 					/>
 				}
+				palette={<Palette />}
 			/>
 			{/* <div className="w-screen h-screen flex flex-col items-center fixed overflow-y-auto overscroll-none p-8"> */}
 			{/* <div className="flex-1 grid grid-cols-1 ">
@@ -101,7 +102,7 @@ const ContentSection = ({
 };
 
 export default ContentSection;
-function DashboardLayout({ plot, image, counter }) {
+function DashboardLayout({ plot, image, counter, palette }) {
 	return (
 		<div className="w-full h-screen overflow-auto flex flex-col items-center justify-center">
 			<div className="bg-gray-200">
@@ -115,6 +116,7 @@ function DashboardLayout({ plot, image, counter }) {
 				</div>
 			</div>
 			{counter}
+			{palette}
 		</div>
 	);
 }
