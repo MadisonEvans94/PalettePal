@@ -6,7 +6,7 @@ import ppBackground from "../../assets/ppbackground.jpeg";
 const Landing = ({ isLoading, setIsLoading, setPixelData, setImgFile }) => {
 	return (
 		<>
-			<div className="w-full h-full fixed">
+			<div className="w-full h-full fixed bg-[#0f0f0f]">
 				{isLoading && <LoadingModal />}
 
 				<div

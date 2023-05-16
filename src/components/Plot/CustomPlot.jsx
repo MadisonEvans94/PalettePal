@@ -55,15 +55,15 @@ const CustomPlot = ({
 					height: "100%",
 					margin: {
 						l: 0,
-						r: 100,
-						b: 100,
+						r: 300,
+						b: 0,
 						t: 0,
 						pad: 0,
 					},
 					paper_bgcolor: "#111111",
 					legend: {
 						x: 1,
-						y: 0,
+						y: -0.5,
 						xanchor: "right",
 						yanchor: "bottom",
 					},
