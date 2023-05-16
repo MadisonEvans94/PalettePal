@@ -11,15 +11,15 @@ import hexArrayToRGBArray from "../../helpers/hexArrayToRGBArray";
 
 function DashboardLayout({ plot, image, counter, palette, input, clipboard }) {
 	return (
-		<div className="w-full h-screen overflow-auto flex flex-col items-center justify-center bg-[#0f0f0f]">
-			<div className="m-6 absolute top-0 left-0">{input}</div>
+		<div className="w-full h-fit lg:h-screen overflow-auto flex flex-col items-center justify-start lg:justify-center bg-[#0f0f0f]">
+			<div className="m-6 lg:absolute top-0 left-0">{input}</div>
 
 			<div className="mx-auto max-w-7xl p-4">
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
-					<div className="h-full flex flex-row items-center bg-[#0f0f0f] border rounded-lg overflow-hidden">
+					<div className="h-fit lg:h-[400px] flex flex-row items-center bg-[#0f0f0f] border rounded-lg overflow-hidden">
 						{image}
 					</div>
-					<div className="bg-[#0f0f0f] flex flex-row items-center justify-center border h-full overflow-hidden rounded-lg">
+					<div className="bg-[#0f0f0f] flex flex-row items-center justify-center border h-[400px] overflow-hidden rounded-lg">
 						{plot}
 					</div>
 				</div>
@@ -38,7 +38,7 @@ function InputImage({ src }) {
 			<img
 				src={src}
 				alt="input_image"
-				class="inset-0 h-full object-cover object-center "
+				class="inset-0 lg:h-[400px] object-cover object-center"
 			/>
 		</div>
 	);

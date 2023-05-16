@@ -42,13 +42,10 @@ const Input = ({ setIsLoading, setPixelDataForParent, setImgFile }) => {
 				);
 				resizedBase64Image = resizeCanvas.toDataURL().split(",")[1]; // Convert resized image to base64
 				try {
-					const res = await fetch(
-						"https://s1sac4ihw6.execute-api.us-east-2.amazonaws.com/palette_pal_tester/kmeans",
-						{
-							method: "POST",
-							body: JSON.stringify({ image: resizedBase64Image }), // Send the resized base64 image
-						}
-					);
+					const res = await fetch(process.env.REACT_APP_AWS_ENDPOINT, {
+						method: "POST",
+						body: JSON.stringify({ image: resizedBase64Image }), // Send the resized base64 image
+					});
 					if (!res.ok) {
 						throw new Error(`HTTP error! status: ${res.status}`);
 					}

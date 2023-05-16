@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 const Palette = ({ clusterQty }) => {
 	const { centroidArray } = useContext(CentroidContext);
 	const [copiedColor, setCopiedColor] = useState(null);
-	const testColors = ["#F0F", "#F00", "#0F0", "#000"];
 
 	const copyToClipboard = (color) => {
 		navigator.clipboard.writeText(color);
@@ -30,11 +29,11 @@ const Palette = ({ clusterQty }) => {
 			whileTap={{ scale: 0.9, transition: { type: "spring" } }}
 			key={index}
 			onClick={() => copyToClipboard(color)}
-			className="cursor-pointer my-10 relative group h-48 w-48 md:mx-2 rounded-full flex-none border border-white"
+			className="cursor-pointer my-10 mx-2 relative group h-48 w-48 md:mx-2 rounded-full flex-none border border-white"
 			style={{
 				background: `${color}`,
 			}}>
-			<p className="-z-10 absolute text-white left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:-translate-y-6 transition-all duration-200">
+			<p className="-z-10 absolute text-white left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:-translate-y-8 transition-all duration-200">
 				{color}
 			</p>
 
@@ -57,7 +56,7 @@ const Palette = ({ clusterQty }) => {
 
 	return (
 		<>
-			<div className="border-t border-b w-screen overflow-x-auto h-fit flex flex-row justify-start lg:justify-center bg-[#2d2d2d]">
+			<div className="min-h-48 border-t border-b w-screen overflow-x-auto h-fit flex flex-row justify-start lg:justify-center bg-[#2d2d2d]">
 				{colorList}
 			</div>
 		</>

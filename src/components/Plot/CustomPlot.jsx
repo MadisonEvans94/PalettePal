@@ -1,31 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Plot from "react-plotly.js";
-
-function useWindowDimensions() {
-	// Set initial dimensions of the window
-	const [windowDimensions, setWindowDimensions] = useState({
-		width: window.innerWidth,
-		height: window.innerHeight,
-	});
-
-	// Listen for changes to the window size
-	useEffect(() => {
-		function handleResize() {
-			setWindowDimensions({
-				width: window.innerWidth,
-				height: window.innerHeight,
-			});
-		}
-
-		// Add resize event listener on mount
-		window.addEventListener("resize", handleResize);
-
-		// Remove resize event listener on unmount
-		return () => window.removeEventListener("resize", handleResize);
-	}, []);
-
-	return windowDimensions;
-}
 
 const CustomPlot = ({
 	rgb,
@@ -36,8 +10,6 @@ const CustomPlot = ({
 	yVal,
 	zVal,
 }) => {
-	const { width, height } = useWindowDimensions();
-
 	// Define scatter trace for centroids
 	const trace1 = {
 		type: "scatter3d",
@@ -47,7 +19,7 @@ const CustomPlot = ({
 		y: centroidY,
 		z: centroidZ,
 		marker: {
-			size: 20,
+			size: 12,
 			color: "#FFF",
 		},
 		hovertemplate:
@@ -71,22 +43,20 @@ const CustomPlot = ({
 			"R: %{x:.2f} G: %{y:.2f} B: %{z:.2f}<extra>Pixel Value</extra> ",
 	};
 
-	const plotHeight = width > 768 ? 380 : height * 0.35;
-
 	return (
-		<div className="flex flex-row p-auto w-full" style={{ width: "100%" }}>
+		<div
+			className="relative flex flex-row p-auto w-full h-full"
+			style={{ width: "100%", height: "100%" }}>
 			<Plot
 				data={[trace1, trace2]}
 				layout={{
-					responsive: true,
 					autosize: true,
-					// Set width to half of window width if larger than 768px
-					width: width > 768 ? width * 0.5 : width * 0.8,
-					height: plotHeight,
+					width: "100%",
+					height: "100%",
 					margin: {
 						l: 0,
-						r: 20,
-						b: 0,
+						r: 100,
+						b: 100,
 						t: 0,
 						pad: 0,
 					},
@@ -97,7 +67,13 @@ const CustomPlot = ({
 						xanchor: "right",
 						yanchor: "bottom",
 					},
+					scene: {
+						camera: {
+							eye: { x: 1.5, y: 1.5, z: 1.5 }, // Adjust these values to control the initial zoom
+						},
+					},
 				}}
+				useResizeHandler
 			/>
 		</div>
 	);

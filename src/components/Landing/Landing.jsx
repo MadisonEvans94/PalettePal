@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import videoUrl from "../../assets/paint.mp4";
 import Input from "../Input/Input";
 import LoadingModal from "../LoadingModal";
+import ppBackground from "../../assets/ppbackground.jpeg";
 const Landing = ({ isLoading, setIsLoading, setPixelData, setImgFile }) => {
 	useEffect(() => {
 		const video = document.getElementById("background-video");
@@ -46,7 +47,7 @@ const Landing = ({ isLoading, setIsLoading, setPixelData, setImgFile }) => {
 
 				<div className="text-white relative text-center z-10 flex flex-col items-center justify-center h-full px-10 w-full">
 					<h1 className="mb-16 main-header">Palette Pal</h1>
-
+					{/* <img src={ppBackground} alt="ppbackground" /> */}
 					<p className="main-description mb-8 text-xs">
 						Welcome to Palette Pal, an interactive color picker! Simply upload
 						an image and receive a color palette suggestion based on that image!

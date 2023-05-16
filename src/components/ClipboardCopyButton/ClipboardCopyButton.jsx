@@ -15,7 +15,7 @@ function ClipboardCopyButton({ clusterQty }) {
 		<motion.div className="w-full flex flex-row justify-center my-4" layout>
 			<motion.button
 				layout
-				className="border-white text-white hover:text-[#0f0f0f] hover:bg-white p-3 my-3 border rounded w-48"
+				className="border-white text-white hover:text-[#0f0f0f] bg-[#2d2d2d] hover:bg-white p-3 my-3 border rounded w-48"
 				onClick={handleCopyClick}>
 				copy to clipboard
 			</motion.button>
