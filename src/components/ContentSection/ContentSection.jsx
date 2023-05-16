@@ -11,7 +11,7 @@ import hexArrayToRGBArray from "../../helpers/hexArrayToRGBArray";
 
 function DashboardLayout({ plot, image, counter, palette, input, clipboard }) {
 	return (
-		<div className="w-full h-fit lg:h-screen overflow-auto flex flex-col items-center justify-start lg:justify-center bg-[#0f0f0f]">
+		<div className="overscroll-y-none w-full h-fit lg:h-screen overflow-auto flex flex-col items-center justify-start lg:justify-center bg-[#0f0f0f]">
 			<div className="m-6 lg:absolute top-0 left-0">{input}</div>
 
 			<div className="mx-auto max-w-7xl p-4">
