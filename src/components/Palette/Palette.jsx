@@ -47,7 +47,7 @@ const Palette = ({ clusterQty }) => {
 							transition: { type: "spring" },
 						}}
 						exit={{ opacity: 0 }}
-						className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white bg-black p-2 rounded text-xs">
+						className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white bg-[#2d2d2d] p-2 rounded text-xs">
 						Color copied to clipboard!
 					</motion.p>
 				)}
@@ -57,7 +57,7 @@ const Palette = ({ clusterQty }) => {
 
 	return (
 		<>
-			<div className="border w-screen overflow-x-auto h-fit flex flex-row justify-start lg:justify-center bg-gray-500">
+			<div className="border-t border-b w-screen overflow-x-auto h-fit flex flex-row justify-start lg:justify-center bg-[#2d2d2d]">
 				{colorList}
 			</div>
 		</>

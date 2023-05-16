@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { CentroidContext } from "../../Contexts/CentroidContext";
+import { motion } from "framer-motion";
 function ClipboardCopyButton({ clusterQty }) {
 	const [showCopiedMessage, setShowCopiedMessage] = useState(false);
 	const { centroidArray } = useContext(CentroidContext);
@@ -11,16 +12,23 @@ function ClipboardCopyButton({ clusterQty }) {
 	};
 
 	return (
-		<div>
-			<button
-				className="p-3 my-3 border rounded border-white"
+		<motion.div className="w-full flex flex-row justify-center my-4" layout>
+			<motion.button
+				layout
+				className="border-white text-white hover:text-[#0f0f0f] hover:bg-white p-3 my-3 border rounded w-48"
 				onClick={handleCopyClick}>
 				copy to clipboard
-			</button>
+			</motion.button>
 			{showCopiedMessage && (
-				<span style={{ marginLeft: "10px" }}>Copied to clipboard!</span>
+				<motion.span
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1, transition: { delay: 0.2 } }}
+					layout
+					className="ml-[10px] flex flex-row items-center justify-center text-white">
+					Copied to clipboard!
+				</motion.span>
 			)}
-		</div>
+		</motion.div>
 	);
 }
 

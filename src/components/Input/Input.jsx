@@ -111,7 +111,7 @@ const Input = ({ setIsLoading, setPixelDataForParent, setImgFile }) => {
 			/>
 			<label
 				for="image-input"
-				className="border p-4 rounded-md cursor-pointer hover:bg-white hover:text-black transition">
+				className="border p-4 rounded-md cursor-pointer text-white hover:bg-white hover:text-[#0f0f0f] transition">
 				Select file
 			</label>
 			<canvas ref={canvasRef} style={{ display: "none" }} />

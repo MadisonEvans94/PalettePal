@@ -8,6 +8,42 @@ import { useState, useContext, useEffect } from "react";
 import { CentroidContext } from "../../Contexts/CentroidContext";
 import { processPixels } from "../../helpers/pixelFunctions";
 import hexArrayToRGBArray from "../../helpers/hexArrayToRGBArray";
+
+function DashboardLayout({ plot, image, counter, palette, input, clipboard }) {
+	return (
+		<div className="w-full h-screen overflow-auto flex flex-col items-center justify-center bg-[#0f0f0f]">
+			<div className="m-6 absolute top-0 left-0">{input}</div>
+
+			<div className="mx-auto max-w-7xl p-4">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+					<div className="h-full flex flex-row items-center bg-[#0f0f0f] border rounded-lg overflow-hidden">
+						{image}
+					</div>
+					<div className="bg-[#0f0f0f] flex flex-row items-center justify-center border h-full overflow-hidden rounded-lg">
+						{plot}
+					</div>
+				</div>
+			</div>
+			{counter}
+			{palette}
+			<div className="w-full flex flex-row justify-center items-center">
+				{clipboard}
+			</div>
+		</div>
+	);
+}
+function InputImage({ src }) {
+	return (
+		<div className="w-full md:flex md:justify-center ">
+			<img
+				src={src}
+				alt="input_image"
+				class="inset-0 h-full object-cover object-center "
+			/>
+		</div>
+	);
+}
+
 const ContentSection = ({
 	isLoading,
 	setIsLoading,
@@ -31,7 +67,6 @@ const ContentSection = ({
 		setCentroidYVals(centroidRGBVals[1]);
 		setCentroidZVals(centroidRGBVals[2]);
 	}, [centroidArray, clusterQty]);
-	console.log(centroidArray, "CENTROID ARRAY");
 
 	return (
 		<>
@@ -66,79 +101,10 @@ const ContentSection = ({
 					/>
 				}
 				palette={<Palette clusterQty={clusterQty} />}
+				clipboard={<ClipboardCopyButton clusterQty={clusterQty} />}
 			/>
-			{/* <div className="w-screen h-screen flex flex-col items-center fixed overflow-y-auto overscroll-none p-8"> */}
-			{/* <div className="flex-1 grid grid-cols-1 ">
-					<Input
-						isLoading={isLoading}
-						setIsLoading={setIsLoading}
-						setPixelDataForParent={setPixelData}
-						setImgFile={setImgFile}
-					/>
-					<div className="flex flex-row justify-between w-screen max-h-96 px-10">
-						<CustomPlot
-							pixelData={pixelData}
-							centroidX={centroidXVals}
-							centroidY={centroidYVals}
-							centroidZ={centroidZVals}
-							rgb={rgb}
-							xVal={xVal}
-							yVal={yVal}
-							zVal={zVal}
-						/>
-						<div className="w-full hidden md:flex md:justify-center ">
-							<img
-								src={imgFile.src}
-								alt="testing"
-								class="inset-0 h-full object-cover object-center "
-							/>
-						</div>
-					</div>
-					<ColorCountSelector
-						clusterQty={clusterQty}
-						setClusterQty={setClusterQty}
-						pixelData={pixelData}
-					/>
-					<Palette />
-					<div className="w-full flex flex-row justify-center items-center">
-						<ClipboardCopyButton clusterQty={clusterQty} />
-					</div>
-				</div> */}
-			{/* </div> */}
 		</>
 	);
 };
 
 export default ContentSection;
-function DashboardLayout({ plot, image, counter, palette, input }) {
-	return (
-		<div className="w-full h-screen overflow-auto flex flex-col items-center justify-center">
-			<div className="m-6 absolute top-0 left-0">{input}</div>
-			<div className="bg-gray-200">
-				<div className="mx-auto max-w-7xl p-4">
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
-						<div className="h-full flex flex-row items-center bg-black rounded-lg overflow-hidden">
-							{image}
-						</div>
-						<div className="bg-black flex flex-row items-center justify-center border h-full overflow-hidden rounded-lg">
-							{plot}
-						</div>
-					</div>
-				</div>
-			</div>
-			{counter}
-			{palette}
-		</div>
-	);
-}
-function InputImage({ src }) {
-	return (
-		<div className="w-full md:flex md:justify-center ">
-			<img
-				src={src}
-				alt="input_image"
-				class="inset-0 h-full object-cover object-center "
-			/>
-		</div>
-	);
-}
