@@ -1,53 +1,61 @@
-import React from "react";
+import React, { useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { useRef, useContext } from "react";
-import { reshapeImageData } from "../../helpers/imageTransformer";
 import { CentroidContext } from "../../Contexts/CentroidContext";
+
 const Input = ({ setIsLoading, setPixelDataForParent, setImgFile }) => {
 	const { setCentroidArray } = useContext(CentroidContext);
 	const canvasRef = useRef(null);
 	const navigate = useNavigate();
 
+	const createImage = (src, onLoad) => {
+		const img = new Image();
+		img.onload = onLoad;
+		img.src = src;
+		return img;
+	};
+
+	const handleResizeImage = (originalImg) => {
+		// Create an intermediate canvas and draw the resized image on it
+		const resizeCanvas = document.createElement("canvas");
+		resizeCanvas.width = 200;
+		resizeCanvas.height = 200;
+		const resizeCtx = resizeCanvas.getContext("2d");
+		const scale = resizeCanvas.height / originalImg.height;
+		resizeCtx.drawImage(
+			originalImg,
+			0,
+			0,
+			originalImg.width * scale,
+			originalImg.height * scale
+		);
+		return resizeCanvas.toDataURL().split(",")[1]; // Convert resized image to base64
+	};
+
+	const drawImageOnCanvas = (img, canvas) => {
+		const ctx = canvas.getContext("2d", { willReadFrequently: true });
+		// Clearing the canvas
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		const scale = canvas.height / img.height;
+		canvas.width = img.width * scale;
+		canvas.height = img.height * scale;
+		// Drawing the image on the canvas
+		ctx.drawImage(img, 0, 0, img.width * scale, img.height * scale);
+		return ctx.getImageData(0, 0, canvas.width, canvas.height, {
+			willReadFrequently: true,
+		}).data;
+	};
+
 	const handleFileChange = async (e) => {
 		setIsLoading(true);
 		const file = e.target.files[0];
 		const reader = new FileReader();
-		reader.onerror = (error) => {
-			console.error("Error reading the file:", error);
-		};
+		reader.onerror = (error) => console.error("Error reading the file:", error);
 		reader.onloadend = async () => {
 			const originalBase64Image = reader.result;
-			let resizedBase64Image;
+			const originalImg = createImage(originalBase64Image, async () => {
+				const resizedBase64Image = handleResizeImage(originalImg);
 
-			// Create an intermediate canvas and draw the resized image on it
-			const resizeCanvas = document.createElement("canvas");
-			resizeCanvas.width = 200;
-			resizeCanvas.height = 200;
-			const resizeCtx = resizeCanvas.getContext("2d");
-			const originalImg = new Image();
-			originalImg.src = originalBase64Image;
-			originalImg.onload = async () => {
-				let scale;
-				if (originalImg.width > originalImg.height) {
-					scale = resizeCanvas.width / originalImg.width;
-				} else {
-					scale = resizeCanvas.height / originalImg.height;
-				}
-				resizeCtx.drawImage(
-					originalImg,
-					0,
-					0,
-					originalImg.width * scale,
-					originalImg.height * scale
-				);
-				resizedBase64Image = resizeCanvas.toDataURL().split(",")[1]; // Convert resized image to base64
-				/**
-				 *
-				 */
 				try {
-					// process.env.REACT_APP_AWS_ENDPOINT
-					console.log(resizedBase64Image, "BASE64");
 					const res = await fetch(
 						"https://du65t1mu0a.execute-api.us-east-2.amazonaws.com/production/image-processor",
 						{
@@ -62,52 +70,30 @@ const Input = ({ setIsLoading, setPixelDataForParent, setImgFile }) => {
 						throw new Error(`HTTP error! status: ${res.status}`);
 					}
 					const data = await res.json();
-					console.log(data, "DATA RESPONSE FROM AWS");
 					setCentroidArray(data);
-					if (window.location.pathname !== "/dashboard") {
-						navigate("/dashboard");
+					if (window.location.pathname !== "/palette-view") {
+						navigate("/palette-view");
 					}
 					setIsLoading(false);
 				} catch (error) {
 					console.error("Error fetching data:", error);
 					setIsLoading(false);
 				}
-			};
-			const img = new Image();
-			img.src = reader.result;
-			img.onload = () => {
+			});
+
+			const img = createImage(reader.result, () => {
 				const canvas = canvasRef.current;
 				// Setting the canvas dimensions to 500x500
 				canvas.width = 400;
 				canvas.height = 400;
-				const ctx = canvas.getContext("2d", { willReadFrequently: true });
-				// Clearing the canvas
-				ctx.clearRect(0, 0, canvas.width, canvas.height);
-				let scale;
-				// Scaling the image to fit the canvas
-				if (img.width > img.height) {
-					scale = canvas.width / img.width;
-				} else {
-					scale = canvas.height / img.height;
-				}
-				canvas.width = img.width * scale;
-				canvas.height = img.height * scale;
-				// Drawing the image on the canvas
-				ctx.drawImage(img, 0, 0, img.width * scale, img.height * scale);
-				const imageData = ctx.getImageData(
-					0,
-					0,
-					canvasRef.current.width,
-					canvasRef.current.height,
-					{ willReadFrequently: true }
-				);
-				const pixelArray = reshapeImageData(imageData.data);
+				const pixelArray = drawImageOnCanvas(img, canvas);
 				setPixelDataForParent(pixelArray);
-			};
-			setImgFile(img);
+				setImgFile(img);
+			});
 		};
 		reader.readAsDataURL(file);
 	};
+
 	return (
 		<div>
 			<input
@@ -118,7 +104,7 @@ const Input = ({ setIsLoading, setPixelDataForParent, setImgFile }) => {
 				onChange={handleFileChange}
 			/>
 			<label
-				for="image-input"
+				htmlFor="image-input"
 				className="border p-4 rounded-md cursor-pointer text-white hover:bg-white hover:text-[#0f0f0f] transition">
 				Select file
 			</label>
