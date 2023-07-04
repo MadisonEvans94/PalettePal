@@ -1,8 +1,8 @@
 // App.js
 import React, { useState } from "react";
 import "./App.css";
-import PaletteView from "./components/PaletteView/PaletteView";
-import Landing from "./components/Landing/Landing";
+import PaletteView from "./routes/PaletteView/PaletteView";
+import Landing from "./routes/Landing/Landing";
 import { CentroidContext } from "./Contexts/CentroidContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 

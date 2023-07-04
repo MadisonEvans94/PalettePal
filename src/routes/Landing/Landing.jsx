@@ -1,7 +1,6 @@
 import React from "react";
-
-import Input from "../Input/Input";
-import LoadingModal from "../LoadingModal";
+import Input from "../../components/Input/Input";
+import LoadingModal from "../../components/LoadingModal";
 import ppBackground from "../../assets/ppbackground.jpeg";
 const Landing = ({ isLoading, setIsLoading, setPixelData, setImgFile }) => {
 	return (
