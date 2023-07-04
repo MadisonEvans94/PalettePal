@@ -5,7 +5,7 @@ import PaletteView from "./routes/PaletteView/PaletteView";
 import Landing from "./routes/Landing/Landing";
 import { CentroidContext } from "./Contexts/CentroidContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import Dashboard from "./routes/Dashboard/Dashboard";
 function App() {
 	const [pixelData, setPixelData] = useState([]);
 	const [imgFile, setImgFile] = useState(null);
@@ -28,7 +28,7 @@ function App() {
 						}
 					/>
 					<Route
-						path="/dashboard"
+						path="/palette-view"
 						element={
 							<PaletteView
 								isLoading={isLoading}
@@ -40,6 +40,7 @@ function App() {
 							/>
 						}
 					/>
+					<Route path="/dashboard" element={<Dashboard />} />
 				</Routes>
 			</CentroidContext.Provider>
 		</Router>
