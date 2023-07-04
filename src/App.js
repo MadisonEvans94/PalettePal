@@ -1,7 +1,7 @@
 // App.js
 import React, { useState } from "react";
 import "./App.css";
-import ContentSection from "./components/ContentSection/ContentSection";
+import PaletteView from "./components/PaletteView/PaletteView";
 import Landing from "./components/Landing/Landing";
 import { CentroidContext } from "./Contexts/CentroidContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -30,7 +30,7 @@ function App() {
 					<Route
 						path="/dashboard"
 						element={
-							<ContentSection
+							<PaletteView
 								isLoading={isLoading}
 								setIsLoading={setIsLoading}
 								pixelData={pixelData}

@@ -61,9 +61,7 @@ const ContentSection = ({
 	const [centroidZVals, setCentroidZVals] = useState(null);
 
 	useEffect(() => {
-		const centroidRGBVals = hexArrayToRGBArray(
-			centroidArray.colors[clusterQty - 1]
-		);
+		const centroidRGBVals = hexArrayToRGBArray(centroidArray[clusterQty - 1]);
 		setCentroidXVals(centroidRGBVals[0]);
 		setCentroidYVals(centroidRGBVals[1]);
 		setCentroidZVals(centroidRGBVals[2]);

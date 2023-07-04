@@ -19,6 +19,7 @@ const Input = ({ setIsLoading, setPixelDataForParent, setImgFile }) => {
 		reader.onloadend = async () => {
 			const originalBase64Image = reader.result;
 			let resizedBase64Image;
+
 			// Create an intermediate canvas and draw the resized image on it
 			const resizeCanvas = document.createElement("canvas");
 			resizeCanvas.width = 200;
@@ -41,18 +42,28 @@ const Input = ({ setIsLoading, setPixelDataForParent, setImgFile }) => {
 					originalImg.height * scale
 				);
 				resizedBase64Image = resizeCanvas.toDataURL().split(",")[1]; // Convert resized image to base64
+				/**
+				 *
+				 */
 				try {
-					const res = await fetch(process.env.REACT_APP_AWS_ENDPOINT, {
-						method: "POST",
-						body: JSON.stringify({ image: resizedBase64Image }), // Send the resized base64 image
-					});
+					// process.env.REACT_APP_AWS_ENDPOINT
+					console.log(resizedBase64Image, "BASE64");
+					const res = await fetch(
+						"https://du65t1mu0a.execute-api.us-east-2.amazonaws.com/production/image-processor",
+						{
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify({ image: resizedBase64Image }), // Send the resized base64 image
+						}
+					);
 					if (!res.ok) {
 						throw new Error(`HTTP error! status: ${res.status}`);
 					}
 					const data = await res.json();
-					const parsedData = JSON.parse(data.body);
-					setCentroidArray(parsedData);
-					console.log(parsedData, "FROM AWS");
+					console.log(data, "DATA RESPONSE FROM AWS");
+					setCentroidArray(data);
 					if (window.location.pathname !== "/dashboard") {
 						navigate("/dashboard");
 					}

@@ -4,6 +4,7 @@ import { CentroidContext } from "../../Contexts/CentroidContext";
 import { motion, AnimatePresence } from "framer-motion";
 const Palette = ({ clusterQty }) => {
 	const { centroidArray } = useContext(CentroidContext);
+	console.log(centroidArray, "CENTROID ARRAY");
 	const [copiedColor, setCopiedColor] = useState(null);
 
 	const copyToClipboard = (color) => {
@@ -16,7 +17,7 @@ const Palette = ({ clusterQty }) => {
 		}, 1000);
 	};
 
-	const colorList = centroidArray.colors[clusterQty - 1].map((color, index) => (
+	const colorList = centroidArray[clusterQty - 1].map((color, index) => (
 		<motion.div
 			layout
 			initial={{ scale: 1, opacity: 0 }}
