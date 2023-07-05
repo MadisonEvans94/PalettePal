@@ -28,9 +28,13 @@ const testInfo = [
 const Dashpane = () => {
 	return (
 		<div className="w-full p-10">
-			{testInfo.map((palette) => (
-				<PaletteCard paletteInfo={palette} />
-			))}
+			{testInfo.map((palette) => {
+				return (
+					<div className="my-4">
+						<PaletteCard paletteInfo={palette} />
+					</div>
+				);
+			})}
 		</div>
 	);
 };
