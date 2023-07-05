@@ -4,8 +4,24 @@ import "./App.css";
 import PaletteView from "./routes/PaletteView/PaletteView";
 import Landing from "./routes/Landing/Landing";
 import { CentroidContext } from "./Contexts/CentroidContext";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Outlet,
+} from "react-router-dom";
 import Dashboard from "./routes/Dashboard/Dashboard";
+import Navigation from "./components/Navigation/Navigation";
+
+const Layout = () => {
+	return (
+		<>
+			<Navigation />
+			<Outlet />
+		</>
+	);
+};
+
 function App() {
 	const [pixelData, setPixelData] = useState([]);
 	const [imgFile, setImgFile] = useState(null);
@@ -27,20 +43,22 @@ function App() {
 							/>
 						}
 					/>
-					<Route
-						path="/palette-view"
-						element={
-							<PaletteView
-								isLoading={isLoading}
-								setIsLoading={setIsLoading}
-								pixelData={pixelData}
-								setPixelData={setPixelData}
-								imgFile={imgFile}
-								setImgFile={setImgFile}
-							/>
-						}
-					/>
-					<Route path="/dashboard" element={<Dashboard />} />
+					<Route path="app" element={<Layout />}>
+						<Route
+							path="palette-view"
+							element={
+								<PaletteView
+									isLoading={isLoading}
+									setIsLoading={setIsLoading}
+									pixelData={pixelData}
+									setPixelData={setPixelData}
+									imgFile={imgFile}
+									setImgFile={setImgFile}
+								/>
+							}
+						/>
+						<Route path="dashboard" element={<Dashboard />} />
+					</Route>
 				</Routes>
 			</CentroidContext.Provider>
 		</Router>
