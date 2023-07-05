@@ -18,7 +18,7 @@ const testInfo = [
 	},
 	{
 		name: "Building Photo",
-		date: "11/17/1994",
+		date: "11/11/1994",
 		palette: ["#1c0e16", "#f96b20", "#cf342e", "#000000", "#7a2c34"],
 		imgUrl:
 			"https://images.unsplash.com/photo-1614878488982-32dbaad50fee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
