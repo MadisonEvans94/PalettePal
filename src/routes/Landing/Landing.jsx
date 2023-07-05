@@ -33,10 +33,11 @@ const Landing = ({ isLoading, setIsLoading, setPixelData, setImgFile }) => {
 						an image and receive a color palette suggestion based on that image!
 					</p>
 					<Input
-						setIsLoading={setIsLoading}
 						className="input-area"
+						setIsLoading={setIsLoading}
 						setPixelDataForParent={setPixelData}
 						setImgFile={setImgFile}
+						buttonText="Select Image"
 					/>
 				</div>
 			</div>

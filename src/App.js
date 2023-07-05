@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import Dashboard from "./routes/Dashboard/Dashboard";
 import Navigation from "./components/Navigation/Navigation";
+import Settings from "./routes/Settings/Settings";
 
 const Layout = () => {
 	return (
@@ -58,6 +59,7 @@ function App() {
 							}
 						/>
 						<Route path="dashboard" element={<Dashboard />} />
+						<Route path="settings" element={<Settings />} />
 					</Route>
 				</Routes>
 			</CentroidContext.Provider>

@@ -2,7 +2,13 @@ import React, { useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CentroidContext } from "../../Contexts/CentroidContext";
 
-const Input = ({ setIsLoading, setPixelDataForParent, setImgFile }) => {
+const InputButton = ({
+	setIsLoading,
+	setPixelDataForParent,
+	setImgFile,
+	buttonText,
+	styleProp,
+}) => {
 	const { setCentroidArray } = useContext(CentroidContext);
 	const canvasRef = useRef(null);
 	const navigate = useNavigate();
@@ -71,8 +77,8 @@ const Input = ({ setIsLoading, setPixelDataForParent, setImgFile }) => {
 					}
 					const data = await res.json();
 					setCentroidArray(data);
-					if (window.location.pathname !== "/palette-view") {
-						navigate("/palette-view");
+					if (window.location.pathname !== "/app/palette-view") {
+						navigate("/app/palette-view");
 					}
 					setIsLoading(false);
 				} catch (error) {
@@ -106,11 +112,11 @@ const Input = ({ setIsLoading, setPixelDataForParent, setImgFile }) => {
 			<label
 				htmlFor="image-input"
 				className="border p-4 rounded-md cursor-pointer text-white hover:bg-white hover:text-[#0f0f0f] transition">
-				Select file
+				{buttonText}
 			</label>
 			<canvas ref={canvasRef} style={{ display: "none" }} />
 		</div>
 	);
 };
 
-export default Input;
+export default InputButton;

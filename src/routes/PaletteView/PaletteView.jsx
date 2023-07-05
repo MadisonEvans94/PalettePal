@@ -3,17 +3,15 @@ import ClipboardCopyButton from "../../components/ClipboardCopyButton/ClipboardC
 import CustomPlot from "../../components/Plot/CustomPlot";
 import Palette from "../../components/Palette/Palette.jsx";
 import ColorCountSelector from "../../components/ColorCountSelector/ColorCountSelector";
-import Input from "../../components/Input/Input.jsx";
 import { useState, useContext, useEffect } from "react";
 import { CentroidContext } from "../../Contexts/CentroidContext";
 import { processPixels } from "../../helpers/pixelFunctions";
 import hexArrayToRGBArray from "../../helpers/hexArrayToRGBArray";
 
-function DashboardLayout({ plot, image, counter, palette, input, clipboard }) {
+function DashboardLayout({ plot, image, counter, palette, clipboard }) {
 	return (
 		<div className="h-screen w-screen overflow-auto fixed overscroll-none">
 			<div className="overscroll-y-none w-full h-full overflow-auto flex flex-col items-center justify-start md:justify-center bg-[#0f0f0f]">
-				<div className="m-6">{input}</div>
 				<div className="mx-auto max-w-7xl p-4">
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 						<div className="h-[200px] md:h-[300px] lg:h-[400px] flex flex-row items-center bg-[#0f0f0f] border rounded-lg overflow-hidden">
@@ -45,14 +43,7 @@ function InputImage({ src }) {
 	);
 }
 
-const ContentSection = ({
-	isLoading,
-	setIsLoading,
-	pixelData,
-	setPixelData,
-	imgFile,
-	setImgFile,
-}) => {
+const ContentSection = ({ pixelData, imgFile }) => {
 	const { centroidArray } = useContext(CentroidContext);
 	const [clusterQty, setClusterQty] = useState(3);
 	const [rgb, xVal, yVal, zVal] = processPixels(pixelData);
@@ -81,14 +72,6 @@ const ContentSection = ({
 						xVal={xVal}
 						yVal={yVal}
 						zVal={zVal}
-					/>
-				}
-				input={
-					<Input
-						isLoading={isLoading}
-						setIsLoading={setIsLoading}
-						setPixelDataForParent={setPixelData}
-						setImgFile={setImgFile}
 					/>
 				}
 				image={<InputImage src={imgFile.src} />}

@@ -2,19 +2,15 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { PlusIcon } from "@heroicons/react/20/solid";
-import { useNavigate, Link } from "react-router-dom";
-
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import Input from "../Input/Input";
 const user = {
 	name: "Tom Cook",
 	email: "tom@example.com",
 	imageUrl:
 		"https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
-const navigation = [
-	{ name: "Palette View", route: "/app/palette-view", current: false },
-	{ name: "Dashboard", route: "/app/dashboard", current: true },
-	{ name: "Settings", route: "/app/settings", current: false },
-];
+
 const userNavigation = [
 	{ name: "My Profile", href: "#" },
 	{ name: "Sign out", href: "#" },
@@ -24,8 +20,26 @@ function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function Navigation() {
 	const navigate = useNavigate();
+	const location = useLocation();
+	const navigation = [
+		{
+			name: "Palette View",
+			route: "/app/palette-view",
+			current: location.pathname === "/app/palette-view",
+		},
+		{
+			name: "Dashboard",
+			route: "/app/dashboard",
+			current: location.pathname === "/app/dashboard",
+		},
+		{
+			name: "Settings",
+			route: "/app/settings",
+			current: location.pathname === "/app/settings",
+		},
+	];
 	return (
 		<Disclosure as="nav" className="bg-gray-800">
 			{({ open }) => (
@@ -78,12 +92,10 @@ export default function Example() {
 							</div>
 							<div className="flex items-center">
 								<div className="flex-shrink-0">
-									<button
-										type="button"
-										className="relative inline-flex items-center gap-x-1.5 rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-										<PlusIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
-										New Palette
-									</button>
+									<Input
+										buttonText="new palette"
+										styleProp="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+									/>
 								</div>
 								<div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
 									<button
