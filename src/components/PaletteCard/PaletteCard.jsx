@@ -1,8 +1,14 @@
 import React from "react";
 
+const testInfo = {
+	name: "Building Photo",
+	date: "11/17/1994",
+	palette: ["#040505", "#475861", "#849da9", "#f7fafc", "#c1d5dd"],
+};
+
 const PaletteCard = () => {
 	return (
-		<div className="bg-red-300 h-32 mx-auto max-w-4xl rounded flex flex-row overflow-hidden">
+		<div className="bg-red-300 h-32 mx-auto max-w-4xl rounded-lg flex flex-row overflow-hidden">
 			<div className="w-full border flex flex-row">
 				<div className="w-2/3 relative">
 					<img
@@ -12,11 +18,21 @@ const PaletteCard = () => {
 					/>
 				</div>
 				<div>
-					<p>Name</p>
-					<p>Date</p>
+					<p>{testInfo.name}</p>
+					<p>{testInfo.date}</p>
 				</div>
 			</div>
-			<div className="w-full border">info</div>
+			<div className="w-full border flex space-x-2 p-2">
+				{testInfo.palette.map((color, index) => {
+					return (
+						<div
+							key={index}
+							className="h-6 w-6 rounded-full"
+							style={{ backgroundColor: color }}
+						/>
+					);
+				})}
+			</div>
 		</div>
 	);
 };
