@@ -37,6 +37,7 @@ const Landing = ({ isLoading, setIsLoading, setPixelData, setImgFile }) => {
 						setIsLoading={setIsLoading}
 						setPixelDataForParent={setPixelData}
 						setImgFile={setImgFile}
+						styleProp="rounded border border-white cursor-pointer p-2 text-white hover:text-gray-800 hover:bg-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 transition"
 						buttonText="Select Image"
 					/>
 				</div>

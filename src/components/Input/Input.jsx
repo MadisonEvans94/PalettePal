@@ -109,9 +109,7 @@ const InputButton = ({
 				accept="image/jpeg, image/png, image/webp"
 				onChange={handleFileChange}
 			/>
-			<label
-				htmlFor="image-input"
-				className="border p-4 rounded-md cursor-pointer text-white hover:bg-white hover:text-[#0f0f0f] transition">
+			<label htmlFor="image-input" className={styleProp}>
 				{buttonText}
 			</label>
 			<canvas ref={canvasRef} style={{ display: "none" }} />

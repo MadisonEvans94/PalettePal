@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { PlusIcon } from "@heroicons/react/20/solid";
+// import { PlusIcon } from "@heroicons/react/20/solid";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import Input from "../Input/Input";
 const user = {
@@ -33,11 +33,6 @@ export default function Navigation() {
 			name: "Dashboard",
 			route: "/app/dashboard",
 			current: location.pathname === "/app/dashboard",
-		},
-		{
-			name: "Settings",
-			route: "/app/settings",
-			current: location.pathname === "/app/settings",
 		},
 	];
 	return (
@@ -94,7 +89,7 @@ export default function Navigation() {
 								<div className="flex-shrink-0">
 									<Input
 										buttonText="new palette"
-										styleProp="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+										styleProp="rounded bg-gray-800 border border-gray-400 cursor-pointer p-2 text-gray-400 hover:text-gray-800 hover:bg-white hover:border-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 transition"
 									/>
 								</div>
 								<div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
