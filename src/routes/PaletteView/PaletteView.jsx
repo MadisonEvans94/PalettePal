@@ -48,33 +48,58 @@ const PaletteView = () => {
 	const { pixelData, imgFile } = useContext(AppContext);
 	const { centroidArray } = useContext(CentroidContext);
 	const [clusterQty, setClusterQty] = useState(3);
-	const [rgb, xVal, yVal, zVal] = processPixels(pixelData);
 	const [centroidXVals, setCentroidXVals] = useState(null);
 	const [centroidYVals, setCentroidYVals] = useState(null);
 	const [centroidZVals, setCentroidZVals] = useState(null);
+	const [rgb, setRgb] = useState(null);
+	const [xVal, setXVal] = useState(null);
+	const [yVal, setYVal] = useState(null);
+	const [zVal, setZVal] = useState(null);
+
+	console.log("Pixel Data:", pixelData);
+	console.log("Image File:", imgFile);
+	console.log("Centroid Array:", centroidArray);
 
 	useEffect(() => {
-		const centroidRGBVals = hexArrayToRGBArray(centroidArray[clusterQty - 1]);
-		setCentroidXVals(centroidRGBVals[0]);
-		setCentroidYVals(centroidRGBVals[1]);
-		setCentroidZVals(centroidRGBVals[2]);
-	}, [centroidArray, clusterQty]);
+		if (pixelData && centroidArray) {
+			const [processedRgb, processedXVal, processedYVal, processedZVal] =
+				processPixels(pixelData);
+			const centroidRGBVals = hexArrayToRGBArray(centroidArray[clusterQty - 1]);
+			setRgb(processedRgb);
+			setXVal(processedXVal);
+			setYVal(processedYVal);
+			setZVal(processedZVal);
+			setCentroidXVals(centroidRGBVals[0]);
+			setCentroidYVals(centroidRGBVals[1]);
+			setCentroidZVals(centroidRGBVals[2]);
+		}
+	}, [centroidArray, clusterQty, pixelData]);
 
 	return (
 		<DashboardLayout
 			plot={
-				<CustomPlot
-					pixelData={pixelData}
-					centroidX={centroidXVals}
-					centroidY={centroidYVals}
-					centroidZ={centroidZVals}
-					rgb={rgb}
-					xVal={xVal}
-					yVal={yVal}
-					zVal={zVal}
-				/>
+				pixelData && centroidArray ? (
+					<CustomPlot
+						pixelData={pixelData}
+						centroidX={centroidXVals}
+						centroidY={centroidYVals}
+						centroidZ={centroidZVals}
+						rgb={rgb}
+						xVal={xVal}
+						yVal={yVal}
+						zVal={zVal}
+					/>
+				) : (
+					<div>No Plot Available</div>
+				)
 			}
-			image={<InputImage src={imgFile.src} />}
+			image={
+				imgFile ? (
+					<InputImage src={imgFile.src} />
+				) : (
+					<div>No Image Selected</div>
+				)
+			}
 			counter={
 				<ColorCountSelector
 					clusterQty={clusterQty}
