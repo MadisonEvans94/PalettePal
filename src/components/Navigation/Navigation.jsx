@@ -1,8 +1,10 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import Input from "../Input/Input";
+import AppContext from "../../Contexts/AppContext"; // Import AppContext
+import LoadingModal from "../LoadingModal";
 const user = {
 	name: "Tom Cook",
 	email: "tom@example.com",
@@ -10,16 +12,16 @@ const user = {
 		"https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 
-const userNavigation = [
-	{ name: "My Profile", href: "#" },
-	{ name: "Sign out", href: "#" },
-];
+const userNavigation = [{ name: "Sign out", href: "#" }];
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
 
 export default function Navigation() {
+	// Use the context to get the state and setters
+	const { isLoading, setIsLoading, setPixelData, setImgFile } =
+		useContext(AppContext);
 	const navigate = useNavigate();
 	const location = useLocation();
 	const navigation = [
@@ -87,6 +89,9 @@ export default function Navigation() {
 							<div className="flex items-center">
 								<div className="flex-shrink-0">
 									<Input
+										setIsLoading={setIsLoading}
+										setPixelDataForParent={setPixelData}
+										setImgFile={setImgFile}
 										buttonText="new palette"
 										styleProp="rounded bg-gray-800 border border-gray-400 cursor-pointer p-2 text-gray-400 hover:text-gray-800 hover:bg-white hover:border-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 transition"
 									/>
