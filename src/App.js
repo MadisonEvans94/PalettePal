@@ -4,6 +4,7 @@ import "./App.css";
 import PaletteView from "./routes/PaletteView/PaletteView";
 import Landing from "./routes/Landing/Landing";
 import { CentroidContext } from "./Contexts/CentroidContext";
+import AppContext from "./Contexts/AppContext"; // Add this line
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -28,40 +29,28 @@ function App() {
 	const [imgFile, setImgFile] = useState(null);
 	const [centroidArray, setCentroidArray] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
+
 	return (
 		<Router>
 			<CentroidContext.Provider value={{ centroidArray, setCentroidArray }}>
-				<Routes>
-					<Route
-						path="/"
-						element={
-							<Landing
-								isLoading={isLoading}
-								setIsLoading={setIsLoading}
-								setPixelData={setPixelData}
-								setImgFile={setImgFile}
-								imgFile={imgFile}
-							/>
-						}
-					/>
-					<Route path="app" element={<Layout />}>
-						<Route
-							path="palette-view"
-							element={
-								<PaletteView
-									isLoading={isLoading}
-									setIsLoading={setIsLoading}
-									pixelData={pixelData}
-									setPixelData={setPixelData}
-									imgFile={imgFile}
-									setImgFile={setImgFile}
-								/>
-							}
-						/>
-						<Route path="dashboard" element={<Dashboard />} />
-						<Route path="settings" element={<Settings />} />
-					</Route>
-				</Routes>
+				<AppContext.Provider
+					value={{
+						isLoading,
+						setIsLoading,
+						pixelData,
+						setPixelData,
+						imgFile,
+						setImgFile,
+					}}>
+					<Routes>
+						<Route path="/" element={<Landing />} />
+						<Route path="app" element={<Layout />}>
+							<Route path="palette-view" element={<PaletteView />} />
+							<Route path="dashboard" element={<Dashboard />} />
+							<Route path="settings" element={<Settings />} />
+						</Route>
+					</Routes>
+				</AppContext.Provider>
 			</CentroidContext.Provider>
 		</Router>
 	);

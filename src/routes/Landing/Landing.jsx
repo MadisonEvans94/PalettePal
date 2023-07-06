@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useContext } from "react"; // Import useContext
 import Input from "../../components/Input/Input";
 import LoadingModal from "../../components/LoadingModal";
 import ppBackground from "../../assets/ppbackground.jpeg";
-const Landing = ({ isLoading, setIsLoading, setPixelData, setImgFile }) => {
+import AppContext from "../../Contexts/AppContext"; // Import AppContext
+
+const Landing = () => {
+	// Use the context to get the state and setters
+	const { isLoading, setIsLoading, setPixelData, setImgFile } =
+		useContext(AppContext);
+
 	return (
 		<>
 			<div className="w-full h-full fixed bg-[#0f0f0f]">

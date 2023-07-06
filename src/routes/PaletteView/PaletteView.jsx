@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ClipboardCopyButton from "../../components/ClipboardCopyButton/ClipboardCopyButton";
 import CustomPlot from "../../components/Plot/CustomPlot";
 import Palette from "../../components/Palette/Palette.jsx";
 import ColorCountSelector from "../../components/ColorCountSelector/ColorCountSelector";
-import { useState, useContext, useEffect } from "react";
-import { CentroidContext } from "../../Contexts/CentroidContext";
 import { processPixels } from "../../helpers/pixelFunctions";
 import hexArrayToRGBArray from "../../helpers/hexArrayToRGBArray";
+import { CentroidContext } from "../../Contexts/CentroidContext";
+import AppContext from "../../Contexts/AppContext";
 
 function DashboardLayout({ plot, image, counter, palette, clipboard }) {
 	return (
@@ -31,6 +31,7 @@ function DashboardLayout({ plot, image, counter, palette, clipboard }) {
 		</div>
 	);
 }
+
 function InputImage({ src }) {
 	return (
 		<div className="w-full md:flex md:justify-center ">
@@ -43,7 +44,8 @@ function InputImage({ src }) {
 	);
 }
 
-const ContentSection = ({ pixelData, imgFile }) => {
+const PaletteView = () => {
+	const { pixelData, imgFile } = useContext(AppContext);
 	const { centroidArray } = useContext(CentroidContext);
 	const [clusterQty, setClusterQty] = useState(3);
 	const [rgb, xVal, yVal, zVal] = processPixels(pixelData);
@@ -59,34 +61,31 @@ const ContentSection = ({ pixelData, imgFile }) => {
 	}, [centroidArray, clusterQty]);
 
 	return (
-		<>
-			{" "}
-			<DashboardLayout
-				plot={
-					<CustomPlot
-						pixelData={pixelData}
-						centroidX={centroidXVals}
-						centroidY={centroidYVals}
-						centroidZ={centroidZVals}
-						rgb={rgb}
-						xVal={xVal}
-						yVal={yVal}
-						zVal={zVal}
-					/>
-				}
-				image={<InputImage src={imgFile.src} />}
-				counter={
-					<ColorCountSelector
-						clusterQty={clusterQty}
-						setClusterQty={setClusterQty}
-						pixelData={pixelData}
-					/>
-				}
-				palette={<Palette clusterQty={clusterQty} />}
-				clipboard={<ClipboardCopyButton clusterQty={clusterQty} />}
-			/>
-		</>
+		<DashboardLayout
+			plot={
+				<CustomPlot
+					pixelData={pixelData}
+					centroidX={centroidXVals}
+					centroidY={centroidYVals}
+					centroidZ={centroidZVals}
+					rgb={rgb}
+					xVal={xVal}
+					yVal={yVal}
+					zVal={zVal}
+				/>
+			}
+			image={<InputImage src={imgFile.src} />}
+			counter={
+				<ColorCountSelector
+					clusterQty={clusterQty}
+					setClusterQty={setClusterQty}
+					pixelData={pixelData}
+				/>
+			}
+			palette={<Palette clusterQty={clusterQty} />}
+			clipboard={<ClipboardCopyButton clusterQty={clusterQty} />}
+		/>
 	);
 };
 
-export default ContentSection;
+export default PaletteView;
