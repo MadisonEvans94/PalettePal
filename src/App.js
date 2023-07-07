@@ -4,7 +4,8 @@ import "./App.css";
 import PaletteView from "./routes/PaletteView/PaletteView";
 import Landing from "./routes/Landing/Landing";
 import { CentroidContext } from "./Contexts/CentroidContext";
-import AppContext from "./Contexts/AppContext"; // Add this line
+import AppContext from "./Contexts/AppContext";
+import UserContext from "./Contexts/UserContext"; // Add this line
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -29,6 +30,13 @@ function App() {
 	const [imgFile, setImgFile] = useState(null);
 	const [centroidArray, setCentroidArray] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
+	const [user, setUser] = useState({
+		id: 123,
+		name: "Tom Cook",
+		email: "tom@example.com",
+		imageUrl:
+			"https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+	});
 
 	return (
 		<Router>
@@ -42,14 +50,16 @@ function App() {
 						imgFile,
 						setImgFile,
 					}}>
-					<Routes>
-						<Route path="/" element={<Landing />} />
-						<Route path="app" element={<Layout />}>
-							<Route path="palette-view" element={<PaletteView />} />
-							<Route path="dashboard" element={<Dashboard />} />
-							<Route path="settings" element={<Settings />} />
-						</Route>
-					</Routes>
+					<UserContext.Provider value={{ user, setUser }}>
+						<Routes>
+							<Route path="/" element={<Landing />} />
+							<Route path="app" element={<Layout />}>
+								<Route path="palette-view" element={<PaletteView />} />
+								<Route path="dashboard" element={<Dashboard />} />
+								<Route path="settings" element={<Settings />} />
+							</Route>
+						</Routes>
+					</UserContext.Provider>
 				</AppContext.Provider>
 			</CentroidContext.Provider>
 		</Router>

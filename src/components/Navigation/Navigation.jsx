@@ -4,13 +4,8 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import Input from "../Input/Input";
 import AppContext from "../../Contexts/AppContext"; // Import AppContext
-import LoadingModal from "../LoadingModal";
-const user = {
-	name: "Tom Cook",
-	email: "tom@example.com",
-	imageUrl:
-		"https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-};
+import UserContext from "../../Contexts/UserContext";
+// import LoadingModal from "../LoadingModal";
 
 const userNavigation = [{ name: "Sign out", href: "#" }];
 
@@ -20,8 +15,8 @@ function classNames(...classes) {
 
 export default function Navigation() {
 	// Use the context to get the state and setters
-	const { isLoading, setIsLoading, setPixelData, setImgFile } =
-		useContext(AppContext);
+	const { user } = useContext(UserContext);
+	const { setIsLoading, setPixelData, setImgFile } = useContext(AppContext);
 	const navigate = useNavigate();
 	const location = useLocation();
 	const navigation = [
@@ -108,11 +103,13 @@ export default function Navigation() {
 										<div>
 											<Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
 												<span className="sr-only">Open user menu</span>
-												<img
-													className="h-8 w-8 rounded-full"
-													src={user.imageUrl}
-													alt=""
-												/>
+												<div className="h-8 w-8 rounded-full overflow-hidden">
+													<img
+														className="object-cover object-center w-full h-full"
+														src={user.imageUrl}
+														alt=""
+													/>
+												</div>
 											</Menu.Button>
 										</div>
 										<Transition
