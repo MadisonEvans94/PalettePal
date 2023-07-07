@@ -1,5 +1,5 @@
 // App.js
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./App.css";
 import PaletteView from "./routes/PaletteView/PaletteView";
 import Landing from "./routes/Landing/Landing";
@@ -11,6 +11,7 @@ import {
 	Routes,
 	Route,
 	Outlet,
+	useNavigate,
 } from "react-router-dom";
 import Dashboard from "./routes/Dashboard/Dashboard";
 import Navigation from "./components/Navigation/Navigation";
@@ -25,18 +26,28 @@ const Layout = () => {
 	);
 };
 
+// Wrapper Component
+const ProtectedRoute = ({ children }) => {
+	const { user } = useContext(UserContext);
+	const navigate = useNavigate();
+	if (!user) navigate("/");
+	return children;
+};
+
+const testUser = {
+	id: 123,
+	name: "Tom Cook",
+	email: "tom@example.com",
+	imageUrl:
+		"https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+};
+
 function App() {
 	const [pixelData, setPixelData] = useState([]);
 	const [imgFile, setImgFile] = useState(null);
 	const [centroidArray, setCentroidArray] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
-	const [user, setUser] = useState({
-		id: 123,
-		name: "Tom Cook",
-		email: "tom@example.com",
-		imageUrl:
-			"https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-	});
+	const [user, setUser] = useState(null);
 
 	return (
 		<Router>
@@ -55,7 +66,14 @@ function App() {
 							<Route path="/" element={<Landing />} />
 							<Route path="app" element={<Layout />}>
 								<Route path="palette-view" element={<PaletteView />} />
-								<Route path="dashboard" element={<Dashboard />} />
+								<Route
+									path="dashboard"
+									element={
+										<ProtectedRoute>
+											<Dashboard />
+										</ProtectedRoute>
+									}
+								/>
 								<Route path="settings" element={<Settings />} />
 							</Route>
 						</Routes>

@@ -31,6 +31,23 @@ export default function Navigation() {
 			current: location.pathname === "/app/dashboard",
 		},
 	];
+
+	const userThumbnail = user ? (
+		<div className="h-8 w-8 rounded-full overflow-hidden">
+			<img
+				className="object-cover object-center w-full h-full"
+				src={user.imageUrl}
+				alt=""
+			/>
+		</div>
+	) : (
+		<button
+			onClick={() => navigate("/signin")}
+			className="rounded bg-gray-800 border border-gray-400 cursor-pointer p-2 text-gray-400 hover:text-gray-800 hover:bg-white hover:border-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 transition">
+			Sign In
+		</button>
+	);
+
 	return (
 		<Disclosure as="nav" className="bg-gray-800">
 			{({ open }) => (
@@ -103,13 +120,7 @@ export default function Navigation() {
 										<div>
 											<Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
 												<span className="sr-only">Open user menu</span>
-												<div className="h-8 w-8 rounded-full overflow-hidden">
-													<img
-														className="object-cover object-center w-full h-full"
-														src={user.imageUrl}
-														alt=""
-													/>
-												</div>
+												{userThumbnail}
 											</Menu.Button>
 										</div>
 										<Transition
@@ -164,18 +175,26 @@ export default function Navigation() {
 						<div className="border-t border-gray-700 pb-3 pt-4">
 							<div className="flex items-center px-5 sm:px-6">
 								<div className="flex-shrink-0">
-									<img
-										className="h-10 w-10 rounded-full"
-										src={user.imageUrl}
-										alt=""
-									/>
+									{user ? (
+										<img
+											className="h-10 w-10 rounded-full"
+											src={user.imageUrl}
+											alt=""
+										/>
+									) : (
+										<img
+											className="h-10 w-10 rounded-full"
+											src="https://e7.pngegg.com/pngimages/416/62/png-clipart-anonymous-person-login-google-account-computer-icons-user-activity-miscellaneous-computer.png"
+											alt=""
+										/>
+									)}
 								</div>
 								<div className="ml-3">
 									<div className="text-base font-medium text-white">
-										{user.name}
+										user name
 									</div>
 									<div className="text-sm font-medium text-gray-400">
-										{user.email}
+										user email
 									</div>
 								</div>
 								<button
