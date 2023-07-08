@@ -5,7 +5,7 @@ import Palette from "../../components/Palette/Palette.jsx";
 import ColorCountSelector from "../../components/ColorCountSelector/ColorCountSelector";
 import { useImageProcessing } from "../../hooks/useImageProcessing";
 
-import DashboardLayout from "../../Layouts/DashboardLayout";
+import PaletteViewLayout from "../../Layouts/PaletteViewLayout";
 import AppContext from "../../Contexts/AppContext";
 
 const PaletteView = () => {
@@ -14,7 +14,7 @@ const PaletteView = () => {
 		useImageProcessing();
 
 	return (
-		<DashboardLayout>
+		<PaletteViewLayout>
 			<div className="h-[200px] md:h-[300px] lg:h-[400px] flex flex-row items-center bg-[#0f0f0f] border rounded-lg overflow-hidden">
 				{imgFile ? (
 					<img
@@ -51,7 +51,7 @@ const PaletteView = () => {
 			<div className="w-full flex flex-row justify-center items-center">
 				<ClipboardCopyButton clusterQty={clusterQty} />
 			</div>
-		</DashboardLayout>
+		</PaletteViewLayout>
 	);
 };
 

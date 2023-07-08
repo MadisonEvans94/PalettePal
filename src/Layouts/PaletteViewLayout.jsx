@@ -1,6 +1,6 @@
 import React from "react";
 
-function DashboardLayout({ children }) {
+function PaletteViewLayout({ children }) {
 	return (
 		<div className="h-screen w-screen overflow-auto fixed overscroll-none">
 			<div className="overscroll-y-none w-full h-full overflow-auto flex flex-col items-center justify-start md:justify-center bg-[#0f0f0f]">
@@ -14,4 +14,4 @@ function DashboardLayout({ children }) {
 	);
 }
 
-export default DashboardLayout;
+export default PaletteViewLayout;
