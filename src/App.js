@@ -17,11 +17,10 @@ import Dashboard from "./routes/Dashboard/Dashboard";
 import Navigation from "./components/Navigation/Navigation";
 import Settings from "./routes/Settings/Settings";
 import LoadingModal from "./components/LoadingModal";
-const Layout = ({ isLoading }) => {
+const Layout = () => {
 	return (
 		<>
 			<Navigation />
-
 			<Outlet />
 		</>
 	);
@@ -60,7 +59,7 @@ function App() {
 						{isLoading && <LoadingModal />}
 						<Routes>
 							<Route path="/" element={<Landing />} />
-							<Route path="app" element={<Layout isLoading={isLoading} />}>
+							<Route path="app" element={<Layout />}>
 								<Route path="palette-view" element={<PaletteView />} />
 								<Route
 									path="dashboard"
