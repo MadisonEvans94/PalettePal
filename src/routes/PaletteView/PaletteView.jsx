@@ -3,8 +3,7 @@ import ClipboardCopyButton from "../../components/ClipboardCopyButton/ClipboardC
 import CustomPlot from "../../components/Plot/CustomPlot";
 import Palette from "../../components/Palette/Palette.jsx";
 import ColorCountSelector from "../../components/ColorCountSelector/ColorCountSelector";
-import { processPixels } from "../../helpers/pixelFunctions";
-import hexArrayToRGBArray from "../../helpers/hexArrayToRGBArray";
+import { hexArrayToRGBArray, processPixels } from "../../helpers/imageHelpers";
 import { CentroidContext } from "../../Contexts/CentroidContext";
 import AppContext from "../../Contexts/AppContext";
 
