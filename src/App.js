@@ -35,13 +35,16 @@ const testUser = {
 };
 
 function App() {
+	console.log("~~~~~~~~~~~~ APP DIAGNOSTICS ~~~~~~~~~~~~\n\n");
+
 	const [pixelData, setPixelData] = useState([]);
 	const [imgFile, setImgFile] = useState(null);
 	const [centroidArray, setCentroidArray] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const [user, setUser] = useState(testUser);
 	const [isAuthenticated, setIsAuthenticated] = useState(true);
-
+	console.log(isAuthenticated, "AUTHENTICATED?");
+	console.log(user, "USER");
 	return (
 		<Router>
 			<CentroidContext.Provider value={{ centroidArray, setCentroidArray }}>

@@ -49,8 +49,8 @@ const Dashpane = () => {
 					</div>
 				</div>
 			) : (
-				testInfo.map((palette) => (
-					<div className="my-4">
+				testInfo.map((palette, id) => (
+					<div className="my-4" key={id}>
 						<PaletteCard paletteInfo={palette} />
 					</div>
 				))

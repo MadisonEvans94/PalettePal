@@ -48,7 +48,9 @@ function PlotCanvas({ pixelVals, centroidVals, pixelData }) {
 					zVal={pixelVals.zVal}
 				/>
 			) : (
-				<div>No Plot Available</div>
+				<div className="bg-gray-800 h-full w-full flex flex-row justify-center items-center">
+					<p className="text-white h-fit">No Plot Available</p>
+				</div>
 			)}
 		</div>
 	);
@@ -56,7 +58,7 @@ function PlotCanvas({ pixelVals, centroidVals, pixelData }) {
 
 function ImageCanvas({ imgFile }) {
 	return (
-		<div className="h-[200px] md:h-[300px] lg:h-[400px] w-full flex flex-row items-center bg-[#0f0f0f] border rounded-lg overflow-hidden">
+		<div className="md:h-[300px] lg:h-[400px] w-full flex flex-row items-center bg-[#0f0f0f] border rounded-lg overflow-hidden">
 			{imgFile ? (
 				<img
 					src={imgFile.src}
@@ -64,7 +66,9 @@ function ImageCanvas({ imgFile }) {
 					class="inset-0 object-cover object-center"
 				/>
 			) : (
-				<div>No Image Selected</div>
+				<div className="bg-gray-800 h-full w-full flex flex-row justify-center items-center">
+					<p className="text-white h-fit">No Image Selected</p>
+				</div>
 			)}
 		</div>
 	);

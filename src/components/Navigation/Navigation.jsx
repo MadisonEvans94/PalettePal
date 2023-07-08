@@ -7,15 +7,14 @@ import AppContext from "../../Contexts/AppContext"; // Import AppContext
 import UserContext from "../../Contexts/UserContext";
 // import LoadingModal from "../LoadingModal";
 
-const userNavigation = [{ name: "Sign out", href: "#" }];
-
 function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
 
 export default function Navigation() {
 	// Use the context to get the state and setters
-	const { user } = useContext(UserContext);
+	const { user, setUser, setIsAuthenticated, isAuthenticated } =
+		useContext(UserContext);
 	const { setIsLoading, setPixelData, setImgFile } = useContext(AppContext);
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -29,6 +28,22 @@ export default function Navigation() {
 			name: "Dashboard",
 			route: "/app/dashboard",
 			current: location.pathname === "/app/dashboard",
+		},
+	];
+
+	const userNavigation = [
+		{
+			name: "Sign out",
+			fn: () => {
+				console.log("test");
+				// TODO: Here we should make async to sign out from the server first
+				setUser(null);
+				setIsAuthenticated(false);
+				navigate("/");
+				console.log("~~~~~~~~~~~~ NAVIGATION DIAGNOSTICS ~~~~~~~~~~~~\n\n");
+				console.log(isAuthenticated, "AUTHENTICATED?");
+				console.log(user, "USER");
+			},
 		},
 	];
 
@@ -133,18 +148,9 @@ export default function Navigation() {
 											leaveTo="transform opacity-0 scale-95">
 											<Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
 												{userNavigation.map((item) => (
-													<Menu.Item key={item.name}>
-														{({ active }) => (
-															<a
-																href={item.href}
-																className={classNames(
-																	active ? "bg-gray-100" : "",
-																	"block px-4 py-2 text-sm text-gray-700"
-																)}>
-																{item.name}
-															</a>
-														)}
-													</Menu.Item>
+													<div key={item.name} onClick={item.fn}>
+														{item.name}
+													</div>
 												))}
 											</Menu.Items>
 										</Transition>
