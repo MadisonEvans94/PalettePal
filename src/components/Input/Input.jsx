@@ -2,7 +2,7 @@ import React, { useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CentroidContext } from "../../Contexts/CentroidContext";
 import AppContext from "../../Contexts/AppContext";
-
+import { postImage } from "../../services/imageProcessingService";
 // Import the helper functions
 import {
 	createImage,
@@ -26,30 +26,14 @@ const InputButton = ({ buttonText, styleProp }) => {
 			const originalImg = createImage(originalBase64Image, async () => {
 				const resizedBase64Image = handleResizeImage(originalImg);
 
-				try {
-					const res = await fetch(
-						"https://du65t1mu0a.execute-api.us-east-2.amazonaws.com/production/image-processor",
-						{
-							method: "POST",
-							headers: {
-								"Content-Type": "application/json",
-							},
-							body: JSON.stringify({ image: resizedBase64Image }), // Send the resized base64 image
-						}
-					);
-					if (!res.ok) {
-						throw new Error(`HTTP error! status: ${res.status}`);
-					}
-					const data = await res.json();
-					setCentroidArray(data);
-					if (window.location.pathname !== "/app/palette-view") {
-						navigate("/app/palette-view");
-					}
-					setIsLoading(false);
-				} catch (error) {
-					console.error("Error fetching data:", error);
-					setIsLoading(false);
+				// Use postImage service
+				const data = await postImage(resizedBase64Image);
+				setCentroidArray(data);
+
+				if (window.location.pathname !== "/app/palette-view") {
+					navigate("/app/palette-view");
 				}
+				setIsLoading(false);
 			});
 
 			const img = createImage(originalBase64Image, () => {
