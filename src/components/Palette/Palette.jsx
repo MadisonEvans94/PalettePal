@@ -58,7 +58,7 @@ const Palette = ({ clusterQty }) => {
 	}
 	return (
 		<>
-			<div className="h-24 md:h-40 min-h-[130px] md:min-h-[160px] lg:h-[200px] lg:min-h-[200px] border-t border-b w-screen overflow-x-auto flex flex-row justify-start lg:justify-center bg-[#2d2d2d]">
+			<div className="h-24 md:h-40 min-h-[130px] md:min-h-[160px] lg:h-[200px] lg:min-h-[200px] border-t border-b w-full overflow-x-auto flex flex-row justify-start lg:justify-center bg-[#2d2d2d]">
 				{colorList}
 			</div>
 		</>
