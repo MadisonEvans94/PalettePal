@@ -1,5 +1,6 @@
 // App.js
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import PrivateRoute from "./components/Wrappers/ProtectedRoute";
 import "./App.css";
 import PaletteView from "./routes/PaletteView/PaletteView";
 import Landing from "./routes/Landing/Landing";
@@ -11,7 +12,6 @@ import {
 	Routes,
 	Route,
 	Outlet,
-	useNavigate,
 } from "react-router-dom";
 import Dashboard from "./routes/Dashboard/Dashboard";
 import Navigation from "./components/Navigation/Navigation";
@@ -24,14 +24,6 @@ const Layout = () => {
 			<Outlet />
 		</>
 	);
-};
-
-// Wrapper Component
-const ProtectedRoute = ({ children }) => {
-	const { user } = useContext(UserContext);
-	const navigate = useNavigate();
-	if (!user) navigate("/");
-	return children;
 };
 
 const testUser = {
@@ -47,7 +39,8 @@ function App() {
 	const [imgFile, setImgFile] = useState(null);
 	const [centroidArray, setCentroidArray] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState(testUser);
+	const [isAuthenticated, setIsAuthenticated] = useState(false);
 
 	return (
 		<Router>
@@ -61,7 +54,8 @@ function App() {
 						imgFile,
 						setImgFile,
 					}}>
-					<UserContext.Provider value={{ user, setUser }}>
+					<UserContext.Provider
+						value={{ user, setUser, isAuthenticated, setIsAuthenticated }}>
 						<Routes>
 							<Route path="/" element={<Landing />} />
 							<Route path="app" element={<Layout />}>
@@ -69,9 +63,9 @@ function App() {
 								<Route
 									path="dashboard"
 									element={
-										<ProtectedRoute>
+										<PrivateRoute>
 											<Dashboard />
-										</ProtectedRoute>
+										</PrivateRoute>
 									}
 								/>
 								<Route path="settings" element={<Settings />} />
