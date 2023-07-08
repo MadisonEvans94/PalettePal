@@ -1,14 +1,9 @@
 import React, { useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CentroidContext } from "../../Contexts/CentroidContext";
-
-const InputButton = ({
-	setIsLoading,
-	setPixelDataForParent,
-	setImgFile,
-	buttonText,
-	styleProp,
-}) => {
+import AppContext from "../../Contexts/AppContext";
+const InputButton = ({ buttonText, styleProp }) => {
+	const { setIsLoading, setPixelData, setImgFile } = useContext(AppContext);
 	const { setCentroidArray } = useContext(CentroidContext);
 	const canvasRef = useRef(null);
 	const navigate = useNavigate();
@@ -93,7 +88,7 @@ const InputButton = ({
 				canvas.width = 400;
 				canvas.height = 400;
 				const pixelArray = drawImageOnCanvas(img, canvas);
-				setPixelDataForParent(pixelArray);
+				setPixelData(pixelArray);
 				setImgFile(img);
 			});
 		};

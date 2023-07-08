@@ -1,6 +1,6 @@
 // App.js
 import React, { useState } from "react";
-import PrivateRoute from "./components/Wrappers/ProtectedRoute";
+import PrivateRoute from "./routes/Wrappers/ProtectedRoute";
 import "./App.css";
 import PaletteView from "./routes/PaletteView/PaletteView";
 import Landing from "./routes/Landing/Landing";
@@ -16,11 +16,12 @@ import {
 import Dashboard from "./routes/Dashboard/Dashboard";
 import Navigation from "./components/Navigation/Navigation";
 import Settings from "./routes/Settings/Settings";
-
-const Layout = () => {
+import LoadingModal from "./components/LoadingModal";
+const Layout = ({ isLoading }) => {
 	return (
 		<>
 			<Navigation />
+
 			<Outlet />
 		</>
 	);
@@ -40,7 +41,7 @@ function App() {
 	const [centroidArray, setCentroidArray] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const [user, setUser] = useState(testUser);
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
+	const [isAuthenticated, setIsAuthenticated] = useState(true);
 
 	return (
 		<Router>
@@ -56,9 +57,10 @@ function App() {
 					}}>
 					<UserContext.Provider
 						value={{ user, setUser, isAuthenticated, setIsAuthenticated }}>
+						{isLoading && <LoadingModal />}
 						<Routes>
 							<Route path="/" element={<Landing />} />
-							<Route path="app" element={<Layout />}>
+							<Route path="app" element={<Layout isLoading={isLoading} />}>
 								<Route path="palette-view" element={<PaletteView />} />
 								<Route
 									path="dashboard"

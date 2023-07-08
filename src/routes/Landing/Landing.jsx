@@ -1,19 +1,11 @@
-import React, { useContext } from "react"; // Import useContext
+import React from "react"; // Import useContext
 import Input from "../../components/Input/Input";
-import LoadingModal from "../../components/LoadingModal";
 import ppBackground from "../../assets/ppbackground.jpeg";
-import AppContext from "../../Contexts/AppContext"; // Import AppContext
 
 const Landing = () => {
-	// Use the context to get the state and setters
-	const { isLoading, setIsLoading, setPixelData, setImgFile } =
-		useContext(AppContext);
-
 	return (
 		<>
 			<div className="w-full h-full fixed bg-[#0f0f0f]">
-				{isLoading && <LoadingModal />}
-
 				<div
 					style={{
 						position: "absolute",
@@ -40,9 +32,6 @@ const Landing = () => {
 					</p>
 					<Input
 						className="input-area"
-						setIsLoading={setIsLoading}
-						setPixelDataForParent={setPixelData}
-						setImgFile={setImgFile}
 						styleProp="rounded border border-white cursor-pointer p-2 text-white hover:text-gray-800 hover:bg-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 transition"
 						buttonText="Select Image"
 					/>
