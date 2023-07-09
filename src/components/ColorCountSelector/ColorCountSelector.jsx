@@ -22,7 +22,7 @@ const ColorCountSelector = ({ clusterQty, setClusterQty, pixelData }) => {
 	}
 	return (
 		<>
-			<div className="mx-auto flex text-white flex-row justify-between items-center text-5xl md:w-48 w-60 rounded-xl my-2 lg:my-8 py-4">
+			<div className="bg-transparent mx-auto flex text-white flex-row justify-between items-center text-5xl md:w-48 w-60 rounded-xl my-2 lg:my-8 py-4">
 				<motion.button
 					initial={{ scale: 1 }}
 					whileHover={{ scale: 1.1 }}
