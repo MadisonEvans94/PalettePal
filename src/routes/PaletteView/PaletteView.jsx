@@ -63,7 +63,7 @@ function ImageCanvas({ imgFile }) {
 				<img
 					src={imgFile.src}
 					alt="input_image"
-					class="inset-0 object-cover object-center"
+					className="inset-0 object-cover object-center"
 				/>
 			) : (
 				<div className="bg-gray-800 h-full w-full flex flex-row justify-center items-center">

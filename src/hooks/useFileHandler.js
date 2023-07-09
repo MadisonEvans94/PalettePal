@@ -29,8 +29,8 @@ const useFileHandler = () => {
 				const data = await postImage(resizedBase64Image);
 				setCentroidArray(data);
 
-				if (window.location.pathname !== "/app/palette-view") {
-					navigate("/app/palette-view");
+				if (window.location.pathname !== "/palette-view") {
+					navigate("/palette-view");
 				}
 				setIsLoading(false);
 			});

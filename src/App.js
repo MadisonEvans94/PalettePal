@@ -61,8 +61,8 @@ function App() {
 						value={{ user, setUser, isAuthenticated, setIsAuthenticated }}>
 						{isLoading && <LoadingModal />}
 						<Routes>
-							<Route path="/" element={<Landing />} />
-							<Route path="app" element={<Layout />}>
+							<Route path="/" element={<Layout />}>
+								<Route path="/" element={<Landing />} />
 								<Route path="palette-view" element={<PaletteView />} />
 								<Route
 									path="dashboard"
