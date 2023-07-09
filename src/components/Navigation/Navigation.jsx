@@ -68,10 +68,10 @@ export default function Navigation() {
 	);
 
 	return (
-		<Disclosure as="nav" className="absolute z-50 w-full">
+		<Disclosure as="nav" className="w-full">
 			{({ open }) => (
 				<>
-					<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+					<div className="mx-auto px-4 sm:px-6 lg:px-8 border-b">
 						<div className="flex h-16 justify-between">
 							<div className="flex">
 								<div className="-ml-2 mr-2 flex items-center md:hidden">

@@ -49,7 +49,7 @@ function PlotCanvas({ pixelVals, centroidVals, pixelData }) {
 				/>
 			) : (
 				<div className="h-full w-full flex flex-row justify-center items-center">
-					<p className="text-white h-fit">No Plot Available</p>
+					<p className="text-gray-200 h-fit">No Plot Available</p>
 				</div>
 			)}
 		</div>
@@ -67,7 +67,7 @@ function ImageCanvas({ imgFile }) {
 				/>
 			) : (
 				<div className="bg-transparent h-full w-full flex flex-row justify-center items-center">
-					<p className="text-white h-fit">No Image Selected</p>
+					<p className="text-gray-200 h-fit">No Image Selected</p>
 				</div>
 			)}
 		</div>

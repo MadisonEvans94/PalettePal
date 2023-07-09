@@ -2,7 +2,7 @@ import React from "react";
 import Dashpane from "../../components/Dashpane/Dashpane";
 const Dashboard = () => {
 	return (
-		<div className=" h-screen w-full">
+		<div className="bg-gray-800 pt-16 h-screen w-full">
 			<div className="flex flex-row w-full h-full">
 				<Dashpane />
 			</div>

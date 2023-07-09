@@ -19,11 +19,12 @@ import Settings from "./routes/Settings/Settings";
 import LoadingModal from "./components/LoadingModal";
 const Layout = () => {
 	return (
-		<div className="bg-blue-300 h-screen">
-			<Navigation />
-			<div className="pt-16">
-				<Outlet />
+		<div className="h-screen">
+			<div className="absolute w-full z-50">
+				<Navigation />
 			</div>
+
+			<Outlet />
 		</div>
 	);
 };
