@@ -57,7 +57,11 @@ export default function Navigation() {
 		</div>
 	) : (
 		<button
-			onClick={() => navigate("/signin")}
+			onClick={() =>
+				navigate(
+					"https://palette-pal.auth.us-east-2.amazoncognito.com/oauth2/authorize?client_id=4civ16rt266mqscc9h5jrm28ei&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https%3A%2F%2Fgoogle.com"
+				)
+			}
 			className="rounded bg-gray-800 border border-gray-400 cursor-pointer p-2 text-gray-400 hover:text-gray-800 hover:bg-white hover:border-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 transition">
 			Sign In
 		</button>
