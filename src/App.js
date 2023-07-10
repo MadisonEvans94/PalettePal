@@ -17,6 +17,7 @@ import Dashboard from "./routes/Dashboard/Dashboard";
 import Navigation from "./components/Navigation/Navigation";
 import Settings from "./routes/Settings/Settings";
 import LoadingModal from "./components/LoadingModal";
+import Signup from "./components/Signup/Signup";
 const Layout = () => {
 	return (
 		<div className="h-screen">
@@ -67,6 +68,7 @@ function App() {
 							<Route path="/" element={<Layout />}>
 								<Route path="/" element={<Landing />} />
 								<Route path="palette-view" element={<PaletteView />} />
+								<Route path="signup" element={<Signup />} />
 								<Route
 									path="dashboard"
 									element={
