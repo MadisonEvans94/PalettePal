@@ -18,6 +18,8 @@ import Navigation from "./components/Navigation/Navigation";
 import Settings from "./routes/Settings/Settings";
 import LoadingModal from "./components/LoadingModal";
 import Signup from "./components/Signup/Signup";
+import Login from "./components/Login/Login";
+import { Account } from "./components/Account";
 const Layout = () => {
 	return (
 		<div className="h-screen">
@@ -64,22 +66,25 @@ function App() {
 					<UserContext.Provider
 						value={{ user, setUser, isAuthenticated, setIsAuthenticated }}>
 						{isLoading && <LoadingModal />}
-						<Routes>
-							<Route path="/" element={<Layout />}>
-								<Route path="/" element={<Landing />} />
-								<Route path="palette-view" element={<PaletteView />} />
-								<Route path="signup" element={<Signup />} />
-								<Route
-									path="dashboard"
-									element={
-										<PrivateRoute>
-											<Dashboard />
-										</PrivateRoute>
-									}
-								/>
-								<Route path="settings" element={<Settings />} />
-							</Route>
-						</Routes>
+						<Account>
+							<Routes>
+								<Route path="/" element={<Layout />}>
+									<Route path="/" element={<Landing />} />
+									<Route path="palette-view" element={<PaletteView />} />
+									<Route path="signup" element={<Signup />} />
+									<Route path="login" element={<Login />} />
+									<Route
+										path="dashboard"
+										element={
+											<PrivateRoute>
+												<Dashboard />
+											</PrivateRoute>
+										}
+									/>
+									<Route path="settings" element={<Settings />} />
+								</Route>
+							</Routes>
+						</Account>
 					</UserContext.Provider>
 				</AppContext.Provider>
 			</CentroidContext.Provider>
