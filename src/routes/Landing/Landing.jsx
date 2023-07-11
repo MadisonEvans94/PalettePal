@@ -18,27 +18,6 @@ const Landing = () => {
 							"linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0) 100%)",
 					}}
 				/>
-				{/* <button
-					className="text-white"
-					onClick={(e) => {
-						e.preventDefault();
-						window.open(
-							"https://palette-pal.auth.us-east-2.amazoncognito.com/login?client_id=4civ16rt266mqscc9h5jrm28ei&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https%3A%2F%2Fdjcktg78i4qg6.cloudfront.net%2F",
-							"_blank" // open in a new tab
-						);
-					}}>
-					Sign In
-				</button>
-
-				<button
-					className="text-white"
-					onClick={(e) => {
-						e.preventDefault();
-						window.location.href =
-							"https://palette-pal.auth.us-east-2.amazoncognito.com/logout?client_id=4civ16rt266mqscc9h5jrm28ei&logout_uri=https%3A%2F%2Fdjcktg78i4qg6.cloudfront.net%2F";
-					}}>
-					Sign Out
-				</button> */}
 
 				<div
 					style={{
