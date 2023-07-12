@@ -13,6 +13,7 @@ const Navigation = () => {
 		<nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6 w-full">
 			<div className="flex items-center flex-shrink-0 text-white mr-6">
 				<Link
+					onClick={() => setIsOpen(false)}
 					to="/"
 					className="font-semibold text-xl tracking-tight cursor-pointer">
 					Logo
@@ -31,16 +32,19 @@ const Navigation = () => {
 				}`}>
 				<div className="text-sm w-full lg:flex lg:flex-row justify-end items-end">
 					<Link
+						onClick={() => setIsOpen(false)}
 						to="/upload-image"
 						className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 cursor-pointer">
 						Upload Image
 					</Link>
 					<Link
-						to="/new-palette"
+						onClick={() => setIsOpen(false)}
+						to="/palette-view"
 						className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 cursor-pointer">
-						New Palette
+						Palette View
 					</Link>
 					<Link
+						onClick={() => setIsOpen(false)}
 						to="/login"
 						className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white cursor-pointer">
 						Login
