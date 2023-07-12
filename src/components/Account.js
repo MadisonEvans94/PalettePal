@@ -1,9 +1,25 @@
-import React, { createContext } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import UserPool from "../UserPool";
 import { AuthenticationDetails, CognitoUser } from "amazon-cognito-identity-js";
 const AccountContext = createContext();
 
 const Account = (props) => {
+	const [isAuthenticated, setIsAuthenticated] = useState(false);
+	const [userData, setUserData] = useState(null);
+	useEffect(() => {
+		getSession().then((session) => {
+			if (session) {
+				setIsAuthenticated(true);
+				//TODO: If you have user data, set it here. This could vary depending on your cognito user pool settings
+				setUserData({
+					username: session.getIdToken().payload["cognito:username"],
+				});
+			} else {
+				setIsAuthenticated(false);
+				setUserData(null);
+			}
+		});
+	});
 	const getSession = async () => {
 		return await new Promise((resolve, reject) => {
 			const user = UserPool.getCurrentUser();
@@ -35,6 +51,7 @@ const Account = (props) => {
 				onSuccess: (data) => {
 					console.log("Success", data);
 					resolve(data);
+					setIsAuthenticated(true);
 				},
 				onFailure: (error) => {
 					console.error(error);
@@ -52,6 +69,8 @@ const Account = (props) => {
 		if (user) {
 			user.signOut();
 		}
+		setIsAuthenticated(false);
+		setUserData(null);
 	};
 	return (
 		<AccountContext.Provider value={{ authenticate, getSession, logout }}>
