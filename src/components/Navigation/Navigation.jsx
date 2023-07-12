@@ -3,20 +3,15 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import Input from "../Input/Input";
-import AppContext from "../../Contexts/AppContext"; // Import AppContext
 import UserContext from "../../Contexts/UserContext";
-import Status from "../../Status";
-// import LoadingModal from "../LoadingModal";
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
 
 export default function Navigation() {
-	// Use the context to get the state and setters
 	const { user, setUser, setIsAuthenticated, isAuthenticated } =
 		useContext(UserContext);
-	const { setIsLoading, setPixelData, setImgFile } = useContext(AppContext);
 	const navigate = useNavigate();
 	const location = useLocation();
 	const navigation = [
@@ -24,11 +19,6 @@ export default function Navigation() {
 			name: "Palette View",
 			route: "/palette-view",
 			current: location.pathname === "/palette-view",
-		},
-		{
-			name: "Dashboard",
-			route: "/dashboard",
-			current: location.pathname === "/dashboard",
 		},
 	];
 
@@ -45,6 +35,10 @@ export default function Navigation() {
 				console.log(isAuthenticated, "AUTHENTICATED?");
 				console.log(user, "USER");
 			},
+		},
+		{
+			name: "Dashboard",
+			fn: () => navigate("/dashboard"),
 		},
 	];
 
@@ -70,8 +64,7 @@ export default function Navigation() {
 
 	return (
 		<>
-			<Status />
-			<Disclosure as="nav" className="w-full">
+			<Disclosure as="nav" className="w-full bg-gray-400">
 				{({ open }) => (
 					<>
 						<div className="mx-auto px-4 sm:px-6 lg:px-8 border-b">
@@ -129,21 +122,11 @@ export default function Navigation() {
 								<div className="flex items-center">
 									<div className="flex-shrink-0">
 										<Input
-											setIsLoading={setIsLoading}
-											setPixelDataForParent={setPixelData}
-											setImgFile={setImgFile}
 											buttonText="new palette"
 											styleProp="rounded bg-gray-800 border border-gray-400 cursor-pointer p-2 text-gray-400 hover:text-gray-800 hover:bg-white hover:border-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 transition"
 										/>
 									</div>
 									<div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
-										<button
-											type="button"
-											className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-											<span className="sr-only">View notifications</span>
-										</button>
-
-										{/* Profile dropdown */}
 										<Menu as="div" className="relative ml-3">
 											<div>
 												<Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -161,7 +144,10 @@ export default function Navigation() {
 												leaveTo="transform opacity-0 scale-95">
 												<Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
 													{userNavigation.map((item) => (
-														<div key={item.name} onClick={item.fn}>
+														<div
+															key={item.name}
+															onClick={item.fn}
+															className="m-2 cursor-pointer">
 															{item.name}
 														</div>
 													))}
@@ -201,6 +187,7 @@ export default function Navigation() {
 												alt=""
 											/>
 										) : (
+											// TODO: Login goes here
 											<img
 												className="h-10 w-10 rounded-full"
 												src="https://e7.pngegg.com/pngimages/416/62/png-clipart-anonymous-person-login-google-account-computer-icons-user-activity-miscellaneous-computer.png"
@@ -209,6 +196,7 @@ export default function Navigation() {
 										)}
 									</div>
 									<div className="ml-3">
+										{/* TODO: Fix username and user email states */}
 										<div className="text-base font-medium text-white">
 											user name
 										</div>
@@ -216,11 +204,6 @@ export default function Navigation() {
 											user email
 										</div>
 									</div>
-									<button
-										type="button"
-										className="ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-										<span className="sr-only">View notifications</span>
-									</button>
 								</div>
 								<div className="mt-3 space-y-1 px-2 sm:px-3">
 									{userNavigation.map((item) => (

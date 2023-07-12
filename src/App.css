@@ -10,22 +10,13 @@
 	height: 100vh;
 }
 
-@font-face {
-	font-family: "MyFont";
-	src: url("https://s3.us-east-2.amazonaws.com/palettepalapp.com/Molika/MOLIKA.ttf")
-			format("truetype"),
-		url("https://s3.us-east-2.amazonaws.com/palettepalapp.com/Molika/MOLIKA.woff2")
-			format("woff2");
-	font-weight: bolder;
-	font-style: italic;
-}
-
 .main-header {
-	font-family: "MyFont", sans-serif;
-	font-weight: bolder;
+	font-family: "Expletus Sans", sans-serif;
+	font-weight: 600;
 	font-size: 7em; /* default font size for smaller screens */
 	transition: 0.1s ease;
 }
+
 .main-description {
 	font-size: smaller;
 }
