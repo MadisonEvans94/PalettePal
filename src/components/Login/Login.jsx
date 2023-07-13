@@ -1,18 +1,21 @@
 import React, { useContext } from "react";
 import { useState } from "react";
 import { AccountContext } from "../Account";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-
-	const { authenticate, isAuthenticated } = useContext(AccountContext);
-	console.log(isAuthenticated, "isAuthenticated");
+	const navigate = useNavigate();
+	const { authenticate, isAuthenticated, tokens, getSession } =
+		useContext(AccountContext);
+	console.log("isAuthenticated", isAuthenticated, "tokens", tokens);
 	const onSubmit = (event) => {
 		event.preventDefault();
 		authenticate(email, password)
 			.then((data) => {
 				console.log("logged in!");
+				navigate("/dashboard");
 			})
 			.catch((error) => {
 				console.error(error);

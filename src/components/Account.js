@@ -10,7 +10,6 @@ const Account = (props) => {
 	useEffect(() => {
 		getSession().then((session) => {
 			if (session) {
-				console.log("session active");
 				setIsAuthenticated(true);
 				setTokens(session.getIdToken().getJwtToken()); // save tokens
 				setUserData({

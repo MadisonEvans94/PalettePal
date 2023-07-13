@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { CentroidContext } from "../Contexts/CentroidContext";
 import AppContext from "../Contexts/AppContext";
 import { postImage } from "../services/imageProcessingService";
+import { AccountContext } from "../components/Account";
 import {
 	createImage,
 	handleResizeImage,
@@ -11,6 +12,8 @@ import {
 
 const useFileHandler = () => {
 	const { setIsLoading, setPixelData, setImgFile } = useContext(AppContext);
+	const { tokens } = useContext(AccountContext);
+
 	const { setCentroidArray } = useContext(CentroidContext);
 	const canvasRef = useRef(null);
 	const navigate = useNavigate();
@@ -26,7 +29,8 @@ const useFileHandler = () => {
 				const resizedBase64Image = handleResizeImage(originalImg);
 
 				// Use postImage service
-				const data = await postImage(resizedBase64Image);
+				console.log("from the useFileHandler", tokens);
+				const data = await postImage(resizedBase64Image, tokens);
 				setCentroidArray(data);
 
 				if (window.location.pathname !== "/palette-view") {

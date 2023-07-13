@@ -1,4 +1,4 @@
-const postImage = async (resizedBase64Image) => {
+const postImage = async (resizedBase64Image, token) => {
 	try {
 		const res = await fetch(
 			"https://du65t1mu0a.execute-api.us-east-2.amazonaws.com/production/image-processor",
@@ -6,6 +6,7 @@ const postImage = async (resizedBase64Image) => {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
+					Authorization: token, // Add this line
 				},
 				body: JSON.stringify({ image: resizedBase64Image }), // Send the resized base64 image
 			}
