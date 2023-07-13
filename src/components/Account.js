@@ -4,35 +4,40 @@ import { AuthenticationDetails, CognitoUser } from "amazon-cognito-identity-js";
 const AccountContext = createContext();
 
 const Account = (props) => {
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
 	const [userData, setUserData] = useState(null);
+	const [tokens, setTokens] = useState(null); // new state for JWT tokens
+	const [isAuthenticated, setIsAuthenticated] = useState(false);
 	useEffect(() => {
 		getSession().then((session) => {
 			if (session) {
+				console.log("session active");
 				setIsAuthenticated(true);
-				//TODO: If you have user data, set it here. This could vary depending on your cognito user pool settings
+				setTokens(session.getIdToken().getJwtToken()); // save tokens
 				setUserData({
 					username: session.getIdToken().payload["cognito:username"],
 				});
 			} else {
+				console.log("session not active");
 				setIsAuthenticated(false);
 				setUserData(null);
+				setTokens(null);
 			}
 		});
-	});
+	}, []);
 	const getSession = async () => {
 		return await new Promise((resolve, reject) => {
 			const user = UserPool.getCurrentUser();
+
 			if (user) {
 				user.getSession((err, session) => {
 					if (err) {
+						console.error(err);
 						reject();
 					} else {
 						resolve(session);
 					}
 				});
 			} else {
-				reject();
 			}
 		});
 	};
@@ -40,18 +45,19 @@ const Account = (props) => {
 		return await new Promise((resolve, reject) => {
 			const user = new CognitoUser({
 				Username,
-				UserPool,
+				Pool: UserPool,
 			});
 
+			console.log("COGNITO USER", user);
 			const authDetails = new AuthenticationDetails({
 				Username,
 				Password,
 			});
 			user.authenticateUser(authDetails, {
 				onSuccess: (data) => {
-					console.log("Success", data);
-					resolve(data);
+					setTokens(data.getIdToken().getJwtToken()); // save tokens after successful authentication
 					setIsAuthenticated(true);
+					resolve(data);
 				},
 				onFailure: (error) => {
 					console.error(error);
@@ -64,16 +70,21 @@ const Account = (props) => {
 			});
 		});
 	};
-	const logout = () => {
+	const logout = async () => {
 		const user = UserPool.getCurrentUser();
 		if (user) {
 			user.signOut();
+			setIsAuthenticated(false);
+			setUserData(null);
+			setTokens(null);
+			// give it some time to update the session
+			setTimeout(() => console.log(UserPool.getCurrentUser()), 3000);
 		}
-		setIsAuthenticated(false);
-		setUserData(null);
 	};
+
 	return (
-		<AccountContext.Provider value={{ authenticate, getSession, logout }}>
+		<AccountContext.Provider
+			value={{ authenticate, getSession, logout, tokens, isAuthenticated }}>
 			{props.children}
 		</AccountContext.Provider>
 	);

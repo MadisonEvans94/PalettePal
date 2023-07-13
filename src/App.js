@@ -1,12 +1,12 @@
 // App.js
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PrivateRoute from "./routes/Wrappers/ProtectedRoute";
 import "./App.css";
 import PaletteView from "./routes/PaletteView/PaletteView";
 import Landing from "./routes/Landing/Landing";
 import { CentroidContext } from "./Contexts/CentroidContext";
 import AppContext from "./Contexts/AppContext";
-import UserContext from "./Contexts/UserContext"; // Add this line
+
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -19,7 +19,8 @@ import Settings from "./routes/Settings/Settings";
 import LoadingModal from "./components/LoadingModal";
 import Signup from "./components/Signup/Signup";
 import Login from "./components/Login/Login";
-import { Account } from "./components/Account";
+import { Account, AccountContext } from "./components/Account";
+
 const Layout = () => {
 	return (
 		<div className="h-screen">
@@ -41,38 +42,33 @@ const testUser = {
 };
 
 function App() {
-	console.log("~~~~~~~~~~~~ APP DIAGNOSTICS ~~~~~~~~~~~~\n\n");
-
 	const [pixelData, setPixelData] = useState([]);
 	const [imgFile, setImgFile] = useState(null);
 	const [centroidArray, setCentroidArray] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
-	const [user, setUser] = useState(testUser);
-	const [isAuthenticated, setIsAuthenticated] = useState(true);
-	console.log(isAuthenticated, "AUTHENTICATED?");
-	console.log(user, "USER");
+
 	return (
-		<Router>
-			<CentroidContext.Provider value={{ centroidArray, setCentroidArray }}>
-				<AppContext.Provider
-					value={{
-						isLoading,
-						setIsLoading,
-						pixelData,
-						setPixelData,
-						imgFile,
-						setImgFile,
-					}}>
-					<UserContext.Provider
-						value={{ user, setUser, isAuthenticated, setIsAuthenticated }}>
+		<>
+			<Router>
+				<CentroidContext.Provider value={{ centroidArray, setCentroidArray }}>
+					<AppContext.Provider
+						value={{
+							isLoading,
+							setIsLoading,
+							pixelData,
+							setPixelData,
+							imgFile,
+							setImgFile,
+						}}>
 						{isLoading && <LoadingModal />}
 						<Account>
 							<Routes>
+								<Route path="login" element={<Login />} />
 								<Route path="/" element={<Layout />}>
 									<Route path="/" element={<Landing />} />
 									<Route path="palette-view" element={<PaletteView />} />
 									<Route path="signup" element={<Signup />} />
-									<Route path="login" element={<Login />} />
+
 									<Route
 										path="dashboard"
 										element={
@@ -85,10 +81,10 @@ function App() {
 								</Route>
 							</Routes>
 						</Account>
-					</UserContext.Provider>
-				</AppContext.Provider>
-			</CentroidContext.Provider>
-		</Router>
+					</AppContext.Provider>
+				</CentroidContext.Provider>
+			</Router>
+		</>
 	);
 }
 

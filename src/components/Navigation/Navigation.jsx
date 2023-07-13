@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
+import { AccountContext } from "../Account";
 
 const Navigation = () => {
 	const [isOpen, setIsOpen] = useState(false);
-
+	const { logout } = useContext(AccountContext);
 	const handleClick = () => {
 		setIsOpen(!isOpen);
 	};
@@ -16,7 +17,7 @@ const Navigation = () => {
 					onClick={() => setIsOpen(false)}
 					to="/"
 					className="font-semibold text-xl tracking-tight cursor-pointer">
-					Logo
+					TITLE
 				</Link>
 			</div>
 			<div className="block lg:hidden">
@@ -49,6 +50,11 @@ const Navigation = () => {
 						className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white cursor-pointer">
 						Login
 					</Link>
+					<div
+						onClick={logout}
+						className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white cursor-pointer">
+						logout test
+					</div>
 				</div>
 			</div>
 		</nav>
