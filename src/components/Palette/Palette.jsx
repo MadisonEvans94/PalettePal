@@ -31,11 +31,11 @@ const Palette = ({ clusterQty }) => {
 				whileTap={{ scale: 0.9, transition: { type: "spring" } }}
 				key={index}
 				onClick={() => copyToClipboard(color)}
-				className="cursor-pointer my-8 mx-2 relative group h-16 w-16 md:h-24 md:w-24 lg:h-32 lg:w-32 md:mx-2 rounded-full flex-none border border-white"
+				className="relative flex-none w-8 h-8 mx-2 my-8 border border-white rounded-full cursor-pointer group md:h-24 md:w-24 lg:h-24 lg:w-24 md:mx-2"
 				style={{
 					background: `${color}`,
 				}}>
-				<p className="-z-10 absolute text-white left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:-translate-y-6 transition-all duration-200 text-xs">
+				<p className="absolute text-xs text-white transition-all duration-200 transform -translate-x-1/2 opacity-0 -z-10 left-1/2 group-hover:opacity-100 group-hover:-translate-y-[24px]">
 					{color}
 				</p>
 
@@ -48,7 +48,7 @@ const Palette = ({ clusterQty }) => {
 								transition: { type: "spring" },
 							}}
 							exit={{ opacity: 0 }}
-							className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white bg-[#2d2d2d] text-center p-2 rounded text-[8px] lg:text-[12px] w-full">
+							className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-warning bg-info text-center p-2 rounded text-[8px] lg:text-[12px] w-full">
 							Color copied to clipboard!
 						</motion.p>
 					)}
@@ -58,7 +58,7 @@ const Palette = ({ clusterQty }) => {
 	}
 	return (
 		<>
-			<div className="bg-transparent h-fit w-full overflow-x-auto flex flex-row justify-start lg:justify-center bg-[#2d2d2d]">
+			<div className="flex flex-row justify-center w-full overflow-x-auto bg-transparent h-fit bg-info">
 				{colorList}
 			</div>
 		</>
