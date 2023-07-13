@@ -27,6 +27,9 @@ const PaletteView = () => {
 			/>
 			<Palette clusterQty={clusterQty} />
 			<ClipboardCopyButton clusterQty={clusterQty} />
+			<button className="w-48 text-white p-3 rounded border flex flex-row items-center justify-center">
+				Save Palette
+			</button>
 		</PaletteViewLayout>
 	);
 };

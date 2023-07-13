@@ -11,7 +11,10 @@ function PaletteViewLayout({ children }) {
 				<div className="">
 					{children[2]}
 					{children[3]}
-					{children[4]}
+					<div className="grid mx-auto grid-cols-2 gap-3 items-center justify-center w-[400px]">
+						{children[4]}
+						{children[5]}
+					</div>
 				</div>
 			</div>
 		</div>
