@@ -28,6 +28,7 @@ const testInfo = [
 const Dashpane = () => {
 	return (
 		<div className="w-full p-10">
+			<h1 className="text-white text-[72px] my-8">Madison's Dashboard</h1>
 			{testInfo.length === 0 ? (
 				<div className="flex justify-center">
 					<div className="flex flex-col items-center border-2 border-dashed border-gray-400 rounded-lg p-4 w-96 text-center">
