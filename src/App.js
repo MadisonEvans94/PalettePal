@@ -1,5 +1,5 @@
 // App.js
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import PrivateRoute from "./routes/Wrappers/ProtectedRoute";
 import "./App.css";
 import PaletteView from "./routes/PaletteView/PaletteView";
@@ -15,16 +15,16 @@ import {
 } from "react-router-dom";
 import Dashboard from "./routes/Dashboard/Dashboard";
 import Navigation from "./components/Navigation/Navigation";
-import Settings from "./routes/Settings/Settings";
+
 import LoadingModal from "./components/LoadingModal";
 import Signup from "./components/Signup/Signup";
 import Login from "./components/Login/Login";
-import { Account, AccountContext } from "./components/Account";
+import { Account} from "./components/Account";
 
 const Layout = () => {
 	return (
 		<div className="h-screen">
-			<div className="absolute w-full z-50">
+			<div className="absolute z-50 w-full">
 				<Navigation />
 			</div>
 
@@ -33,13 +33,7 @@ const Layout = () => {
 	);
 };
 
-const testUser = {
-	id: 123,
-	name: "Tom Cook",
-	email: "tom@example.com",
-	imageUrl:
-		"https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-};
+
 
 function App() {
 	const [pixelData, setPixelData] = useState([]);
@@ -77,7 +71,7 @@ function App() {
 											</PrivateRoute>
 										}
 									/>
-									<Route path="settings" element={<Settings />} />
+									
 								</Route>
 							</Routes>
 						</Account>

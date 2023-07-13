@@ -44,15 +44,15 @@ const Signup = () => {
 			<div className="pt-32 bg-gray-400">
 				<form
 					onSubmit={onSubmit}
-					className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+					className="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
 					<div className="mb-4">
 						<label
-							className="block text-gray-700 text-sm font-bold mb-2"
+							className="block mb-2 text-sm font-bold text-gray-700"
 							htmlFor="email">
 							Email
 						</label>
 						<input
-							className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+							className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 							value={email}
 							onChange={(event) => setEmail(event.target.value)}
 							type="text"
@@ -61,12 +61,12 @@ const Signup = () => {
 					</div>
 					<div className="mb-6">
 						<label
-							className="block text-gray-700 text-sm font-bold mb-2"
+							className="block mb-2 text-sm font-bold text-gray-700"
 							htmlFor="password">
 							Password
 						</label>
 						<input
-							className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+							className="w-full px-3 py-2 mb-3 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 							value={password}
 							onChange={(event) => setPassword(event.target.value)}
 							type="password"
@@ -75,7 +75,7 @@ const Signup = () => {
 					</div>
 					<div className="flex items-center justify-between">
 						<button
-							className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+							className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
 							type="submit">
 							Sign Up
 						</button>
@@ -88,15 +88,15 @@ const Signup = () => {
 			<div className="pt-32 bg-gray-400">
 				<form
 					onSubmit={onConfirm}
-					className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+					className="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
 					<div className="mb-4">
 						<label
-							className="block text-gray-700 text-sm font-bold mb-2"
+							className="block mb-2 text-sm font-bold text-gray-700"
 							htmlFor="confirmationCode">
 							Confirmation Code
 						</label>
 						<input
-							className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+							className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 							value={code}
 							onChange={(event) => setCode(event.target.value)}
 							type="text"
@@ -105,7 +105,7 @@ const Signup = () => {
 					</div>
 					<div className="flex items-center justify-between">
 						<button
-							className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+							className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
 							type="submit">
 							Confirm
 						</button>

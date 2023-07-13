@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { CentroidContext } from "../../Contexts/CentroidContext";
 import { motion } from "framer-motion";
 function ClipboardCopyButton({ clusterQty }) {
+	// eslint-disable-next-line 
 	const [showCopiedMessage, setShowCopiedMessage] = useState(false);
 	const { centroidArray } = useContext(CentroidContext);
 	const handleCopyClick = () => {
@@ -27,7 +28,7 @@ function ClipboardCopyButton({ clusterQty }) {
 
 		<motion.button
 			layout
-			className="border-gray-200 text-gray-200 hover:text-[#0f0f0f] bg-[#2d2d2d] hover:bg-white p-3 my-3 border rounded w-48"
+			className="text-gray-200 border-gray-200  hover:text-[#0f0f0f] bg-[#2d2d2d] hover:bg-white p-3 my-3 border rounded w-48"
 			onClick={handleCopyClick}>
 			copy to clipboard
 		</motion.button>

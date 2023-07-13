@@ -2,8 +2,8 @@ import React from "react";
 
 function PaletteViewLayout({ children }) {
 	return (
-		<div className="h-full w-full overflow-auto flex flex-col items-center justify-start md:justify-center bg-gray-800 pt-16">
-			<div className="mx-auto max-w-7xl w-full ">
+		<div className="flex flex-col items-center justify-start w-full h-full pt-16 overflow-auto bg-gray-800 md:justify-center">
+			<div className="w-full mx-auto max-w-7xl ">
 				<div className="grid grid-cols-2 gap-4 p-4 ">
 					{children[0]}
 					{children[1]}

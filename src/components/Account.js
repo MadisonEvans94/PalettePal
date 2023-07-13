@@ -4,6 +4,7 @@ import { AuthenticationDetails, CognitoUser } from "amazon-cognito-identity-js";
 const AccountContext = createContext();
 
 const Account = (props) => {
+	// eslint-disable-next-line
 	const [userData, setUserData] = useState(null);
 	const [tokens, setTokens] = useState(null); // new state for JWT tokens
 	const [isAuthenticated, setIsAuthenticated] = useState(false);

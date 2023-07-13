@@ -27,7 +27,7 @@ const PaletteView = () => {
 			/>
 			<Palette clusterQty={clusterQty} />
 			<ClipboardCopyButton clusterQty={clusterQty} />
-			<button className="w-48 text-white p-3 rounded border flex flex-row items-center justify-center">
+			<button className="flex flex-row items-center justify-center w-48 p-3 text-white border rounded">
 				Save Palette
 			</button>
 		</PaletteViewLayout>
@@ -51,7 +51,7 @@ function PlotCanvas({ pixelVals, centroidVals, pixelData }) {
 					zVal={pixelVals.zVal}
 				/>
 			) : (
-				<div className="h-full w-full flex flex-row justify-center items-center">
+				<div className="flex flex-row items-center justify-center w-full h-full">
 					<p className="text-gray-200 h-fit">No Plot Available</p>
 				</div>
 			)}
@@ -66,10 +66,10 @@ function ImageCanvas({ imgFile }) {
 				<img
 					src={imgFile.src}
 					alt="input_image"
-					className="bg-transparent inset-0 object-cover object-center"
+					className="inset-0 object-cover object-center bg-transparent"
 				/>
 			) : (
-				<div className="bg-transparent h-full w-full flex flex-row justify-center items-center">
+				<div className="flex flex-row items-center justify-center w-full h-full bg-transparent">
 					<p className="text-gray-200 h-fit">No Image Selected</p>
 				</div>
 			)}
