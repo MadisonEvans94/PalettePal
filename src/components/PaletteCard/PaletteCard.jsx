@@ -2,9 +2,9 @@ import React from "react";
 
 const PaletteCard = ({ paletteInfo }) => {
 	const ImageContainer = (
-		<div className="w-64 relative min-w-64">
+		<div className="relative w-64 min-w-64">
 			<img
-				className="absolute h-full w-full object-cover object-center"
+				className="absolute object-cover object-center w-full h-full"
 				src={paletteInfo.imgUrl}
 				alt={paletteInfo.name}
 			/>
@@ -12,7 +12,7 @@ const PaletteCard = ({ paletteInfo }) => {
 	);
 
 	const InfoContainer = (
-		<div className="mx-auto flex flex-col justify-center w-fit">
+		<div className="flex flex-col justify-center mx-auto text-secondary w-fit">
 			<p>{paletteInfo.name}</p>
 			<p>{paletteInfo.date}</p>
 		</div>
@@ -20,25 +20,25 @@ const PaletteCard = ({ paletteInfo }) => {
 
 	const PaletteContainer = (
 		<div className="flex flex-col items-center justify-center">
-			<div className="w-full max-w-90 justify-center items-center flex space-x-2 p-2">
+			<div className="flex items-center justify-center w-full p-2 space-x-2 max-w-90">
 				{paletteInfo.palette.map((color, index) => (
 					<div
 						key={index}
-						className="h-20 w-20 rounded-full"
+						className="w-20 h-20 rounded-full"
 						style={{ backgroundColor: color }}
 					/>
 				))}
 			</div>
 			<div className="flex flex-row">
-				<button className="border m-2 p-2 rounded-md">copy palette</button>
-				<button className="border m-2 p-2 rounded-md">edit palette</button>
+				<button className="p-2 m-2 transition border rounded-md bg-primary text-info border-primary hover:text-primary hover:bg-info">copy palette</button>
+				<button className="p-2 m-2 transition border rounded-md bg-primary text-info border-primary hover:text-primary hover:bg-info">edit palette</button>
 			</div>
 		</div>
 	);
 
 	return (
-		<div className="shadow-lg h-48 mx-auto max-w-4xl rounded-lg flex flex-row overflow-hidden">
-			<div className="w-full flex flex-row">
+		<div className="flex flex-row h-48 max-w-4xl mx-auto overflow-hidden rounded-lg shadow-lg">
+			<div className="flex flex-row w-full">
 				{ImageContainer}
 				{InfoContainer}
 			</div>

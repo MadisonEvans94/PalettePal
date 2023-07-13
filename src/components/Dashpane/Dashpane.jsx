@@ -28,13 +28,13 @@ const testInfo = [
 const Dashpane = () => {
 	return (
 		<div className="w-full p-10">
-			<h1 className="text-white text-[72px] my-8">Madison's Dashboard</h1>
+			<h1 className="text-primary text-[72px] my-8">Madison's Dashboard</h1>
 			{testInfo.length === 0 ? (
 				<div className="flex justify-center">
-					<div className="flex flex-col items-center border-2 border-dashed border-gray-400 rounded-lg p-4 w-96 text-center">
+					<div className="flex flex-col items-center p-4 text-center border-2 border-dashed rounded-lg border-shade w-96">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
-							className="h-24 w-24"
+							className="w-24 h-24"
 							viewBox="0 0 20 20">
 							<path
 								fillRule="evenodd"
@@ -43,8 +43,8 @@ const Dashpane = () => {
 								clipRule="evenodd"
 							/>
 						</svg>
-						<p className="text-2xl text-gray-400">No Palettes</p>
-						<p className="text-sm my-4 text-gray-400">
+						<p className="text-2xl text-shade">No Palettes</p>
+						<p className="my-4 text-sm text-shade">
 							Get started by adding a new image from the navbar
 						</p>
 					</div>
