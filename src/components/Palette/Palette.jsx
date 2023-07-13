@@ -31,11 +31,11 @@ const Palette = ({ clusterQty }) => {
 				whileTap={{ scale: 0.9, transition: { type: "spring" } }}
 				key={index}
 				onClick={() => copyToClipboard(color)}
-				className="relative flex-none w-8 h-8 mx-2 my-8 border border-white rounded-full cursor-pointer group md:h-24 md:w-24 lg:h-24 lg:w-24 md:mx-2"
+				className="relative flex-none w-8 h-8 mx-2 my-1 border rounded-full cursor-pointer border-info group md:h-24 md:w-24 lg:h-24 lg:w-24 md:mx-2"
 				style={{
 					background: `${color}`,
 				}}>
-				<p className="absolute text-xs text-white transition-all duration-200 transform -translate-x-1/2 opacity-0 -z-10 left-1/2 group-hover:opacity-100 group-hover:-translate-y-[24px]">
+				<p className="absolute text-xs text-info transition-all duration-200 transform -translate-x-1/2 opacity-0 -z-10 left-1/2 group-hover:opacity-100 group-hover:-translate-y-[24px]">
 					{color}
 				</p>
 

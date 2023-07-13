@@ -27,7 +27,11 @@ const PaletteView = () => {
 			/>
 			<Palette clusterQty={clusterQty} />
 			<ClipboardCopyButton clusterQty={clusterQty} />
-			<button className="flex flex-row items-center justify-center w-48 p-3 text-white border rounded">
+			
+						
+
+			
+			<button className="w-48 p-3 my-3 transition border rounded border-primary text-info hover:text-primary bg-primary hover:bg-white">
 				Save Palette
 			</button>
 		</PaletteViewLayout>
@@ -38,7 +42,7 @@ export default PaletteView;
 
 function PlotCanvas({ pixelVals, centroidVals, pixelData }) {
 	return (
-		<div className="bg-transparent h-[300px] flex flex-row items-center justify-center border lg:h-[400px] overflow-hidden rounded-lg w-full">
+		<div className="bg-shade h-[300px] flex flex-row items-center justify-center border lg:h-[400px] overflow-hidden rounded-lg w-full">
 			{pixelVals && centroidVals ? (
 				<CustomPlot
 					pixelData={pixelData}
@@ -52,7 +56,7 @@ function PlotCanvas({ pixelVals, centroidVals, pixelData }) {
 				/>
 			) : (
 				<div className="flex flex-row items-center justify-center w-full h-full">
-					<p className="text-gray-200 h-fit">No Plot Available</p>
+					<p className="text-info h-fit">No Plot Available</p>
 				</div>
 			)}
 		</div>
@@ -61,7 +65,7 @@ function PlotCanvas({ pixelVals, centroidVals, pixelData }) {
 // bg-[#0f0f0f]
 function ImageCanvas({ imgFile }) {
 	return (
-		<div className="bg-transparent md:h-[300px] lg:h-[400px] w-full flex flex-row items-center border rounded-lg overflow-hidden">
+		<div className="bg-shade md:h-[300px] lg:h-[400px] w-full flex flex-row items-center border rounded-lg overflow-hidden">
 			{imgFile ? (
 				<img
 					src={imgFile.src}
@@ -70,7 +74,7 @@ function ImageCanvas({ imgFile }) {
 				/>
 			) : (
 				<div className="flex flex-row items-center justify-center w-full h-full bg-transparent">
-					<p className="text-gray-200 h-fit">No Image Selected</p>
+					<p className="text-info h-fit">No Image Selected</p>
 				</div>
 			)}
 		</div>

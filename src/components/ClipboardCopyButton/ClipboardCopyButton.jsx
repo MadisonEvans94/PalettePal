@@ -13,22 +13,9 @@ function ClipboardCopyButton({ clusterQty }) {
 	};
 
 	return (
-		// <motion.div className="flex flex-row justify-center my-4" layout>
-
-		// 	{showCopiedMessage && (
-		// 		<motion.span
-		// 			initial={{ opacity: 0 }}
-		// 			animate={{ opacity: 1, transition: { delay: 0.2 } }}
-		// 			layout
-		// 			className="ml-[10px] flex flex-row items-center justify-center text-gray-200">
-		// 			Copied to clipboard!
-		// 		</motion.span>
-		// 	)}
-		// </motion.div>
-
 		<motion.button
 			layout
-			className="text-gray-200 border-gray-200  hover:text-[#0f0f0f] bg-[#2d2d2d] hover:bg-white p-3 my-3 border rounded w-48"
+			className="w-48 p-3 my-3 transition border rounded border-primary text-info hover:text-primary bg-primary hover:bg-white"
 			onClick={handleCopyClick}>
 			copy to clipboard
 		</motion.button>
