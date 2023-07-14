@@ -12,7 +12,7 @@ const Navigation = () => {
 	};
 
 	return (
-		<nav className="flex flex-wrap items-center justify-between w-full p-6 border-b backdrop-blur-3xl lg:h-26">
+		<nav className="flex flex-wrap items-center justify-between w-full p-2 border-b backdrop-blur-3xl lg:h-26">
 			<div className="flex items-center flex-shrink-0 mr-6">
 				<Link
 					onClick={() => setIsOpen(false)}
@@ -69,7 +69,7 @@ const Navigation = () => {
 						<Link
 							onClick={() => setIsOpen(false)}
 							to="/login"
-							className="block mt-4 cursor-pointer text-shade lg:inline-block lg:mt-0 "
+							className="block mt-4 cursor-pointer text-shade lg:inline-block lg:my-auto lg:mr-2 hover:text-primary transition"
 						>
 							Login
 						</Link>
