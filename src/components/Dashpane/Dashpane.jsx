@@ -6,7 +6,7 @@ import { AccountContext } from "../Account";
 const Dashpane = () => {
 	const { tokens } = useContext(AccountContext);
 	const [palettes, setPalettes] = useState(null);
-	const [kValue, setKValue] = useState(0);
+
 	useEffect(() => {
 		const fetchPalettes = async () => {
 			const response = await fetch(
@@ -25,7 +25,7 @@ const Dashpane = () => {
 		};
 
 		fetchPalettes();
-	}, [tokens]);
+	}, []);
 
 	console.log(palettes, "Palettes fetched");
 
@@ -33,23 +33,6 @@ const Dashpane = () => {
 		<div className="w-full p-10">
 			<h1 className="text-primary text-[72px] my-8">Madison's Dashboard</h1>
 
-			<div className="flex flex-row">
-				<button
-					onClick={() => {
-						if (kValue > 0) setKValue(kValue - 1);
-					}}
-				>
-					-
-				</button>
-				{kValue + 1}
-				<button
-					onClick={() => {
-						if (kValue < 4) setKValue(kValue + 1);
-					}}
-				>
-					+
-				</button>
-			</div>
 			{!palettes ? (
 				<div className="flex justify-center">
 					<div className="flex flex-col items-center p-4 text-center border-2 border-dashed rounded-lg border-shade w-96">
@@ -72,21 +55,7 @@ const Dashpane = () => {
 					</div>
 				</div>
 			) : (
-				<div className="flex flex-row">
-					<div className="border">
-						<img src={palettes.imageUrl} alt="thumbnail" />
-					</div>
-					<div className="flex flex-row border bg-secondary w-96 p-2 justify-center">
-						{palettes.palette[kValue].map((color) => {
-							return (
-								<div
-									className="w-6 h-6 rounded-full mx-1"
-									style={{ backgroundColor: color }}
-								/>
-							);
-						})}
-					</div>
-				</div>
+				<PaletteCard palettes={palettes} />
 			)}
 		</div>
 	);

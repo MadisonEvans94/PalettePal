@@ -1,48 +1,51 @@
 import React from "react";
+import { useState } from "react";
 
-const PaletteCard = ({ paletteInfo }) => {
-	const ImageContainer = (
-		<div className="relative w-64 min-w-64">
-			<img
-				className="absolute object-cover object-center w-full h-full"
-				src={paletteInfo.imgUrl}
-				alt={paletteInfo.name}
-			/>
-		</div>
-	);
-
-	const InfoContainer = (
-		<div className="flex flex-col justify-center mx-auto text-secondary w-fit">
-			<p>{paletteInfo.name}</p>
-			<p>{paletteInfo.date}</p>
-		</div>
-	);
-
-	const PaletteContainer = (
-		<div className="flex flex-col items-center justify-center">
-			<div className="flex items-center justify-center w-full p-2 space-x-2 max-w-90">
-				{paletteInfo.palette.map((color, index) => (
-					<div
-						key={index}
-						className="w-20 h-20 rounded-full"
-						style={{ backgroundColor: color }}
-					/>
-				))}
-			</div>
-			<div className="flex flex-row">
-				<button className="p-2 m-2 transition border rounded-md bg-primary text-info border-primary hover:text-primary hover:bg-info">copy palette</button>
-				<button className="p-2 m-2 transition border rounded-md bg-primary text-info border-primary hover:text-primary hover:bg-info">edit palette</button>
-			</div>
-		</div>
-	);
+const PaletteCard = ({ palettes }) => {
+	const [kValue, setKValue] = useState(0);
 
 	return (
-		<div className="flex flex-row h-48 max-w-4xl mx-auto overflow-hidden rounded-lg shadow-lg">
-			<div className="flex flex-row w-full">
-				{ImageContainer}
-				{InfoContainer}
+		<div className="flex flex-col md:flex-row shadow-lg mx-auto max-w-lg md:max-w-2xl bg-white rounded-lg">
+			<div className="flex items-center justify-center w-full px-6 py-8 md:w-1/2">
+				<img
+					className="w-full object-cover object-center rounded-lg shadow-md h-64"
+					src={palettes.imageUrl}
+					alt="thumbnail"
+				/>
 			</div>
-			{PaletteContainer}
+			<div className="w-full md:w-1/2 px-4 py-8">
+				<div className="flex items-center justify-center">
+					<button
+						onClick={() => {
+							if (kValue > 0) setKValue(kValue - 1);
+						}}
+						className="px-3 py-2 rounded-l-lg bg-gray-200 text-gray-700 font-semibold"
+					>
+						-
+					</button>
+					<span className="px-3 py-2 bg-gray-200 text-gray-700 font-semibold">
+						{kValue + 1}
+					</span>
+					<button
+						onClick={() => {
+							if (kValue < 4) setKValue(kValue + 1);
+						}}
+						className="px-3 py-2 rounded-r-lg bg-gray-200 text-gray-700 font-semibold"
+					>
+						+
+					</button>
+				</div>
+				<div className="flex flex-row flex-wrap mt-4 justify-center items-center">
+					{palettes.palette[kValue].map((color) => {
+						return (
+							<div
+								className="w-6 h-6 rounded-full mx-1 mt-2"
+								style={{ backgroundColor: color }}
+							/>
+						);
+					})}
+				</div>
+			</div>
 		</div>
 	);
 };
