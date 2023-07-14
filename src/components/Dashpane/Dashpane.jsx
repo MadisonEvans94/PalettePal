@@ -30,7 +30,7 @@ const testInfo = [
 const Dashpane = () => {
 	const { tokens } = useContext(AccountContext);
 	const [palettes, setPalettes] = useState(null);
-
+	const [kValue, setKValue] = useState(0);
 	useEffect(() => {
 		const fetchPalettes = async () => {
 			const response = await fetch(
@@ -59,8 +59,24 @@ const Dashpane = () => {
 			{/* <button onClick={getTest}>
 				Click me
 			</button> */}
-
-			{testInfo.length === 0 ? (
+			<div className="flex flex-row">
+				<button
+					onClick={() => {
+						if (kValue > 0) setKValue(kValue - 1);
+					}}
+				>
+					-
+				</button>
+				{kValue + 1}
+				<button
+					onClick={() => {
+						if (kValue < 4) setKValue(kValue + 1);
+					}}
+				>
+					+
+				</button>
+			</div>
+			{palettes == null ? (
 				<div className="flex justify-center">
 					<div className="flex flex-col items-center p-4 text-center border-2 border-dashed rounded-lg border-shade w-96">
 						<svg
@@ -82,13 +98,17 @@ const Dashpane = () => {
 					</div>
 				</div>
 			) : (
-				// palettes.map((palette, id) => (
-				// 	<div className="my-4" key={id}>
-				// 		<PaletteCard paletteInfo={palette} />
-				// 	</div>
-				// ))
 				<>
-					<div>{palettes.userId}</div>
+					{palettes.palette[kValue].map((color) => {
+						return (
+							<>
+								<div
+									className="w-6 h-6 rounded-full"
+									style={{ backgroundColor: color }}
+								/>
+							</>
+						);
+					})}
 				</>
 			)}
 		</div>
