@@ -70,6 +70,7 @@ const Account = (props) => {
 			});
 		});
 	};
+
 	const logout = async () => {
 		const user = UserPool.getCurrentUser();
 		if (user) {
@@ -84,7 +85,15 @@ const Account = (props) => {
 
 	return (
 		<AccountContext.Provider
-			value={{ authenticate, getSession, logout, tokens, isAuthenticated }}>
+			value={{
+				authenticate,
+				getSession,
+				logout,
+				tokens,
+				isAuthenticated,
+				userData,
+			}}
+		>
 			{props.children}
 		</AccountContext.Provider>
 	);
