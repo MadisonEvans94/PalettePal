@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import PaletteCard from "../PaletteCard/PaletteCard";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AccountContext } from "../Account";
+
 const testInfo = [
 	{
 		name: "Building Photo",
@@ -27,26 +28,37 @@ const testInfo = [
 ];
 
 const Dashpane = () => {
-	const {tokens} = useContext(AccountContext)
+	const { tokens } = useContext(AccountContext);
+	const [palettes, setPalettes] = useState(null);
+
+	useEffect(() => {
+		const fetchPalettes = async () => {
+			const response = await fetch(
+				"https://du65t1mu0a.execute-api.us-east-2.amazonaws.com/production/palette-pal-image-CRUD/",
+				{
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: tokens,
+					},
+				}
+			);
+			const responseBody = await response.json();
+			const data = JSON.parse(responseBody.body);
+			setPalettes(data);
+		};
+
+		fetchPalettes();
+	}, [tokens]);
+
+	console.log(palettes, "Palettes fetched");
+
 	return (
 		<div className="w-full p-10">
 			<h1 className="text-primary text-[72px] my-8">Madison's Dashboard</h1>
-			
-			
-			<button onClick={async () => {
-  				const response = await fetch("https://du65t1mu0a.execute-api.us-east-2.amazonaws.com/production/palette-pal-image-CRUD", {
-					method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: tokens, // Add this line
-				},
-				});
-  const data = await response.json(); // if the response is in JSON format
-  console.log(data); // print the response data to the console
-}}>
-  Click me
-</button>
-
+			{/* <button onClick={getTest}>
+				Click me
+			</button> */}
 
 			{testInfo.length === 0 ? (
 				<div className="flex justify-center">
@@ -54,7 +66,8 @@ const Dashpane = () => {
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							className="w-24 h-24"
-							viewBox="0 0 20 20">
+							viewBox="0 0 20 20"
+						>
 							<path
 								fillRule="evenodd"
 								fill="#A0AEC0"
@@ -69,11 +82,14 @@ const Dashpane = () => {
 					</div>
 				</div>
 			) : (
-				testInfo.map((palette, id) => (
-					<div className="my-4" key={id}>
-						<PaletteCard paletteInfo={palette} />
-					</div>
-				))
+				// palettes.map((palette, id) => (
+				// 	<div className="my-4" key={id}>
+				// 		<PaletteCard paletteInfo={palette} />
+				// 	</div>
+				// ))
+				<>
+					<div>{palettes.userId}</div>
+				</>
 			)}
 		</div>
 	);
