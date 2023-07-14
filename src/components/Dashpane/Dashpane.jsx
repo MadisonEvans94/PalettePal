@@ -27,27 +27,23 @@ const Dashpane = () => {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
 
-				const responseBody = await response.json();
-				console.log(responseBody, "RESPONSE BODY"); // log responseBody
+				const data = await response.json();
 
-				if (responseBody.body) {
-					// only parse if body exists
-					const data = JSON.parse(responseBody.body);
-					setPalettes(data);
-				}
+				setPalettes(data);
+				console.log(palettes, "PALET");
 			} catch (error) {
 				console.error("Fetch palettes error:", error);
 			}
 		};
 
 		fetchPalettes();
-	}, []);
+	}, [palettes]);
 
 	return (
 		<div className="w-full p-10">
 			<h1 className="text-primary text-[72px] my-8">Madison's Dashboard</h1>
-
-			{!palettes ? (
+			{palettes && <PaletteCard palettes={palettes} />}
+			{/* {!palettes ? (
 				<div className="flex justify-center">
 					<div className="flex flex-col items-center p-4 text-center border-2 border-dashed rounded-lg border-shade w-96">
 						<svg
@@ -69,8 +65,8 @@ const Dashpane = () => {
 					</div>
 				</div>
 			) : (
-				<PaletteCard palettes={palettes} />
-			)}
+				
+			)} */}
 		</div>
 	);
 };
