@@ -1,6 +1,7 @@
 import React from "react";
 import PaletteCard from "../PaletteCard/PaletteCard";
-
+import { useContext } from "react";
+import { AccountContext } from "../Account";
 const testInfo = [
 	{
 		name: "Building Photo",
@@ -26,9 +27,27 @@ const testInfo = [
 ];
 
 const Dashpane = () => {
+	const {tokens} = useContext(AccountContext)
 	return (
 		<div className="w-full p-10">
 			<h1 className="text-primary text-[72px] my-8">Madison's Dashboard</h1>
+			
+			
+			<button onClick={async () => {
+  				const response = await fetch("https://du65t1mu0a.execute-api.us-east-2.amazonaws.com/production/palette-pal-image-CRUD", {
+					method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: tokens, // Add this line
+				},
+				});
+  const data = await response.json(); // if the response is in JSON format
+  console.log(data); // print the response data to the console
+}}>
+  Click me
+</button>
+
+
 			{testInfo.length === 0 ? (
 				<div className="flex justify-center">
 					<div className="flex flex-col items-center p-4 text-center border-2 border-dashed rounded-lg border-shade w-96">
