@@ -34,8 +34,9 @@ const Palette = ({ clusterQty }) => {
 				className="relative flex-none w-8 h-8 mx-2 my-1 border rounded-full cursor-pointer border-info group md:h-24 md:w-24 lg:h-24 lg:w-24 md:mx-2"
 				style={{
 					background: `${color}`,
-				}}>
-				<p className="absolute text-xs text-info transition-all duration-200 transform -translate-x-1/2 opacity-0 -z-10 left-1/2 group-hover:opacity-100 group-hover:-translate-y-[24px]">
+				}}
+			>
+				<p className="absolute text-xs text-primary transition-all duration-200 transform -translate-x-1/2 opacity-0 -z-10 left-1/2 group-hover:opacity-100 group-hover:-translate-y-[24px]">
 					{color}
 				</p>
 
@@ -48,7 +49,8 @@ const Palette = ({ clusterQty }) => {
 								transition: { type: "spring" },
 							}}
 							exit={{ opacity: 0 }}
-							className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-warning bg-info text-center p-2 rounded text-[8px] lg:text-[12px] w-full">
+							className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-primary bg-info text-center p-2 rounded text-[8px] lg:text-[12px] w-full"
+						>
 							Color copied to clipboard!
 						</motion.p>
 					)}

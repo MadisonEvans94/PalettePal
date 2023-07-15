@@ -3,13 +3,13 @@ import { useState } from "react";
 
 const PaletteCard = ({ palettes }) => {
 	const [kValue, setKValue] = useState(0);
-
+	console.log(palettes[0], "PPPP");
 	return (
 		<div className="flex flex-col md:flex-row shadow-lg mx-auto max-w-lg md:max-w-2xl bg-white rounded-lg">
 			<div className="flex items-center justify-center w-full px-6 py-8 md:w-1/2">
 				<img
 					className="w-full object-cover object-center rounded-lg shadow-md h-64"
-					src={palettes.imageUrl}
+					src={palettes[0].imageUrl}
 					alt="thumbnail"
 				/>
 			</div>
@@ -36,7 +36,7 @@ const PaletteCard = ({ palettes }) => {
 					</button>
 				</div>
 				<div className="flex flex-row flex-wrap mt-4 justify-center items-center">
-					{palettes.palette[kValue].map((color) => {
+					{palettes[0].palette[kValue].map((color) => {
 						return (
 							<div
 								className="w-6 h-6 rounded-full mx-1 mt-2"

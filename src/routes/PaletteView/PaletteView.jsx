@@ -6,6 +6,7 @@ import ColorCountSelector from "../../components/ColorCountSelector/ColorCountSe
 import { useImageProcessing } from "../../hooks/useImageProcessing";
 import PaletteViewLayout from "../../Layouts/PaletteViewLayout";
 import AppContext from "../../Contexts/AppContext";
+import InputButton from "../../components/Input/Input";
 
 const PaletteView = () => {
 	const { imgFile, pixelData } = useContext(AppContext);
@@ -31,6 +32,10 @@ const PaletteView = () => {
 			<button className="w-48 p-3 my-3 transition border rounded border-primary text-info hover:text-primary bg-primary hover:bg-white">
 				Save Palette
 			</button>
+			<InputButton
+				buttonText="Upload New Image"
+				styleProp="cursor-pointer w-48 p-3 my-3 transition border rounded border-primary text-info hover:text-primary bg-primary hover:bg-white"
+			/>
 		</PaletteViewLayout>
 	);
 };

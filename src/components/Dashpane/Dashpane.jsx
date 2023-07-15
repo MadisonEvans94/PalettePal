@@ -41,7 +41,6 @@ const Dashpane = () => {
 						headers: {
 							"Content-Type": "application/json",
 							userId: userData.username,
-							imageId: "456",
 							Authorization: tokens,
 						},
 					}
@@ -53,8 +52,8 @@ const Dashpane = () => {
 
 				const data = await response.json();
 
-				setPalettes(null);
-				console.log(palettes, "PALET");
+				setPalettes(data);
+				console.log(data, "RESP");
 			} catch (error) {
 				console.error("Fetch palettes error:", error);
 			}
