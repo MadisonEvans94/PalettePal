@@ -7,11 +7,42 @@ import { useImageProcessing } from "../../hooks/useImageProcessing";
 import PaletteViewLayout from "../../Layouts/PaletteViewLayout";
 import AppContext from "../../Contexts/AppContext";
 import InputButton from "../../components/Input/Input";
+import { AccountContext } from "../../components/Account";
 
 const PaletteView = () => {
 	const { imgFile, pixelData } = useContext(AppContext);
 	const { clusterQty, setClusterQty, centroidVals, pixelVals } =
 		useImageProcessing();
+	const { tokens, userData } = useContext(AccountContext);
+
+	async function savePalette(paletteData) {
+		console.log("saving palette...");
+		try {
+			const response = await fetch(
+				"https://du65t1mu0a.execute-api.us-east-2.amazonaws.com/production/palette-pal-image-CRUD",
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: tokens, // This is where your tokens go
+						userid: userData.username, // Pass the userId in headers (assuming you have it in userData)
+					},
+					body: JSON.stringify(paletteData), // Convert your palette data to a JSON string
+				}
+			);
+
+			// The response from the server is a promise. You need to handle this promise.
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			} else {
+				const jsonData = await response.json();
+				console.log(jsonData); // You can remove this line after testing.
+				return jsonData; // Returns the response data from the server.
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	}
 
 	return (
 		<PaletteViewLayout>
@@ -29,7 +60,37 @@ const PaletteView = () => {
 			<Palette clusterQty={clusterQty} />
 			<ClipboardCopyButton clusterQty={clusterQty} />
 
-			<button className="w-48 p-3 my-3 transition border rounded border-primary text-info hover:text-primary bg-primary hover:bg-white">
+			<button
+				onClick={() =>
+					savePalette({
+						palette: {
+							L: [
+								{ L: [{ S: "#486591" }] },
+								{ L: [{ S: "#4d88c3" }, { S: "#443f24" }] },
+								{ L: [{ S: "#4d88c3" }, { S: "#443f24" }, { S: "#443f24" }] },
+								{
+									L: [
+										{ S: "#4d88c3" },
+										{ S: "#443f24" },
+										{ S: "#443f24" },
+										{ S: "#443f24" },
+									],
+								},
+								{
+									L: [
+										{ S: "#4d88c3" },
+										{ S: "#443f24" },
+										{ S: "#443f24" },
+										{ S: "#443f24" },
+										{ S: "#443f24" },
+									],
+								},
+							],
+						},
+					})
+				}
+				className="w-48 p-3 my-3 transition border rounded border-primary text-info hover:text-primary bg-primary hover:bg-white"
+			>
 				Save Palette
 			</button>
 			<InputButton

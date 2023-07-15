@@ -40,7 +40,7 @@ const Dashpane = () => {
 						method: "GET",
 						headers: {
 							"Content-Type": "application/json",
-							userId: userData.username,
+							userid: userData.username,
 							Authorization: tokens,
 						},
 					}
