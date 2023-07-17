@@ -12,8 +12,10 @@ import { CentroidContext } from "../../Contexts/CentroidContext";
 
 const PaletteView = () => {
 	const { imgFile, pixelData, setIsLoading } = useContext(AppContext);
+	console.log(pixelData);
 	const { clusterQty, setClusterQty, centroidVals, pixelVals } =
 		useImageProcessing();
+
 	const { tokens, userData } = useContext(AccountContext);
 	const { centroidArray } = useContext(CentroidContext);
 	async function savePalette(imageData, paletteData) {
@@ -84,7 +86,7 @@ export default PaletteView;
 
 function PlotCanvas({ pixelVals, centroidVals, pixelData }) {
 	return (
-		<div className="text-shade h-[300px] flex flex-row items-center justify-center border lg:h-[400px] overflow-hidden rounded-lg w-full">
+		<div className="text-shade h-full flex flex-row items-center justify-center border lg:h-[400px] overflow-hidden rounded-lg w-full">
 			{pixelVals && centroidVals ? (
 				<CustomPlot
 					pixelData={pixelData}

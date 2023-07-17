@@ -20,7 +20,7 @@ const CustomPlot = ({
 		z: centroidZ,
 		marker: {
 			size: 12,
-			color: "#FFF",
+			color: "#000",
 		},
 		hovertemplate:
 			"R: %{x:.2f} G: %{y:.2f} B: %{z:.2f}<extra>Centroid Value</extra> ",
@@ -46,7 +46,8 @@ const CustomPlot = ({
 	return (
 		<div
 			className="relative flex flex-row p-auto w-full h-full"
-			style={{ width: "100%", height: "100%" }}>
+			style={{ width: "100%", height: "100%" }}
+		>
 			<Plot
 				data={[trace1, trace2]}
 				layout={{
@@ -55,15 +56,15 @@ const CustomPlot = ({
 					height: "100%",
 					margin: {
 						l: 0,
-						r: 300,
+						r: 100,
 						b: 0,
 						t: 0,
 						pad: 0,
 					},
-					paper_bgcolor: "#111111",
+					paper_bgcolor: "#FFF",
 					legend: {
 						x: 1,
-						y: -0.5,
+						y: -0.1,
 						xanchor: "right",
 						yanchor: "bottom",
 					},

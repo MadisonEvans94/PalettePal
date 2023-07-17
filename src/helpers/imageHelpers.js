@@ -162,8 +162,17 @@ export const processPixels = (data) => {
 	if (data.length < 1) {
 		return [];
 	}
-	const pixelDataShrink = downSample(data, 15);
-	const [xVal, yVal, zVal] = fillXYZ(pixelDataShrink);
+	const pixelDataShrink = downSample(data, 60); // downsample according to 4 color channels (r,g,b,a)
+	const xVal = [];
+	const yVal = [];
+	const zVal = [];
+	for (let i = 0; i < pixelDataShrink.length; i += 4) {
+		// iterate over data in steps of 4
+		xVal.push(pixelDataShrink[i]);
+		yVal.push(pixelDataShrink[i + 1]);
+		zVal.push(pixelDataShrink[i + 2]);
+		// We're skipping alpha value i+3 because typically in an RGB plot, we don't consider transparency
+	}
 	const rgb = formatRGB([xVal, yVal, zVal]);
 	console.log("processing");
 	return [rgb, xVal, yVal, zVal];
