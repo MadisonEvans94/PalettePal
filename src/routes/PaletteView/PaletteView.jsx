@@ -11,7 +11,7 @@ import { AccountContext } from "../../components/Account";
 import { CentroidContext } from "../../Contexts/CentroidContext";
 
 const PaletteView = () => {
-	const { imgFile, pixelData } = useContext(AppContext);
+	const { imgFile, pixelData, setIsLoading } = useContext(AppContext);
 	const { clusterQty, setClusterQty, centroidVals, pixelVals } =
 		useImageProcessing();
 	const { tokens, userData } = useContext(AccountContext);
@@ -20,6 +20,7 @@ const PaletteView = () => {
 		try {
 			console.log("encoded image from client...");
 			console.log(JSON.stringify({ image: imageData }));
+			setIsLoading(true);
 			const response = await fetch(
 				"https://du65t1mu0a.execute-api.us-east-2.amazonaws.com/production/palette-pal-image-CRUD",
 				{
@@ -36,12 +37,15 @@ const PaletteView = () => {
 				}
 			);
 			if (!response.ok) {
+				setIsLoading(false);
 				throw new Error(`HTTP error! status: ${response.status}`);
 			} else {
+				setIsLoading(false);
 				const jsonData = await response.json();
 				return jsonData; // Returns the response data from the server.
 			}
 		} catch (err) {
+			setIsLoading(false);
 			console.log(err);
 		}
 	}

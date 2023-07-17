@@ -1,25 +1,35 @@
 import React, { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard"; // Assuming you're using react-copy-to-clipboard
-
+import { AiOutlineCloseCircle as Delete } from "react-icons/ai";
+import { AiOutlinePlus as Plus } from "react-icons/ai";
+import { AiOutlineMinus as Minus } from "react-icons/ai";
 const PaletteCard = ({ palette }) => {
 	const [kValue, setKValue] = useState(0);
 	const copyToClipboard = () => {
 		// your implementation to copy palette.palette[kValue] to clipboard
 	};
+	const deletePalette = () => {
+		console.log("delete functionality goes here");
+	};
 
 	return (
-		<div className="my-4 flex flex-col md:flex-row shadow-lg mx-auto md:max-w-2xl bg-white rounded-lg">
-			<div className="grid grid-cols-2 grid-rows-4 gap-0 w-full">
-				<PaletteCardHeader />
-				<PaletteCardImg palette={palette} />
-				<PaletteCardColors palette={palette} kValue={kValue} />
-				<PaletteCardCounter kValue={kValue} setKValue={setKValue} />
-				<PaletteCardCopySection
-					palette={palette}
-					kValue={kValue}
-					copyToClipboard={copyToClipboard}
-				/>
-			</div>
+		<div className="border relative my-16 grid grid-cols-2 grid-rows-4 gap-0 md:flex-row shadow-lg mx-auto md:max-w-2xl bg-white rounded-lg">
+			<button
+				className="absolute cursor-pointer text-primary z-50 right-2 top-2"
+				onClick={deletePalette}
+			>
+				<Delete size="1.5em" />
+			</button>
+
+			<PaletteCardHeader />
+			<PaletteCardImg palette={palette} />
+			<PaletteCardColors palette={palette} kValue={kValue} />
+			<PaletteCardCounter kValue={kValue} setKValue={setKValue} />
+			<PaletteCardCopySection
+				palette={palette}
+				kValue={kValue}
+				copyToClipboard={copyToClipboard}
+			/>
 		</div>
 	);
 };
@@ -32,7 +42,7 @@ function PaletteCardCopySection(palette, kValue, copyToClipboard) {
 			<CopyToClipboard text={palette.palette[kValue]}>
 				<button
 					onClick={copyToClipboard}
-					className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+					className="text-info bg-primary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 				>
 					Copy to clipboard
 				</button>
@@ -49,20 +59,20 @@ function PaletteCardCounter({ kValue, setKValue }) {
 					onClick={() => {
 						if (kValue > 0) setKValue(kValue - 1);
 					}}
-					className="px-3 py-2 rounded-l-lg bg-gray-200 text-gray-700 font-semibold focus:outline-none"
+					className="px-3 py-2 rounded-l-lg text-primary font-semibold focus:outline-none"
 				>
-					-
+					<Minus />
 				</button>
-				<span className="px-3 py-2 bg-gray-200 text-gray-700 font-semibold">
+				<span className="px-3 text-xl py-2 text-primary font-semibold">
 					{kValue + 1}
 				</span>
 				<button
 					onClick={() => {
 						if (kValue < 4) setKValue(kValue + 1);
 					}}
-					className="px-3 py-2 rounded-r-lg bg-gray-200 text-gray-700 font-semibold focus:outline-none"
+					className="px-3 py-2 rounded-r-lg text-primary font-semibold focus:outline-none"
 				>
-					+
+					<Plus />
 				</button>
 			</div>
 		</div>
@@ -102,7 +112,7 @@ function PaletteCardImg({ palette }) {
 function PaletteCardHeader() {
 	return (
 		<div className="col-span-2 row-span-1">
-			<h1 className="text-primary h-full text-4xl font-bold p-4 text-center md:text-left">
+			<h1 className="text-primary h-full text-4xl font-bold p-4 text-center">
 				Image Title
 			</h1>
 		</div>
