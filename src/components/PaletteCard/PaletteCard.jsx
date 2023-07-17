@@ -13,7 +13,7 @@ const PaletteCard = ({ palette }) => {
 	};
 
 	return (
-		<div className="border relative my-16 grid grid-cols-2 grid-rows-4 gap-0 md:flex-row shadow-lg mx-auto md:max-w-2xl bg-white rounded-lg">
+		<div className="border relative my-16 grid grid-cols-2 grid-rows-4 gap-0 md:flex-row mx-auto md:max-w-2xl bg-white rounded-lg">
 			<button
 				className="absolute cursor-pointer text-primary z-50 right-2 top-2"
 				onClick={deletePalette}
@@ -101,7 +101,7 @@ function PaletteCardImg({ palette }) {
 	return (
 		<div className="row-start-2 row-span-4 col-start-1 col-span-1">
 			<img
-				className="w-full object-cover object-center shadow-md h-64"
+				className="w-full object-cover object-center h-64"
 				src={palette.imageUrl}
 				alt="thumbnail"
 			/>
