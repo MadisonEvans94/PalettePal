@@ -19,8 +19,12 @@ const useFileHandler = () => {
 	const navigate = useNavigate();
 
 	const handleFileChange = async (e) => {
-		setIsLoading(true);
 		const file = e.target.files[0];
+		if (!file) {
+			// No file was selected, just return
+			return;
+		}
+		setIsLoading(true);
 		const reader = new FileReader();
 		reader.onerror = (error) => console.error("Error reading the file:", error);
 		reader.onloadend = async () => {
