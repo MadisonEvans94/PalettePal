@@ -8,35 +8,37 @@ import PaletteViewLayout from "../../Layouts/PaletteViewLayout";
 import AppContext from "../../Contexts/AppContext";
 import InputButton from "../../components/Input/Input";
 import { AccountContext } from "../../components/Account";
+import { CentroidContext } from "../../Contexts/CentroidContext";
 
 const PaletteView = () => {
 	const { imgFile, pixelData } = useContext(AppContext);
 	const { clusterQty, setClusterQty, centroidVals, pixelVals } =
 		useImageProcessing();
 	const { tokens, userData } = useContext(AccountContext);
-
-	async function savePalette(paletteData) {
-		console.log("saving palette...");
+	const { centroidArray } = useContext(CentroidContext);
+	async function savePalette(imageData, paletteData) {
 		try {
+			console.log("encoded image from client...");
+			console.log(JSON.stringify({ image: imageData }));
 			const response = await fetch(
 				"https://du65t1mu0a.execute-api.us-east-2.amazonaws.com/production/palette-pal-image-CRUD",
 				{
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
-						Authorization: tokens, // This is where your tokens go
-						userid: userData.username, // Pass the userId in headers (assuming you have it in userData)
+						Authorization: tokens,
+						userid: userData.username,
 					},
-					body: JSON.stringify(paletteData), // Convert your palette data to a JSON string
+					body: JSON.stringify({
+						image: imageData,
+						palette: paletteData,
+					}),
 				}
 			);
-
-			// The response from the server is a promise. You need to handle this promise.
 			if (!response.ok) {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			} else {
 				const jsonData = await response.json();
-				console.log(jsonData); // You can remove this line after testing.
 				return jsonData; // Returns the response data from the server.
 			}
 		} catch (err) {
@@ -61,34 +63,7 @@ const PaletteView = () => {
 			<ClipboardCopyButton clusterQty={clusterQty} />
 
 			<button
-				onClick={() =>
-					savePalette({
-						palette: {
-							L: [
-								{ L: [{ S: "#486591" }] },
-								{ L: [{ S: "#4d88c3" }, { S: "#443f24" }] },
-								{ L: [{ S: "#4d88c3" }, { S: "#443f24" }, { S: "#443f24" }] },
-								{
-									L: [
-										{ S: "#4d88c3" },
-										{ S: "#443f24" },
-										{ S: "#443f24" },
-										{ S: "#443f24" },
-									],
-								},
-								{
-									L: [
-										{ S: "#4d88c3" },
-										{ S: "#443f24" },
-										{ S: "#443f24" },
-										{ S: "#443f24" },
-										{ S: "#443f24" },
-									],
-								},
-							],
-						},
-					})
-				}
+				onClick={() => savePalette(imgFile.src, centroidArray)}
 				className="w-48 p-3 my-3 transition border rounded border-primary text-info hover:text-primary bg-primary hover:bg-white"
 			>
 				Save Palette
@@ -125,7 +100,7 @@ function PlotCanvas({ pixelVals, centroidVals, pixelData }) {
 		</div>
 	);
 }
-// bg-[#0f0f0f]
+
 function ImageCanvas({ imgFile }) {
 	return (
 		<div className="text-shade md:h-[300px] lg:h-[400px] w-full flex flex-row items-center border rounded-lg overflow-hidden">

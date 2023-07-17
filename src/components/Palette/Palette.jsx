@@ -4,9 +4,7 @@ import { CentroidContext } from "../../Contexts/CentroidContext";
 import { motion, AnimatePresence } from "framer-motion";
 const Palette = ({ clusterQty }) => {
 	const { centroidArray } = useContext(CentroidContext);
-	console.log(centroidArray, "CENTROID ARRAY");
 	const [copiedColor, setCopiedColor] = useState(null);
-
 	const copyToClipboard = (color) => {
 		navigator.clipboard.writeText(color);
 		setCopiedColor(color);

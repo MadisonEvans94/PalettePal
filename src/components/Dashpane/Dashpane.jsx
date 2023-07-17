@@ -30,7 +30,6 @@ const EmptyPaletteState = () => {
 const Dashpane = () => {
 	const { tokens, userData } = useContext(AccountContext);
 	const [palettes, setPalettes] = useState(null);
-
 	useEffect(() => {
 		const fetchPalettes = async () => {
 			try {
@@ -45,27 +44,28 @@ const Dashpane = () => {
 						},
 					}
 				);
-
 				if (!response.ok) {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
-
 				const data = await response.json();
-
 				setPalettes(data);
-				console.log(data, "RESP");
+				console.log(palettes);
 			} catch (error) {
 				console.error("Fetch palettes error:", error);
 			}
 		};
-
 		fetchPalettes();
 	}, []);
-
 	return (
 		<div className="w-full p-10">
 			<h1 className="text-primary text-[72px] my-8">Madison's Dashboard</h1>
-			{palettes ? <PaletteCard palettes={palettes} /> : <EmptyPaletteState />}
+			{palettes ? (
+				palettes.map((palette, id) => {
+					return <PaletteCard palette={palette} key={id} />;
+				})
+			) : (
+				<EmptyPaletteState />
+			)}
 		</div>
 	);
 };
