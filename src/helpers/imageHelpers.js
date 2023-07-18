@@ -31,10 +31,19 @@ export const drawImageOnCanvas = (img, canvas) => {
 	canvas.height = img.height * scale;
 	// Drawing the image on the canvas
 	ctx.drawImage(img, 0, 0, img.width * scale, img.height * scale);
-	return ctx.getImageData(0, 0, canvas.width, canvas.height, {
+	// Get image data
+	let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height, {
 		willReadFrequently: true,
 	}).data;
+
+	// Remove alpha values
+	let rgbData = [];
+	for (let i = 0; i < imageData.length; i += 3) {
+		rgbData.push(imageData[i], imageData[i + 1], imageData[i + 2]);
+	}
+	return rgbData;
 };
+
 export const rgbToHex = (rgbStr) => {
 	if (!rgbStr) {
 		return "";
@@ -75,81 +84,57 @@ export const hexArrayToRGBArray = (hexArray) => {
 	}
 
 	if (!Array.isArray(hexArray)) return [];
-
 	const rgbArray = hexArray.map((hex) => hexToRGB(hex));
-
 	// Split the RGB arrays into separate arrays for R, G, B
 	const rValues = rgbArray.map((color) => color[0]);
 	const gValues = rgbArray.map((color) => color[1]);
 	const bValues = rgbArray.map((color) => color[2]);
-
 	return [rValues, gValues, bValues];
 };
 
-// Pixel Manipulation Functions
-
-/**
- * Transposes a given matrix
- *
- * @param {Array<Array<number>>} matrix - 2D array to be transposed
- * @returns {Array<Array<number>>} - Transposed matrix
- */
 export const transpose = (matrix) => {
 	const transposedMatrix = [];
 	const rows = matrix.length;
 	const cols = matrix[0].length;
-
 	for (let i = 0; i < cols; i++) {
 		transposedMatrix[i] = [];
 		for (let j = 0; j < rows; j++) {
 			transposedMatrix[i][j] = matrix[j][i];
 		}
 	}
-
 	return transposedMatrix;
 };
 
-/**
- * Converts pixel data into arrays for x, y, and z values
- *
- * @param {Array<Array<number>>} pixelArray - Array of arrays of rgb data
- * @returns {Array<Array<number>>} - Array of arrays containing x, y, and z values
- */
-export const fillXYZ = (pixelArray) => {
-	const xVal = [];
-	const yVal = [];
-	const zVal = [];
+function constructRGBChannels(arr) {
+	// Create arrays for each channel
+	let r = [],
+		g = [],
+		b = [];
+	// Iterate over array, skipping every 4th element
+	for (let i = 0; i < arr.length; i += 4) {
+		r.push(arr[i]);
+		g.push(arr[i + 1]);
+		b.push(arr[i + 2]);
+	}
+	// Return an array containing the individual channel arrays
+	return [r, g, b];
+}
 
-	pixelArray.forEach((pixel) => {
-		xVal.push(pixel[0]);
-		yVal.push(pixel[1]);
-		zVal.push(pixel[2]);
-	});
+export function formatBGR(channels) {
+	let formatted = [];
 
-	return [xVal, yVal, zVal];
-};
+	// Iterate over the length of the subarrays (assuming all have same length)
+	for (let i = 0; i < channels[0].length; i++) {
+		// Construct the BGR string for each pixel and push it to the output array
+		formatted.push(
+			`rgb(${channels[0][i]}, ${channels[1][i]}, ${channels[2][i]})`
+		);
+	}
 
-/**
- * Converts RGB data into CSS-style color strings
- *
- * @param {Array<Array<number>>} rgb - Array of RGB values
- * @returns {Array<string>} - Array of CSS-style color strings
- */
-export const formatRGB = (rgb) => {
-	const transposed = transpose(rgb);
-	return transposed.map(
-		(point) => `rgb(${point[0]}, ${point[1]}, ${point[2]})`
-	);
-};
+	return formatted;
+}
 
-/**
- * Down-samples an array by keeping every nth value
- *
- * @param {Array<any>} arr - Array to be down-sampled
- * @param {number} factor - Factor by which to down-sample the array (i.e., keep every nth value)
- * @returns {Array<any>} - Down-sampled array
- */
-export const downSample = (arr, factor) => {
+export function downSample(arr, factor) {
 	const newArray = [];
 	for (let i = 0; i < arr.length; i++) {
 		if (i % factor === 0) {
@@ -157,23 +142,19 @@ export const downSample = (arr, factor) => {
 		}
 	}
 	return newArray;
-};
-export const processPixels = (data) => {
-	if (data.length < 1) {
+}
+
+export const processPixels = (pixelData) => {
+	if (pixelData.length < 1) {
 		return [];
 	}
-	const pixelDataShrink = downSample(data, 60); // downsample according to 4 color channels (r,g,b,a)
-	const xVal = [];
-	const yVal = [];
-	const zVal = [];
-	for (let i = 0; i < pixelDataShrink.length; i += 4) {
-		// iterate over data in steps of 4
-		xVal.push(pixelDataShrink[i]);
-		yVal.push(pixelDataShrink[i + 1]);
-		zVal.push(pixelDataShrink[i + 2]);
-		// We're skipping alpha value i+3 because typically in an RGB plot, we don't consider transparency
-	}
-	const rgb = formatRGB([xVal, yVal, zVal]);
-	console.log("processing");
+	console.log(pixelData, "processPixels");
+	// const pixelTransposed = transpose(pixelData);
+	// const pixelDataShrink = downSample(pixelData, 1);
+	const [xVal, yVal, zVal] = constructRGBChannels(pixelData);
+	console.log(xVal, "xVal");
+	const rgb = formatBGR([xVal, yVal, zVal]);
+	console.log(rgb, "RGB FORMATTED");
+
 	return [rgb, xVal, yVal, zVal];
 };

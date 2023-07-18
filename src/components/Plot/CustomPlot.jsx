@@ -27,6 +27,7 @@ const CustomPlot = ({
 	};
 
 	// Define scatter trace for pixels
+
 	const trace2 = {
 		type: "scatter3d",
 		mode: "markers",

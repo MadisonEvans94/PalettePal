@@ -49,6 +49,12 @@ const useFileHandler = () => {
 				canvas.height = 400;
 				const pixelArray = drawImageOnCanvas(img, canvas);
 				setPixelData(pixelArray);
+				console.log(pixelArray, "PIXEL ARRAY");
+				// const pixelData = [
+				// 	255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255,
+				// 	0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255,
+				// ];
+				setPixelData(pixelArray);
 				setImgFile(img);
 			});
 		};
