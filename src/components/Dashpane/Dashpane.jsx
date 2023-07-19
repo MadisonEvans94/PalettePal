@@ -69,7 +69,14 @@ const Dashpane = () => {
 			<h1 className="text-primary text-[72px] my-8">Your Saved Palettes</h1>
 			{palettes ? (
 				palettes.map((palette, id) => {
-					return <PaletteCard palette={palette} key={id} />;
+					return (
+						<PaletteCard
+							palette={palette}
+							userData={userData}
+							tokens={tokens}
+							key={id}
+						/>
+					);
 				})
 			) : (
 				<EmptyPaletteState />

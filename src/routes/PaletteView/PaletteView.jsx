@@ -20,8 +20,6 @@ const PaletteView = () => {
 	const { centroidArray } = useContext(CentroidContext);
 	async function savePalette(imageData, paletteData) {
 		try {
-			console.log("encoded image from client...");
-			console.log(JSON.stringify({ image: imageData }));
 			setIsLoading(true);
 			const response = await fetch(
 				"https://du65t1mu0a.execute-api.us-east-2.amazonaws.com/production/palette-pal-image-CRUD",

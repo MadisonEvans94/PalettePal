@@ -3,13 +3,30 @@ import { CopyToClipboard } from "react-copy-to-clipboard"; // Assuming you're us
 import { AiOutlineCloseCircle as Delete } from "react-icons/ai";
 import { AiOutlinePlus as Plus } from "react-icons/ai";
 import { AiOutlineMinus as Minus } from "react-icons/ai";
-const PaletteCard = ({ palette }) => {
+const PaletteCard = ({ palette, userData, tokens }) => {
 	const [kValue, setKValue] = useState(0);
 	const copyToClipboard = () => {
 		// your implementation to copy palette.palette[kValue] to clipboard
 	};
-	const deletePalette = () => {
-		console.log("delete functionality goes here");
+	const deletePalette = async () => {
+		const deleteUrl = `https://du65t1mu0a.execute-api.us-east-2.amazonaws.com/production/palette-pal-image-CRUD/${palette.imageId}`;
+		try {
+			const response = await fetch(deleteUrl, {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: tokens,
+					userid: userData.username,
+				},
+			});
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			} else {
+				console.log("Delete succeeded");
+			}
+		} catch (err) {
+			console.error("Failed to delete item", err);
+		}
 	};
 
 	return (
@@ -21,7 +38,6 @@ const PaletteCard = ({ palette }) => {
 				<Delete size="1.5em" />
 			</button>
 
-			<PaletteCardHeader />
 			<PaletteCardImg palette={palette} />
 			<PaletteCardColors palette={palette} kValue={kValue} />
 			<PaletteCardCounter kValue={kValue} setKValue={setKValue} />
@@ -81,7 +97,7 @@ function PaletteCardCounter({ kValue, setKValue }) {
 
 function PaletteCardColors({ palette, kValue }) {
 	return (
-		<div className="flex flex-row items-center justify-center">
+		<div className="row-start-1 row-span-2 flex flex-row items-center justify-center">
 			<div className="flex flex-row flex-wrap justify-center items-center">
 				{palette.palette[kValue].map((color, id) => {
 					return (
@@ -99,7 +115,7 @@ function PaletteCardColors({ palette, kValue }) {
 
 function PaletteCardImg({ palette }) {
 	return (
-		<div className="row-start-2 row-span-4 col-start-1 col-span-1">
+		<div className="row-start-1 row-span-4 col-start-1 col-span-1">
 			<img
 				className="w-full object-cover object-center h-64"
 				src={palette.imageUrl}
@@ -109,12 +125,12 @@ function PaletteCardImg({ palette }) {
 	);
 }
 
-function PaletteCardHeader() {
-	return (
-		<div className="col-span-2 row-span-1">
-			<h1 className="text-primary h-full text-4xl font-bold p-4 text-center">
-				{/* add title here */}
-			</h1>
-		</div>
-	);
-}
+// function PaletteCardHeader() {
+// 	return (
+// 		<div className="col-span-2 row-span-1">
+// 			<h1 className="text-primary h-full text-4xl font-bold p-4 text-center">
+// 				{/* add title here */}
+// 			</h1>
+// 		</div>
+// 	);
+// }
