@@ -29,7 +29,7 @@ const Palette = ({ clusterQty }) => {
 				whileTap={{ scale: 0.9, transition: { type: "spring" } }}
 				key={index}
 				onClick={() => copyToClipboard(color)}
-				className="relative flex-none w-8 h-8 mx-2 my-1 border rounded-full cursor-pointer border-info group md:h-24 md:w-24 lg:h-24 lg:w-24 md:mx-2"
+				className="border relative flex-none w-8 h-8 mx-2 my-1 border rounded-full cursor-pointer border-info group md:h-24 md:w-24 lg:h-24 lg:w-24 md:mx-2"
 				style={{
 					background: `${color}`,
 				}}
@@ -47,9 +47,9 @@ const Palette = ({ clusterQty }) => {
 								transition: { type: "spring" },
 							}}
 							exit={{ opacity: 0 }}
-							className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-primary bg-info text-center p-2 rounded text-[8px] lg:text-[12px] w-full"
+							className="absolute border border-primary top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-primary bg-info text-center p-2 rounded text-[8px] lg:text-[12px] w-full"
 						>
-							Color copied to clipboard!
+							color copied to clipboard!
 						</motion.p>
 					)}
 				</AnimatePresence>
@@ -58,7 +58,7 @@ const Palette = ({ clusterQty }) => {
 	}
 	return (
 		<>
-			<div className="flex flex-row justify-center w-full overflow-x-auto bg-transparent h-fit bg-info">
+			<div className="border pt-4 flex flex-row justify-center w-full overflow-x-auto bg-transparent h-fit bg-info">
 				{colorList}
 			</div>
 		</>

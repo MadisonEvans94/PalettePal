@@ -5,7 +5,8 @@ import { CentroidContext } from "../../Contexts/CentroidContext";
 function ClipboardCopyButton({ clusterQty }) {
 	const { centroidArray } = useContext(CentroidContext);
 	const handleCopyClick = () => {
-		navigator.clipboard.writeText(centroidArray.colors[clusterQty - 1]);
+		console.log("array to copy", centroidArray);
+		navigator.clipboard.writeText(centroidArray[clusterQty - 1]);
 	};
 
 	return (
