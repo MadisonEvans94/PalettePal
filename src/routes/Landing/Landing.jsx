@@ -1,6 +1,6 @@
 import React from "react"; // Import useContext
 import Input from "../../components/Input/Input";
-import ppBackground from "../../assets/pp.jpeg";
+import ppBackground from "../../assets/PP-background.jpeg";
 
 const Landing = () => {
 	return (
