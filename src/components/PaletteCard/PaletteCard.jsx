@@ -113,7 +113,7 @@ function PaletteCardHeader() {
 	return (
 		<div className="col-span-2 row-span-1">
 			<h1 className="text-primary h-full text-4xl font-bold p-4 text-center">
-				Image Title
+				{/* add title here */}
 			</h1>
 		</div>
 	);
