@@ -8,6 +8,24 @@ const Account = (props) => {
 	const [userData, setUserData] = useState(null);
 	const [tokens, setTokens] = useState(null); // new state for JWT tokens
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+	const getSession = async () => {
+		return await new Promise((resolve, reject) => {
+			const user = UserPool.getCurrentUser();
+			if (user) {
+				user.getSession((err, session) => {
+					if (err) {
+						console.error(err);
+						reject();
+					} else {
+						resolve(session);
+					}
+				});
+			} else {
+			}
+		});
+	};
+
 	useEffect(() => {
 		getSession().then((session) => {
 			if (session) {
@@ -24,23 +42,7 @@ const Account = (props) => {
 			}
 		});
 	}, []);
-	const getSession = async () => {
-		return await new Promise((resolve, reject) => {
-			const user = UserPool.getCurrentUser();
 
-			if (user) {
-				user.getSession((err, session) => {
-					if (err) {
-						console.error(err);
-						reject();
-					} else {
-						resolve(session);
-					}
-				});
-			} else {
-			}
-		});
-	};
 	const authenticate = async (Username, Password) => {
 		return await new Promise((resolve, reject) => {
 			const user = new CognitoUser({

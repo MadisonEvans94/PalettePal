@@ -14,7 +14,7 @@ const Login = () => {
 		authenticate(email, password)
 			.then((data) => {
 				console.log("logged in!");
-				navigate("/dashboard");
+				navigate("/palette-view");
 			})
 			.catch((error) => {
 				console.error(error);

@@ -28,34 +28,42 @@ const EmptyPaletteState = () => {
 	);
 };
 const Dashpane = () => {
-	const { tokens, userData } = useContext(AccountContext);
+	const { tokens, userData, getSession } = useContext(AccountContext);
 	const [palettes, setPalettes] = useState(null);
-	useEffect(() => {
-		const fetchPalettes = async () => {
-			try {
-				const response = await fetch(
-					`https://du65t1mu0a.execute-api.us-east-2.amazonaws.com/production/palette-pal-image-CRUD`,
-					{
-						method: "GET",
-						headers: {
-							"Content-Type": "application/json",
-							userid: userData.username,
-							Authorization: tokens,
-						},
-					}
-				);
-				if (!response.ok) {
-					throw new Error(`HTTP error! status: ${response.status}`);
+
+	const fetchPalettes = async (userData, tokens) => {
+		try {
+			getSession();
+			const response = await fetch(
+				`https://du65t1mu0a.execute-api.us-east-2.amazonaws.com/production/palette-pal-image-CRUD`,
+				{
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						userid: userData.username,
+						Authorization: tokens,
+					},
 				}
-				const data = await response.json();
-				setPalettes(data);
-				console.log(palettes);
-			} catch (error) {
-				console.error("Fetch palettes error:", error);
+			);
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
 			}
-		};
-		fetchPalettes();
-	}, []);
+			const data = await response.json();
+			console.log(data, "RETURN FROM fetchPalettes...");
+			setPalettes(data);
+		} catch (error) {
+			console.error("Fetch palettes error:", error);
+		}
+	};
+
+	useEffect(() => {
+		if (tokens && userData) {
+			fetchPalettes(userData, tokens);
+		} else {
+			console.log("Palettes never fetched ");
+		}
+	}, [tokens, userData]);
+
 	return (
 		<div className="w-full p-10">
 			<h1 className="text-primary text-[72px] my-8">Your Saved Palettes</h1>
