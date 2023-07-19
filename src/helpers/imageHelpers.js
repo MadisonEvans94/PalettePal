@@ -111,7 +111,7 @@ function constructRGBChannels(arr) {
 		g = [],
 		b = [];
 	// Iterate over array, skipping every 4th element
-	for (let i = 0; i < arr.length; i += 4) {
+	for (let i = 0; i < arr.length; i += 32) {
 		r.push(arr[i]);
 		g.push(arr[i + 1]);
 		b.push(arr[i + 2]);
@@ -136,25 +136,22 @@ export function formatBGR(channels) {
 
 export function downSample(arr, factor) {
 	const newArray = [];
-	for (let i = 0; i < arr.length; i++) {
-		if (i % factor === 0) {
-			newArray.push(arr[i]);
-		}
+	for (let i = 0; i < arr.length; i += factor) {
+		let chunk = arr.slice(i, i + factor);
+		let avgChunkValue = chunk.reduce((a, b) => a + b) / chunk.length;
+		newArray.push(avgChunkValue);
 	}
 	return newArray;
 }
 
-export const processPixels = (pixelData) => {
+export const processPixels = (pixelData, downSampleFactor = 1) => {
 	if (pixelData.length < 1) {
 		return [];
 	}
-	console.log(pixelData, "processPixels");
-	// const pixelTransposed = transpose(pixelData);
-	// const pixelDataShrink = downSample(pixelData, 1);
+
 	const [xVal, yVal, zVal] = constructRGBChannels(pixelData);
-	console.log(xVal, "xVal");
+
 	const rgb = formatBGR([xVal, yVal, zVal]);
-	console.log(rgb, "RGB FORMATTED");
 
 	return [rgb, xVal, yVal, zVal];
 };

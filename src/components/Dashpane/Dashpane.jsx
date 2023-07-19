@@ -58,7 +58,7 @@ const Dashpane = () => {
 	}, []);
 	return (
 		<div className="w-full p-10">
-			<h1 className="text-primary text-[72px] my-8">Madison's Dashboard</h1>
+			<h1 className="text-primary text-[72px] my-8">Your Saved Palettes</h1>
 			{palettes ? (
 				palettes.map((palette, id) => {
 					return <PaletteCard palette={palette} key={id} />;

@@ -19,7 +19,7 @@ import Navigation from "./components/Navigation/Navigation";
 import LoadingModal from "./components/LoadingModal";
 import Signup from "./components/Signup/Signup";
 import Login from "./components/Login/Login";
-import { Account} from "./components/Account";
+import { Account } from "./components/Account";
 
 const Layout = () => {
 	return (
@@ -32,8 +32,6 @@ const Layout = () => {
 		</div>
 	);
 };
-
-
 
 function App() {
 	const [pixelData, setPixelData] = useState([]);
@@ -53,14 +51,15 @@ function App() {
 							setPixelData,
 							imgFile,
 							setImgFile,
-						}}>
+						}}
+					>
 						{isLoading && <LoadingModal />}
 						<Account>
 							<Routes>
-								<Route path="login" element={<Login />} />
 								<Route path="/" element={<Layout />}>
 									<Route path="/" element={<Landing />} />
 									<Route path="palette-view" element={<PaletteView />} />
+									<Route path="login" element={<Login />} />
 									<Route path="signup" element={<Signup />} />
 
 									<Route
@@ -71,7 +70,6 @@ function App() {
 											</PrivateRoute>
 										}
 									/>
-									
 								</Route>
 							</Routes>
 						</Account>

@@ -1,22 +1,44 @@
 import React, { useState } from "react";
 import { CognitoUser } from "amazon-cognito-identity-js";
 import UserPool from "../../UserPool";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [stage, setStage] = useState("signUp"); // initial stage is 'signUp'
-	const [code, setCode] = useState(""); // for the confirmation code
+	const [stage, setStage] = useState("signUp");
+	const [code, setCode] = useState("");
+	const navigate = useNavigate();
+
+	const [passwordError, setPasswordError] = useState(false); // for password requirements
 
 	const onSubmit = (event) => {
 		event.preventDefault();
+
+		const lowerCaseReg = new RegExp("(?=.*[a-z])");
+		const upperCaseReg = new RegExp("(?=.*[A-Z])");
+		const numericReg = new RegExp("(?=.*[0-9])");
+		const specialCharReg = new RegExp("(?=.*[!@#$%^&*])");
+
+		if (
+			!lowerCaseReg.test(password) ||
+			!upperCaseReg.test(password) ||
+			!numericReg.test(password) ||
+			!specialCharReg.test(password)
+		) {
+			setPasswordError(true);
+			return;
+		} else {
+			setPasswordError(false);
+		}
+
 		UserPool.signUp(email, password, [], null, (err, data) => {
 			if (err) {
 				console.error(err);
 				return;
 			}
 			console.log(data);
-			setStage("confirm"); // set stage to 'confirm' after signup
+			setStage("confirm");
 		});
 	};
 
@@ -35,85 +57,114 @@ const Signup = () => {
 			}
 			console.log("call result: " + result);
 			// TODO Here you can redirect the user to login
+			navigate("/login");
 		});
 	};
 
-	//TODO You can implement a switch statement or if-else chains to conditionally render based on stage. MAKE STAGE A STATE OF THE USER BASED ON USERCONFIRMED ATTR
-	if (stage === "signUp") {
-		return (
-			<div className="pt-32 bg-gray-400">
+	return (
+		<div className="flex items-center justify-center min-h-screen px-4 py-12 sm:px-6 lg:px-8">
+			<div className="w-full max-w-md p-10 space-y-8 bg-white rounded-lg shadow-md">
+				<div>
+					<h2 className="mt-6 text-3xl font-extrabold text-center text-gray-900">
+						{stage === "signUp"
+							? "Create your account"
+							: "Confirm your account"}
+					</h2>
+				</div>
 				<form
-					onSubmit={onSubmit}
-					className="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
-					<div className="mb-4">
-						<label
-							className="block mb-2 text-sm font-bold text-gray-700"
-							htmlFor="email">
-							Email
-						</label>
-						<input
-							className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-							value={email}
-							onChange={(event) => setEmail(event.target.value)}
-							type="text"
-							placeholder="Email"
-						/>
+					className="mt-8 space-y-6"
+					onSubmit={stage === "signUp" ? onSubmit : onConfirm}
+				>
+					<input type="hidden" name="remember" value="true" />
+					<div className="-space-y-px rounded-md shadow-sm">
+						{stage === "signUp" && (
+							<>
+								<div>
+									<label htmlFor="email-address" className="sr-only">
+										Email address
+									</label>
+									<input
+										id="email-address"
+										name="email"
+										type="email"
+										autoComplete="email"
+										required
+										className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+										placeholder="Email address"
+										value={email}
+										onChange={(event) => setEmail(event.target.value)}
+									/>
+								</div>
+								<div>
+									<label htmlFor="password" className="sr-only">
+										Password
+									</label>
+									<input
+										id="password"
+										name="password"
+										type="password"
+										autoComplete="current-password"
+										required
+										className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+										placeholder="Password"
+										value={password}
+										onChange={(event) => setPassword(event.target.value)}
+									/>
+									{passwordError && (
+										<div className="mt-2 text-red-600">
+											Password must contain at least 1 lowercase letter, 1
+											uppercase letter, 1 number, and 1 special character.
+										</div>
+									)}
+								</div>
+							</>
+						)}
+						{stage === "confirm" && (
+							<div>
+								<label htmlFor="confirmationCode" className="sr-only">
+									Confirmation Code
+								</label>
+								<input
+									id="confirmationCode"
+									name="confirmationCode"
+									type="text"
+									required
+									className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+									placeholder="Confirmation Code"
+									value={code}
+									onChange={(event) => setCode(event.target.value)}
+								/>
+							</div>
+						)}
 					</div>
-					<div className="mb-6">
-						<label
-							className="block mb-2 text-sm font-bold text-gray-700"
-							htmlFor="password">
-							Password
-						</label>
-						<input
-							className="w-full px-3 py-2 mb-3 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-							value={password}
-							onChange={(event) => setPassword(event.target.value)}
-							type="password"
-							placeholder="******************"
-						/>
-					</div>
-					<div className="flex items-center justify-between">
+					<div>
 						<button
-							className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-							type="submit">
-							Sign Up
+							type="submit"
+							className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-primary border border-transparent rounded-md group hover:bg-warning focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+						>
+							<span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
+							{stage === "signUp" ? "Sign Up" : "Confirm"}
 						</button>
 					</div>
+					<p>
+						{stage === "signUp"
+							? "Have an account? Login "
+							: "Didn't receive a code? "}
+						<span
+							className="cursor-pointer"
+							onClick={() =>
+								stage === "signUp"
+									? navigate("/login")
+									: console.log("Resend code functionality")
+							}
+						>
+							<strong>here</strong>
+						</span>
+					</p>
 				</form>
 			</div>
-		);
-	} else if (stage === "confirm") {
-		return (
-			<div className="pt-32 bg-gray-400">
-				<form
-					onSubmit={onConfirm}
-					className="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
-					<div className="mb-4">
-						<label
-							className="block mb-2 text-sm font-bold text-gray-700"
-							htmlFor="confirmationCode">
-							Confirmation Code
-						</label>
-						<input
-							className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-							value={code}
-							onChange={(event) => setCode(event.target.value)}
-							type="text"
-							placeholder="Confirmation Code"
-						/>
-					</div>
-					<div className="flex items-center justify-between">
-						<button
-							className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-							type="submit">
-							Confirm
-						</button>
-					</div>
-				</form>
-			</div>
-		);
-	}
+		</div>
+	);
 };
 
 export default Signup;
