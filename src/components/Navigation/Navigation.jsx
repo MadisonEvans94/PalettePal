@@ -38,12 +38,12 @@ const Navigation = () => {
 				<div className="items-end justify-end w-full text-sm lg:flex lg:flex-row">
 					<InputButton
 						buttonText="Upload Image"
-						styleProp="block mt-4 mr-4 transition cursor-pointer text-info lg:border lg:p-2 lg:rounded lg:inline-block lg:mt-0 text-md hover:lg:bg-info hover:lg:border-primary hover:lg:text-primary"
+						styleProp="block mt-4 mr-4 transition cursor-pointer text-info lg:border lg:p-2 lg:rounded lg:inline-block lg:mt-0 text-md hover:lg:bg-info hover:lg:border-primary hover:lg:text-secondary"
 					/>
 					<Link
 						onClick={() => setIsOpen(false)}
 						to="/palette-view"
-						className="block mt-4 mr-4 transition cursor-pointer text-info lg:border lg:p-2 lg:rounded lg:inline-block lg:mt-0 text-md hover:lg:bg-info hover:lg:border-primary hover:lg:text-primary"
+						className="block mt-4 mr-4 transition cursor-pointer text-info lg:border lg:p-2 lg:rounded lg:inline-block lg:mt-0 text-md hover:lg:bg-info hover:lg:border-primary hover:lg:text-secondary"
 					>
 						Palette View
 					</Link>
@@ -51,7 +51,7 @@ const Navigation = () => {
 						<Link
 							onClick={() => setIsOpen(false)}
 							to="/dashboard"
-							className="block mt-4 mr-4 transition cursor-pointer text-info lg:border lg:p-2 lg:rounded lg:inline-block lg:mt-0 text-md hover:lg:bg-info hover:lg:border-primary hover:lg:text-primary"
+							className="block mt-4 mr-4 transition cursor-pointer text-info lg:border lg:p-2 lg:rounded lg:inline-block lg:mt-0 text-md hover:lg:bg-info hover:lg:border-primary hover:lg:text-secondary"
 						>
 							Dashboard
 						</Link>
@@ -59,7 +59,7 @@ const Navigation = () => {
 					{isAuthenticated ? (
 						<div
 							onClick={logout}
-							className="block mt-4 mr-4 transition cursor-pointer text-info lg:border lg:p-2 lg:rounded lg:inline-block lg:mt-0 text-md hover:lg:bg-info hover:lg:border-primary hover:lg:text-primary"
+							className="block mt-4 mr-4 transition cursor-pointer text-info lg:border lg:p-2 lg:rounded lg:inline-block lg:mt-0 text-md hover:lg:bg-info hover:lg:border-primary hover:lg:text-secondary"
 						>
 							<LogoutBtn size="20px" />
 						</div>
@@ -67,7 +67,7 @@ const Navigation = () => {
 						<Link
 							onClick={() => setIsOpen(false)}
 							to="/login"
-							className="block mt-4 mr-4 transition cursor-pointer text-info lg:border lg:p-2 lg:rounded lg:inline-block lg:mt-0 text-md hover:lg:bg-info hover:lg:border-primary hover:lg:text-primary"
+							className="block mt-4 mr-4 transition cursor-pointer text-info lg:border lg:p-2 lg:rounded lg:inline-block lg:mt-0 text-md hover:lg:bg-info hover:lg:border-primary hover:lg:text-secondary"
 						>
 							Login
 						</Link>

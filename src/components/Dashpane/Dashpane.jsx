@@ -70,7 +70,7 @@ const Dashpane = () => {
 	return (
 		<div className="w-full p-10">
 			<h1 className="text-primary text-[72px] my-8">Your Saved Palettes</h1>
-			<div className="pb-6 grid grid-cols-2">
+			<div className="pb-6 grid sm:grid-cols-1 lg:grid-cols-2 ">
 				{palettes ? (
 					palettes.map((palette, id) => {
 						return (

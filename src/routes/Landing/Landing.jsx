@@ -36,7 +36,7 @@ const Landing = () => {
 					</p>
 					<Input
 						className="input-area"
-						styleProp="rounded border bg-transparent border-info cursor-pointer p-2 text-info hover:text-primary hover:bg-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 transition"
+						styleProp="rounded border bg-transparent border-info cursor-pointer p-2 text-info hover:text-secondary hover:bg-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 transition"
 						buttonText="Select Image"
 					/>
 				</div>

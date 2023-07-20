@@ -34,7 +34,7 @@ const PaletteCard = ({ palette, userData, tokens }) => {
 	return (
 		<div className="border w-full relative my-16 grid grid-cols-2 grid-rows-4 gap-0 md:flex-row mx-auto md:max-w-2xl bg-white rounded-lg">
 			<button
-				className="absolute cursor-pointer text-primary z-50 right-2 top-2"
+				className="absolute cursor-pointer text-primary z-50 right-2 top-2 hover:text-secondary transition"
 				onClick={deletePalette}
 			>
 				<Delete size="1.5em" />
@@ -54,7 +54,7 @@ function PaletteCardCopySection({ palette, kValue }) {
 	return (
 		<div className="flex flex-row justify-center items-center">
 			<CopyToClipboard text={palette.palette[kValue]}>
-				<button className="text-info bg-primary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+				<button className="text-info bg-primary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:bg-secondary transition">
 					Copy to clipboard
 				</button>
 			</CopyToClipboard>
@@ -70,7 +70,7 @@ function PaletteCardCounter({ kValue, setKValue }) {
 					onClick={() => {
 						if (kValue > 0) setKValue(kValue - 1);
 					}}
-					className="px-3 py-2 rounded-l-lg text-primary font-semibold focus:outline-none"
+					className="px-3 py-2 rounded-l-lg text-primary font-semibold focus:outline-none hover:text-secondary transition"
 				>
 					<Minus />
 				</button>
@@ -81,7 +81,7 @@ function PaletteCardCounter({ kValue, setKValue }) {
 					onClick={() => {
 						if (kValue < 4) setKValue(kValue + 1);
 					}}
-					className="px-3 py-2 rounded-r-lg text-primary font-semibold focus:outline-none"
+					className="px-3 py-2 rounded-r-lg text-primary font-semibold focus:outline-none hover:text-secondary transition"
 				>
 					<Plus />
 				</button>
