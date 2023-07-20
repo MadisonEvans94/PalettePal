@@ -70,20 +70,22 @@ const Dashpane = () => {
 	return (
 		<div className="w-full p-10">
 			<h1 className="text-primary text-[72px] my-8">Your Saved Palettes</h1>
-			{palettes ? (
-				palettes.map((palette, id) => {
-					return (
-						<PaletteCard
-							palette={palette}
-							userData={userData}
-							tokens={tokens}
-							key={id}
-						/>
-					);
-				})
-			) : (
-				<EmptyPaletteState />
-			)}
+			<div className="pb-6 grid grid-cols-2">
+				{palettes ? (
+					palettes.map((palette, id) => {
+						return (
+							<PaletteCard
+								palette={palette}
+								userData={userData}
+								tokens={tokens}
+								key={id}
+							/>
+						);
+					})
+				) : (
+					<EmptyPaletteState />
+				)}
+			</div>
 		</div>
 	);
 };

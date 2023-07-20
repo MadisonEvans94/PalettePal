@@ -5,11 +5,13 @@ import { AiOutlinePlus as Plus } from "react-icons/ai";
 import { AiOutlineMinus as Minus } from "react-icons/ai";
 const PaletteCard = ({ palette, userData, tokens }) => {
 	const [kValue, setKValue] = useState(0);
-	const copyToClipboard = () => {
-		// your implementation to copy palette.palette[kValue] to clipboard
-	};
+
 	const deletePalette = async () => {
 		const deleteUrl = `https://du65t1mu0a.execute-api.us-east-2.amazonaws.com/production/palette-pal-image-CRUD/${palette.imageId}`;
+
+		console.log("deleteurl", deleteUrl);
+		console.log("tokens", tokens);
+		console.log("userid", userData.username);
 		try {
 			const response = await fetch(deleteUrl, {
 				method: "DELETE",
@@ -30,7 +32,7 @@ const PaletteCard = ({ palette, userData, tokens }) => {
 	};
 
 	return (
-		<div className="border relative my-16 grid grid-cols-2 grid-rows-4 gap-0 md:flex-row mx-auto md:max-w-2xl bg-white rounded-lg">
+		<div className="border w-full relative my-16 grid grid-cols-2 grid-rows-4 gap-0 md:flex-row mx-auto md:max-w-2xl bg-white rounded-lg">
 			<button
 				className="absolute cursor-pointer text-primary z-50 right-2 top-2"
 				onClick={deletePalette}
@@ -41,25 +43,18 @@ const PaletteCard = ({ palette, userData, tokens }) => {
 			<PaletteCardImg palette={palette} />
 			<PaletteCardColors palette={palette} kValue={kValue} />
 			<PaletteCardCounter kValue={kValue} setKValue={setKValue} />
-			<PaletteCardCopySection
-				palette={palette}
-				kValue={kValue}
-				copyToClipboard={copyToClipboard}
-			/>
+			<PaletteCardCopySection palette={palette} kValue={kValue} />
 		</div>
 	);
 };
 
 export default PaletteCard;
 
-function PaletteCardCopySection(palette, kValue, copyToClipboard) {
+function PaletteCardCopySection({ palette, kValue }) {
 	return (
 		<div className="flex flex-row justify-center items-center">
 			<CopyToClipboard text={palette.palette[kValue]}>
-				<button
-					onClick={copyToClipboard}
-					className="text-info bg-primary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-				>
+				<button className="text-info bg-primary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
 					Copy to clipboard
 				</button>
 			</CopyToClipboard>
