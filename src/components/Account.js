@@ -50,7 +50,6 @@ const Account = (props) => {
 				Pool: UserPool,
 			});
 
-			console.log("COGNITO USER", user);
 			const authDetails = new AuthenticationDetails({
 				Username,
 				Password,
@@ -59,6 +58,7 @@ const Account = (props) => {
 				onSuccess: (data) => {
 					setTokens(data.getIdToken().getJwtToken()); // save tokens after successful authentication
 					setIsAuthenticated(true);
+					setUserData(user);
 					resolve(data);
 				},
 				onFailure: (error) => {

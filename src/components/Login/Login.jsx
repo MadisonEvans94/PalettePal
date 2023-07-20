@@ -8,7 +8,6 @@ const Login = () => {
 	const [password, setPassword] = useState("");
 	const navigate = useNavigate();
 	const { authenticate, isAuthenticated, tokens } = useContext(AccountContext);
-	console.log("isAuthenticated", isAuthenticated, "tokens", tokens);
 	const onSubmit = (event) => {
 		event.preventDefault();
 		authenticate(email, password)
@@ -78,7 +77,7 @@ const Login = () => {
 					<p>
 						Don't Have an account? Sign up{" "}
 						<span
-							className="cursor-pointer"
+							className="cursor-pointer text-secondary"
 							onClick={() => navigate("/signup")}
 						>
 							<strong>here</strong>

@@ -33,6 +33,7 @@ const Dashpane = () => {
 
 	const fetchPalettes = async (userData, tokens) => {
 		try {
+			console.log("INSIDE THE fetchPalettes FUNCTION", userData, tokens);
 			getSession();
 			const response = await fetch(
 				`https://du65t1mu0a.execute-api.us-east-2.amazonaws.com/production/palette-pal-image-CRUD`,
@@ -57,6 +58,8 @@ const Dashpane = () => {
 	};
 
 	useEffect(() => {
+		console.log("tokens \n\n -------------- \n\n", tokens);
+		console.log("userData \n\n -------------- \n\n", userData);
 		if (tokens && userData) {
 			fetchPalettes(userData, tokens);
 		} else {
