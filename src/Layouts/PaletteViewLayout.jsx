@@ -4,14 +4,14 @@ function PaletteViewLayout({ children }) {
 	return (
 		<div className="flex flex-col items-center justify-start w-full h-full pt-16 overflow-auto md:justify-center">
 			<div className="w-full pt-24 mx-auto max-w-7xl">
-				<div className="grid grid-cols-2 gap-4 p-4 ">
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 ">
 					{children[0]}
 					{children[1]}
 				</div>
 				<div>
 					{children[2]}
 					{children[3]}
-					<div className="mt-2 grid mx-auto grid-cols-3 gap-3 items-center justify-center w-fit">
+					<div className="mt-2 grid mx-auto grid-cols-1 lg:grid-cols-3 gap-3 items-center justify-center w-fit">
 						{children[4]}
 						{children[5]}
 						{children[6]}
