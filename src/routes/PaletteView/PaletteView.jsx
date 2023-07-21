@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import ClipboardCopyButton from "../../components/ClipboardCopyButton/ClipboardCopyButton";
 import CustomPlot from "../../components/Plot/CustomPlot";
 import Palette from "../../components/Palette/Palette.jsx";
@@ -9,15 +9,19 @@ import AppContext from "../../Contexts/AppContext";
 import InputButton from "../../components/Input/Input";
 import { AccountContext } from "../../components/Account";
 import { CentroidContext } from "../../Contexts/CentroidContext";
+import { motion, AnimatePresence } from "framer-motion";
 
 const PaletteView = () => {
 	const { imgFile, pixelData, setIsLoading } = useContext(AppContext);
-
 	const { clusterQty, setClusterQty, centroidVals, pixelVals } =
 		useImageProcessing();
-
 	const { tokens, userData } = useContext(AccountContext);
 	const { centroidArray } = useContext(CentroidContext);
+	const [showSuccessFlag, setShowSuccessFlag] = useState(false);
+	function triggerSuccessFlag() {
+		setShowSuccessFlag(true);
+		setTimeout(() => setShowSuccessFlag(false), 2000);
+	}
 	async function savePalette(imageData, paletteData) {
 		try {
 			setIsLoading(true);
@@ -41,6 +45,7 @@ const PaletteView = () => {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			} else {
 				setIsLoading(false);
+				triggerSuccessFlag();
 				const jsonData = await response.json();
 				return jsonData; // Returns the response data from the server.
 			}
@@ -51,32 +56,47 @@ const PaletteView = () => {
 	}
 
 	return (
-		<PaletteViewLayout>
-			<ImageCanvas imgFile={imgFile} />
-			<PlotCanvas
-				pixelData={pixelData}
-				pixelVals={pixelVals}
-				centroidVals={centroidVals}
-			/>
-			<ColorCountSelector
-				clusterQty={clusterQty}
-				setClusterQty={setClusterQty}
-				pixelData={pixelData}
-			/>
-			<Palette clusterQty={clusterQty} />
-			<ClipboardCopyButton clusterQty={clusterQty} />
+		<>
+			<AnimatePresence>
+				{showSuccessFlag && (
+					<motion.div
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						className="bg-secondary text-secondary rounded-lg text-white w-fit p-2 z-50 h-fit left-1/2 top-1/2 -translate-x-1/2 absolute"
+					>
+						Palette Saved
+					</motion.div>
+				)}
+			</AnimatePresence>
 
-			<button
-				onClick={() => savePalette(imgFile.src, centroidArray)}
-				className="w-48 p-3 my-3 transition border rounded border-primary text-info hover:text-primary bg-primary hover:bg-white"
-			>
-				Save Palette
-			</button>
-			<InputButton
-				buttonText="Upload New Image"
-				styleProp="cursor-pointer w-48 p-3 my-3 transition border rounded border-primary text-info hover:text-primary bg-primary hover:bg-white"
-			/>
-		</PaletteViewLayout>
+			<PaletteViewLayout>
+				<ImageCanvas imgFile={imgFile} />
+				<PlotCanvas
+					pixelData={pixelData}
+					pixelVals={pixelVals}
+					centroidVals={centroidVals}
+				/>
+				<ColorCountSelector
+					clusterQty={clusterQty}
+					setClusterQty={setClusterQty}
+					pixelData={pixelData}
+				/>
+				<Palette clusterQty={clusterQty} />
+				<ClipboardCopyButton clusterQty={clusterQty} />
+
+				<button
+					onClick={() => savePalette(imgFile.src, centroidArray)}
+					className="w-48 p-3 my-3 transition border rounded border-primary text-info hover:text-primary bg-primary hover:bg-white hover:text-secondary"
+				>
+					Save Palette
+				</button>
+				<InputButton
+					buttonText="Upload New Image"
+					styleProp="cursor-pointer w-48 p-3 my-3 transition border rounded border-primary text-info hover:text-secondary bg-primary hover:bg-white"
+				/>
+			</PaletteViewLayout>
+		</>
 	);
 };
 

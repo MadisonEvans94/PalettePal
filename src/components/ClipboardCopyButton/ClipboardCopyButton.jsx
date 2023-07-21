@@ -11,7 +11,7 @@ function ClipboardCopyButton({ clusterQty }) {
 
 	return (
 		<button
-			className="w-48 p-3 my-3 transition border rounded border-primary text-info hover:text-primary bg-primary hover:bg-white"
+			className="w-48 p-3 my-3 transition border rounded border-primary text-info hover:text-secondary bg-primary hover:bg-white"
 			onClick={handleCopyClick}
 		>
 			copy to clipboard
