@@ -3,7 +3,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard"; // Assuming you're us
 import { AiOutlineCloseCircle as Delete } from "react-icons/ai";
 import { AiOutlinePlus as Plus } from "react-icons/ai";
 import { AiOutlineMinus as Minus } from "react-icons/ai";
-const PaletteCard = ({ palette, userData, tokens }) => {
+const PaletteCard = ({ palette, userData, tokens, onDelete }) => {
 	const [kValue, setKValue] = useState(0);
 
 	const deletePalette = async () => {
@@ -25,6 +25,9 @@ const PaletteCard = ({ palette, userData, tokens }) => {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			} else {
 				console.log("Delete succeeded");
+				if (onDelete) {
+					onDelete(palette.imageId); // call the callback
+				}
 			}
 		} catch (err) {
 			console.error("Failed to delete item", err);

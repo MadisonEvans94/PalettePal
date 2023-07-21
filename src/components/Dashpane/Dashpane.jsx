@@ -31,10 +31,17 @@ const Dashpane = () => {
 	const { tokens, userData, getSession } = useContext(AccountContext);
 	const [palettes, setPalettes] = useState(null);
 
+	const handleDeletePalette = (paletteId) => {
+		setPalettes((prevPalettes) =>
+			prevPalettes.filter((palette) => palette.imageId !== paletteId)
+		);
+	};
+
 	const fetchPalettes = async (userData, tokens) => {
 		try {
 			console.log("INSIDE THE fetchPalettes FUNCTION", userData, tokens);
 			getSession();
+
 			const response = await fetch(
 				`https://du65t1mu0a.execute-api.us-east-2.amazonaws.com/production/palette-pal-image-CRUD`,
 				{
@@ -71,7 +78,7 @@ const Dashpane = () => {
 		<div className="w-full p-10">
 			<h1 className="text-primary text-[72px] my-8">Your Saved Palettes</h1>
 			<div className="pb-6 grid sm:grid-cols-1 lg:grid-cols-2 ">
-				{palettes ? (
+				{palettes && palettes.length > 0 ? (
 					palettes.map((palette, id) => {
 						return (
 							<PaletteCard
@@ -79,6 +86,7 @@ const Dashpane = () => {
 								userData={userData}
 								tokens={tokens}
 								key={id}
+								onDelete={handleDeletePalette}
 							/>
 						);
 					})
