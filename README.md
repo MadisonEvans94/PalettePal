@@ -18,12 +18,17 @@ Palette Pal is a React-based web app designed to help developers and designers c
 * The app generates the specified number of colors to represent the image.
 * Users can copy the corresponding hex codes for use in their design projects.
 
+
 ### Contributing
 I welcome contributions from developers who are interested in improving Palette Pal! Here are some of the current updates we are looking for:
 
-Color theme suggestions based on the output color palette.
-Additional palette suggestions based on color theory best practices.
-Improved mobile UI.
+* Color Harmonization: Implement an algorithm to suggest harmonious color schemes based on the generated palette, utilizing principles from color theory.
+
+* Palette Export: Enable users to export their generated color palettes to various formats like JSON, XML, or directly to CSS/SCSS variables.
+
+* Image Filters: Add pre-processing filters that users can apply to images before generating palettes, such as grayscale, sepia, etc.
+
+* Machine Learning Optimization: Explore the use of machine learning models to improve the efficiency and accuracy of the K-means clustering algorithm.
 
 #### Getting Started
 1. Fork the repository on GitHub.
