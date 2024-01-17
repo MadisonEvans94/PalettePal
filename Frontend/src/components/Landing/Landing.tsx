@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 
 import Input from "../Input/Input";
 import LoadingModal from "../LoadingModal";
@@ -6,17 +6,35 @@ import ppBackground from "../../assets/ppbackground.jpeg";
 
 import { LandingProps } from "../../types";
 
-const Landing: React.FC<LandingProps> = ({
-	isLoading,
-	setIsLoading,
-	setPixelData,
-	setImgFile,
-}) => {
+const Landing: React.FC<LandingProps> = () => {
+	const [isLoading, setIsLoading] = useState(false);
+	const [imgFile, setImgFile] = useState<File | null>(null);
+	// Removed setPixelData from the state as it's no longer used here directly
+
+	const handleFileSelect = useCallback(
+		(file: File) => {
+			setIsLoading(true);
+			setImgFile(file);
+			// TODO: Trigger any additional logic needed for when a file is selected
+		},
+		[setIsLoading, setImgFile]
+	);
+
+	const handleError = useCallback(
+		(error: Error) => {
+			setIsLoading(false);
+			// Handle the error, maybe show a notification to the user
+			console.error(error);
+		},
+		[setIsLoading]
+	);
+
+	// Removed handleImageLoad callback since it's no longer being used
+
 	return (
 		<>
 			<div className="w-full h-full fixed bg-[#0f0f0f]">
 				{isLoading && <LoadingModal />}
-
 				<div
 					style={{
 						position: "absolute",
@@ -29,10 +47,8 @@ const Landing: React.FC<LandingProps> = ({
 							"linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0) 100%)",
 					}}
 				/>
-
 				<div
 					style={{
-						// FIXME:
 						backgroundImage: `url(${ppBackground})`,
 						backgroundSize: "cover",
 					}}
@@ -45,10 +61,9 @@ const Landing: React.FC<LandingProps> = ({
 						suggestion based on that image!
 					</p>
 					<Input
-						setIsLoading={setIsLoading}
 						className="input-area"
-						setPixelDataForParent={setPixelData}
-						setImgFile={setImgFile}
+						onFileSelect={handleFileSelect}
+						onError={handleError}
 					/>
 				</div>
 			</div>
