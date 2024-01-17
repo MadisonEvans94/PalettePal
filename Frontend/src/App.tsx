@@ -1,19 +1,31 @@
-// App.js
-import React, { useState } from "react";
+// App.tsx
+import React, { useState, useContext } from "react";
 import "./App.css";
 import ContentSection from "./components/ContentSection/ContentSection";
 import Landing from "./components/Landing/Landing";
 import { CentroidContext } from "./Contexts/CentroidContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+	PixelData,
+	ImageFile,
+	CentroidContextType,
+	LandingProps,
+} from "./types";
 
 function App() {
-	const [pixelData, setPixelData] = useState([]);
-	const [imgFile, setImgFile] = useState(null);
-	const [centroidArray, setCentroidArray] = useState(null);
-	const [isLoading, setIsLoading] = useState(false);
+	const [pixelData, setPixelData] = useState<PixelData>([]);
+	const [imgFile, setImgFile] = useState<ImageFile>(null);
+	const [centroidArray, setCentroidArray] = useState<any[]>([]); // Use a more specific type if possible
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+
+	const contextValue: CentroidContextType = {
+		centroidArray,
+		setCentroidArray,
+	};
+
 	return (
 		<Router>
-			<CentroidContext.Provider value={{ centroidArray, setCentroidArray }}>
+			<CentroidContext.Provider value={contextValue}>
 				<Routes>
 					<Route
 						path="/"

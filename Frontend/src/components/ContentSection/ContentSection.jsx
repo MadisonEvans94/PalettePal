@@ -3,7 +3,7 @@ import ClipboardCopyButton from "../ClipboardCopyButton/ClipboardCopyButton";
 import CustomPlot from "../Plot/CustomPlot";
 import Palette from "../Palette/Palette.jsx";
 import ColorCountSelector from "../ColorCountSelector/ColorCountSelector";
-import Input from "../Input/Input.jsx";
+import Input from "../Input/Input.tsx";
 import { useState, useContext, useEffect } from "react";
 import { CentroidContext } from "../../Contexts/CentroidContext";
 import { processPixels } from "../../helpers/pixelFunctions";

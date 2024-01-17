@@ -3,7 +3,15 @@ import React from "react";
 import Input from "../Input/Input";
 import LoadingModal from "../LoadingModal";
 import ppBackground from "../../assets/ppbackground.jpeg";
-const Landing = ({ isLoading, setIsLoading, setPixelData, setImgFile }) => {
+
+import { LandingProps } from "../../types";
+
+const Landing: React.FC<LandingProps> = ({
+	isLoading,
+	setIsLoading,
+	setPixelData,
+	setImgFile,
+}) => {
 	return (
 		<>
 			<div className="w-full h-full fixed bg-[#0f0f0f]">
@@ -24,14 +32,17 @@ const Landing = ({ isLoading, setIsLoading, setPixelData, setImgFile }) => {
 
 				<div
 					style={{
+						// FIXME:
 						backgroundImage: `url(${ppBackground})`,
 						backgroundSize: "cover",
 					}}
-					className="text-black relative text-center z-10 flex flex-col items-center justify-center h-full px-10 w-full">
+					className="text-black relative text-center z-10 flex flex-col items-center justify-center h-full px-10 w-full"
+				>
 					<h1 className="mb-16 main-header">Palette Pal</h1>
 					<p className="main-description mb-8 text-xs">
-						Welcome to Palette Pal, an interactive color picker! Simply upload
-						an image and receive a color palette suggestion based on that image!
+						Welcome to Palette Pal, an interactive color picker!
+						Simply upload an image and receive a color palette
+						suggestion based on that image!
 					</p>
 					<Input
 						setIsLoading={setIsLoading}
