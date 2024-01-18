@@ -13,7 +13,7 @@ const Input: React.FC<InputProps> = ({ onFileSelect, onError, className }) => {
 			const file = e.target.files[0];
 			try {
 				// onFileSelect(file);
-				console.log(file);
+				console.log(file)
 			} catch (error) {
 				if (error instanceof Error) {
 					onError(error);
