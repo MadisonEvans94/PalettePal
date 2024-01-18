@@ -13,42 +13,40 @@ function App() {
 	const [pixelData, setPixelData] = useState<PixelData>([]);
 	const [imgFile, setImgFile] = useState<ImageFile | null>(null);
 
-	const contextValue: CentroidContextType = {
-		centroidArray,
-		setCentroidArray,
-	};
+	// const contextValue: CentroidContextType = {
+	// 	centroidArray,
+	// 	setCentroidArray,
+	// };
 
 	return (
 		<Router>
-			<CentroidContext.Provider value={contextValue}>
-				<Routes>
-					<Route
-						path="/"
-						element={
-							<Landing
-								isLoading={isLoading}
-								setIsLoading={setIsLoading}
-								setPixelData={setPixelData}
-								setImgFile={setImgFile}
-								imgFile={imgFile}
-							/>
-						}
-					/>
-					<Route
-						path="/dashboard"
-						element={
-							<ContentSection
-								isLoading={isLoading}
-								setIsLoading={setIsLoading}
-								pixelData={pixelData}
-								setPixelData={setPixelData}
-								imgFile={imgFile}
-								setImgFile={setImgFile}
-							/>
-						}
-					/>
-				</Routes>
-			</CentroidContext.Provider>
+			<Routes>
+				<Route
+					path="/"
+					element={
+						<Landing
+							isLoading={isLoading}
+							setIsLoading={setIsLoading}
+							setPixelData={setPixelData}
+							setImgFile={setImgFile}
+							imgFile={imgFile}
+						/>
+					}
+				/>
+				<Route
+					path="/dashboard"
+					element={
+						<ContentSection
+							isLoading={isLoading}
+							setIsLoading={setIsLoading}
+							pixelData={pixelData}
+							setPixelData={setPixelData}
+							imgFile={imgFile}
+							setImgFile={setImgFile}
+						/>
+					}
+				/>
+			</Routes>
 		</Router>
 	);
 }

@@ -1,15 +1,32 @@
 import React from "react";
 import ClipboardCopyButton from "../ClipboardCopyButton/ClipboardCopyButton";
 import CustomPlot from "../Plot/CustomPlot";
-import Palette from "../Palette/Palette.jsx";
+import Palette from "../Palette/Palette.js";
 import ColorCountSelector from "../ColorCountSelector/ColorCountSelector";
-import Input from "../Input/Input.tsx";
+import Input from "../Input/Input";
 import { useState, useContext, useEffect } from "react";
 import { CentroidContext } from "../../Contexts/CentroidContext";
-import { processPixels } from "../../helpers/pixelFunctions";
-import hexArrayToRGBArray from "../../helpers/hexArrayToRGBArray";
+// import { processPixels } from "../../helpers/pixelFunctions";
+// import hexArrayToRGBArray from "../../helpers/hexArrayToRGBArray";
 
-function DashboardLayout({ plot, image, counter, palette, input, clipboard }) {
+// FIXME: fix 'any'
+interface DashboardLayoutProps {
+	plot: any;
+	image: any;
+	counter: any;
+	palette: any;
+	input: any;
+	clipboard: any;
+}
+
+const DashboardLayout: React.FC<DashboardLayoutProps> = ({
+	plot,
+	image,
+	counter,
+	palette,
+	input,
+	clipboard,
+}) => {
 	return (
 		<div className="h-screen w-screen overflow-auto fixed overscroll-none">
 			<div className="overscroll-y-none w-full h-full overflow-auto flex flex-col items-center justify-start md:justify-center bg-[#0f0f0f]">
@@ -32,20 +49,34 @@ function DashboardLayout({ plot, image, counter, palette, input, clipboard }) {
 			</div>
 		</div>
 	);
+};
+
+interface InputImageProps {
+	src: string;
 }
-function InputImage({ src }) {
+const InputImage: React.FC<InputImageProps> = ({ src }) => {
 	return (
 		<div className="w-full md:flex md:justify-center ">
 			<img
 				src={src}
 				alt="input_image"
-				class="inset-0 object-cover object-center"
+				className="inset-0 object-cover object-center"
 			/>
 		</div>
 	);
+};
+
+// FIXME: fix 'any'
+interface ContentSectionProps {
+	isLoading: any;
+	setIsLoading: any;
+	pixelData: any;
+	setPixelData: any;
+	imgFile: any;
+	setImgFile: any;
 }
 
-const ContentSection = ({
+const ContentSection: React.FC<ContentSectionProps> = ({
 	isLoading,
 	setIsLoading,
 	pixelData,
@@ -55,24 +86,25 @@ const ContentSection = ({
 }) => {
 	const { centroidArray } = useContext(CentroidContext);
 	const [clusterQty, setClusterQty] = useState(3);
-	const [rgb, xVal, yVal, zVal] = processPixels(pixelData);
+	// const [rgb, xVal, yVal, zVal] = processPixels(pixelData);
 	const [centroidXVals, setCentroidXVals] = useState(null);
 	const [centroidYVals, setCentroidYVals] = useState(null);
 	const [centroidZVals, setCentroidZVals] = useState(null);
 
-	useEffect(() => {
-		const centroidRGBVals = hexArrayToRGBArray(
-			centroidArray.colors[clusterQty - 1]
-		);
-		setCentroidXVals(centroidRGBVals[0]);
-		setCentroidYVals(centroidRGBVals[1]);
-		setCentroidZVals(centroidRGBVals[2]);
-	}, [centroidArray, clusterQty]);
+	// useEffect(() => {
+	// 	const centroidRGBVals = hexArrayToRGBArray(
+	// 		centroidArray.colors[clusterQty - 1]
+	// 	);
+	// 	setCentroidXVals(centroidRGBVals[0]);
+	// 	setCentroidYVals(centroidRGBVals[1]);
+	// 	setCentroidZVals(centroidRGBVals[2]);
+	// }, [centroidArray, clusterQty]);
 
 	return (
 		<>
 			{" "}
-			<DashboardLayout
+			<div>dashboard layout</div>
+			{/* <DashboardLayout
 				plot={
 					<CustomPlot
 						pixelData={pixelData}
@@ -103,7 +135,7 @@ const ContentSection = ({
 				}
 				palette={<Palette clusterQty={clusterQty} />}
 				clipboard={<ClipboardCopyButton clusterQty={clusterQty} />}
-			/>
+			/> */}
 		</>
 	);
 };

@@ -4,9 +4,17 @@ export type PixelData = any[]; // Replace 'any' with a more specific type if pos
 
 export type ImageFile = File | null;
 
+// types.ts
+export interface ColorClusters {
+	[key: number]: string[]; // key is the cluster quantity, value is an array of color strings
+}
+
 export interface CentroidContextType {
-	centroidArray: any[]; // Again, use a more specific type if applicable
-	setCentroidArray: React.Dispatch<React.SetStateAction<any[]>>; // Replace 'any[]' with the type of your centroid array
+	centroidArray: {
+		colors: ColorClusters;
+		// ... any other properties of centroidArray
+	};
+	// You can also add any other state or functions that you want to provide through the context
 }
 
 export interface LandingProps {

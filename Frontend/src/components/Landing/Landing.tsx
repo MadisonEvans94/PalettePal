@@ -29,8 +29,6 @@ const Landing: React.FC<LandingProps> = () => {
 		[setIsLoading]
 	);
 
-	// Removed handleImageLoad callback since it's no longer being used
-
 	return (
 		<>
 			<div className="w-full h-full fixed bg-[#0f0f0f]">
@@ -62,7 +60,10 @@ const Landing: React.FC<LandingProps> = () => {
 					</p>
 					<Input
 						className="input-area"
-						onFileSelect={handleFileSelect}
+						// onFileSelect={handleFileSelect}
+						onFileSelect={(file) =>
+							console.log(`File selected: ${file}`)
+						}
 						onError={handleError}
 					/>
 				</div>

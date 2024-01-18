@@ -2,7 +2,16 @@ import React from "react";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import { motion } from "framer-motion";
-const ColorCountSelector = ({ clusterQty, setClusterQty, pixelData }) => {
+interface ColorCountSelectorProps {
+	clusterQty: number;
+	setClusterQty: any;
+	pixelData: any;
+}
+const ColorCountSelector: React.FC<ColorCountSelectorProps> = ({
+	clusterQty,
+	setClusterQty,
+	pixelData,
+}) => {
 	function handleIncrement() {
 		if (clusterQty === 5) {
 			setClusterQty(5);
@@ -31,7 +40,8 @@ const ColorCountSelector = ({ clusterQty, setClusterQty, pixelData }) => {
 						transition: { type: "spring", mass: 0.5, damping: 30 },
 					}}
 					className="mx-4 text-2xl"
-					onClick={handleDecrement}>
+					onClick={handleDecrement}
+				>
 					<FaMinus />
 				</motion.button>
 				{clusterQty}
@@ -43,7 +53,8 @@ const ColorCountSelector = ({ clusterQty, setClusterQty, pixelData }) => {
 						transition: { type: "spring", mass: 0.5, damping: 30 },
 					}}
 					className="mx-4 text-2xl"
-					onClick={handleIncrement}>
+					onClick={handleIncrement}
+				>
 					<FaPlus />
 				</motion.button>
 			</div>

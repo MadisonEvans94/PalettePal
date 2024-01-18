@@ -12,7 +12,8 @@ const Input: React.FC<InputProps> = ({ onFileSelect, onError, className }) => {
 		if (e.target.files && e.target.files.length > 0) {
 			const file = e.target.files[0];
 			try {
-				onFileSelect(file); // Invoke the callback for file change
+				// onFileSelect(file);
+				console.log(file);
 			} catch (error) {
 				if (error instanceof Error) {
 					onError(error);
