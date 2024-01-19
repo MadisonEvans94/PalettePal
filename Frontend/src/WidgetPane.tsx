@@ -1,25 +1,18 @@
 import React from "react";
-import resp from "./test-json/clusters.json";
-console.log(resp.clusters[0]);
 
-// function rgbToHex(rgbArray: number[]) {
-// 	return (
-// 		"#" +
-// 		rgbArray
-// 			.map((val) => {
-// 				const hex = val.toString(16);
-// 				return hex.length === 1 ? "0" + hex : hex;
-// 			})
-// 			.join("")
-// 	);
-// }
-
-const WidgetPane: React.FC = () => {
+interface WidgetPaneProps {
+	processedImageData: {
+		message: string;
+		clusters: string[];
+		ratio: number[];
+	};
+}
+const WidgetPane: React.FC<WidgetPaneProps> = ({ processedImageData }) => {
 	return (
 		<div className="bg-gray-800 text-white h-full flex items-center">
 			<div className="mx-auto border">
 				<div className="flex flex-row gap-1 justify-center">
-					{resp.clusters.map((cluster) => (
+					{processedImageData.clusters.map((cluster) => (
 						<PaletteColor color={cluster} />
 					))}
 				</div>

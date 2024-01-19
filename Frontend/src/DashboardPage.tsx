@@ -1,20 +1,18 @@
 import React from "react";
 import { useAppContext } from "./App"; // Import useAppContext
-import clusters from "./test-json/clusters.json";
 import WidgetPane from "./WidgetPane";
 
 // TODO: DahsboardPage should load in the current palette image from context
 
 const DashboardPage: React.FC = () => {
-	const { uploadedImage } = useAppContext();
-	console.log("clusters..", clusters);
+	const { uploadedImage, resp } = useAppContext();
 
 	return (
 		<>
 			<div className="w-full h-full bg-gray-400 flex flex-col">
 				<div className="w-full grid grid-cols-2 flex-grow">
 					<ImagePane uploadedImage={uploadedImage} />
-					<WidgetPane />
+					<WidgetPane processedImageData={resp} />
 				</div>
 				<div className="flex items-center justify-center h-48">
 					<button className="p-2 bg-black rounded text-white">
