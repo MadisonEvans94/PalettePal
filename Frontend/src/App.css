@@ -1,3 +1,18 @@
+html,
+body,
+#root {
+	/* Assuming the root div has an id of 'root' */
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+/* Optionally, if you want to ensure no overflow issues */
+body {
+	overflow-x: hidden;
+	overscroll-behavior: none;
+}
+
 .App {
 	display: fixed;
 	width: 100vw;
