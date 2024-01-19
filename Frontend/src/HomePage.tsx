@@ -6,25 +6,37 @@ import { useAppContext } from "./App"; // Import useAppContext
 
 const HomePage: React.FC = () => {
 	const navigate = useNavigate();
-	const { imageProcessorEndpoint } = useAppContext();
-	const handleSuccess = () => {
+	const { imageProcessorEndpoint, setUploadedImage } = useAppContext();
+
+	const handleSuccess = (uploadedFile: File) => {
+		setUploadedImage(uploadedFile); // Update the context with the uploaded image
 		navigate("/dashboard");
 	};
 
 	const [showImageForm, setShowImageForm] = useState<boolean>(false);
+
+	const handleSubmit = async (
+		event: React.FormEvent,
+		imgFile: File | null,
+		clusterQuantity: number,
+		url: string
+	) => {
+		if (imgFile) {
+			await processImage(event, imgFile, clusterQuantity, url);
+			handleSuccess(imgFile);
+		}
+	};
+
 	return (
 		<div>
-			<div>
-				<button onClick={() => setShowImageForm(true)}>click me</button>
-				{showImageForm && (
-					<ImageForm
-						url={imageProcessorEndpoint}
-						onSubmit={processImage}
-						onClose={() => setShowImageForm(false)}
-						onSuccess={handleSuccess}
-					/>
-				)}
-			</div>
+			<button onClick={() => setShowImageForm(true)}>click me</button>
+			{showImageForm && (
+				<ImageForm
+					url={imageProcessorEndpoint}
+					onSubmit={handleSubmit}
+					onClose={() => setShowImageForm(false)}
+				/>
+			)}
 		</div>
 	);
 };
