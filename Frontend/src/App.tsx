@@ -36,10 +36,19 @@ const processImage = async (
 		console.error("Error during upload:", error);
 	}
 };
+
 function App() {
+	const [showImageForm, setShowImageForm] = useState<boolean>(false);
 	return (
 		<>
-			<ImageForm url={apiUrl} onSubmit={processImage} />
+			<button onClick={() => setShowImageForm(true)}>click me</button>
+			{showImageForm && (
+				<ImageForm
+					url={apiUrl}
+					onSubmit={processImage}
+					onClose={() => setShowImageForm(false)}
+				/>
+			)}
 		</>
 	);
 }
