@@ -9,9 +9,15 @@ interface ImageFormProps {
 		url: string
 	) => void;
 	onClose: () => void; // Add this line
+	onSuccess?: () => void; // Optional onSuccess callback
 }
 
-const ImageForm: React.FC<ImageFormProps> = ({ url, onSubmit, onClose }) => {
+const ImageForm: React.FC<ImageFormProps> = ({
+	url,
+	onSubmit,
+	onClose,
+	onSuccess,
+}) => {
 	const [imgFile, setImgFile] = useState<File | null>(null);
 	const [clusterQuantity, setClusterQuantity] = useState<number>(4);
 
@@ -27,10 +33,22 @@ const ImageForm: React.FC<ImageFormProps> = ({ url, onSubmit, onClose }) => {
 		setClusterQuantity(parseInt(event.target.value) || 3);
 	};
 
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		try {
+			await onSubmit(e, imgFile, clusterQuantity, url);
+			if (onSuccess) {
+				onSuccess(); // Call onSuccess if defined
+			}
+		} catch (error) {
+			console.error("Error during form submission:", error);
+		}
+	};
+
 	return (
 		<form
 			className="relative w-full max-w-lg p-8 space-y-4 bg-white rounded shadow-md"
-			onSubmit={(e) => onSubmit(e, imgFile, clusterQuantity, url)}
+			onSubmit={handleSubmit}
 		>
 			<div>
 				<label

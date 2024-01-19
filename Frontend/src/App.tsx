@@ -1,49 +1,52 @@
-import { useState } from "react";
+import { createContext, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { processImage } from "./api/crud";
 import "./App.css";
-import ImageForm from "./components/Form";
+import HomePage from "./HomePage";
 
-const apiUrl = process.env.REACT_APP_API_URL || "";
+const imageProcessorEndpoint =
+	process.env.REACT_APP_IMAGE_PROCESSOR_ENDPOINT || "";
 
+interface AppContextType {
+	imageProcessorEndpoint: string;
+}
+
+export const AppContext = createContext<AppContextType | undefined>(undefined);
+
+export const useAppContext = () => {
+	const context = useContext(AppContext);
+	if (!context) {
+		throw new Error(
+			"useAppContext must be used within an AppContext.Provider"
+		);
+	}
+	return context;
+};
 function App() {
 	return (
-		<Router>
-			<div>
-				<nav>
-					<Link to="/">Home</Link> |{" "}
-					<Link to="/dashboard">Dashboard</Link>
-				</nav>
+		<AppContext.Provider value={{ imageProcessorEndpoint }}>
+			<Router>
+				<div>
+					<nav>
+						<Link to="/">Home</Link> |{" "}
+						<Link to="/dashboard">Dashboard</Link>
+					</nav>
 
-				<Routes>
-					<Route path="/" element={<HomePage />} />
-					<Route path="/dashboard" element={<div>dashboard</div>} />
-				</Routes>
-			</div>
-		</Router>
+					<Routes>
+						<Route path="/" element={<HomePage />} />
+						<Route path="/dashboard" element={<DashboardPage />} />
+					</Routes>
+				</div>
+			</Router>
+		</AppContext.Provider>
 	);
 }
 
-function HomePage() {
-	const [showImageForm, setShowImageForm] = useState<boolean>(false);
+function DashboardPage() {
 	return (
-		<div>
-			<div>
-				<button onClick={() => setShowImageForm(true)}>click me</button>
-				{showImageForm && (
-					<ImageForm
-						url={apiUrl}
-						onSubmit={processImage}
-						onClose={() => setShowImageForm(false)}
-					/>
-				)}
-			</div>
-		</div>
+		<>
+			<div>dashboard</div>
+		</>
 	);
-}
-
-function ImageFormPage() {
-	return <></>;
 }
 
 export default App;
