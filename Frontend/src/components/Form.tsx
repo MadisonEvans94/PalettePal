@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-interface FormProps {
+interface ImageFormProps {
 	url: string;
 	onSubmit: (
 		event: React.FormEvent,
@@ -10,7 +10,7 @@ interface FormProps {
 	) => void;
 }
 
-const Form: React.FC<FormProps> = ({ url, onSubmit }) => {
+const ImageForm: React.FC<ImageFormProps> = ({ url, onSubmit }) => {
 	const [imgFile, setImgFile] = useState<File | null>(null);
 	const [clusterQuantity, setClusterQuantity] = useState<number>(4);
 
@@ -20,34 +20,54 @@ const Form: React.FC<FormProps> = ({ url, onSubmit }) => {
 		}
 	};
 
+	const handleClusterQuantityChange = (
+		event: React.ChangeEvent<HTMLInputElement>
+	) => {
+		setClusterQuantity(parseInt(event.target.value) || 3);
+	};
+
 	return (
-		<div className="w-full h-screen flex items-center justify-center">
-			<form onSubmit={(e) => onSubmit(e, imgFile, clusterQuantity, url)}>
-				<input
-					type="file"
-					accept=".jpeg, .png"
-					onChange={handleFileChange}
-					style={{ display: "none" }}
-					id="fileInput"
-				/>
-				<label
-					htmlFor="fileInput"
-					className="bg-gray-600 text-white border-2 border-gray-800 p-4 rounded-lg cursor-pointer"
-				>
-					Add Image
-				</label>
-				<input
-					type="number"
-					value={clusterQuantity}
-					onChange={(e) =>
-						setClusterQuantity(parseInt(e.target.value))
-					}
-					min="1"
-					className="ml-4"
-				/>
+		<div className="flex items-center justify-center h-screen bg-gray-100 px-4">
+			<form
+				className="w-full max-w-lg p-8 space-y-4 bg-white rounded shadow-md"
+				onSubmit={(e) => onSubmit(e, imgFile, clusterQuantity, url)}
+			>
+				<div>
+					<label
+						htmlFor="fileInput"
+						className="block text-lg font-medium text-gray-700"
+					>
+						Add Image
+					</label>
+					<input
+						type="file"
+						accept=".jpeg, .png"
+						onChange={handleFileChange}
+						className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
+                                   file:border-0 file:text-sm file:font-semibold
+                                   file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+						id="fileInput"
+					/>
+				</div>
+				<div>
+					<label
+						htmlFor="clusterQuantity"
+						className="block text-lg font-medium text-gray-700"
+					>
+						Number of Clusters
+					</label>
+					<input
+						type="number"
+						id="clusterQuantity"
+						value={clusterQuantity}
+						onChange={handleClusterQuantityChange}
+						min="1"
+						className="w-full p-2 mt-1 text-sm border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+					/>
+				</div>
 				<button
 					type="submit"
-					className="ml-4 bg-blue-500 text-white border-2 border-blue-700 p-2 rounded-lg"
+					className="w-full px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
 				>
 					Upload
 				</button>
@@ -56,4 +76,4 @@ const Form: React.FC<FormProps> = ({ url, onSubmit }) => {
 	);
 };
 
-export default Form;
+export default ImageForm;

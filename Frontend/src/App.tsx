@@ -1,7 +1,7 @@
 // App.tsx
 import { useState } from "react";
 import "./App.css";
-import Form from "./components/Form";
+import ImageForm from "./components/Form";
 const apiUrl = process.env.REACT_APP_API_URL || "";
 
 const processImage = async (
@@ -39,7 +39,7 @@ const processImage = async (
 function App() {
 	return (
 		<>
-			<Form url={apiUrl} onSubmit={processImage} />
+			<ImageForm url={apiUrl} onSubmit={processImage} />
 		</>
 	);
 }
