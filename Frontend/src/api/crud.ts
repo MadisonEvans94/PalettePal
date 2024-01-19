@@ -26,6 +26,7 @@ export const processImage = async (
 
 		const result = await response.json();
 		console.log("Upload successful", result);
+		return result;
 	} catch (error) {
 		console.error("Error during upload:", error);
 	}

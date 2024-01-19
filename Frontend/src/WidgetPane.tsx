@@ -1,23 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
+import { ClusterData } from "./App";
 
 interface WidgetPaneProps {
-	processedImageData: {
-		message: string;
-		clusters: string[];
-		ratio: number[];
-	};
+	clusterData: ClusterData;
 }
-const WidgetPane: React.FC<WidgetPaneProps> = ({ processedImageData }) => {
+
+const WidgetPane: React.FC<WidgetPaneProps> = ({ clusterData }) => {
+	const [colorCount, setColorCount] = useState<number>(0);
+
+	const incrementColorCount = () => {
+		if (colorCount < 5) {
+			setColorCount(colorCount + 1);
+		}
+	};
+
+	const decrementColorCount = () => {
+		if (colorCount > 0) {
+			setColorCount(colorCount - 1);
+		}
+	};
+
 	return (
 		<div className="bg-gray-800 text-white h-full flex items-center">
-			<div className="mx-auto border">
-				<div className="flex flex-row gap-1 justify-center">
-					{processedImageData.clusters.map((cluster) => (
-						<PaletteColor color={cluster} />
+			<div className="mx-auto border p-4">
+				<div className="flex flex-row gap-1 justify-center mb-4">
+					{clusterData.clusters[colorCount].map((cluster, id) => (
+						<PaletteColor color={cluster} key={id} />
 					))}
 				</div>
-				<div>counter goes here</div>
-				<button>copy palette</button>
+				<div className="flex items-center justify-center gap-2">
+					<button
+						onClick={decrementColorCount}
+						className="px-3 py-1 border border-gray-400 rounded text-gray-300 hover:text-white hover:border-white"
+					>
+						-
+					</button>
+					<span className="text-lg">{colorCount}</span>
+					<button
+						onClick={incrementColorCount}
+						className="px-3 py-1 border border-gray-400 rounded text-gray-300 hover:text-white hover:border-white"
+					>
+						+
+					</button>
+				</div>
+				<button className="mt-4 p-2 bg-blue-500 rounded text-white hover:bg-blue-600">
+					Copy Palette
+				</button>
 			</div>
 		</div>
 	);
@@ -28,6 +56,7 @@ export default WidgetPane;
 interface PaletteColorProps {
 	color: string;
 }
+
 const PaletteColor: React.FC<PaletteColorProps> = ({ color }) => {
 	return <div style={{ backgroundColor: color }} className="w-12 h-12" />;
 };
