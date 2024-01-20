@@ -15,12 +15,17 @@ const DashboardPage: React.FC = () => {
 					<ImagePane uploadedImage={uploadedImage} />
 					{clusterData && <WidgetPane clusterData={clusterData} />}
 				</div>
-				<div className="flex items-center justify-center h-48">
+				<div className="flex items-center gap-2 justify-center h-48">
 					<ActionButton
 						label="save palette"
 						className="p-2 bg-black rounded text-white"
 						onClick={() => console.log("palette saved")}
 					/>
+
+					{/* TODO: make the copy button functional */}
+					<button className="p-2 bg-primary rounded text-white hover:bg-accent">
+						Copy Palette
+					</button>
 				</div>
 			</div>
 		</>
