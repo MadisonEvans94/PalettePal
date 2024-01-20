@@ -5,11 +5,9 @@ import { PaletteColorWidgetProps } from "./PaletteColorWidget";
 const PaletteRatioWidget: React.FC<PaletteColorWidgetProps> = ({
 	clusterData,
 	colorCount,
-	decrementColorCount,
-	incrementColorCount,
 }) => {
 	return (
-		<div className="flex-grow">
+		<div className="flex-grow w-full h-full">
 			<Plot
 				data={[
 					{
@@ -19,16 +17,20 @@ const PaletteRatioWidget: React.FC<PaletteColorWidgetProps> = ({
 						marker: {
 							colors: clusterData.clusters[colorCount],
 						},
+						textinfo: "percent",
 					},
 				]}
 				layout={{
 					autosize: true,
-					title: "My Responsive Plot",
+
 					paper_bgcolor: "rgba(0,0,0,0)",
 					plot_bgcolor: "rgba(0,0,0,0)",
+					font: {
+						color: "white", // This will change the global font color, affecting the labels
+					},
 				}}
 				useResizeHandler={true}
-				style={{ width: "100%", height: "100%" }} // Adjusted for full width and height
+				style={{ width: "100%", height: "100%" }}
 			/>
 		</div>
 	);
