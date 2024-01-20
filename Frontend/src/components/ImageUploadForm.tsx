@@ -12,7 +12,7 @@ interface ImageFormProps {
 	onSuccess?: () => void;
 }
 
-const ImageForm: React.FC<ImageFormProps> = ({
+const ImageUploadForm: React.FC<ImageFormProps> = ({
 	url,
 	onSubmit,
 	onClose,
@@ -88,4 +88,4 @@ const ImageForm: React.FC<ImageFormProps> = ({
 	);
 };
 
-export default ImageForm;
+export default ImageUploadForm;

@@ -6,7 +6,7 @@ interface WidgetPaneProps {
 }
 
 const WidgetPane: React.FC<WidgetPaneProps> = ({ clusterData }) => {
-	const [colorCount, setColorCount] = useState<number>(0);
+	const [colorCount, setColorCount] = useState<number>(2);
 
 	const incrementColorCount = () => {
 		if (colorCount < 5) {
@@ -31,14 +31,24 @@ const WidgetPane: React.FC<WidgetPaneProps> = ({ clusterData }) => {
 				<div className="flex items-center justify-center gap-2">
 					<button
 						onClick={decrementColorCount}
-						className="px-3 py-1 border border-gray-400 rounded text-gray-300 hover:text-white hover:border-white"
+						className={`px-3 py-1 border border-gray-400 rounded ${
+							colorCount === 0
+								? "text-gray-500"
+								: "text-gray-300 hover:text-white hover:border-white"
+						}`}
+						disabled={colorCount === 0}
 					>
 						-
 					</button>
 					<span className="text-lg">{colorCount + 1}</span>
 					<button
 						onClick={incrementColorCount}
-						className="px-3 py-1 border border-gray-400 rounded text-gray-300 hover:text-white hover:border-white"
+						className={`px-3 py-1 border border-gray-400 rounded ${
+							colorCount === 5
+								? "text-gray-500"
+								: "text-gray-300 hover:text-white hover:border-white"
+						}`}
+						disabled={colorCount === 5}
 					>
 						+
 					</button>
