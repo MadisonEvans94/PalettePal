@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ClusterData } from "./App";
 import PaletteColorWidget from "./PaletteColorWidget";
+import PaletteRatioWidget from "./PaletteRatioWidget";
 
 interface WidgetPaneProps {
 	clusterData: ClusterData;
@@ -23,12 +24,13 @@ const WidgetPane: React.FC<WidgetPaneProps> = ({ clusterData }) => {
 
 	return (
 		<div className="bg-gray-800 text-white h-full flex items-center">
-			<PaletteColorWidget
+			{/* <PaletteColorWidget
 				clusterData={clusterData}
 				colorCount={colorCount}
 				decrementColorCount={decrementColorCount}
 				incrementColorCount={incrementColorCount}
-			/>
+			/> */}
+			<PaletteRatioWidget />
 		</div>
 	);
 };
