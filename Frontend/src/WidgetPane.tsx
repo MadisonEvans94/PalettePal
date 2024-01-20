@@ -35,7 +35,7 @@ const WidgetPane: React.FC<WidgetPaneProps> = ({ clusterData }) => {
 					>
 						-
 					</button>
-					<span className="text-lg">{colorCount}</span>
+					<span className="text-lg">{colorCount + 1}</span>
 					<button
 						onClick={incrementColorCount}
 						className="px-3 py-1 border border-gray-400 rounded text-gray-300 hover:text-white hover:border-white"
