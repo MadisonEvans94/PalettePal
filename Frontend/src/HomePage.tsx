@@ -10,7 +10,7 @@ const HomePage: React.FC = () => {
 		useAppContext();
 
 	const handleSuccess = (uploadedFile: File) => {
-		setUploadedImage(uploadedFile); // Update the context with the uploaded image
+		setUploadedImage(uploadedFile);
 		navigate("/dashboard");
 	};
 
@@ -37,14 +37,20 @@ const HomePage: React.FC = () => {
 	};
 
 	return (
-		<div>
-			<button onClick={() => setShowImageForm(true)}>click me</button>
-			{showImageForm && (
+		<div className="bg-neutral-500 h-full flex items-center justify-center">
+			{showImageForm ? (
 				<ImageForm
 					url={imageProcessorEndpoint}
 					onSubmit={handleSubmit}
 					onClose={() => setShowImageForm(false)}
 				/>
+			) : (
+				<button
+					className="border p-2 rounded bg-neutral-200"
+					onClick={() => setShowImageForm(true)}
+				>
+					Create A New Palette
+				</button>
 			)}
 		</div>
 	);

@@ -13,6 +13,7 @@ module.exports = {
 					300: "#d4d4d4",
 					// Add more shades as needed
 				},
+				info: "#555555",
 				success: "#38c172",
 				error: "#e3342f",
 				warning: "#f6993f",

@@ -53,7 +53,7 @@ const ImageForm: React.FC<ImageFormProps> = ({
 			<div>
 				<label
 					htmlFor="fileInput"
-					className="block text-lg font-medium text-gray-700"
+					className="block text-lg font-medium text-info"
 				>
 					Add Image
 				</label>
@@ -61,31 +61,16 @@ const ImageForm: React.FC<ImageFormProps> = ({
 					type="file"
 					accept=".jpeg, .png"
 					onChange={handleFileChange}
-					className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
+					className="file:cursor-pointer w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
                                    file:border-0 file:text-sm file:font-semibold
-                                   file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                                   file:bg-blue-50 file:text-info hover:file:bg-neutral-200 file:rounded"
 					id="fileInput"
 				/>
 			</div>
-			<div>
-				<label
-					htmlFor="clusterQuantity"
-					className="block text-lg font-medium text-gray-700"
-				>
-					Number of Clusters
-				</label>
-				<input
-					type="number"
-					id="clusterQuantity"
-					value={clusterQuantity}
-					onChange={handleClusterQuantityChange}
-					min="1"
-					className="w-full p-2 mt-1 text-sm border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-				/>
-			</div>
+
 			<button
 				type="submit"
-				className="w-full px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
+				className="w-full px-4 py-2 text-white bg-primary rounded hover:bg-accent focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
 			>
 				Upload
 			</button>
