@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { ReactComponent as Close } from "../assets/svg/Close.svg";
 
 interface ImageFormProps {
 	url: string;
 	onSubmit: (
 		event: React.FormEvent,
 		imgFile: File | null,
-		clusterQuantity: number,
 		url: string
 	) => void;
-	onClose: () => void; // Add this line
-	onSuccess?: () => void; // Optional onSuccess callback
+	onClose: () => void;
+	onSuccess?: () => void;
 }
 
 const ImageForm: React.FC<ImageFormProps> = ({
@@ -19,7 +19,7 @@ const ImageForm: React.FC<ImageFormProps> = ({
 	onSuccess,
 }) => {
 	const [imgFile, setImgFile] = useState<File | null>(null);
-	const [clusterQuantity, setClusterQuantity] = useState<number>(4);
+	const fileInputRef = useRef<HTMLInputElement>(null);
 
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		if (event.target.files && event.target.files[0]) {
@@ -27,22 +27,20 @@ const ImageForm: React.FC<ImageFormProps> = ({
 		}
 	};
 
-	const handleClusterQuantityChange = (
-		event: React.ChangeEvent<HTMLInputElement>
-	) => {
-		setClusterQuantity(parseInt(event.target.value) || 3);
-	};
-
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		try {
-			await onSubmit(e, imgFile, clusterQuantity, url);
+			await onSubmit(e, imgFile, url);
 			if (onSuccess) {
-				onSuccess(); // Call onSuccess if defined
+				onSuccess();
 			}
 		} catch (error) {
 			console.error("Error during form submission:", error);
 		}
+	};
+
+	const handleFileInputClick = () => {
+		fileInputRef.current?.click();
 	};
 
 	return (
@@ -50,22 +48,27 @@ const ImageForm: React.FC<ImageFormProps> = ({
 			className="relative w-full max-w-lg p-8 space-y-4 bg-white rounded shadow-md"
 			onSubmit={handleSubmit}
 		>
-			<div>
-				<label
-					htmlFor="fileInput"
-					className="block text-lg font-medium text-info"
-				>
-					Add Image
-				</label>
+			<div className="flex items-center space-x-4">
 				<input
 					type="file"
 					accept=".jpeg, .png"
 					onChange={handleFileChange}
-					className="file:cursor-pointer w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
-                                   file:border-0 file:text-sm file:font-semibold
-                                   file:bg-blue-50 file:text-info hover:file:bg-neutral-200 file:rounded"
+					className="hidden"
+					ref={fileInputRef}
 					id="fileInput"
 				/>
+				<button
+					type="button"
+					onClick={handleFileInputClick}
+					className="cursor-pointer text-sm py-2 px-4 border-0 font-semibold bg-blue-50 text-info hover:bg-neutral-200 rounded"
+				>
+					Choose Image
+				</button>
+				{imgFile && (
+					<span className="text-sm font-semibold">
+						{imgFile.name}
+					</span>
+				)}
 			</div>
 
 			<button
@@ -75,11 +78,11 @@ const ImageForm: React.FC<ImageFormProps> = ({
 				Upload
 			</button>
 			<button
-				type="button" // Make sure this is a button of type 'button'
+				type="button"
 				className="absolute z-50 top-0 right-0 mt-2 mr-2 text-gray-400 hover:text-gray-600"
 				onClick={onClose}
 			>
-				close
+				<Close />
 			</button>
 		</form>
 	);

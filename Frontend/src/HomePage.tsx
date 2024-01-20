@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { processImage } from "./api/crud";
-import ImageForm from "./components/Form";
+import ImageForm from "./components/ImageUploadForm";
 import { useAppContext } from "./App"; // Import useAppContext
 
 const HomePage: React.FC = () => {
@@ -19,16 +19,11 @@ const HomePage: React.FC = () => {
 	const handleSubmit = async (
 		event: React.FormEvent,
 		imgFile: File | null,
-		clusterQuantity: number,
+
 		url: string
 	) => {
 		if (imgFile) {
-			const clusterData = await processImage(
-				event,
-				imgFile,
-				clusterQuantity,
-				url
-			);
+			const clusterData = await processImage(event, imgFile, url);
 			if (clusterData) {
 				setClusterData(clusterData);
 			}

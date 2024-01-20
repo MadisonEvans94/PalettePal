@@ -1,7 +1,6 @@
 export const processImage = async (
 	event: React.FormEvent,
 	imgFile: File | null,
-	clusterQuantity: number,
 	url: string
 ) => {
 	event.preventDefault();
@@ -12,7 +11,6 @@ export const processImage = async (
 
 	const formData = new FormData();
 	formData.append("image", imgFile);
-	formData.append("clusterQuantity", clusterQuantity.toString());
 
 	try {
 		const response = await fetch(url, {
