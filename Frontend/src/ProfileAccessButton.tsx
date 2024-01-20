@@ -33,7 +33,7 @@ const ProfileAccessButton: React.FC = () => {
 				<ProfileAccessIcon />
 			</button>
 			{showProfileOptions && (
-				<div className="absolute bg-neutral-500 flex flex-col">
+				<div className="absolute -left-24 bg-neutral-500 flex flex-col">
 					<Link
 						to="/dashboard"
 						className="border"
@@ -49,9 +49,10 @@ const ProfileAccessButton: React.FC = () => {
 						Options
 					</Link>
 					<button
-						onClick={() =>
-							console.log("logout functionality goes here")
-						}
+						onClick={() => {
+							setShowProfileOptions(false);
+							console.log("logout functionality goes here");
+						}}
 						className="border"
 					>
 						Logout
