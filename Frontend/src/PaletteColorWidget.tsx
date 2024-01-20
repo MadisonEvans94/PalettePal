@@ -5,7 +5,7 @@ interface PaletteColorProps {
 	color: string;
 }
 
-interface PaletteColorWidgetProps {
+export interface PaletteColorWidgetProps {
 	clusterData: ClusterData;
 	colorCount: number;
 	decrementColorCount: () => void;
