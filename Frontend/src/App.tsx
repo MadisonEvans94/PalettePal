@@ -7,6 +7,7 @@ import NavBar from "./NavBar";
 import PaletteView from "./PaletteView";
 import SignUpPage from "./SignUpPage";
 import LoginPage from "./LoginPage";
+import { AuthProvider } from "./useAuth";
 
 const imageProcessorEndpoint =
 	process.env.REACT_APP_IMAGE_PROCESSOR_ENDPOINT || "";
@@ -61,24 +62,29 @@ function App() {
 			}}
 		>
 			<Router>
-				<div className="h-full flex flex-col">
-					<NavBar />
-					<div className="flex-grow overflow-auto">
-						<Routes>
-							<Route path="/" element={<HomePage />} />
-							<Route
-								path="/dashboard"
-								element={<DashboardPage />}
-							/>
-							<Route
-								path="/palette-view"
-								element={<PaletteView />}
-							/>
-							<Route path="/sign-up" element={<SignUpPage />} />
-							<Route path="/login" element={<LoginPage />} />
-						</Routes>
+				<AuthProvider>
+					<div className="h-full flex flex-col">
+						<NavBar />
+						<div className="flex-grow overflow-auto">
+							<Routes>
+								<Route path="/" element={<HomePage />} />
+								<Route
+									path="/dashboard"
+									element={<DashboardPage />}
+								/>
+								<Route
+									path="/palette-view"
+									element={<PaletteView />}
+								/>
+								<Route
+									path="/sign-up"
+									element={<SignUpPage />}
+								/>
+								<Route path="/login" element={<LoginPage />} />
+							</Routes>
+						</div>
 					</div>
-				</div>
+				</AuthProvider>
 			</Router>
 		</AppContext.Provider>
 	);
