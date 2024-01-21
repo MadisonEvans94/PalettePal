@@ -1,5 +1,5 @@
 import React from "react";
-import { useAppContext } from "./App"; // Import useAppContext
+import { useAppContext } from "./AppContext"; // Import useAppContext
 import WidgetPane from "./WidgetPane";
 import ActionButton from "./ActionButton";
 

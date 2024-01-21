@@ -1,27 +1,23 @@
-// hooks/useAuth.js
-
-import { useState, useCallback, useContext, createContext } from "react";
+import { useState, createContext, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-// types/AuthTypes.ts
 
 export interface AuthContextType {
-	authToken: string | null;
+	isAuthenticated: boolean;
 	signUp: (
 		username: string,
 		email: string,
 		password: string
 	) => Promise<void>;
-	logIn: (username: string, password: string) => Promise<void>;
-	logOut: () => void;
+	logIn: (email: string, password: string) => Promise<void>;
+	logOut: () => Promise<void>;
 }
-type AuthProviderProps = {
-	children: React.ReactNode;
-};
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
-export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-	const [authToken, setAuthToken] = useState<string | null>(null);
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+	children,
+}) => {
+	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 	const navigate = useNavigate();
 
 	const signUp = async (
@@ -43,9 +39,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 			);
 
 			if (response.ok) {
-				const data = await response.json();
-				setAuthToken(data.token); // Assuming the token is in the response
-				navigate("/dashboard");
+				setIsAuthenticated(true);
+				navigate("/");
 			} else {
 				// Handle errors, e.g., show an error message
 			}
@@ -54,19 +49,59 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 		}
 	};
 
-	const logIn = async (username: string, password: string): Promise<void> => {
-		// Similar to signUp, but with the login endpoint
+	// TODO: test with server
+	const logIn = async (email: string, password: string): Promise<void> => {
+		try {
+			const response = await fetch(
+				"https://127.0.0.1:8000/auth/log-in/",
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					credentials: "include",
+					body: JSON.stringify({ email, password }),
+				}
+			);
+
+			if (response.ok) {
+				// If the login is successful, you may receive user data or a success message
+				setIsAuthenticated(true);
+				navigate("/dashboard"); // Navigate to a protected route after login
+			} else {
+				// Handle errors, e.g., show an error message to the user
+			}
+		} catch (error) {
+			// Handle network errors, e.g., show an error message to the user
+		}
 	};
 
-	const logOut = async () => {
-		// Invalidate the token on the server if necessary
-		setAuthToken(null);
-		navigate("/");
+	// TODO: test with server
+	const logOut = async (): Promise<void> => {
+		try {
+			const response = await fetch(
+				"https://127.0.0.1:8000/auth/log-out/",
+				{
+					method: "POST",
+					credentials: "include", // Needed to include the HTTP-only cookie in the request
+				}
+			);
+
+			if (response.ok) {
+				setIsAuthenticated(false);
+				navigate("/login"); // Navigate to the login page after logout
+			} else {
+				// Handle errors, e.g., show an error message to the user
+			}
+		} catch (error) {
+			// Handle network errors, e.g., show an error message to the user
+		}
 	};
 
-	// Expose the authToken, and auth actions
 	return (
-		<AuthContext.Provider value={{ authToken, signUp, logIn, logOut }}>
+		<AuthContext.Provider
+			value={{ isAuthenticated, signUp, logIn, logOut }}
+		>
 			{children}
 		</AuthContext.Provider>
 	);

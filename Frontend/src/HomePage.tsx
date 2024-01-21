@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { processImage } from "./api/crud";
 import ImageForm from "./components/ImageUploadForm";
-import { useAppContext } from "./App"; // Import useAppContext
+import { useAppContext } from "./AppContext"; // Import useAppContext
+import { useAuth } from "./useAuth";
 
 const HomePage: React.FC = () => {
 	const navigate = useNavigate();
@@ -15,7 +16,6 @@ const HomePage: React.FC = () => {
 	};
 
 	const [showImageForm, setShowImageForm] = useState<boolean>(false);
-
 	const handleSubmit = async (
 		event: React.FormEvent,
 		imgFile: File | null,
