@@ -23,10 +23,11 @@ const PaletteRatioWidget: React.FC<PaletteColorWidgetProps> = ({
 				layout={{
 					autosize: true,
 
-					paper_bgcolor: "rgba(0,0,0,0)",
+					// paper_bgcolor: "rgba(0,0,0,0)",
 					plot_bgcolor: "rgba(0,0,0,0)",
 					font: {
-						color: "white", // This will change the global font color, affecting the labels
+						size: 16,
+						color: "rgb(115 115 115)",
 					},
 				}}
 				useResizeHandler={true}

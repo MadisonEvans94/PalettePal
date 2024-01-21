@@ -22,20 +22,20 @@ const WidgetPane: React.FC<WidgetPaneProps> = ({ clusterData }) => {
 		}
 	};
 	const componentsToCycle = [
-		<PaletteRatioWidget
-			clusterData={clusterData}
-			colorCount={colorCount}
-			key="paletteRatioWidget"
-		/>,
 		<PaletteColorWidget
 			clusterData={clusterData}
 			colorCount={colorCount}
 			key="paletteColorWidget"
 		/>,
+		<PaletteRatioWidget
+			clusterData={clusterData}
+			colorCount={colorCount}
+			key="paletteRatioWidget"
+		/>,
 	];
 
 	return (
-		<div className="bg-gray-800 text-white h-full w-full flex flex-col items-center">
+		<div className="text-neutral-700 h-full w-full flex flex-col items-center">
 			<Carousel components={componentsToCycle} />
 			<ColorCounter
 				decrementColorCount={decrementColorCount}

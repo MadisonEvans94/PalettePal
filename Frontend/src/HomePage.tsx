@@ -11,7 +11,7 @@ const HomePage: React.FC = () => {
 
 	const handleSuccess = (uploadedFile: File) => {
 		setUploadedImage(uploadedFile);
-		navigate("/dashboard");
+		navigate("/palette-view");
 	};
 
 	const [showImageForm, setShowImageForm] = useState<boolean>(false);
@@ -32,7 +32,7 @@ const HomePage: React.FC = () => {
 	};
 
 	return (
-		<div className="bg-neutral-500 h-full flex items-center justify-center">
+		<div className="bg-neutral-100 h-full flex items-center justify-center">
 			{showImageForm ? (
 				<ImageForm
 					url={imageProcessorEndpoint}

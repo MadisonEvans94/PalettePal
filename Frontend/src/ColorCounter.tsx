@@ -18,7 +18,7 @@ const ColorCounter: React.FC<ColorCounterProps> = ({
 			<button
 				onClick={decrementColorCount}
 				disabled={colorCount === 0}
-				className={`px-3 py-1 border border-gray-400 rounded ${
+				className={`px-3 py-1 border bg-neutral-500 text-white rounded ${
 					colorCount === 0 ? "opacity-50 cursor-not-allowed" : ""
 				}`}
 			>
@@ -28,7 +28,7 @@ const ColorCounter: React.FC<ColorCounterProps> = ({
 			<button
 				onClick={incrementColorCount}
 				disabled={colorCount === clusterData.clusters.length - 1}
-				className={`px-3 py-1 border border-gray-400 rounded ${
+				className={`px-3 py-1 border bg-neutral-500 text-white rounded ${
 					colorCount === clusterData.clusters.length - 1
 						? "opacity-50 cursor-not-allowed"
 						: ""

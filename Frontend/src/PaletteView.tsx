@@ -10,12 +10,12 @@ const PaletteView: React.FC = () => {
 
 	return (
 		<>
-			<div className="w-full h-full bg-gray-400 flex flex-col">
+			<div className="w-full h-full flex flex-col">
 				<div className="w-full grid grid-cols-2 flex-grow">
 					<ImagePane uploadedImage={uploadedImage} />
 					{clusterData && <WidgetPane clusterData={clusterData} />}
 				</div>
-				<div className="flex items-center gap-2 justify-center h-48">
+				<div className="flex items-center gap-2 bg-neutral-500 justify-center h-48">
 					<ActionButton
 						label="save palette"
 						className="p-2 bg-black rounded text-white"

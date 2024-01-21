@@ -33,17 +33,17 @@ const ProfileAccessButton: React.FC = () => {
 				<ProfileAccessIcon />
 			</button>
 			{showProfileOptions && (
-				<div className="absolute -left-24 bg-neutral-500 flex flex-col">
+				<div className="absolute z-50 -left-32 rounded-lg bg-neutral-400 flex flex-col overflow-hidden">
 					<Link
 						to="/palette-view"
-						className="border"
+						className="p-2 hover:bg-neutral-700"
 						onClick={handleLinkClick}
 					>
 						Palette View
 					</Link>
 					<Link
 						to="/dashboard"
-						className="border"
+						className="p-2 hover:bg-neutral-700"
 						onClick={handleLinkClick}
 					>
 						Dashboard
@@ -54,7 +54,7 @@ const ProfileAccessButton: React.FC = () => {
 							setShowProfileOptions(false);
 							console.log("logout functionality goes here");
 						}}
-						className="border"
+						className="p-2 hover:bg-neutral-700"
 					>
 						Logout
 					</button>
