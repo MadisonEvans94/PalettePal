@@ -35,19 +35,20 @@ const ProfileAccessButton: React.FC = () => {
 			{showProfileOptions && (
 				<div className="absolute -left-24 bg-neutral-500 flex flex-col">
 					<Link
+						to="/palette-view"
+						className="border"
+						onClick={handleLinkClick}
+					>
+						Palette View
+					</Link>
+					<Link
 						to="/dashboard"
 						className="border"
 						onClick={handleLinkClick}
 					>
 						Dashboard
 					</Link>
-					<Link
-						to="/options"
-						className="border"
-						onClick={handleLinkClick}
-					>
-						Options
-					</Link>
+
 					<button
 						onClick={() => {
 							setShowProfileOptions(false);

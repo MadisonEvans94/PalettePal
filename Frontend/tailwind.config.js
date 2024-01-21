@@ -41,5 +41,5 @@ module.exports = {
 			// Add additional customizations as needed
 		},
 	},
-	plugins: [],
+	plugins: ["@tailwindcss/forms"],
 };

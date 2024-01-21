@@ -4,6 +4,9 @@ import "./App.css";
 import HomePage from "./HomePage";
 import DashboardPage from "./DashboardPage";
 import NavBar from "./NavBar";
+import PaletteView from "./PaletteView";
+import SignUpPage from "./SignUpPage";
+import LoginPage from "./LoginPage";
 
 const imageProcessorEndpoint =
 	process.env.REACT_APP_IMAGE_PROCESSOR_ENDPOINT || "";
@@ -67,6 +70,12 @@ function App() {
 								path="/dashboard"
 								element={<DashboardPage />}
 							/>
+							<Route
+								path="/palette-view"
+								element={<PaletteView />}
+							/>
+							<Route path="/sign-up" element={<SignUpPage />} />
+							<Route path="/login" element={<LoginPage />} />
 						</Routes>
 					</div>
 				</div>
