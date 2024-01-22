@@ -13,18 +13,17 @@ export const processImage = async (
 	formData.append("image", imgFile);
 
 	try {
+		console.log(
+			`Posting to server...\n\nmethod: POST\ncredentials: 'include'\nbody: ${formData}`
+		);
 		const response = await fetch(url, {
-			headers: {
-				"Content-Type": "application/json",
-			},
-			credentials: "include",
 			method: "POST",
+
 			body: formData,
 		});
-		console.log(response);
 
 		if (!response.ok) {
-			throw new Error("Image upload failed");
+			throw new Error("Image upload failed :(");
 		}
 
 		const result = await response.json();
