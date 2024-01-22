@@ -18,7 +18,6 @@ export const processImage = async (
 		);
 		const response = await fetch(url, {
 			method: "POST",
-
 			body: formData,
 		});
 

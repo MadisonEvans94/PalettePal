@@ -3,11 +3,10 @@ import { useAppContext } from "./AppContext"; // Import useAppContext
 import WidgetPane from "./WidgetPane";
 import ActionButton from "./ActionButton";
 
-// TODO: DahsboardPage should load in the current palette image from context
-
 const PaletteView: React.FC = () => {
 	const { uploadedImage, clusterData } = useAppContext();
 
+	console.log(`Cluster Data: ${clusterData}`);
 	return (
 		<>
 			<div className="w-full h-full flex flex-col">

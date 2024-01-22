@@ -28,7 +28,7 @@ const PaletteCard: React.FC<PaletteCardProps> = ({ paletteData }) => {
 				<div className="w-1/3 bg-gray-200 flex items-center justify-center">
 					<img
 						className="object-cover w-full h-full"
-						src="https://images.unsplash.com/photo-1682685796766-0fddd3e480de?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
+						src="https://images.unsplash.com/photo-1586455122341-927f2dec0691?q=80&w=2643&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 						alt="sample"
 					/>
 				</div>
