@@ -1,13 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { ReactComponent as RightCaret } from "./assets/svg/CaretRight.svg";
 import { ReactComponent as LeftCaret } from "./assets/svg/CaretLeft.svg";
+import { ClusterData } from "./AppContext";
 
-const PaletteCard: React.FC = () => {
+// TODO: fix the redundancy
+export type PaletteCardProps = {
+	paletteData: ClusterData;
+};
+const PaletteCard: React.FC<PaletteCardProps> = ({ paletteData }) => {
+	const [colorCount, setColorCount] = useState<number>(2);
+	const handleColorIncrement = () => {
+		setColorCount((prevCount) =>
+			prevCount < paletteData.clusters.length - 1
+				? prevCount + 1
+				: prevCount
+		);
+	};
+
+	const handleColorDecrement = () => {
+		setColorCount((prevCount) =>
+			prevCount > 0 ? prevCount - 1 : prevCount
+		);
+	};
 	return (
 		<div className="border border-black max-w-[800px] mx-auto bg-neutral-300 rounded-lg overflow-hidden">
 			<div className="flex">
-				<div className="w-1/3 bg-gray-200 p-4 flex items-center justify-center">
-					<span className="text-gray-500">Image section</span>
+				<div className="w-1/3 bg-gray-200 flex items-center justify-center">
+					<img
+						className="object-cover w-full h-full"
+						src="https://images.unsplash.com/photo-1682685796766-0fddd3e480de?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
+						alt="sample"
+					/>
 				</div>
 				<div className="w-2/3 bg-white p-4 flex flex-col justify-between">
 					<div className="flex justify-end space-x-2">
@@ -20,13 +43,24 @@ const PaletteCard: React.FC = () => {
 					</div>
 
 					<div className="flex items-center justify-between my-6">
-						<LeftCaret className="w-4 cursor-pointer" />
+						<LeftCaret
+							className="w-4 cursor-pointer"
+							onClick={handleColorDecrement}
+						/>
 						<div className="flex space-x-2">
-							<div className="w-6 h-6 bg-green-500 rounded-full" />
-							<div className="w-6 h-6 bg-orange-500 rounded-full" />
-							<div className="w-6 h-6 bg-purple-500 rounded-full" />
+							{paletteData.clusters[colorCount].map((color) => {
+								return (
+									<div
+										style={{ backgroundColor: color }}
+										className="w-6 h-6 rounded-full"
+									/>
+								);
+							})}
 						</div>
-						<RightCaret className="w-4 cursor-pointer" />
+						<RightCaret
+							className="w-4 cursor-pointer"
+							onClick={handleColorIncrement}
+						/>
 					</div>
 
 					<button className="px-3 py-1 border border-gray-400 text-gray-700 rounded self-center">

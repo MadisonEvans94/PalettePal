@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { processImage } from "./api/crud";
 import ImageForm from "./components/ImageUploadForm";
-import { useAppContext } from "./AppContext"; // Import useAppContext
-import { useAuth } from "./useAuth";
+import { useAppContext } from "./AppContext";
 
 const HomePage: React.FC = () => {
 	const navigate = useNavigate();
