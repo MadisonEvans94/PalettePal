@@ -1,5 +1,5 @@
 import React from "react";
-import { ClusterData } from "./AppContext";
+import { ClusterData } from "./types";
 
 interface PaletteColorProps {
 	color: string;

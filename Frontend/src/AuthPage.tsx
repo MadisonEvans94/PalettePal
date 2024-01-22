@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "./useAuth";
 import AuthForm from "./AuthForm";
+import { FormFieldProps } from "./types";
 
 const AuthPage = () => {
 	const { logIn, signUp } = useAuth();
@@ -90,22 +91,6 @@ const AuthPage = () => {
 };
 
 export default AuthPage;
-
-interface FormFieldProps {
-	label: string;
-	type:
-		| "text"
-		| "email"
-		| "password"
-		| "number"
-		| "date"
-		| "url"
-		| "tel"
-		| "search"
-		| "color";
-	required: boolean;
-	id: string;
-}
 
 const FormField: React.FC<FormFieldProps> = ({ label, type, required, id }) => {
 	return (

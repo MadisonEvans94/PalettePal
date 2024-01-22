@@ -7,8 +7,8 @@ import NavBar from "./NavBar";
 import PaletteView from "./PaletteView";
 import AuthPage from "./AuthPage";
 import { AuthProvider } from "./useAuth";
-import { AppContext, ClusterData } from "./AppContext";
-// import ProtectedRoute from "./ProtectedRoute"; // Import the new component
+import { AppContext } from "./AppContext";
+import { ClusterData } from "./types";
 
 const imageProcessorEndpoint =
 	process.env.REACT_APP_IMAGE_PROCESSOR_ENDPOINT || "";

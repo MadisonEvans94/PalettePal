@@ -1,10 +1,6 @@
 import React from "react";
+import { AuthFormProps } from "./types";
 
-interface AuthFormProps {
-	formType: string;
-	handleSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
-	children: React.ReactNode;
-}
 const AuthForm: React.FC<AuthFormProps> = ({
 	formType,
 	handleSubmit,

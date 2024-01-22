@@ -1,16 +1,6 @@
 import React, { useState, useRef } from "react";
 import { ReactComponent as Close } from "../assets/svg/Close.svg";
-
-interface ImageFormProps {
-	url: string;
-	onSubmit: (
-		event: React.FormEvent,
-		imgFile: File | null,
-		url: string
-	) => void;
-	onClose: () => void;
-	onSuccess?: () => void;
-}
+import { ImageFormProps } from "../types";
 
 const ImageUploadForm: React.FC<ImageFormProps> = ({
 	url,

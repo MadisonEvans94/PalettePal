@@ -2,11 +2,11 @@ import React from "react";
 import { useAppContext } from "./AppContext"; // Import useAppContext
 import WidgetPane from "./WidgetPane";
 import ActionButton from "./ActionButton";
+import { ImagePaneProps } from "./types";
 
 const PaletteView: React.FC = () => {
 	const { uploadedImage, clusterData } = useAppContext();
 
-	console.log(`Cluster Data: ${clusterData}`);
 	return (
 		<>
 			<div className="w-full h-full flex flex-col">
@@ -33,9 +33,6 @@ const PaletteView: React.FC = () => {
 
 export default PaletteView;
 
-interface ImagePaneProps {
-	uploadedImage: File | null;
-}
 const ImagePane: React.FC<ImagePaneProps> = ({ uploadedImage }) => {
 	return (
 		<div className="bg-gray-600 text-white h-full overflow-hidden relative flex justify-center items-center">

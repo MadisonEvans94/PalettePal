@@ -1,35 +1,47 @@
-// ./types/index.ts
+export type ClusterData = {
+	clusters: string[][];
+	ratio: number[][];
+};
 
-export type PixelData = any[]; // Replace 'any' with a more specific type if possible
+// TODO: fix the redundancy
+export type PaletteCardProps = {
+	clusterData: ClusterData;
+	imageUrl: string;
+};
 
-export type ImageFile = File | null;
-
-// types.ts
-export interface ColorClusters {
-	[key: number]: string[]; // key is the cluster quantity, value is an array of color strings
+export interface ImageFormProps {
+	url: string;
+	onSubmit: (
+		event: React.FormEvent,
+		imgFile: File | null,
+		url: string
+	) => void;
+	onClose: () => void;
+	onSuccess?: () => void;
 }
 
-export interface CentroidContextType {
-	centroidArray: {
-		colors: ColorClusters;
-		// ... any other properties of centroidArray
-	};
-	// You can also add any other state or functions that you want to provide through the context
+export interface ImagePaneProps {
+	uploadedImage: File | null;
 }
 
-export interface LandingProps {
-	isLoading: boolean;
-	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
-	setPixelData: React.Dispatch<React.SetStateAction<PixelData>>;
-	setImgFile: React.Dispatch<React.SetStateAction<ImageFile>>;
-	imgFile: ImageFile;
+export interface FormFieldProps {
+	label: string;
+	type:
+		| "text"
+		| "email"
+		| "password"
+		| "number"
+		| "date"
+		| "url"
+		| "tel"
+		| "search"
+		| "color";
+	required: boolean;
+	id: string;
 }
 
-export interface ContentSectionProps {
-	isLoading: boolean;
-	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
-	pixelData: PixelData;
-	setPixelData: React.Dispatch<React.SetStateAction<PixelData>>;
-	imgFile: ImageFile;
-	setImgFile: React.Dispatch<React.SetStateAction<ImageFile>>;
+export interface AuthFormProps {
+	formType: string;
+	handleSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
+	children: React.ReactNode;
 }

@@ -1,11 +1,5 @@
 import { createContext, useContext } from "react";
-
-export type ClusterData = {
-	message: string;
-	clusters: string[][]; // Array of arrays of hex color strings
-	ratio: number[][]; // Array of arrays of cluster sizes
-};
-
+import { ClusterData } from "./types";
 interface AppContextType {
 	imageProcessorEndpoint: string;
 	uploadedImage: File | null;
