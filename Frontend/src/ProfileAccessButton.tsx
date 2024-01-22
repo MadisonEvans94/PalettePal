@@ -1,12 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
 import { ReactComponent as ProfileAccessIcon } from "./assets/svg/ProfileAccessIcon.svg";
 import { Link } from "react-router-dom";
+import { useAuth } from "./useAuth";
 
 const ProfileAccessButton: React.FC = () => {
 	const [showProfileOptions, setShowProfileOptions] =
 		useState<boolean>(false);
 	const dropdownRef = useRef<HTMLDivElement>(null);
-
+	const { logOut } = useAuth();
 	const handleLinkClick = () => {
 		setShowProfileOptions(false);
 	};
@@ -51,8 +52,8 @@ const ProfileAccessButton: React.FC = () => {
 
 					<button
 						onClick={() => {
+							logOut();
 							setShowProfileOptions(false);
-							console.log("logout functionality goes here");
 						}}
 						className="p-2 hover:bg-neutral-700"
 					>

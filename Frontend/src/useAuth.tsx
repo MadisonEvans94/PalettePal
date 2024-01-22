@@ -1,7 +1,7 @@
-import { useState, createContext, useContext } from "react";
+import { useState, createContext, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export interface AuthContextType {
+interface AuthContextType {
 	isAuthenticated: boolean;
 	signUp: (
 		username: string,
@@ -20,82 +20,59 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 	const navigate = useNavigate();
 
+	// Initialize the authentication state from local storage
+	useEffect(() => {
+		const token = localStorage.getItem("access_token");
+		setIsAuthenticated(!!token);
+	}, []);
+
 	const signUp = async (
 		username: string,
 		email: string,
 		password: string
 	): Promise<void> => {
-		try {
-			const response = await fetch(
-				"https://127.0.0.1:8000/auth/sign-up/",
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					credentials: "include",
-					body: JSON.stringify({ username, email, password }),
-				}
-			);
+		const response = await fetch("http://127.0.0.1:8000/auth/sign-up/", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ username, email, password }),
+		});
+		console.log(isAuthenticated);
 
-			if (response.ok) {
-				setIsAuthenticated(true);
-				navigate("/");
-			} else {
-				// Handle errors, e.g., show an error message
-			}
-		} catch (error) {
-			// Handle network errors, e.g., show an error message
+		if (response.ok) {
+			const data = await response.json();
+			localStorage.setItem("access_token", data.access);
+			setIsAuthenticated(true);
+			navigate("/dashboard");
+		} else {
+			// Handle errors, e.g., show an error message
 		}
 	};
 
-	// TODO: test with server
 	const logIn = async (email: string, password: string): Promise<void> => {
-		try {
-			const response = await fetch(
-				"https://127.0.0.1:8000/auth/log-in/",
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					credentials: "include",
-					body: JSON.stringify({ email, password }),
-				}
-			);
+		const response = await fetch("http://127.0.0.1:8000/auth/login/", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ email, password }),
+		});
 
-			if (response.ok) {
-				// If the login is successful, you may receive user data or a success message
-				setIsAuthenticated(true);
-				navigate("/dashboard"); // Navigate to a protected route after login
-			} else {
-				// Handle errors, e.g., show an error message to the user
-			}
-		} catch (error) {
-			// Handle network errors, e.g., show an error message to the user
+		if (response.ok) {
+			const data = await response.json();
+			localStorage.setItem("access_token", data.access);
+			setIsAuthenticated(true);
+			navigate("/dashboard");
+		} else {
+			// Handle errors, e.g., show an error message to the user
 		}
 	};
 
-	// TODO: test with server
 	const logOut = async (): Promise<void> => {
-		try {
-			const response = await fetch(
-				"https://127.0.0.1:8000/auth/log-out/",
-				{
-					method: "POST",
-					credentials: "include", // Needed to include the HTTP-only cookie in the request
-				}
-			);
-
-			if (response.ok) {
-				setIsAuthenticated(false);
-				navigate("/login"); // Navigate to the login page after logout
-			} else {
-				// Handle errors, e.g., show an error message to the user
-			}
-		} catch (error) {
-			// Handle network errors, e.g., show an error message to the user
-		}
+		localStorage.removeItem("access_token");
+		setIsAuthenticated(false);
+		navigate("/dashboard");
 	};
 
 	return (

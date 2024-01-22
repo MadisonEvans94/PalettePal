@@ -14,9 +14,14 @@ export const processImage = async (
 
 	try {
 		const response = await fetch(url, {
+			headers: {
+				"Content-Type": "application/json",
+			},
+			credentials: "include",
 			method: "POST",
 			body: formData,
 		});
+		console.log(response);
 
 		if (!response.ok) {
 			throw new Error("Image upload failed");

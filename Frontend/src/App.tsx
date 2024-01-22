@@ -8,7 +8,7 @@ import PaletteView from "./PaletteView";
 import AuthPage from "./AuthPage";
 import { AuthProvider } from "./useAuth";
 import { AppContext, ClusterData } from "./AppContext";
-import ProtectedRoute from "./ProtectedRoute"; // Import the new component
+// import ProtectedRoute from "./ProtectedRoute"; // Import the new component
 
 const imageProcessorEndpoint =
 	process.env.REACT_APP_IMAGE_PROCESSOR_ENDPOINT || "";
@@ -44,12 +44,12 @@ function App() {
 						<div className="flex-grow overflow-auto">
 							<Routes>
 								<Route path="/" element={<HomePage />} />
+
 								<Route
 									path="/dashboard"
-									element={<ProtectedRoute />}
-								>
-									<Route index element={<DashboardPage />} />
-								</Route>
+									element={<DashboardPage />}
+								/>
+
 								<Route
 									path="/palette-view"
 									element={<PaletteView />}
