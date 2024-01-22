@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
-import { ReactComponent as ProfileAccessIcon } from "./assets/svg/ProfileAccessIcon.svg";
+import { ReactComponent as ProfileAccessIcon } from "../assets/icons/ProfileAccessIcon.svg";
 import { Link } from "react-router-dom";
-import { useAuth } from "./useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 const ProfileAccessButton: React.FC = () => {
 	const [showProfileOptions, setShowProfileOptions] =

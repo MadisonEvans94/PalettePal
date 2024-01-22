@@ -1,6 +1,6 @@
 import React from "react";
-import PaletteCard from "./PaletteCard";
-import imageInstance from "./test-json/clusters.json";
+import PaletteCard from "../components/PaletteCard";
+import imageInstance from "../test-json/clusters.json";
 
 const DashboardPage: React.FC = () => {
 	return (

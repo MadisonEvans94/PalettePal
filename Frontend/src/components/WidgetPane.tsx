@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ClusterData } from "./types";
+import { ClusterData } from "../types";
 import PaletteRatioWidget from "./PaletteRatioWidget";
 import PaletteColorWidget from "./PaletteColorWidget";
 import ColorCounter from "./ColorCounter";

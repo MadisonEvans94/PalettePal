@@ -1,8 +1,8 @@
 import React from "react";
-import { useAppContext } from "./AppContext"; // Import useAppContext
-import WidgetPane from "./WidgetPane";
-import ActionButton from "./ActionButton";
-import { ImagePaneProps } from "./types";
+import { useAppContext } from "../Contexts/AppContext"; // Import useAppContext
+import WidgetPane from "../components/WidgetPane";
+import ActionButton from "../components/ActionButton";
+import { ImagePaneProps } from "../types";
 
 const PaletteView: React.FC = () => {
 	const { uploadedImage, clusterData } = useAppContext();

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useAuth } from "./useAuth";
-import AuthForm from "./AuthForm";
-import { FormFieldProps } from "./types";
+import { useAuth } from "../hooks/useAuth";
+import AuthForm from "../components/AuthForm";
+import { FormFieldProps } from "../types";
 
 const AuthPage = () => {
 	const { logIn, signUp } = useAuth();

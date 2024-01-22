@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { ReactComponent as RightCaret } from "./assets/svg/CaretRight.svg";
-import { ReactComponent as LeftCaret } from "./assets/svg/CaretLeft.svg";
+import { ReactComponent as RightCaret } from "../assets/icons/CaretRight.svg";
+import { ReactComponent as LeftCaret } from "../assets/icons/CaretLeft.svg";
 
-import { PaletteCardProps } from "./types";
+import { PaletteCardProps } from "../types";
 
 const PaletteCard: React.FC<PaletteCardProps> = ({ clusterData, imageUrl }) => {
 	const [colorCount, setColorCount] = useState<number>(2);

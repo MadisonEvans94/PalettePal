@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { ReactComponent as Close } from "../assets/svg/Close.svg";
+import { ReactComponent as Close } from "../assets/icons/Close.svg";
 import { ImageFormProps } from "../types";
 
 const ImageUploadForm: React.FC<ImageFormProps> = ({

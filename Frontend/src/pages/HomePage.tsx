@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { processImage } from "./api/crud";
-import ImageForm from "./components/ImageUploadForm";
-import { useAppContext } from "./AppContext";
+import { processImage } from "../api/apiFunctions";
+import ImageForm from "../components/ImageUploadForm";
+import { useAppContext } from "../Contexts/AppContext";
 
 const HomePage: React.FC = () => {
 	const navigate = useNavigate();

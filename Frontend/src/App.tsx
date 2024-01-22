@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import HomePage from "./HomePage";
-import DashboardPage from "./DashboardPage";
-import NavBar from "./NavBar";
-import PaletteView from "./PaletteView";
-import AuthPage from "./AuthPage";
-import { AuthProvider } from "./useAuth";
-import { AppContext } from "./AppContext";
+import HomePage from "./pages/HomePage";
+import DashboardPage from "./pages/DashboardPage";
+import NavBar from "./components/NavBar";
+import PaletteView from "./pages/PaletteViewPage";
+import AuthPage from "./pages/AuthPage";
+import { AuthProvider } from "./hooks/useAuth";
+import { AppContext } from "./Contexts/AppContext";
 import { ClusterData } from "./types";
 
 const imageProcessorEndpoint =

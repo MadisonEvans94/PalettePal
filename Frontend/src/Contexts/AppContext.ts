@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { ClusterData } from "./types";
+import { ClusterData } from "../types";
 interface AppContextType {
 	imageProcessorEndpoint: string;
 	uploadedImage: File | null;

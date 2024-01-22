@@ -1,1 +1,1 @@
-import { processImage } from "./crud";
+import { processImage } from "./apiFunctions";

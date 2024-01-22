@@ -1,5 +1,5 @@
 import React from "react";
-import { AuthFormProps } from "./types";
+import { AuthFormProps } from "../types";
 
 const AuthForm: React.FC<AuthFormProps> = ({
 	formType,

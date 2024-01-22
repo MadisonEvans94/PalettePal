@@ -1,5 +1,5 @@
 import React from "react";
-import { ClusterData } from "./types";
+import { ClusterData } from "../types";
 
 interface ColorCounterProps {
 	decrementColorCount: () => void;

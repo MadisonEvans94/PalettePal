@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "./useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 const SignUpPage = () => {
 	const { signUp } = useAuth();
