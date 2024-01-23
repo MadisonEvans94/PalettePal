@@ -6,7 +6,7 @@ import { useAppContext } from "../Contexts/AppContext";
 
 const HomePage: React.FC = () => {
 	const navigate = useNavigate();
-	const { imageProcessorEndpoint, setUploadedImage, setClusterData } =
+	const { imageProcessorEndpoint, setUploadedImage, setActivePalette } =
 		useAppContext();
 
 	const handleSuccess = (uploadedFile: File) => {
@@ -24,7 +24,11 @@ const HomePage: React.FC = () => {
 		if (imgFile) {
 			const clusterData = await processImage(event, imgFile, url);
 			if (clusterData) {
-				setClusterData(clusterData);
+				setActivePalette({
+					id: null,
+					clusterData: clusterData,
+					imageUrl: null,
+				});
 			}
 			handleSuccess(imgFile);
 		}

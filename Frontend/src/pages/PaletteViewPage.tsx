@@ -5,14 +5,16 @@ import ActionButton from "../components/ActionButton";
 import { ImagePaneProps } from "../types";
 
 const PaletteView: React.FC = () => {
-	const { uploadedImage, clusterData } = useAppContext();
+	const { uploadedImage, activePalette } = useAppContext();
 
 	return (
 		<>
 			<div className="w-full h-full flex flex-col">
 				<div className="w-full grid grid-cols-2 flex-grow">
 					<ImagePane uploadedImage={uploadedImage} />
-					{clusterData && <WidgetPane clusterData={clusterData} />}
+					{activePalette?.clusterData && (
+						<WidgetPane clusterData={activePalette.clusterData} />
+					)}
 				</div>
 				<div className="flex items-center gap-2 bg-neutral-500 justify-center h-48">
 					<ActionButton

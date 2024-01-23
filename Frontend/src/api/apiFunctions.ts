@@ -1,3 +1,5 @@
+import { Palette } from "../types";
+
 export const processImage = async (
 	event: React.FormEvent,
 	imgFile: File | null,
@@ -31,4 +33,29 @@ export const processImage = async (
 	} catch (error) {
 		console.error("Error during upload:", error);
 	}
+};
+
+export const deletePalette = async (url: string, id: number) => {
+	return;
+};
+
+export const savePalette = async (
+	url: string,
+	palette: Palette,
+	user_id: number
+) => {
+	return;
+};
+
+export const editProfile = async (
+	event: React.FormEvent,
+	url: string,
+	user_id: number
+	// additional fields that will be editable for profile
+) => {
+	return;
+};
+
+export const getPalettes = async (url: string, user_id: number) => {
+	return;
 };

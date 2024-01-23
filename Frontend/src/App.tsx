@@ -8,33 +8,34 @@ import PaletteView from "./pages/PaletteViewPage";
 import AuthPage from "./pages/AuthPage";
 import { AuthProvider } from "./hooks/useAuth";
 import { AppContext } from "./Contexts/AppContext";
-import { ClusterData } from "./types";
+import { ClusterData, Palette } from "./types";
 
 const imageProcessorEndpoint =
 	process.env.REACT_APP_IMAGE_PROCESSOR_ENDPOINT || "";
 
 function App() {
+	const [activePalette, setActivePalette] = useState<Palette | null>(null);
 	const [uploadedImage, setUploadedImage] = useState<File | null>(null);
-	const [clusterData, setClusterData] = useState<ClusterData | null>(() => {
-		const savedClusterData = sessionStorage.getItem("clusterData");
-		return savedClusterData ? JSON.parse(savedClusterData) : null;
-	});
+	// const [clusterData, setClusterData] = useState<ClusterData | null>(() => {
+	// 	const savedClusterData = sessionStorage.getItem("clusterData");
+	// 	return savedClusterData ? JSON.parse(savedClusterData) : null;
+	// });
 
-	useEffect(() => {
-		// Save clusterData to sessionStorage whenever it changes
-		if (clusterData) {
-			sessionStorage.setItem("clusterData", JSON.stringify(clusterData));
-		}
-	}, [clusterData]);
+	// useEffect(() => {
+	// 	// Save clusterData to sessionStorage whenever it changes
+	// 	if (clusterData) {
+	// 		sessionStorage.setItem("clusterData", JSON.stringify(clusterData));
+	// 	}
+	// }, [clusterData]);
 
 	return (
 		<AppContext.Provider
 			value={{
 				imageProcessorEndpoint,
-				uploadedImage,
+				activePalette,
+				setActivePalette,
 				setUploadedImage,
-				clusterData,
-				setClusterData,
+				uploadedImage,
 			}}
 		>
 			<Router>

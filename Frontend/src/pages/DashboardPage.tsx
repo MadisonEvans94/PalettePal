@@ -7,11 +7,11 @@ const DashboardPage: React.FC = () => {
 		<div className="min-h-screen bg-gray-100 p-8">
 			<div className="max-w-4xl mx-auto">
 				<div className="space-y-4">
-					{imageInstances.map((imageInstance, id) => {
+					{imageInstances.map((imageInstance) => {
 						return (
 							<PaletteCard
-								// TODO: Update to use db id in future
-								key={id}
+								id={imageInstance.id}
+								key={imageInstance.id}
 								clusterData={imageInstance.clusterData}
 								imageUrl={imageInstance.imageUrl}
 							/>

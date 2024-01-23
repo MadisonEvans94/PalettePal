@@ -1,13 +1,5 @@
 import { createContext, useContext } from "react";
-import { ClusterData } from "../types";
-interface AppContextType {
-	imageProcessorEndpoint: string;
-	uploadedImage: File | null;
-	setUploadedImage: React.Dispatch<React.SetStateAction<File | null>>;
-	clusterData: ClusterData | null;
-	setClusterData: React.Dispatch<React.SetStateAction<ClusterData | null>>;
-}
-
+import { AppContextType } from "../types";
 export const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const useAppContext = () => {

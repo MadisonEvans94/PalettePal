@@ -5,7 +5,7 @@ import { FormFieldProps } from "../types";
 
 const AuthPage = () => {
 	const { logIn, signUp } = useAuth();
-	const [formType, setFormType] = useState("signup");
+	const [formType, setFormType] = useState("login");
 	const toggleFormType = () => {
 		setFormType(formType === "signup" ? "login" : "signup");
 	};

@@ -3,10 +3,17 @@ export type ClusterData = {
 	ratio: number[][];
 };
 
-// TODO: fix the redundancy
-export type PaletteCardProps = {
+export type User = {
+	id: number;
+	profile_image_url: string;
+	email: string;
+	username: string;
+};
+
+export type Palette = {
+	id: number | null;
 	clusterData: ClusterData;
-	imageUrl: string;
+	imageUrl: string | null;
 };
 
 export interface ImageFormProps {
@@ -44,4 +51,13 @@ export interface AuthFormProps {
 	formType: string;
 	handleSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
 	children: React.ReactNode;
+}
+
+export interface AppContextType {
+	imageProcessorEndpoint: string;
+	activePalette: Palette | null;
+	setActivePalette: React.Dispatch<React.SetStateAction<Palette | null>>;
+	uploadedImage: File | null;
+	setUploadedImage: React.Dispatch<React.SetStateAction<File | null>>;
+	// setClusterData: React.Dispatch<React.SetStateAction<ClusterData | null>>;
 }
