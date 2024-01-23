@@ -35,27 +35,56 @@ export const processImage = async (
 	}
 };
 
-export const deletePalette = async (url: string, id: number) => {
-	return;
-};
+export const deletePalette = async (url: string, id: number) => {};
 
 export const savePalette = async (
 	url: string,
 	palette: Palette,
 	user_id: number
-) => {
-	return;
-};
+) => {};
 
 export const editProfile = async (
 	event: React.FormEvent,
 	url: string,
 	user_id: number
 	// additional fields that will be editable for profile
-) => {
-	return;
+) => {};
+
+export const getPalettes = async (
+	endpoint_url: string = "http://127.0.0.1:8000/palettes/"
+): Promise<any> => {
+	try {
+		const token = localStorage.getItem("access_token");
+
+		// Check if the token is available
+		if (!token) {
+			throw new Error("No access token available.");
+		}
+
+		const response = await fetch(endpoint_url, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		});
+
+		if (response.ok) {
+			const data = await response.json();
+			return data; // This will be an array of palettes
+		} else {
+			// Handle HTTP errors, e.g., unauthorized, not found, etc.
+			console.error("Failed to fetch palettes:", response.status);
+			return null;
+		}
+	} catch (error) {
+		console.error("Error fetching palettes:", error);
+		return null;
+	}
 };
 
-export const getPalettes = async (url: string, user_id: number) => {
-	return;
-};
+export const editPaletteName = async (
+	url: string,
+	user_id: number,
+	palette_name: string
+) => {};

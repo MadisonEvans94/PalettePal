@@ -31,13 +31,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 		email: string,
 		password: string
 	): Promise<void> => {
-		const response = await fetch("http://127.0.0.1:8000/auth/sign-up/", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ username, email, password }),
-		});
+		const response = await fetch(
+			"http://127.0.0.1:8000/accounts/sign-up/",
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ username, email, password }),
+			}
+		);
 		console.log(isAuthenticated);
 
 		if (response.ok) {
@@ -51,7 +54,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 	};
 
 	const logIn = async (email: string, password: string): Promise<void> => {
-		const response = await fetch("http://127.0.0.1:8000/auth/login/", {
+		const response = await fetch("http://127.0.0.1:8000/accounts/login/", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
