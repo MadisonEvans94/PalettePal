@@ -28,6 +28,8 @@ const HomePage: React.FC = () => {
 			if (clusterData) {
 				const imageUrl = URL.createObjectURL(imgFile);
 				setActivePalette({
+					name: "",
+					date: new Date().toISOString().slice(0, 10), // This will give you 'YYYY-MM-DD'
 					id: null,
 					clusterData: clusterData,
 					imageUrl: imageUrl,

@@ -12,6 +12,8 @@ export type User = {
 
 export type Palette = {
 	id: number | null;
+	date: string;
+	name: string;
 	clusterData: ClusterData;
 	imageUrl: string | null;
 };

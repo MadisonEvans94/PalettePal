@@ -44,13 +44,16 @@ const PaletteCard: React.FC<PaletteCardProps> = ({ palette }) => {
 					)}
 				</div>
 				<div className="w-2/3 bg-white p-4 flex flex-col justify-between">
-					<div className="flex justify-end space-x-2">
-						<button className="px-3 py-1 bg-red-600 text-white rounded">
-							Delete
-						</button>
-						<button className="px-3 py-1 bg-blue-600 text-white rounded">
-							Copy Palette
-						</button>
+					<div className="flex justify-between items-center space-x-2">
+						<h2 className="text-2xl font-bold">{palette.name}</h2>
+						<div className="flex space-x-2">
+							<button className="px-3 py-1 bg-red-600 text-white rounded">
+								Delete
+							</button>
+							<button className="px-3 py-1 bg-blue-600 text-white rounded">
+								Copy Palette
+							</button>
+						</div>
 					</div>
 
 					<div className="flex items-center justify-between my-6">
