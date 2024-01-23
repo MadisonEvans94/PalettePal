@@ -5,13 +5,13 @@ import ActionButton from "../components/ActionButton";
 import { ImagePaneProps } from "../types";
 
 const PaletteView: React.FC = () => {
-	const { uploadedImage, activePalette } = useAppContext();
+	const { activeImageUrl, activePalette } = useAppContext();
 
 	return (
 		<>
 			<div className="w-full h-full flex flex-col">
 				<div className="w-full grid grid-cols-2 flex-grow">
-					<ImagePane uploadedImage={uploadedImage} />
+					<ImagePane uploadedImage={activeImageUrl} />
 					{activePalette?.clusterData && (
 						<WidgetPane clusterData={activePalette.clusterData} />
 					)}
@@ -41,7 +41,7 @@ const ImagePane: React.FC<ImagePaneProps> = ({ uploadedImage }) => {
 			{uploadedImage && (
 				<img
 					// TODO: Use IndexDB localforage to cache image
-					src={URL.createObjectURL(uploadedImage)}
+					src={uploadedImage}
 					alt="Uploaded"
 					className="absolute w-full h-full object-cover"
 				/>

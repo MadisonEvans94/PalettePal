@@ -28,7 +28,7 @@ export interface ImageFormProps {
 }
 
 export interface ImagePaneProps {
-	uploadedImage: File | null;
+	uploadedImage: string | null;
 }
 
 export interface FormFieldProps {
@@ -57,7 +57,6 @@ export interface AppContextType {
 	imageProcessorEndpoint: string;
 	activePalette: Palette | null;
 	setActivePalette: React.Dispatch<React.SetStateAction<Palette | null>>;
-	uploadedImage: File | null;
-	setUploadedImage: React.Dispatch<React.SetStateAction<File | null>>;
-	// setClusterData: React.Dispatch<React.SetStateAction<ClusterData | null>>;
+	activeImageUrl: string | null;
+	setActiveImageUrl: React.Dispatch<React.SetStateAction<string | null>>;
 }

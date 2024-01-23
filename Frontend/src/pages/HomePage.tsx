@@ -6,11 +6,13 @@ import { useAppContext } from "../Contexts/AppContext";
 
 const HomePage: React.FC = () => {
 	const navigate = useNavigate();
-	const { imageProcessorEndpoint, setUploadedImage, setActivePalette } =
+	const { imageProcessorEndpoint, setActiveImageUrl, setActivePalette } =
 		useAppContext();
 
 	const handleSuccess = (uploadedFile: File) => {
-		setUploadedImage(uploadedFile);
+		const activeImageUrl = URL.createObjectURL(uploadedFile);
+
+		setActiveImageUrl(activeImageUrl);
 		navigate("/palette-view");
 	};
 
@@ -24,10 +26,11 @@ const HomePage: React.FC = () => {
 		if (imgFile) {
 			const clusterData = await processImage(event, imgFile, url);
 			if (clusterData) {
+				const imageUrl = URL.createObjectURL(imgFile);
 				setActivePalette({
 					id: null,
 					clusterData: clusterData,
-					imageUrl: null,
+					imageUrl: imageUrl,
 				});
 			}
 			handleSuccess(imgFile);

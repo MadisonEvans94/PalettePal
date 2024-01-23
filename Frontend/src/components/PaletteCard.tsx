@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { ReactComponent as RightCaret } from "../assets/icons/CaretRight.svg";
 import { ReactComponent as LeftCaret } from "../assets/icons/CaretLeft.svg";
-
+import { useAppContext } from "../Contexts/AppContext";
 import { Palette } from "../types";
-
-const PaletteCard: React.FC<Palette> = ({ clusterData, imageUrl }) => {
+import { useNavigate } from "react-router-dom";
+interface PaletteCardProps {
+	palette: Palette;
+}
+const PaletteCard: React.FC<PaletteCardProps> = ({ palette }) => {
 	const [colorCount, setColorCount] = useState<number>(2);
+	const { setActivePalette, setActiveImageUrl } = useAppContext();
+	const navigate = useNavigate();
 	const handleColorIncrement = () => {
 		setColorCount((prevCount) =>
-			prevCount < clusterData.clusters.length - 1
+			prevCount < palette.clusterData.clusters.length - 1
 				? prevCount + 1
 				: prevCount
 		);
@@ -19,14 +24,21 @@ const PaletteCard: React.FC<Palette> = ({ clusterData, imageUrl }) => {
 			prevCount > 0 ? prevCount - 1 : prevCount
 		);
 	};
+
+	const openInPaletteView = () => {
+		setActivePalette(palette);
+		setActiveImageUrl(palette.imageUrl);
+		navigate("/palette-view");
+	};
+
 	return (
 		<div className="border border-black max-w-[800px] mx-auto bg-neutral-300 rounded-lg overflow-hidden">
 			<div className="flex">
 				<div className="w-1/3 bg-gray-200 flex items-center justify-center">
-					{imageUrl && (
+					{palette.imageUrl && (
 						<img
 							className="object-cover w-full h-full"
-							src={imageUrl}
+							src={palette.imageUrl}
 							alt="sample"
 						/>
 					)}
@@ -47,14 +59,17 @@ const PaletteCard: React.FC<Palette> = ({ clusterData, imageUrl }) => {
 							onClick={handleColorDecrement}
 						/>
 						<div className="flex space-x-2">
-							{clusterData.clusters[colorCount].map((color) => {
-								return (
-									<div
-										style={{ backgroundColor: color }}
-										className="w-6 h-6 rounded-full"
-									/>
-								);
-							})}
+							{palette.clusterData.clusters[colorCount].map(
+								(color) => {
+									return (
+										<div
+											key={color}
+											style={{ backgroundColor: color }}
+											className="w-6 h-6 rounded-full"
+										/>
+									);
+								}
+							)}
 						</div>
 						<RightCaret
 							className="w-4 cursor-pointer"
@@ -62,7 +77,10 @@ const PaletteCard: React.FC<Palette> = ({ clusterData, imageUrl }) => {
 						/>
 					</div>
 
-					<button className="px-3 py-1 border border-gray-400 text-gray-700 rounded self-center">
+					<button
+						onClick={openInPaletteView}
+						className="px-3 py-1 border border-gray-400 text-gray-700 rounded self-center"
+					>
 						Open In Palette View
 					</button>
 				</div>
