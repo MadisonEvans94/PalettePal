@@ -73,9 +73,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 	};
 
 	const logOut = async (): Promise<void> => {
-		localStorage.removeItem("access_token");
-		setIsAuthenticated(false);
-		navigate("/auth");
+		if (localStorage.getItem("access_token") === null) {
+			console.log("already logged out");
+			return;
+		} else {
+			localStorage.removeItem("access_token");
+			console.log("successfully logged out");
+			setIsAuthenticated(false);
+			navigate("/auth");
+		}
 	};
 
 	return (

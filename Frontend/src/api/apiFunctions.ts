@@ -50,9 +50,7 @@ export const editProfile = async (
 	// additional fields that will be editable for profile
 ) => {};
 
-export const getPalettes = async (
-	endpoint_url: string = "http://127.0.0.1:8000/palettes/"
-): Promise<any> => {
+export const getPalettes = async (): Promise<any> => {
 	try {
 		const token = localStorage.getItem("access_token");
 
@@ -61,7 +59,7 @@ export const getPalettes = async (
 			throw new Error("No access token available.");
 		}
 
-		const response = await fetch(endpoint_url, {
+		const response = await fetch("http://127.0.0.1:8000/palettes/", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",

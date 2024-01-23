@@ -53,8 +53,6 @@ const ProfileAccessButton: React.FC = () => {
 					<button
 						onClick={() => {
 							logOut();
-							const token = localStorage.getItem("access_token");
-							if (!token) console.log("successfully logged out");
 							setShowProfileOptions(false);
 						}}
 						className="p-2 hover:bg-neutral-700"
