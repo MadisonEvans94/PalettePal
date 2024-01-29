@@ -41,7 +41,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 				body: JSON.stringify({ username, email, password }),
 			}
 		);
-		console.log(isAuthenticated);
 
 		if (response.ok) {
 			const data = await response.json();

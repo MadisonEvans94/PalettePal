@@ -32,9 +32,9 @@ const PaletteCard: React.FC<PaletteCardProps> = ({ palette }) => {
 	};
 
 	return (
-		<div className="border border-black max-w-[800px] mx-auto bg-neutral-300 rounded-lg overflow-hidden">
+		<div className="border border-black max-w-[800px] h-fit mx-auto bg-neutral-300 rounded-lg overflow-hidden">
 			<div className="flex">
-				<div className="w-1/3 bg-gray-200 flex items-center justify-center">
+				<div className="w-80 h-80 bg-gray-200 flex items-center justify-center">
 					{palette.imageUrl && (
 						<img
 							className="object-cover w-full h-full"

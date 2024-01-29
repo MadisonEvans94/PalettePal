@@ -3,10 +3,17 @@ import { useAppContext } from "../Contexts/AppContext"; // Import useAppContext
 import WidgetPane from "../components/WidgetPane";
 import ActionButton from "../components/ActionButton";
 import { ImagePaneProps } from "../types";
+// import { createPalette } from "../api/apiFunctions";
 
 const PaletteView: React.FC = () => {
-	const { activeImageUrl, activePalette } = useAppContext();
-
+	const { activeImageUrl, activePalette, setShowModal } = useAppContext();
+	const handleShowPaletteNamingModal = () => setShowModal(true);
+	// const handleSubmit = () => {
+	// 	if (activePalette) {
+	// 		createPalette(activePalette);
+	// 	} else {
+	// 	}
+	// };
 	return (
 		<>
 			<div className="w-full h-full flex flex-col">
@@ -20,7 +27,7 @@ const PaletteView: React.FC = () => {
 					<ActionButton
 						label="save palette"
 						className="p-2 bg-black rounded text-white"
-						onClick={() => console.log("palette saved")}
+						onClick={handleShowPaletteNamingModal}
 					/>
 
 					{/* TODO: make the copy button functional */}

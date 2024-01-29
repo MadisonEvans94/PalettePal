@@ -37,12 +37,42 @@ export const processImage = async (
 
 export const deletePalette = async (url: string, id: number) => {};
 
-export const savePalette = async (
-	url: string,
-	palette: Palette,
-	user_id: number
-) => {};
+export const createPalette = async (
+	palette: Palette
+): Promise<Palette | null> => {
+	try {
+		const token = localStorage.getItem("access_token");
 
+		// Check if the token is available
+		if (token) {
+			console.log("token is: ", token);
+		}
+		if (!token) {
+			throw new Error("Authorization token is not available");
+		}
+
+		const response = await fetch("http://127.0.0.1:8000/palettes/create/", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify(palette),
+		});
+
+		if (response.ok) {
+			const data = await response.json();
+			return data;
+		} else {
+			console.error("Server responded with an error:", response.status);
+			return null;
+		}
+	} catch (error) {
+		// If there's an error in the request, log it and return null
+		console.error("Error creating the palette:", error);
+		return null;
+	}
+};
 export const editProfile = async (
 	event: React.FormEvent,
 	url: string,

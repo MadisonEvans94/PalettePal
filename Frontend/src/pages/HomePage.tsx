@@ -6,6 +6,7 @@ import { useAppContext } from "../Contexts/AppContext";
 
 const HomePage: React.FC = () => {
 	const navigate = useNavigate();
+
 	const { imageProcessorEndpoint, setActiveImageUrl, setActivePalette } =
 		useAppContext();
 
@@ -26,13 +27,12 @@ const HomePage: React.FC = () => {
 		if (imgFile) {
 			const clusterData = await processImage(event, imgFile, url);
 			if (clusterData) {
-				const imageUrl = URL.createObjectURL(imgFile);
 				setActivePalette({
-					name: "",
+					name: `Image - ${new Date().toISOString()}`,
 					date: new Date().toISOString().slice(0, 10), // This will give you 'YYYY-MM-DD'
 					id: null,
 					clusterData: clusterData,
-					imageUrl: imageUrl,
+					imageUrl: "",
 				});
 			}
 			handleSuccess(imgFile);

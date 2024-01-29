@@ -61,4 +61,6 @@ export interface AppContextType {
 	setActivePalette: React.Dispatch<React.SetStateAction<Palette | null>>;
 	activeImageUrl: string | null;
 	setActiveImageUrl: React.Dispatch<React.SetStateAction<string | null>>;
+	setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+	showModal: boolean;
 }
