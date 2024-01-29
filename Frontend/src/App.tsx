@@ -11,6 +11,7 @@ import { AppContext } from "./Contexts/AppContext";
 import { Palette } from "./types";
 import Modal from "./components/Modal";
 import CreatePaletteModal from "./CreatePaletteModal";
+import { createPalette } from "./api/apiFunctions";
 
 const imageProcessorEndpoint =
 	process.env.REACT_APP_IMAGE_PROCESSOR_ENDPOINT || "";
@@ -49,13 +50,7 @@ function App() {
 						<NavBar />
 						{showModal && (
 							<Modal
-								modalContent={
-									<CreatePaletteModal
-										handleAction={() =>
-											console.log("action")
-										}
-									/>
-								}
+								modalContent={<CreatePaletteModal />}
 								closeModal={() => setShowModal(false)}
 							/>
 						)}
