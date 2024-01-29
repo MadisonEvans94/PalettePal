@@ -63,4 +63,6 @@ export interface AppContextType {
 	setActiveImageUrl: React.Dispatch<React.SetStateAction<string | null>>;
 	setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 	showModal: boolean;
+	modalContent: React.ReactNode;
+	setModalContent: React.Dispatch<React.SetStateAction<React.ReactNode>>;
 }

@@ -19,6 +19,9 @@ function App() {
 	const [activePalette, setActivePalette] = useState<Palette | null>(null);
 	const [activeImageUrl, setActiveImageUrl] = useState<string | null>(null);
 	const [showModal, setShowModal] = useState<boolean>(false);
+	const [modalContent, setModalContent] = useState<React.ReactNode | null>(
+		null
+	);
 
 	return (
 		<AppContext.Provider
@@ -30,6 +33,8 @@ function App() {
 				activeImageUrl,
 				showModal,
 				setShowModal,
+				modalContent,
+				setModalContent,
 			}}
 		>
 			<Router>
@@ -38,7 +43,7 @@ function App() {
 						<NavBar />
 						{showModal && (
 							<Modal
-								modalContent={<CreatePaletteModal />}
+								modalContent={modalContent}
 								closeModal={() => setShowModal(false)}
 							/>
 						)}

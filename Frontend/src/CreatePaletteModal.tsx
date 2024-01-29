@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import { createPalette } from "./api/apiFunctions";
 import { useAppContext } from "./Contexts/AppContext";
 
-interface CreatePaletteModalProps {
-	children?: React.ReactNode;
-}
-
-const CreatePaletteModal: React.FC<CreatePaletteModalProps> = ({
-	children,
-}) => {
+const CreatePaletteModal: React.FC = () => {
 	const { activePalette, setActivePalette } = useAppContext();
 	const [paletteName, setPaletteName] = useState<string>("");
 
@@ -46,7 +40,6 @@ const CreatePaletteModal: React.FC<CreatePaletteModalProps> = ({
 					submit
 				</button>
 			</div>
-			{children}
 		</div>
 	);
 };

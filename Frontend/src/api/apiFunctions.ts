@@ -34,8 +34,37 @@ export const processImage = async (
 		console.error("Error during upload:", error);
 	}
 };
+export const deletePalette = async (id: number | null) => {
+	try {
+		const token = localStorage.getItem("access_token");
 
-export const deletePalette = async (url: string, id: number) => {};
+		if (!token) {
+			throw new Error("Authorization token is not available");
+		}
+
+		const response = await fetch(
+			`http://127.0.0.1:8000/palettes/delete/${id}/`,
+			{
+				method: "DELETE", // Corrected from POST to DELETE
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		);
+
+		if (response.ok) {
+			console.log("Palette deleted successfully");
+			return true; // Indicate successful deletion
+		} else {
+			console.error("Server responded with an error:", response.status);
+			return false; // Indicate failure
+		}
+	} catch (error) {
+		console.error("Error during the delete operation:", error);
+		return false; // Indicate failure
+	}
+};
 
 export const createPalette = async (
 	palette: Palette
@@ -43,10 +72,6 @@ export const createPalette = async (
 	try {
 		const token = localStorage.getItem("access_token");
 
-		// Check if the token is available
-		if (token) {
-			console.log("token is: ", token);
-		}
 		if (!token) {
 			throw new Error("Authorization token is not available");
 		}
