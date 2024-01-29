@@ -11,7 +11,6 @@ import { AppContext } from "./Contexts/AppContext";
 import { Palette } from "./types";
 import Modal from "./components/Modal";
 import CreatePaletteModal from "./CreatePaletteModal";
-import { createPalette } from "./api/apiFunctions";
 
 const imageProcessorEndpoint =
 	process.env.REACT_APP_IMAGE_PROCESSOR_ENDPOINT || "";
@@ -20,17 +19,6 @@ function App() {
 	const [activePalette, setActivePalette] = useState<Palette | null>(null);
 	const [activeImageUrl, setActiveImageUrl] = useState<string | null>(null);
 	const [showModal, setShowModal] = useState<boolean>(false);
-	// const [clusterData, setClusterData] = useState<ClusterData | null>(() => {
-	// 	const savedClusterData = sessionStorage.getItem("clusterData");
-	// 	return savedClusterData ? JSON.parse(savedClusterData) : null;
-	// });
-
-	// useEffect(() => {
-	// 	// Save clusterData to sessionStorage whenever it changes
-	// 	if (clusterData) {
-	// 		sessionStorage.setItem("clusterData", JSON.stringify(clusterData));
-	// 	}
-	// }, [clusterData]);
 
 	return (
 		<AppContext.Provider

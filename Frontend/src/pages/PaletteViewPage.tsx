@@ -3,17 +3,11 @@ import { useAppContext } from "../Contexts/AppContext"; // Import useAppContext
 import WidgetPane from "../components/WidgetPane";
 import ActionButton from "../components/ActionButton";
 import { ImagePaneProps } from "../types";
-// import { createPalette } from "../api/apiFunctions";
 
 const PaletteView: React.FC = () => {
 	const { activeImageUrl, activePalette, setShowModal } = useAppContext();
 	const handleShowPaletteNamingModal = () => setShowModal(true);
-	// const handleSubmit = () => {
-	// 	if (activePalette) {
-	// 		createPalette(activePalette);
-	// 	} else {
-	// 	}
-	// };
+
 	return (
 		<>
 			<div className="w-full h-full flex flex-col">

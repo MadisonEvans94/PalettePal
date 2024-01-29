@@ -29,7 +29,7 @@ const HomePage: React.FC = () => {
 			if (clusterData) {
 				setActivePalette({
 					name: `Image - ${new Date().toISOString()}`,
-					date: new Date().toISOString().slice(0, 10), // This will give you 'YYYY-MM-DD'
+					date: new Date().toISOString().slice(0, 10),
 					id: null,
 					clusterData: clusterData,
 					imageUrl: "",
