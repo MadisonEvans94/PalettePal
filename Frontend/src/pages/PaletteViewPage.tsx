@@ -3,10 +3,15 @@ import { useAppContext } from "../Contexts/AppContext"; // Import useAppContext
 import WidgetPane from "../components/WidgetPane";
 import ActionButton from "../components/ActionButton";
 import { ImagePaneProps } from "../types";
+import CreatePaletteModal from "../CreatePaletteModal";
 
 const PaletteView: React.FC = () => {
-	const { activeImageUrl, activePalette, setShowModal } = useAppContext();
-	const handleShowPaletteNamingModal = () => setShowModal(true);
+	const { activeImageUrl, activePalette, setShowModal, setModalContent } =
+		useAppContext();
+	const handleShowPaletteNamingModal = () => {
+		setModalContent(() => <CreatePaletteModal />);
+		setShowModal(true);
+	};
 
 	return (
 		<>
