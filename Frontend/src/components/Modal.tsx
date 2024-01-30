@@ -8,12 +8,12 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ modalContent, closeModal }) => {
 	return (
-		<div className="absolute w-full h-full flex flex-col justify-center backdrop-blur z-[1000] items-center">
+		<div className="text-neutral-400 absolute w-full h-full flex flex-col justify-center backdrop-blur z-[1000] items-center">
 			{/* Use CreatePaletteModal as a JSX element */}
-			<div className="bg-white relative rounded p-8 mx-auto flex flex-col justify-center">
+			<div className="bg-white border border-neutral-400 relative rounded-lg py-10 px-12 mx-auto flex flex-col justify-center">
 				{modalContent}
 				<Close
-					className="text-neutral-400 hover:text-neutral-700 transition cursor-pointer absolute p-1 rounded top-0 right-0"
+					className="hover:text-neutral-700 transition cursor-pointer absolute p-1 rounded top-1 right-1"
 					onClick={() => closeModal((prev) => !prev)}
 				>
 					cancel

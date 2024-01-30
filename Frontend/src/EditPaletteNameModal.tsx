@@ -26,16 +26,22 @@ const EditPaletteNameModal: React.FC<EditPaletteNameModalProps> = ({
 
 	return (
 		<>
-			<h2>Change Your Palette Name</h2>
+			<h2 className="text-lg text-left w-full font-semibold">
+				Change Your Palette Name
+			</h2>
 
 			<input
+				className="p-1 min-w-[400px] rounded my-1 border border-neutral-400 focus:border-accent focus:outline-none"
 				type="text"
 				placeholder="Palette Name..."
 				value={paletteName}
 				onChange={handlePaletteNameChange}
 			/>
-			<button className="bg-primary p-1 rounded" onClick={handleSubmit}>
-				submit
+			<button
+				className="bg-neutral-400 w-full max-w-[200px] min-width-[150px] mx-auto text-white mt-2 hover:bg-accent transition p-1 rounded"
+				onClick={handleSubmit}
+			>
+				Submit
 			</button>
 		</>
 	);

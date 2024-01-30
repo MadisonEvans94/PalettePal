@@ -49,7 +49,7 @@ const HomePage: React.FC = () => {
 				/>
 			) : (
 				<button
-					className="border p-2 rounded bg-neutral-200"
+					className="border p-2 rounded text-neutral-400 border-neutral-400 hover:border-accent hover:bg-accent hover:text-white transition"
 					onClick={() => setShowImageForm(true)}
 				>
 					Create A New Palette
