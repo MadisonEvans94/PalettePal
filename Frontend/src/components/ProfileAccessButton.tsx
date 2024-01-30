@@ -29,7 +29,7 @@ const ProfileAccessButton: React.FC = () => {
 	}, [dropdownRef]);
 
 	return (
-		<div className="relative" ref={dropdownRef}>
+		<div className="relative text-white" ref={dropdownRef}>
 			<button onClick={() => setShowProfileOptions((prev) => !prev)}>
 				<ProfileAccessIcon />
 			</button>

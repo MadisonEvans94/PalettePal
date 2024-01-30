@@ -4,6 +4,10 @@ import { ReactComponent as LeftCaret } from "../assets/icons/CaretLeft.svg";
 import { useAppContext } from "../Contexts/AppContext";
 import { Palette } from "../types";
 import { useNavigate } from "react-router-dom";
+import { ReactComponent as EditIcon } from "../assets/icons/Edit.svg";
+import { ReactComponent as CopyIcon } from "../assets/icons/Copy.svg";
+import { ReactComponent as DeleteIcon } from "../assets/icons/Delete.svg";
+
 import EditPaletteNameModal from "../EditPaletteNameModal";
 import ConfirmPaletteDeleteModal from "../ConfirmPaletteDeleteModal";
 interface PaletteCardProps {
@@ -54,9 +58,9 @@ const PaletteCard: React.FC<PaletteCardProps> = ({ palette }) => {
 	};
 
 	return (
-		<div className="border border-black max-w-[800px] h-fit mx-auto bg-neutral-300 rounded-lg overflow-hidden">
+		<div className=" max-w-[800px] h-fit mx-auto bg-neutral-300 rounded-lg overflow-hidden text-neutral-400 ">
 			<div className="flex">
-				<div className="w-80 h-80 bg-gray-200 flex items-center justify-center">
+				<div className="w-80 h-80 bg-neutral-400 flex items-center justify-center">
 					{palette.imageUrl && (
 						<img
 							className="object-cover w-full h-full"
@@ -69,28 +73,28 @@ const PaletteCard: React.FC<PaletteCardProps> = ({ palette }) => {
 					<div className="flex justify-between items-center space-x-2">
 						<h2 className="text-2xl font-bold">{palette.name}</h2>
 						<div className="flex space-x-2">
-							<button
+							<DeleteIcon
+								className="w-5 h-5 cursor-pointer hover:text-accent hover:transition"
 								onClick={handleDelete}
-								className="px-3 py-1 bg-red-600 text-white rounded"
 							>
 								Delete
-							</button>
+							</DeleteIcon>
 
-							<button className="px-3 py-1 bg-blue-600 text-white rounded">
+							<CopyIcon className="w-5 h-5 cursor-pointer hover:text-accent hover:transition">
 								Copy Palette
-							</button>
-							<button
+							</CopyIcon>
+							<EditIcon
 								onClick={handleEdit}
-								className="px-3 py-1 bg-blue-600 text-white rounded"
+								className="w-5 h-5 cursor-pointer hover:text-accent hover:transition"
 							>
 								Edit Palette
-							</button>
+							</EditIcon>
 						</div>
 					</div>
 
 					<div className="flex items-center justify-between my-6">
 						<LeftCaret
-							className="w-4 cursor-pointer"
+							className="w-4 cursor-pointer hover:text-accent hover:transition"
 							onClick={handleColorDecrement}
 						/>
 						<div className="flex space-x-2">
@@ -107,14 +111,14 @@ const PaletteCard: React.FC<PaletteCardProps> = ({ palette }) => {
 							)}
 						</div>
 						<RightCaret
-							className="w-4 cursor-pointer"
+							className="w-4 cursor-pointer hover:text-accent hover:transition"
 							onClick={handleColorIncrement}
 						/>
 					</div>
 
 					<button
 						onClick={openInPaletteView}
-						className="px-3 py-1 border border-gray-400 text-gray-700 rounded self-center"
+						className="px-3 py-1 border border-neutral-400 text-neutral-400 rounded self-center hover:border-accent hover:bg-accent hover:text-white hover:transition"
 					>
 						Open In Palette View
 					</button>

@@ -5,7 +5,7 @@ import { usePaletteCrud } from "../hooks/usePaletteCrud";
 
 const DashboardPage: React.FC = () => {
 	// Use the usePaletteCrud hook
-	const { palettes, setPalettes, fetchPalettes } = usePaletteCrud();
+	const { palettes, fetchPalettes } = usePaletteCrud();
 	useEffect(() => {
 		fetchPalettes();
 	}, []);

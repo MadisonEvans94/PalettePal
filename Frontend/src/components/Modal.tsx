@@ -1,5 +1,5 @@
 import React from "react";
-import CreatePaletteModal from "../CreatePaletteModal";
+import { ReactComponent as Close } from "../assets/icons/Close.svg";
 
 interface ModalProps {
 	modalContent: React.ReactNode; // Changed to React.ReactNode for JSX elements
@@ -8,15 +8,17 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ modalContent, closeModal }) => {
 	return (
-		<div className="absolute w-full h-full bg-black z-[1000] flex items-center">
+		<div className="absolute w-full h-full flex flex-col justify-center backdrop-blur z-[1000] items-center">
 			{/* Use CreatePaletteModal as a JSX element */}
-			{modalContent}
-			<button
-				className="bg-neutral-300 p-1 rounded"
-				onClick={() => closeModal((prev) => !prev)}
-			>
-				cancel
-			</button>
+			<div className="bg-white relative rounded p-8 mx-auto flex flex-col justify-center">
+				{modalContent}
+				<Close
+					className="text-neutral-400 hover:text-neutral-700 transition cursor-pointer absolute p-1 rounded top-0 right-0"
+					onClick={() => closeModal((prev) => !prev)}
+				>
+					cancel
+				</Close>
+			</div>
 		</div>
 	);
 };
