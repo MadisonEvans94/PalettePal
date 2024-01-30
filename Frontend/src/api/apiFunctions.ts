@@ -135,9 +135,43 @@ export const getPalettes = async (): Promise<any> => {
 		return null;
 	}
 };
-
 export const editPaletteName = async (
-	url: string,
-	user_id: number,
+	palette_id: number,
 	palette_name: string
-) => {};
+) => {
+	try {
+		const token = localStorage.getItem("access_token");
+
+		if (!token) {
+			throw new Error("Authorization token is not available");
+		}
+
+		const response = await fetch(
+			`http://127.0.0.1:8000/palettes/update/${palette_id}/`,
+			{
+				method: "PUT", // Use PUT or PATCH instead of UPDATE
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
+				body: JSON.stringify({ name: palette_name }),
+			}
+		);
+
+		if (response.ok) {
+			const data = await response.json();
+			return data;
+		} else {
+			const errorBody = await response.json();
+			console.error(
+				"Server responded with an error:",
+				response.status,
+				errorBody
+			);
+			return null;
+		}
+	} catch (error) {
+		console.error("Error updating the palette:", error);
+		return null;
+	}
+};

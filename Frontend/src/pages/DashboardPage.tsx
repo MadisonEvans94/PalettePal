@@ -14,7 +14,7 @@ const DashboardPage: React.FC = () => {
 		};
 		fetchPalettes();
 	}, []);
-	console.log(palettes);
+
 	return (
 		<div className="min-h-screen bg-gray-100 p-8">
 			<div className="max-w-4xl mx-auto">

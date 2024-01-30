@@ -4,20 +4,23 @@ import { ReactComponent as LeftCaret } from "../assets/icons/CaretLeft.svg";
 import { useAppContext } from "../Contexts/AppContext";
 import { Palette } from "../types";
 import { useNavigate } from "react-router-dom";
-import { deletePalette } from "../api/apiFunctions";
+import EditPaletteNameModal from "../EditPaletteNameModal";
 import ConfirmPaletteDeleteModal from "../ConfirmPaletteDeleteModal";
 interface PaletteCardProps {
 	palette: Palette;
 }
 const PaletteCard: React.FC<PaletteCardProps> = ({ palette }) => {
 	const [colorCount, setColorCount] = useState<number>(2);
+
 	const {
 		setActivePalette,
 		setActiveImageUrl,
 		setShowModal,
 		setModalContent,
 	} = useAppContext();
+
 	const navigate = useNavigate();
+
 	const handleColorIncrement = () => {
 		setColorCount((prevCount) =>
 			prevCount < palette.clusterData.clusters.length - 1
@@ -31,10 +34,16 @@ const PaletteCard: React.FC<PaletteCardProps> = ({ palette }) => {
 			prevCount > 0 ? prevCount - 1 : prevCount
 		);
 	};
+
 	const handleDelete = () => {
 		setModalContent(() => (
 			<ConfirmPaletteDeleteModal paletteId={palette.id} />
 		));
+		setShowModal(true); // Make sure to display the modal
+	};
+
+	const handleEdit = () => {
+		setModalContent(() => <EditPaletteNameModal palette_id={palette.id} />);
 		setShowModal(true); // Make sure to display the modal
 	};
 
@@ -43,7 +52,6 @@ const PaletteCard: React.FC<PaletteCardProps> = ({ palette }) => {
 		setActiveImageUrl(palette.imageUrl);
 		navigate("/palette-view");
 	};
-	console.log("Palette: ", palette);
 
 	return (
 		<div className="border border-black max-w-[800px] h-fit mx-auto bg-neutral-300 rounded-lg overflow-hidden">
@@ -61,16 +69,21 @@ const PaletteCard: React.FC<PaletteCardProps> = ({ palette }) => {
 					<div className="flex justify-between items-center space-x-2">
 						<h2 className="text-2xl font-bold">{palette.name}</h2>
 						<div className="flex space-x-2">
-							{palette && (
-								<button
-									onClick={handleDelete}
-									className="px-3 py-1 bg-red-600 text-white rounded"
-								>
-									Delete
-								</button>
-							)}
+							<button
+								onClick={handleDelete}
+								className="px-3 py-1 bg-red-600 text-white rounded"
+							>
+								Delete
+							</button>
+
 							<button className="px-3 py-1 bg-blue-600 text-white rounded">
 								Copy Palette
+							</button>
+							<button
+								onClick={handleEdit}
+								className="px-3 py-1 bg-blue-600 text-white rounded"
+							>
+								Edit Palette
 							</button>
 						</div>
 					</div>
