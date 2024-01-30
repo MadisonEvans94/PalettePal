@@ -1,6 +1,5 @@
 import React from "react";
-import { deletePalette } from "./api/apiFunctions";
-
+import { usePaletteCrud } from "./hooks/usePaletteCrud";
 interface ConfirmPaletteDeleteModalProps {
 	paletteId: number | null;
 }
@@ -8,8 +7,12 @@ interface ConfirmPaletteDeleteModalProps {
 const ConfirmPaletteDeleteModal: React.FC<ConfirmPaletteDeleteModalProps> = ({
 	paletteId,
 }) => {
+	const { removePalette } = usePaletteCrud();
+
 	const handleSubmit = async () => {
-		await deletePalette(paletteId);
+		if (paletteId !== null) {
+			await removePalette(paletteId);
+		}
 	};
 
 	return (

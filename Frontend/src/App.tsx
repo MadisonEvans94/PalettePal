@@ -10,7 +10,6 @@ import { AuthProvider } from "./hooks/useAuth";
 import { AppContext } from "./Contexts/AppContext";
 import { Palette } from "./types";
 import Modal from "./components/Modal";
-import CreatePaletteModal from "./CreatePaletteModal";
 
 const imageProcessorEndpoint =
 	process.env.REACT_APP_IMAGE_PROCESSOR_ENDPOINT || "";

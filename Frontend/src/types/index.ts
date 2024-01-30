@@ -56,6 +56,7 @@ export interface AuthFormProps {
 }
 
 export interface AppContextType {
+	// palettes: Palette[];
 	imageProcessorEndpoint: string;
 	activePalette: Palette | null;
 	setActivePalette: React.Dispatch<React.SetStateAction<Palette | null>>;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { editPaletteName } from "./api/apiFunctions";
+import { usePaletteCrud } from "./hooks/usePaletteCrud";
 import { useAppContext } from "./Contexts/AppContext";
 interface EditPaletteNameModalProps {
 	palette_id: number | null;
@@ -8,6 +8,8 @@ const EditPaletteNameModal: React.FC<EditPaletteNameModalProps> = ({
 	palette_id,
 }) => {
 	const [paletteName, setPaletteName] = useState<string>("");
+	const { updatePaletteName } = usePaletteCrud();
+	const { setShowModal } = useAppContext();
 
 	const handlePaletteNameChange = (
 		event: React.ChangeEvent<HTMLInputElement>
@@ -17,9 +19,8 @@ const EditPaletteNameModal: React.FC<EditPaletteNameModalProps> = ({
 
 	const handleSubmit = async () => {
 		if (palette_id !== null) {
-			await editPaletteName(palette_id, paletteName);
-		} else {
-			// Handle the case when palette_id is null
+			await updatePaletteName(palette_id, paletteName);
+			setShowModal(false);
 		}
 	};
 

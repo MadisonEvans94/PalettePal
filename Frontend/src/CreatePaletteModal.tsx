@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createPalette } from "./api/apiFunctions";
 import { useAppContext } from "./Contexts/AppContext";
+import { usePaletteCrud } from "./hooks/usePaletteCrud";
 
 const CreatePaletteModal: React.FC = () => {
 	const { activePalette, setActivePalette } = useAppContext();

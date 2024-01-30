@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PaletteCard from "../components/PaletteCard";
-// import palettes from "../test-json/samplePalettes.json";
-import { getPalettes } from "../api/apiFunctions";
 import { Palette } from "../types";
+import { usePaletteCrud } from "../hooks/usePaletteCrud";
 
 const DashboardPage: React.FC = () => {
-	const [palettes, setPalettes] = useState<Palette[] | null>(null);
-
+	// Use the usePaletteCrud hook
+	const { palettes, setPalettes, fetchPalettes } = usePaletteCrud();
 	useEffect(() => {
-		const fetchPalettes = async () => {
-			const fetchedPalettes = await getPalettes();
-			setPalettes(fetchedPalettes);
-		};
 		fetchPalettes();
 	}, []);
 
@@ -20,15 +15,12 @@ const DashboardPage: React.FC = () => {
 			<div className="max-w-4xl mx-auto">
 				<div className="space-y-4">
 					{palettes &&
-						palettes.map((paletteInstance: Palette) => {
-							return (
-								// <div>{paletteInstance.date}</div>
-								<PaletteCard
-									key={paletteInstance.id}
-									palette={paletteInstance}
-								/>
-							);
-						})}
+						palettes.map((paletteInstance: Palette) => (
+							<PaletteCard
+								key={paletteInstance.id}
+								palette={paletteInstance}
+							/>
+						))}
 				</div>
 			</div>
 		</div>
