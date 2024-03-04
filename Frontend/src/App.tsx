@@ -16,6 +16,7 @@ const imageProcessorEndpoint =
 
 function App() {
 	const [activePalette, setActivePalette] = useState<Palette | null>(null);
+	// TODO: this needs to persist even after refresh
 	const [activeImageUrl, setActiveImageUrl] = useState<string | null>(null);
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [modalContent, setModalContent] = useState<React.ReactNode | null>(
@@ -38,7 +39,7 @@ function App() {
 		>
 			<Router>
 				<AuthProvider>
-					<div className="h-full flex flex-col relative">
+					<div className="bg-theme1 h-full flex flex-col relative">
 						<NavBar />
 						{showModal && (
 							<Modal

@@ -1,5 +1,4 @@
 import { Palette } from "../types";
-
 export const processImage = async (
 	event: React.FormEvent,
 	imgFile: File | null,
@@ -65,7 +64,6 @@ export const deletePalette = async (id: number | null) => {
 		return false; // Indicate failure
 	}
 };
-
 export const createPalette = async (
 	palette: Palette
 ): Promise<Palette | null> => {
@@ -104,7 +102,6 @@ export const editProfile = async (
 	user_id: number
 	// additional fields that will be editable for profile
 ) => {};
-
 export const getPalettes = async (): Promise<any> => {
 	try {
 		const token = localStorage.getItem("access_token");

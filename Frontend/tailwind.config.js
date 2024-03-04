@@ -7,6 +7,7 @@ module.exports = {
 				primary: "#3490dc", // Replace with your primary color
 				secondary: "#ffed4a", // Replace with your secondary color
 				accent: "#f9ac00", // Replace with your accent color
+				theme1: "#FF8595",
 				neutral: {
 					100: "#f5f5f5",
 					200: "#e5e5e5",

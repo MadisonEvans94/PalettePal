@@ -72,20 +72,20 @@ const PaletteCard: React.FC<PaletteCardProps> = ({ palette }) => {
 				<div className="w-2/3 bg-white p-4 flex flex-col justify-between">
 					<div className="flex justify-between items-center space-x-2">
 						<h2 className="text-2xl font-bold">{palette.name}</h2>
-						<div className="flex space-x-2">
+						<div className="flex space-x-3">
 							<DeleteIcon
-								className="w-5 h-5 cursor-pointer hover:text-accent hover:transition"
+								className="w-4 h-4 cursor-pointer hover:text-accent hover:transition"
 								onClick={handleDelete}
 							>
 								Delete
 							</DeleteIcon>
 
-							<CopyIcon className="w-5 h-5 cursor-pointer hover:text-accent hover:transition">
+							<CopyIcon className="w-4 h-4 cursor-pointer hover:text-accent hover:transition">
 								Copy Palette
 							</CopyIcon>
 							<EditIcon
 								onClick={handleEdit}
-								className="w-5 h-5 cursor-pointer hover:text-accent hover:transition"
+								className="w-4 h-4 cursor-pointer hover:text-accent hover:transition"
 							>
 								Edit Palette
 							</EditIcon>

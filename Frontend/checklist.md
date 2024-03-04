@@ -1,6 +1,8 @@
-[ ] make plot height larger on mobile
-[x] update palette so that color blocks are consistent size and palette remains centered
-[ ] make the title an svg
-[ ] fix the video so that it works on mobile
-[x] fix the choose file button location
-[ ] fix the 'copy colors' functionality so that it returns a consise hex code
+-   [ ] add copy colors funcitonality
+-   [ ] add 'upload new image' funcitonality
+-   [ ] image should remain in dashboard on refresh
+-   [ ] color theming update
+-   [ ] after choose image, it should say choose different image
+-   [ ] on hover in dashboard, it should have a leader that says the color
+-   [x] remove save palette button (for now)
+-   [ ] add temporary disclaimer on home page about disabled profile feature
