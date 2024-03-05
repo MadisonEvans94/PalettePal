@@ -60,10 +60,10 @@ const PaletteView: React.FC = () => {
 						/>
 					)}
 				</div>
-				<div className="flex items-center gap-2 bg-neutral-500 justify-center h-48">
+				<div className="flex items-center gap-2 bg-dark justify-center h-48">
 					<ActionButton
 						label="copy palette"
-						className="p-2 bg-black rounded text-white"
+						className="p-2 bg-theme1 rounded text-white"
 						onClick={() => {
 							if (activePalette?.clusterData?.clusters) {
 								const textToCopy =
@@ -85,7 +85,7 @@ const PaletteView: React.FC = () => {
 
 					<ActionButton
 						label="upload new image"
-						className="p-2 bg-black rounded text-white"
+						className="p-2 bg-theme1 rounded text-white"
 						onClick={handleShowSubmissionForm}
 					/>
 				</div>

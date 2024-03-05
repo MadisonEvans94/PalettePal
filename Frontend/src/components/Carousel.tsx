@@ -21,17 +21,19 @@ const Carousel: React.FC<CarouselProps> = ({ components }) => {
 	};
 
 	return (
-		<div className="flex items-center justify-center w-full h-full px-2">
+		<div className="flex items-center justify-center w-full h-full px-2 ">
 			<FiArrowLeftCircle
-				className="text-3xl cursor-pointer text-neutral-500"
+				className="text-3xl cursor-pointer text-dark ml-10 hover:text-theme1 transition"
 				onClick={goToPrevious}
+				size="2em"
 			/>
-			<div className="w-full h-full flex justify-center items-center overflow-hidden">
+			<div className="w-full h-full flex justify-center items-center overflow-hidden ">
 				{components[currentIndex]}
 			</div>
 			<FiArrowRightCircle
-				className="text-3xl cursor-pointer text-neutral-500"
+				className="text-3xl cursor-pointer text-dark mr-10 hover:text-theme1 transition"
 				onClick={goToNext}
+				size="2em"
 			/>
 		</div>
 	);

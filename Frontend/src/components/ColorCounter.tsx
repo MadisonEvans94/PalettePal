@@ -18,20 +18,24 @@ const ColorCounter: React.FC<ColorCounterProps> = ({
 			<button
 				onClick={decrementColorCount}
 				disabled={colorCount === 0}
-				className={`px-3 py-1 border bg-neutral-500 text-white rounded ${
-					colorCount === 0 ? "opacity-50 cursor-not-allowed" : ""
+				className={`w-12 h-12 text-2xl font-bold transition text-white rounded ${
+					colorCount === 0
+						? "opacity-50 bg-dark"
+						: "bg-dark hover:bg-theme1"
 				}`}
 			>
 				-
 			</button>
-			<span className="text-lg px-4">{colorCount + 1}</span>{" "}
+			<span className="text-lg px-4 text-dark font-bold">
+				{colorCount + 1}
+			</span>{" "}
 			<button
 				onClick={incrementColorCount}
 				disabled={colorCount === clusterData.clusters.length - 1}
-				className={`px-3 py-1 border bg-neutral-500 text-white rounded ${
+				className={`text-2xl w-12 h-12 font-bold transition text-white rounded ${
 					colorCount === clusterData.clusters.length - 1
-						? "opacity-50 cursor-not-allowed"
-						: ""
+						? "opacity-50 bg-dark"
+						: "bg-dark hover:bg-theme1"
 				}`}
 			>
 				+
