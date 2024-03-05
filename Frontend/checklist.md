@@ -1,8 +1,8 @@
 -   [ ] add copy colors funcitonality
--   [ ] add 'upload new image' funcitonality
--   [ ] image should remain in dashboard on refresh
+-   [x] add 'upload new image' funcitonality
+-   [x] image should remain in dashboard on refresh
 -   [ ] color theming update
--   [ ] after choose image, it should say choose different image
+
 -   [ ] on hover in dashboard, it should have a leader that says the color
 -   [x] remove save palette button (for now)
 -   [ ] add temporary disclaimer on home page about disabled profile feature

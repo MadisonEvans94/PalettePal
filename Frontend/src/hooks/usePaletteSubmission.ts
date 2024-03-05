@@ -1,6 +1,8 @@
 import { useAppContext } from "../Contexts/AppContext";
 import { processImage } from "../api/apiFunctions";
 import { useNavigate } from "react-router-dom";
+import localforage from "localforage";
+
 const imageProcessorEndpoint =
 	process.env.REACT_APP_IMAGE_PROCESSOR_ENDPOINT || "";
 
@@ -11,8 +13,13 @@ const usePaletteSubmission = () => {
 
 	const handleSuccess = (uploadedFile: File, redirectUrl: string | null) => {
 		const activeImageUrl = URL.createObjectURL(uploadedFile);
+		localforage
+			.setItem("cachedImage", uploadedFile)
+			.then(() => {
+				if (redirectUrl) navigate("/palette-view");
+			})
+			.catch((err) => console.error("image caching failed", err));
 		setActiveImageUrl(activeImageUrl);
-		if (redirectUrl) navigate("/palette-view");
 	};
 
 	const handlePaletteSubmission = async (
@@ -24,13 +31,17 @@ const usePaletteSubmission = () => {
 		if (imgFile) {
 			const clusterData = await processImage(event, imgFile, url);
 			if (clusterData) {
-				setActivePalette({
+				const activePalette = {
 					name: `Image - ${new Date().toISOString()}`,
 					date: new Date().toISOString().slice(0, 10),
 					id: null,
 					clusterData: clusterData,
 					imageUrl: "",
-				});
+				};
+				setActivePalette(activePalette);
+				localforage
+					.setItem("activePalette", activePalette)
+					.catch((err) => console.error("caching failed", err));
 			}
 			handleSuccess(imgFile, "/palette-view");
 		}

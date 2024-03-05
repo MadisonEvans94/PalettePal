@@ -16,7 +16,6 @@ const imageProcessorEndpoint =
 
 function App() {
 	const [activePalette, setActivePalette] = useState<Palette | null>(null);
-	// TODO: this needs to persist even after refresh
 	const [activeImageUrl, setActiveImageUrl] = useState<string | null>(null);
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [modalContent, setModalContent] = useState<React.ReactNode | null>(

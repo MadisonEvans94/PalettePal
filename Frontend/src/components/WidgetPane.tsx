@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ClusterData } from "../types";
 import PaletteRatioWidget from "./PaletteRatioWidget";
 import PaletteColorWidget from "./PaletteColorWidget";
@@ -7,10 +7,15 @@ import Carousel from "./Carousel";
 
 interface WidgetPaneProps {
 	clusterData: ClusterData;
+	colorCount: number;
+	setColorCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const WidgetPane: React.FC<WidgetPaneProps> = ({ clusterData }) => {
-	const [colorCount, setColorCount] = useState<number>(2);
+const WidgetPane: React.FC<WidgetPaneProps> = ({
+	clusterData,
+	colorCount,
+	setColorCount,
+}) => {
 	const incrementColorCount = () => {
 		if (colorCount < clusterData.clusters.length - 1) {
 			setColorCount(colorCount + 1);

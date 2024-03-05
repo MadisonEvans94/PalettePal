@@ -29,6 +29,12 @@ const HomePage: React.FC = () => {
 			>
 				Create A New Palette
 			</button>
+			<p className="w-1/2 mt-24 text-white text-center">
+				Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam
+				ipsam fuga repellendus aut exercitationem eligendi libero! Saepe
+				nobis harum, mollitia odit sed beatae fugit in quibusdam
+				adipisci, totam at nisi, omnis quo amet.
+			</p>
 		</div>
 	);
 };
