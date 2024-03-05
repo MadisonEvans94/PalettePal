@@ -14,7 +14,7 @@ const ColorCounter: React.FC<ColorCounterProps> = ({
 	clusterData,
 }) => {
 	return (
-		<div className="flex justify-center items-center p-2">
+		<div className="flex justify-center items-center pb-12">
 			<button
 				onClick={decrementColorCount}
 				disabled={colorCount === 0}

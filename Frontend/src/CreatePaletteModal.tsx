@@ -25,7 +25,7 @@ const CreatePaletteModal: React.FC = () => {
 	};
 
 	return (
-		<div className="bg-white rounded p-2 mx-auto">
+		<div className="bg-white rounded p-2 mx-auto text-dark">
 			<h2>Choose A Name For Your Palette</h2>
 			<div className="flex space-x-2">
 				<input

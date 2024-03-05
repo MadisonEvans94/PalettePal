@@ -2,10 +2,8 @@ import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage";
-import DashboardPage from "./pages/DashboardPage";
 import NavBar from "./components/NavBar";
 import PaletteView from "./pages/PaletteViewPage";
-import AuthPage from "./pages/AuthPage";
 import { AuthProvider } from "./hooks/useAuth";
 import { AppContext } from "./Contexts/AppContext";
 import { Palette } from "./types";
@@ -49,17 +47,10 @@ function App() {
 						<div className="flex-grow overflow-auto">
 							<Routes>
 								<Route path="/" element={<HomePage />} />
-
-								<Route
-									path="/dashboard"
-									element={<DashboardPage />}
-								/>
-
 								<Route
 									path="/palette-view"
 									element={<PaletteView />}
 								/>
-								<Route path="/auth" element={<AuthPage />} />
 							</Routes>
 						</div>
 					</div>

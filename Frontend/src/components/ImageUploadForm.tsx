@@ -32,7 +32,7 @@ const ImageUploadForm: React.FC<ImageFormProps> = ({
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className="flex flex-col gap-1 mx-2">
+		<form onSubmit={handleSubmit} className="flex flex-col gap-1 mx-2 w-60">
 			<input
 				type="file"
 				accept=".jpeg, .png"
@@ -44,7 +44,7 @@ const ImageUploadForm: React.FC<ImageFormProps> = ({
 			<button
 				type="button"
 				onClick={handleFileInputClick}
-				className="cursor-pointer text-sm py-2 px-4 border font-semibold border-neutral-400 text-neutral-400 hover:bg-neutral-400 hover:text-white transition rounded"
+				className="cursor-pointer text-sm py-2 px-4 border font-semibold border-dark text-dark hover:bg-dark hover:text-white transition rounded"
 			>
 				Choose Image
 			</button>
@@ -53,8 +53,11 @@ const ImageUploadForm: React.FC<ImageFormProps> = ({
 			)}
 
 			<button
+				disabled={!imgFile}
 				type="submit"
-				className="w-full px-4 py-2 text-white bg-neutral-400 rounded hover:bg-accent"
+				className={`w-full px-4 py-2 text-white rounded ${
+					imgFile ? "bg-theme1 hover:bg-accent" : "bg-gray-400"
+				}`}
 			>
 				Upload
 			</button>

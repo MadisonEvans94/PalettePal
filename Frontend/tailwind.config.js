@@ -1,18 +1,19 @@
 /** @type {import('tailwindcss').Config} */
+// TODO: update color theme
 module.exports = {
 	content: ["./src/**/*.{js,jsx,ts,tsx}"],
 	theme: {
 		extend: {
 			colors: {
-				primary: "#3490dc", // Replace with your primary color
-				secondary: "#ffed4a", // Replace with your secondary color
-				accent: "#f9ac00", // Replace with your accent color
+				primary: "#3490dc",
+				secondary: "#ffed4a",
+				accent: "#f9ac00",
 				theme1: "#FF8595",
+				dark: "#2A2A2A",
 				neutral: {
 					100: "#f5f5f5",
 					200: "#e5e5e5",
 					300: "#d4d4d4",
-					// Add more shades as needed
 				},
 				info: "#555555",
 				success: "#38c172",
@@ -20,8 +21,8 @@ module.exports = {
 				warning: "#f6993f",
 			},
 			fontFamily: {
-				sans: ["Open Sans", "sans-serif"], // Replace with your primary font
-				serif: ["Merriweather", "serif"], // Replace with your secondary font
+				sans: ["Open Sans", "sans-serif"],
+				serif: ["Merriweather", "serif"],
 			},
 			spacing: {
 				1: "8px",
@@ -30,7 +31,6 @@ module.exports = {
 				4: "24px",
 				5: "32px",
 				6: "48px",
-				// Add more spacing as needed
 			},
 			screens: {
 				sm: "640px",
@@ -39,7 +39,6 @@ module.exports = {
 				xl: "1280px",
 				"2xl": "1536px",
 			},
-			// Add additional customizations as needed
 		},
 	},
 	plugins: ["@tailwindcss/forms"],

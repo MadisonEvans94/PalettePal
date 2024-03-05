@@ -98,14 +98,16 @@ export default PaletteView;
 
 const ImagePane: React.FC<ImagePaneProps> = ({ uploadedImage }) => {
 	return (
-		<div className="bg-gray-600 text-white h-full overflow-hidden relative flex justify-center items-center">
-			{uploadedImage && (
-				<img
-					src={uploadedImage}
-					alt="Uploaded"
-					className="absolute w-full h-full object-cover"
-				/>
-			)}
+		<div className="text-white h-full flex items-center p-12">
+			<div className="overflow-hidden relative w-full h-full ">
+				{uploadedImage && (
+					<img
+						src={uploadedImage}
+						alt="Uploaded"
+						className="absolute w-full h-full object-contain"
+					/>
+				)}
+			</div>
 		</div>
 	);
 };

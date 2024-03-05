@@ -30,10 +30,11 @@ const HomePage: React.FC = () => {
 				Create A New Palette
 			</button>
 			<p className="w-1/2 mt-24 text-white text-center">
-				Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam
-				ipsam fuga repellendus aut exercitationem eligendi libero! Saepe
-				nobis harum, mollitia odit sed beatae fugit in quibusdam
-				adipisci, totam at nisi, omnis quo amet.
+				Thank you for visiting PalettePal! The site is currently
+				undergoing some updates, so the profile creation feature is
+				temporarily unavailable... However, the color palette generation
+				tool is fully functional and available! Just upload an image to
+				start
 			</p>
 		</div>
 	);
