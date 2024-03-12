@@ -3,7 +3,7 @@ import { useAppContext } from "../../Contexts/AppContext";
 import { ActionButton, ImageUploadForm, WidgetPane } from "../../components";
 import { ImagePaneProps, Palette } from "../../types";
 import usePaletteSubmission from "../../hooks/usePaletteSubmission";
-import localforage from "localforage";
+// import localforage from "localforage";
 // TODO: Remove persistence
 // TODO: have an error case
 const PaletteView: React.FC = () => {

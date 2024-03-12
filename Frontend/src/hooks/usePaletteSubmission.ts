@@ -6,7 +6,7 @@ import localforage from "localforage";
 const imageProcessorEndpoint =
 	process.env.REACT_APP_IMAGE_PROCESSOR_ENDPOINT || "";
 
-export const compressImage = (originalFile: File): Promise<File> => {
+export const compressImage = async (originalFile: File): Promise<File> => {
 	const maxWidth = 1920; // Maximum width for the image
 	const maxHeight = 1080; // Maximum height for the image
 	const fileName = originalFile.name; // Get the name of the uploaded file
@@ -21,12 +21,12 @@ export const compressImage = (originalFile: File): Promise<File> => {
 
 			if (width > height) {
 				if (width > maxWidth) {
-					height = height * (maxWidth / width);
+					height *= maxWidth / width;
 					width = maxWidth;
 				}
 			} else {
 				if (height > maxHeight) {
-					width = width * (maxHeight / height);
+					width *= maxHeight / height;
 					height = maxHeight;
 				}
 			}
@@ -60,15 +60,18 @@ const usePaletteSubmission = () => {
 	const { setActivePalette, setActiveImageUrl, setShowModal } =
 		useAppContext();
 
-	const handleSuccess = (uploadedFile: File, redirectUrl: string | null) => {
+	const handleSuccess = async (
+		uploadedFile: File,
+		redirectUrl: string | null
+	) => {
 		const activeImageUrl = URL.createObjectURL(uploadedFile);
-		localforage
-			.setItem("cachedImage", uploadedFile)
-			.then(() => {
-				if (redirectUrl) navigate("/palette-view");
-			})
-			.catch((err) => console.error("image caching failed", err));
-		setActiveImageUrl(activeImageUrl);
+		try {
+			await localforage.setItem("cachedImage", uploadedFile);
+			if (redirectUrl) navigate("/palette-view");
+			setActiveImageUrl(activeImageUrl);
+		} catch (err) {
+			console.error("image caching failed", err);
+		}
 	};
 
 	const handlePaletteSubmission = async (
@@ -78,39 +81,31 @@ const usePaletteSubmission = () => {
 	) => {
 		event.preventDefault();
 		if (imgFile) {
-			compressImage(imgFile)
-				.then(async (compressedFile) => {
-					try {
-						const clusterData = await processImage(
-							event,
-							compressedFile,
-							url
-						);
-						if (clusterData) {
-							const activePalette = {
-								name: `Image - ${new Date().toISOString()}`,
-								date: new Date().toISOString().slice(0, 10),
-								id: null,
-								clusterData: clusterData,
-								imageUrl: "",
-							};
-							setActivePalette(activePalette);
-							await localforage.setItem(
-								"activePalette",
-								activePalette
-							);
-							handleSuccess(compressedFile, "/palette-view");
-						}
-					} catch (err) {
-						console.error(
-							"Error processing or caching the image",
-							err
-						);
-					}
-				})
-				.catch((error) => {
-					console.error("Error compressing image: ", error);
-				});
+			try {
+				const compressedFile = await compressImage(imgFile);
+				const clusterData = await processImage(
+					event,
+					compressedFile,
+					url
+				);
+				if (clusterData) {
+					const activePalette = {
+						name: `Image - ${new Date().toISOString()}`,
+						date: new Date().toISOString().slice(0, 10),
+						id: null,
+						clusterData: clusterData,
+						imageUrl: "",
+					};
+					setActivePalette(activePalette);
+					await localforage.setItem("activePalette", activePalette);
+					await handleSuccess(compressedFile, "/palette-view");
+				}
+			} catch (error) {
+				console.error(
+					"Error in processing or caching the image",
+					error
+				);
+			}
 		}
 	};
 	return { handlePaletteSubmission, setShowModal };
