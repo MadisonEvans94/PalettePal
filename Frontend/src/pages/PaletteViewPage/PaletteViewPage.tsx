@@ -11,9 +11,7 @@ const PaletteView: React.FC = () => {
 	const { handlePaletteSubmission } = usePaletteSubmission();
 	const {
 		activeImageUrl,
-		setActiveImageUrl,
 		activePalette,
-		setActivePalette,
 		setShowModal,
 		setModalContent,
 		imageProcessorEndpoint,
@@ -29,23 +27,23 @@ const PaletteView: React.FC = () => {
 		));
 		setShowModal(true);
 	};
-	useEffect(() => {
-		async function readFromCache() {
-			const cachedImage = await localforage.getItem("cachedImage");
-			const activePalette = (await localforage.getItem(
-				"activePalette"
-			)) as Palette;
-			if (cachedImage) {
-				const urlCreator = window.URL || window.webkitURL;
-				const imageUrl = urlCreator.createObjectURL(
-					cachedImage as Blob
-				);
-				setActiveImageUrl(imageUrl);
-			}
-			if (activePalette) setActivePalette(activePalette);
-		}
-		readFromCache();
-	}, [setActiveImageUrl, setActivePalette]);
+	// useEffect(() => {
+	// 	async function readFromCache() {
+	// 		const cachedImage = await localforage.getItem("cachedImage");
+	// 		const activePalette = (await localforage.getItem(
+	// 			"activePalette"
+	// 		)) as Palette;
+	// 		if (cachedImage) {
+	// 			const urlCreator = window.URL || window.webkitURL;
+	// 			const imageUrl = urlCreator.createObjectURL(
+	// 				cachedImage as Blob
+	// 			);
+	// 			setActiveImageUrl(imageUrl);
+	// 		}
+	// 		if (activePalette) setActivePalette(activePalette);
+	// 	}
+	// 	readFromCache();
+	// }, [setActiveImageUrl, setActivePalette]);
 
 	return (
 		<>
