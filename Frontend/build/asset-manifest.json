@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a656724a.css",
+    "main.js": "/static/js/main.f84bce73.js",
+    "static/media/MOLIKA.svg": "/static/media/MOLIKA.40586377964662c2153d.svg",
+    "static/media/PalettePalHeader.svg": "/static/media/PalettePalHeader.0fef098a378dec7dca6ccb7c02d1cdaf.svg",
+    "static/media/MOLIKA.ttf": "/static/media/MOLIKA.59eb3e61edb2811c10db.ttf",
+    "static/media/MOLIKA.woff2": "/static/media/MOLIKA.ae8d9cbb6cd4cf1611db.woff2",
+    "index.html": "/index.html",
+    "main.a656724a.css.map": "/static/css/main.a656724a.css.map",
+    "main.f84bce73.js.map": "/static/js/main.f84bce73.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a656724a.css",
+    "static/js/main.f84bce73.js"
+  ]
+}

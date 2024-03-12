@@ -1,6 +1,8 @@
 export type ClusterData = {
 	clusters: string[][];
 	ratio: number[][];
+	message?: string;
+	error?: string;
 };
 
 export type User = {

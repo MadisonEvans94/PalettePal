@@ -1,4 +1,6 @@
-import { Palette } from "../types";
+import { ClusterData, Palette } from "../types";
+// TODO: more destinguishing naming convention for api functions
+
 export const processImage = async (
 	event: React.FormEvent,
 	imgFile: File | null,
@@ -10,24 +12,36 @@ export const processImage = async (
 		return;
 	}
 
-	const formData = new FormData();
-	formData.append("image", imgFile);
-
-	try {
-		console.log(
-			`Posting to server...\n\nmethod: POST\ncredentials: 'include'\nbody: ${formData}`
-		);
-		const response = await fetch(url, {
-			method: "POST",
-			body: formData,
+	const toBase64 = (file: File) =>
+		new Promise<string | ArrayBuffer | null>((resolve, reject) => {
+			const reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = () => resolve(reader.result);
+			reader.onerror = (error) => reject(error);
 		});
 
+	try {
+		const base64String = await toBase64(imgFile);
+		if (!base64String) {
+			throw new Error("Failed to convert image to base64");
+		}
+
+		const response = await fetch(url, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ image: base64String }),
+		});
+		console.log(
+			"DATA WERE TESTING: ",
+			await JSON.stringify({ image: base64String })
+		);
 		if (!response.ok) {
 			throw new Error("Image upload failed :(");
 		}
+		const result: ClusterData = await response.json();
 
-		const result = await response.json();
-		console.log("Upload successful", result);
 		return result;
 	} catch (error) {
 		console.error("Error during upload:", error);

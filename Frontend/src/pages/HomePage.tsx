@@ -3,6 +3,7 @@ import ImageUploadForm from "../components/ImageUploadForm";
 import { useAppContext } from "../Contexts/AppContext";
 import { ReactComponent as PalettePalHeader } from "../assets/icons/PalettePalHeader.svg";
 import usePaletteSubmission from "../hooks/usePaletteSubmission";
+import { FaGears as Gears } from "react-icons/fa6";
 const HomePage: React.FC = () => {
 	const { handlePaletteSubmission } = usePaletteSubmission();
 	const { imageProcessorEndpoint, setModalContent, setShowModal } =
@@ -22,19 +23,18 @@ const HomePage: React.FC = () => {
 
 	return (
 		<div className=" h-full flex flex-col items-center justify-center">
-			<PalettePalHeader className="w-full h-80 flex items-center justify-center mb-24 text-3xl" />
+			<PalettePalHeader className="w-full px-4 h-80 flex items-center justify-center mb-12 md:mb-24 text-3xl text-center" />
 			<button
 				className="border p-2 rounded text-white border-white hover:bg-white hover:white hover:text-black transition"
 				onClick={handleShowSubmissionForm}
 			>
 				Create A New Palette
 			</button>
-			<p className="w-1/2 mt-24 text-white text-center">
+			<Gears size="6em" className="text-white" />
+			<p className="w-full px-4 md:max-w-[700px] xl:max-w-[1000px] text-md md:text-lg mt-4 text-white text-center">
 				Thank you for visiting PalettePal! The site is currently
-				undergoing some updates, so the profile creation feature is
-				temporarily unavailable... However, the color palette generation
-				tool is fully functional and available! Just upload an image to
-				start
+				undergoing some updates and palette generator is temporarily
+				unavaiable... Sorry for the inconvenience, Check back soon!!
 			</p>
 		</div>
 	);
