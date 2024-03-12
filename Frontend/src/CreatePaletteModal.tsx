@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { createPalette } from "./api/apiFunctions";
 import { useAppContext } from "./Contexts/AppContext";
-import { usePaletteCrud } from "./hooks/usePaletteCrud";
 
 const CreatePaletteModal: React.FC = () => {
 	const { activePalette, setActivePalette } = useAppContext();
@@ -15,11 +14,8 @@ const CreatePaletteModal: React.FC = () => {
 
 	const handleSubmit = async () => {
 		if (activePalette) {
-			// Update the activePalette with the new name
 			const updatedPalette = { ...activePalette, name: paletteName };
 			setActivePalette(updatedPalette);
-
-			// Then send the updated palette to the backend
 			await createPalette(updatedPalette);
 		}
 	};

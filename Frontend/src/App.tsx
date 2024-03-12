@@ -6,9 +6,9 @@ import {
 	useLocation,
 } from "react-router-dom";
 import "./App.css";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePage/HomePage";
 import NavBar from "./components/NavBar";
-import PaletteView from "./pages/PaletteViewPage";
+import PaletteView from "./pages/PaletteViewPage/PaletteViewPage";
 import { AuthProvider } from "./hooks/useAuth";
 import { AppContext } from "./Contexts/AppContext";
 import { Palette } from "./types";
