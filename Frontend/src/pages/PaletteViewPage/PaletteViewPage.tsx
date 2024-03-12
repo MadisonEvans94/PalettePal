@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useAppContext } from "../../Contexts/AppContext"; // Import useAppContext
-import WidgetPane from "../../components/WidgetPane";
-import ActionButton from "../../components/ActionButton";
+import { useAppContext } from "../../Contexts/AppContext";
+import { ActionButton, ImageUploadForm, WidgetPane } from "../../components";
 import { ImagePaneProps, Palette } from "../../types";
-import ImageUploadForm from "../../components/ImageUploadForm";
 import usePaletteSubmission from "../../hooks/usePaletteSubmission";
 import localforage from "localforage";
 // TODO: Remove persistence
