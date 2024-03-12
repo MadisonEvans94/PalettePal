@@ -12,36 +12,22 @@ export const processImage = async (
 		return;
 	}
 
-	const toBase64 = (file: File) =>
-		new Promise<string | ArrayBuffer | null>((resolve, reject) => {
-			const reader = new FileReader();
-			reader.readAsDataURL(file);
-			reader.onload = () => resolve(reader.result);
-			reader.onerror = (error) => reject(error);
-		});
-
+	// Create a FormData object and append the file
+	const formData = new FormData();
+	formData.append("image", imgFile);
 	try {
-		const base64String = await toBase64(imgFile);
-		if (!base64String) {
-			throw new Error("Failed to convert image to base64");
-		}
-
 		const response = await fetch(url, {
 			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ image: base64String }),
+			// Do not set Content-Type header when using FormData,
+			// the browser will set it for you, including the boundary parameter.
+			body: formData,
 		});
-		console.log(
-			"DATA WERE TESTING: ",
-			await JSON.stringify({ image: base64String })
-		);
+
 		if (!response.ok) {
 			throw new Error("Image upload failed :(");
 		}
-		const result: ClusterData = await response.json();
 
+		const result: ClusterData = await response.json();
 		return result;
 	} catch (error) {
 		console.error("Error during upload:", error);
