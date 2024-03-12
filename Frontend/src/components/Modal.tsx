@@ -1,25 +1,65 @@
 import React from "react";
 import { ReactComponent as Close } from "../assets/icons/Close.svg";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface ModalProps {
-	modalContent: React.ReactNode; // Changed to React.ReactNode for JSX elements
+	modalContent: React.ReactNode;
 	closeModal: React.Dispatch<React.SetStateAction<boolean>>;
+	showModal: boolean;
 }
 
-const Modal: React.FC<ModalProps> = ({ modalContent, closeModal }) => {
+const backdropVariants = {
+	hidden: {
+		opacity: 0,
+		backdropFilter: `blur(0px)`,
+		backgroundColor: "rgba(0, 0, 0, 0)",
+	},
+	visible: {
+		opacity: 1,
+		backdropFilter: `blur(3px)`,
+		backgroundColor: "rgba(0, 0, 0, 0.2)",
+		transition: { duration: 0.2 },
+	},
+};
+
+const modalVariants = {
+	hidden: { y: 50, opacity: 0 },
+	visible: { y: 0, opacity: 1, transition: { duration: 0.2 } },
+};
+
+const Modal: React.FC<ModalProps> = ({
+	modalContent,
+	closeModal,
+	showModal,
+}) => {
 	return (
-		<div className="text-dark absolute w-full h-full flex flex-col justify-center backdrop-blur z-[1000] items-center">
-			{/* Use CreatePaletteModal as a JSX element */}
-			<div className="bg-white border space-y-2  border-dark relative rounded-lg py-10 px-12 mx-auto flex flex-col justify-center">
-				{modalContent}
-				<Close
-					className="hover:text-dark transition cursor-pointer absolute p-1 rounded top-0 right-1"
-					onClick={() => closeModal((prev) => !prev)}
+		<AnimatePresence>
+			{showModal && (
+				<motion.div
+					layout
+					className="fixed inset-0 flex items-center justify-center z-[1000]"
+					variants={backdropVariants}
+					initial="hidden"
+					animate="visible"
+					exit="hidden"
 				>
-					cancel
-				</Close>
-			</div>
-		</div>
+					<motion.div
+						className="z-50 relative bg-dark p-4 rounded-md"
+						variants={modalVariants}
+						initial="hidden"
+						animate="visible"
+						exit="hidden"
+					>
+						{/* Modal Content */}
+						{modalContent}
+						<Close
+							className="text-white transition cursor-pointer absolute p-1 rounded top-1 right-1"
+							onClick={() => closeModal(false)}
+						/>
+					</motion.div>
+				</motion.div>
+			)}
+		</AnimatePresence>
 	);
 };
 

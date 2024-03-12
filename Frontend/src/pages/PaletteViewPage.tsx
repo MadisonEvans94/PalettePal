@@ -6,6 +6,8 @@ import { ImagePaneProps, Palette } from "../types";
 import ImageUploadForm from "../components/ImageUploadForm";
 import usePaletteSubmission from "../hooks/usePaletteSubmission";
 import localforage from "localforage";
+// TODO: Remove persistence
+// TODO: have an error case
 const PaletteView: React.FC = () => {
 	const [colorCount, setColorCount] = useState<number>(2);
 	const { handlePaletteSubmission } = usePaletteSubmission();
@@ -63,7 +65,7 @@ const PaletteView: React.FC = () => {
 				<div className="flex items-center gap-2 bg-dark justify-center h-48">
 					<ActionButton
 						label="copy palette"
-						className="p-2 bg-theme1 rounded text-white"
+						className="p-2 hover:bg-theme1 border border-white hover:border-theme1 transition rounded text-white"
 						onClick={() => {
 							if (activePalette?.clusterData?.clusters) {
 								const textToCopy =
@@ -85,7 +87,7 @@ const PaletteView: React.FC = () => {
 
 					<ActionButton
 						label="upload new image"
-						className="p-2 bg-theme1 rounded text-white"
+						className="p-2 hover:bg-theme1 border border-white hover:border-theme1 transition rounded text-white"
 						onClick={handleShowSubmissionForm}
 					/>
 				</div>

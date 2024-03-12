@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-// TODO: update color theme
+
 module.exports = {
 	content: ["./src/**/*.{js,jsx,ts,tsx}"],
 	theme: {
@@ -10,6 +10,8 @@ module.exports = {
 				accent: "#f9ac00",
 				theme1: "#FF8595",
 				dark: "#2A2A2A",
+				dim: "#4A4A4A",
+				faint: "#777",
 				neutral: {
 					100: "#f5f5f5",
 					200: "#e5e5e5",

@@ -40,7 +40,7 @@ const WidgetPane: React.FC<WidgetPaneProps> = ({
 	];
 
 	return (
-		<div className="text-neutral-700 h-full w-full flex flex-col items-center">
+		<div className=" text-neutral-700 h-full w-full flex flex-col items-center">
 			<Carousel components={componentsToCycle} />
 			<ColorCounter
 				decrementColorCount={decrementColorCount}

@@ -30,11 +30,8 @@ const HomePage: React.FC = () => {
 			>
 				Create A New Palette
 			</button>
-			<Gears size="6em" className="text-white" />
-			<p className="w-full px-4 md:max-w-[700px] xl:max-w-[1000px] text-md md:text-lg mt-4 text-white text-center">
-				Thank you for visiting PalettePal! The site is currently
-				undergoing some updates and palette generator is temporarily
-				unavaiable... Sorry for the inconvenience, Check back soon!!
+			<p className="w-full px-4 md:max-w-[700px] xl:max-w-[1000px] text-md md:text-lg mt-12 pt-12 text-white text-center">
+				Thank you for visiting PalettePal!
 			</p>
 		</div>
 	);

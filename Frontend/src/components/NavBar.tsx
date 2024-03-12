@@ -5,7 +5,7 @@ import { ReactComponent as PP } from "../assets/icons/PP.svg";
 
 const NavBar: React.FC = () => {
 	return (
-		<nav className="flex justify-between px-8 py-4 items-center">
+		<nav className="flex bg-dark justify-between px-8 py-4 items-center">
 			<Link to="/">
 				<PP className="w-fit h-10" />
 			</Link>

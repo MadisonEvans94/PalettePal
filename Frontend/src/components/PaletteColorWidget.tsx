@@ -1,6 +1,7 @@
 import React from "react";
 import { ClusterData } from "../types";
-
+// TODO: move interfaces to index.ts
+// TODO: add copy feedback
 interface PaletteColorProps {
 	color: string;
 }
@@ -53,7 +54,7 @@ const PaletteColor: React.FC<PaletteColorProps> = ({ color }) => {
 		>
 			{isHovered && (
 				<div
-					className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 p-1 text-xs rounded"
+					className="absolute border border-white left-1/2 transform -translate-x-1/2 bottom-full mb-2 p-1 text-xs rounded"
 					style={{ backgroundColor: color, color: textColor }}
 				>
 					{color}

@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	useLocation,
+} from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
@@ -20,6 +25,12 @@ function App() {
 		null
 	);
 
+	// Using a custom hook to determine if NavBar should be displayed
+	const ShowNavBar = () => {
+		const location = useLocation();
+		return location.pathname !== "/" ? <NavBar /> : null;
+	};
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -37,11 +48,12 @@ function App() {
 			<Router>
 				<AuthProvider>
 					<div className="bg-theme1 h-full flex flex-col relative">
-						<NavBar />
+						<ShowNavBar />
 						{showModal && (
 							<Modal
 								modalContent={modalContent}
 								closeModal={() => setShowModal(false)}
+								showModal={showModal}
 							/>
 						)}
 						<div className="flex-grow overflow-auto">
