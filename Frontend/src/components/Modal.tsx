@@ -1,7 +1,6 @@
 import React from "react";
 import { ReactComponent as Close } from "../assets/icons/Close.svg";
 import { motion, AnimatePresence } from "framer-motion";
-
 interface ModalProps {
 	modalContent: React.ReactNode;
 	closeModal: React.Dispatch<React.SetStateAction<boolean>>;
