@@ -1,37 +1,28 @@
 import { ClusterData, Palette } from "../types";
-// TODO: more destinguishing naming convention for api functions
 
 export const processImage = async (
-	event: React.FormEvent,
-	imgFile: File | null,
+	imgFile: File,
 	url: string
-) => {
-	event.preventDefault();
+): Promise<ClusterData> => {
 	if (!imgFile) {
 		alert("Please select an image first.");
-		return;
+		throw new Error("No image file provided."); // Throw an error instead of returning undefined
 	}
 
-	// Create a FormData object and append the file
 	const formData = new FormData();
 	formData.append("image", imgFile);
-	try {
-		const response = await fetch(url, {
-			method: "POST",
-			// Do not set Content-Type header when using FormData,
-			// the browser will set it for you, including the boundary parameter.
-			body: formData,
-		});
 
-		if (!response.ok) {
-			throw new Error("Image upload failed :(");
-		}
+	const response = await fetch(url, {
+		method: "POST",
+		body: formData,
+	});
 
-		const result: ClusterData = await response.json();
-		return result;
-	} catch (error) {
-		console.error("Error during upload:", error);
+	if (!response.ok) {
+		throw new Error("Image upload failed :(");
 	}
+
+	const result: ClusterData = await response.json();
+	return result;
 };
 export const deletePalette = async (id: number | null) => {
 	try {

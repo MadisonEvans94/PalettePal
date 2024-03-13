@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -13,6 +14,9 @@ import { AuthProvider } from "./hooks/useAuth";
 import { AppContext } from "./Contexts/AppContext";
 import { Palette } from "./types";
 import Modal from "./components/Modal";
+
+// Create a client
+const queryClient = new QueryClient();
 
 const imageProcessorEndpoint =
 	process.env.REACT_APP_IMAGE_PROCESSOR_ENDPOINT || "";
@@ -32,43 +36,45 @@ function App() {
 	};
 
 	return (
-		<AppContext.Provider
-			value={{
-				imageProcessorEndpoint,
-				activePalette,
-				setActivePalette,
-				setActiveImageUrl,
-				activeImageUrl,
-				showModal,
-				setShowModal,
-				modalContent,
-				setModalContent,
-			}}
-		>
-			<Router>
-				<AuthProvider>
-					<div className="bg-theme1 h-full flex flex-col relative">
-						<ShowNavBar />
-						{showModal && (
-							<Modal
-								modalContent={modalContent}
-								closeModal={() => setShowModal(false)}
-								showModal={showModal}
-							/>
-						)}
-						<div className="flex-grow overflow-auto">
-							<Routes>
-								<Route path="/" element={<HomePage />} />
-								<Route
-									path="/palette-view"
-									element={<PaletteView />}
+		<QueryClientProvider client={queryClient}>
+			<AppContext.Provider
+				value={{
+					imageProcessorEndpoint,
+					activePalette,
+					setActivePalette,
+					setActiveImageUrl,
+					activeImageUrl,
+					showModal,
+					setShowModal,
+					modalContent,
+					setModalContent,
+				}}
+			>
+				<Router>
+					<AuthProvider>
+						<div className="bg-theme1 h-full flex flex-col relative">
+							<ShowNavBar />
+							{showModal && (
+								<Modal
+									modalContent={modalContent}
+									closeModal={() => setShowModal(false)}
+									showModal={showModal}
 								/>
-							</Routes>
+							)}
+							<div className="flex-grow overflow-auto">
+								<Routes>
+									<Route path="/" element={<HomePage />} />
+									<Route
+										path="/palette-view"
+										element={<PaletteView />}
+									/>
+								</Routes>
+							</div>
 						</div>
-					</div>
-				</AuthProvider>
-			</Router>
-		</AppContext.Provider>
+					</AuthProvider>
+				</Router>
+			</AppContext.Provider>
+		</QueryClientProvider>
 	);
 }
 

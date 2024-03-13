@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { ImageFormProps } from "../types";
-// TODO: need a loading modal
-// TODO: invoke a max image size restraint
+
 const ImageUploadForm: React.FC<ImageFormProps> = ({
 	url,
 	onSubmit,
@@ -16,7 +15,7 @@ const ImageUploadForm: React.FC<ImageFormProps> = ({
 		}
 	};
 
-	const handleSubmit = async (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		try {
 			await onSubmit(e, imgFile, url);

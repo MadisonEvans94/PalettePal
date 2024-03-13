@@ -23,11 +23,11 @@ export type Palette = {
 export interface ImageFormProps {
 	url: string;
 	onSubmit: (
-		event: React.FormEvent,
+		event: React.FormEvent<HTMLFormElement>, // Use HTMLFormElement here
 		imgFile: File | null,
 		url: string
 	) => void;
-	onClose: () => void;
+	onClose?: () => void;
 	onSuccess?: () => void;
 }
 
