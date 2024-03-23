@@ -4,7 +4,7 @@ import { ActionButton, ImageUploadForm, WidgetPane } from "../../components";
 import ImagePane from "../../components/ImagePane/ImagePane";
 import usePaletteSubmission from "../../hooks/usePaletteSubmission";
 import LoadingModal from "../../components/LoadingModal";
-
+import { IoImage } from "react-icons/io5";
 const PaletteView: React.FC = () => {
 	const [colorCount, setColorCount] = useState<number>(2);
 	const { handlePaletteSubmission, isProcessing, setShowModal } =
@@ -31,13 +31,24 @@ const PaletteView: React.FC = () => {
 			{isProcessing && <LoadingModal />}
 			<div className="w-full h-full flex flex-col bg-white">
 				<div className="w-full grid grid-cols-2 flex-grow">
-					<ImagePane uploadedImage={activeImageUrl} />
-					{activePalette?.clusterData && (
+					{activeImageUrl ? (
+						<ImagePane uploadedImage={activeImageUrl} />
+					) : (
+						<div className=" text-dark border h-full w-full flex flex-col items-center justify-center">
+							<IoImage size="8em" />
+						</div>
+					)}
+					{activePalette?.clusterData ? (
 						<WidgetPane
 							clusterData={activePalette.clusterData}
 							colorCount={colorCount}
 							setColorCount={setColorCount}
 						/>
+					) : (
+						<div className="font-bold text-xl text-dark border h-full w-full flex flex-col items-center justify-center">
+							to generate a new palette, press the upload new
+							image button
+						</div>
 					)}
 				</div>
 				<div className="flex items-center gap-2 bg-dark justify-center h-48">

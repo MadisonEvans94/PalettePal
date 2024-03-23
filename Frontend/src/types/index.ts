@@ -11,7 +11,11 @@ export type User = {
 	email: string;
 	username: string;
 };
-
+export interface WidgetPaneProps {
+	clusterData: ClusterData;
+	colorCount: number;
+	setColorCount: React.Dispatch<React.SetStateAction<number>>;
+}
 export type Palette = {
 	id: number | null;
 	date: string;
@@ -58,7 +62,6 @@ export interface AuthFormProps {
 }
 
 export interface AppContextType {
-	// palettes: Palette[];
 	imageProcessorEndpoint: string;
 	activePalette: Palette | null;
 	setActivePalette: React.Dispatch<React.SetStateAction<Palette | null>>;

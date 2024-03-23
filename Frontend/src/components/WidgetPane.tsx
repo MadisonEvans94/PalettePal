@@ -1,15 +1,9 @@
 import React from "react";
-import { ClusterData } from "../types";
 import PaletteRatioWidget from "./PaletteRatioWidget";
 import PaletteColorWidget from "./PaletteColorWidget";
 import ColorCounter from "./ColorCounter";
 import Carousel from "./Carousel";
-
-interface WidgetPaneProps {
-	clusterData: ClusterData;
-	colorCount: number;
-	setColorCount: React.Dispatch<React.SetStateAction<number>>;
-}
+import { WidgetPaneProps } from "../types";
 
 const WidgetPane: React.FC<WidgetPaneProps> = ({
 	clusterData,

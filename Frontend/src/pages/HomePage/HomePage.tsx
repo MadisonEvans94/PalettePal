@@ -26,15 +26,16 @@ const HomePage: React.FC = () => {
 	return (
 		<div className=" h-full flex flex-col items-center justify-center">
 			{isProcessing && <LoadingModal />}
-			<PalettePalHeader className="w-full px-4 h-80 flex items-center justify-center mb-12 md:mb-24 text-3xl text-center" />
+			<PalettePalHeader className="w-full md:px-4 px-6 h-80 flex items-center justify-center mb-12 md:mb-24 text-3xl text-center" />
 			<button
-				className="border p-2 rounded text-white border-white hover:bg-white hover:white hover:text-black transition"
+				className="border text-sm md:text-md p-2 rounded text-white border-white hover:bg-white hover:white hover:text-black transition"
 				onClick={handleShowSubmissionForm}
 			>
 				Create A New Palette
 			</button>
-			<p className="w-full px-4 md:max-w-[700px] xl:max-w-[1000px] text-md md:text-lg mt-12 pt-12 text-white text-center">
-				Thank you for visiting PalettePal!
+			<p className="w-full px-4 pb-6 md:max-w-[700px] xl:max-w-[1000px] text-sm md:text-lg mt-12 pt-12 text-white text-center">
+				Welcome to Palette Pal! Upload an Image to get a custom color
+				palette
 			</p>
 		</div>
 	);

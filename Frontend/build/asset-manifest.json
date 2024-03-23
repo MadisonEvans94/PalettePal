@@ -1,17 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.a656724a.css",
-    "main.js": "/static/js/main.f84bce73.js",
+    "main.css": "/static/css/main.9bf5e416.css",
+    "main.js": "/static/js/main.8627b7d0.js",
     "static/media/MOLIKA.svg": "/static/media/MOLIKA.40586377964662c2153d.svg",
     "static/media/PalettePalHeader.svg": "/static/media/PalettePalHeader.0fef098a378dec7dca6ccb7c02d1cdaf.svg",
     "static/media/MOLIKA.ttf": "/static/media/MOLIKA.59eb3e61edb2811c10db.ttf",
     "static/media/MOLIKA.woff2": "/static/media/MOLIKA.ae8d9cbb6cd4cf1611db.woff2",
+    "static/media/PP.svg": "/static/media/PP.b3b6fa2d741a039652311b1b8df1c2b1.svg",
+    "static/media/Close.svg": "/static/media/Close.4c780a19ee86748d109d8e77c9c6d794.svg",
     "index.html": "/index.html",
-    "main.a656724a.css.map": "/static/css/main.a656724a.css.map",
-    "main.f84bce73.js.map": "/static/js/main.f84bce73.js.map"
+    "static/media/loading_spinner.svg": "/static/media/loading_spinner.2ff8108bf1a4e627e69f5991a3ade043.svg",
+    "main.9bf5e416.css.map": "/static/css/main.9bf5e416.css.map",
+    "main.8627b7d0.js.map": "/static/js/main.8627b7d0.js.map"
   },
   "entrypoints": [
-    "static/css/main.a656724a.css",
-    "static/js/main.f84bce73.js"
+    "static/css/main.9bf5e416.css",
+    "static/js/main.8627b7d0.js"
   ]
 }
