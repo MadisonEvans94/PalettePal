@@ -15,6 +15,7 @@ export interface WidgetPaneProps {
 	clusterData: ClusterData;
 	colorCount: number;
 	setColorCount: React.Dispatch<React.SetStateAction<number>>;
+	className?: string;
 }
 export type Palette = {
 	id: number | null;

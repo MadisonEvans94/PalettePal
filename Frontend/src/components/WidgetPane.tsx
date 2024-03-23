@@ -9,6 +9,7 @@ const WidgetPane: React.FC<WidgetPaneProps> = ({
 	clusterData,
 	colorCount,
 	setColorCount,
+	className,
 }) => {
 	const incrementColorCount = () => {
 		if (colorCount < clusterData.clusters.length - 1) {
@@ -34,7 +35,9 @@ const WidgetPane: React.FC<WidgetPaneProps> = ({
 	];
 
 	return (
-		<div className=" text-neutral-700 h-full w-full flex flex-col items-center">
+		<div
+			className={`${className} text-neutral-700 h-full w-full flex flex-col items-center`}
+		>
 			<Carousel components={componentsToCycle} />
 			<ColorCounter
 				decrementColorCount={decrementColorCount}

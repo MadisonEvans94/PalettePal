@@ -31,9 +31,13 @@ const PaletteView: React.FC = () => {
 			{isProcessing && <LoadingModal />}
 			<div className="w-full h-full flex flex-col bg-white">
 				<div className="w-full flex flex-col md:grid md:grid-cols-2 flex-grow">
-					<ImagePane uploadedImage={activeImageUrl} className="" />
+					<ImagePane
+						uploadedImage={activeImageUrl}
+						className="max-h-[100px] md:max-h-none md:p-12 p-2 "
+					/>
 					{activePalette?.clusterData ? (
 						<WidgetPane
+							className=""
 							clusterData={activePalette.clusterData}
 							colorCount={colorCount}
 							setColorCount={setColorCount}
