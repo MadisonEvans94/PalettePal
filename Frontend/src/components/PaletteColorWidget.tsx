@@ -47,7 +47,7 @@ const PaletteColor: React.FC<PaletteColorProps> = ({ color }) => {
 	return (
 		<div
 			style={{ backgroundColor: color }}
-			className="w-16 h-16 rounded-sm cursor-pointer relative"
+			className="w-12 h-12 xl:w-16 xl:h-16 rounded-sm cursor-pointer relative"
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 			onClick={copyToClipboard}
@@ -70,7 +70,14 @@ const PaletteColorWidget: React.FC<PaletteColorWidgetProps> = ({
 }) => {
 	return (
 		<div className="mx-auto p-4 flex flex-col">
-			<div className="flex flex-row gap-1 justify-center">
+			<div
+				className={`lg:flex lg:flex-row lg:gap-1 lg:justify-center ${
+					!clusterData.clusters[colorCount] ||
+					clusterData.clusters[colorCount].length <= 2
+						? "flex flex-row gap-1 justify-center"
+						: "grid grid-cols-2 gap-1"
+				}`}
+			>
 				{clusterData.clusters[colorCount].map((cluster, id) => (
 					<PaletteColor color={cluster} key={id} />
 				))}

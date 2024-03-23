@@ -17,16 +17,15 @@ const PaletteRatioWidget: React.FC<PaletteColorWidgetProps> = ({
 						marker: {
 							colors: clusterData.clusters[colorCount],
 						},
-						textinfo: "percent",
+						textinfo: "none",
 					},
 				]}
 				layout={{
 					autosize: true,
 
-					// paper_bgcolor: "rgba(0,0,0,0)",
 					plot_bgcolor: "rgba(0,0,0,0)",
 					font: {
-						size: 16,
+						size: 12,
 						color: "rgb(115 115 115)",
 					},
 				}}

@@ -43,13 +43,13 @@ const PaletteView: React.FC = () => {
 							setColorCount={setColorCount}
 						/>
 					) : (
-						<div className="font-bold text-xl text-dark border h-full w-full flex flex-col items-center justify-center">
+						<div className="px-2 font-bold text-sm lg:text-xl text-dark h-full w-full flex flex-col items-center text-center justify-center">
 							to generate a new palette, press the upload new
 							image button
 						</div>
 					)}
 				</div>
-				<div className="flex items-center gap-2 bg-dark justify-center h-48">
+				<div className="flex items-center gap-2 bg-dark justify-center h-24 md:h-48">
 					<ActionButton
 						label="copy palette"
 						className="p-2 hover:bg-theme1 border border-white hover:border-theme1 transition rounded text-white"
