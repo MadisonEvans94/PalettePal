@@ -37,6 +37,7 @@ export interface ImageFormProps {
 
 export interface ImagePaneProps {
 	uploadedImage: string | null;
+	className?: string;
 }
 
 export interface FormFieldProps {

@@ -30,9 +30,8 @@ const PaletteView: React.FC = () => {
 		<>
 			{isProcessing && <LoadingModal />}
 			<div className="w-full h-full flex flex-col bg-white">
-				<div className="w-full grid grid-cols-2 flex-grow">
-					<ImagePane uploadedImage={activeImageUrl} />
-
+				<div className="w-full flex flex-col md:grid md:grid-cols-2 flex-grow">
+					<ImagePane uploadedImage={activeImageUrl} className="" />
 					{activePalette?.clusterData ? (
 						<WidgetPane
 							clusterData={activePalette.clusterData}
