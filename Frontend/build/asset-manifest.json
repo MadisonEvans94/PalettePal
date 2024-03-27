@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.9bf5e416.css",
-    "main.js": "/static/js/main.8627b7d0.js",
+    "main.css": "/static/css/main.5877e821.css",
+    "main.js": "/static/js/main.4abeb4ea.js",
     "static/media/MOLIKA.svg": "/static/media/MOLIKA.40586377964662c2153d.svg",
     "static/media/PalettePalHeader.svg": "/static/media/PalettePalHeader.0fef098a378dec7dca6ccb7c02d1cdaf.svg",
     "static/media/MOLIKA.ttf": "/static/media/MOLIKA.59eb3e61edb2811c10db.ttf",
@@ -10,11 +10,11 @@
     "static/media/Close.svg": "/static/media/Close.4c780a19ee86748d109d8e77c9c6d794.svg",
     "index.html": "/index.html",
     "static/media/loading_spinner.svg": "/static/media/loading_spinner.2ff8108bf1a4e627e69f5991a3ade043.svg",
-    "main.9bf5e416.css.map": "/static/css/main.9bf5e416.css.map",
-    "main.8627b7d0.js.map": "/static/js/main.8627b7d0.js.map"
+    "main.5877e821.css.map": "/static/css/main.5877e821.css.map",
+    "main.4abeb4ea.js.map": "/static/js/main.4abeb4ea.js.map"
   },
   "entrypoints": [
-    "static/css/main.9bf5e416.css",
-    "static/js/main.8627b7d0.js"
+    "static/css/main.5877e821.css",
+    "static/js/main.4abeb4ea.js"
   ]
 }
