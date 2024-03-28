@@ -1,6 +1,7 @@
 # Palette Pal
 Palette Pal is a React-based web app designed to help developers and designers create color palettes based on images. The app breaks down an image into its constituent pixels, projects them into RGB color space, and uses a K-means clustering algorithm to generate a specified number of colors representing the image. Users can customize the number of colors in their palette and copy the corresponding hex codes for use in their design projects.
 
+for backend repo, visit [here](https://github.com/MadisonEvans94/PalettePal-Backend)
 ### Features
 * Upload and process images to extract color palettes
 * K-means clustering algorithm for grouping similar colors
